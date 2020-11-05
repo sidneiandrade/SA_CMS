@@ -2,8 +2,6 @@
 
 include './system/conexao.php'; 
 
-    
-
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
