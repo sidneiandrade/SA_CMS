@@ -1504,6 +1504,42 @@ section {
 }
 
 /*--------------------------------------------------------------
+# Clients
+--------------------------------------------------------------*/
+.clients .clients-wrap {
+  border-top: 1px solid #eceff0;
+  border-left: 1px solid #eceff0;
+}
+
+.clients .client-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px solid #eceff0;
+  border-bottom: 1px solid #eceff0;
+  overflow: hidden;
+  background: #fff;
+  height: 120px;
+  padding: 40px;
+}
+
+.clients .client-logo img {
+  max-width: 50%;
+  -webkit-filter: grayscale(100);
+  filter: grayscale(100);
+}
+
+.clients .client-logo:hover img {
+  -webkit-filter: none;
+  filter: none;
+  transform: scale(1.1);
+}
+
+.clients img {
+  transition: all 0.4s ease-in-out;
+}
+
+/*--------------------------------------------------------------
 # Testimonials
 --------------------------------------------------------------*/
 .testimonials .testimonial-item {

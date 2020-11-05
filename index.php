@@ -401,14 +401,67 @@
     <?php if($listModulos[5]['mod_status'] == 1){?>
       <section id="clients" class="clients">
         <div class="container">
-            <div class="section-title">
-              <h2><?php echo $listModulos[5]['mod_titulo'] ?></h2>
-              <p><?php echo $listModulos[5]['mod_descricao'] ?></p>
+          <div class="section-title">
+            <h2><?php echo $listModulos[5]['mod_titulo'] ?></h2>
+            <p><?php echo $listModulos[5]['mod_descricao'] ?></p>
+          </div>
+          <div class="row no-gutters clients-wrap clearfix wow fadeInUp">
+            <?php 
+              $clientes = $pdo->prepare("SELECT * FROM CLIENTES WHERE CLI_STATUS = ?");
+              $clientes->execute([1]);
+              $listClientes = $clientes->fetchAll(PDO::FETCH_ASSOC);
+              foreach($listClientes as $keys => $cliValues){
+            ?>
+
+            <div class="col-lg-3 col-md-4 col-xs-6">
+              <div class="client-logo" data-aos="zoom-in">
+                <img src="<?php echo $cliValues['cli_url_imagem'] ?>" class="img-fluid" alt="<?php echo $cliValues['cli_empresa'] ?>">
+              </div>
             </div>
 
-            <div class="row">
-
+            <?php } ?>
+            <!-- <div class="col-lg-3 col-md-4 col-xs-6">
+              <div class="client-logo" data-aos="zoom-in" data-aos-delay="100">
+                <img src="assets/img/clients/client-2.png" class="img-fluid" alt="">
+              </div>
             </div>
+
+            <div class="col-lg-3 col-md-4 col-xs-6">
+              <div class="client-logo" data-aos="zoom-in" data-aos-delay="150">
+                <img src="assets/img/clients/client-3.png" class="img-fluid" alt="">
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-xs-6">
+              <div class="client-logo" data-aos="zoom-in" data-aos-delay="200">
+                <img src="assets/img/clients/client-4.png" class="img-fluid" alt="">
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-xs-6">
+              <div class="client-logo" data-aos="zoom-in" data-aos-delay="250">
+                <img src="assets/img/clients/client-5.png" class="img-fluid" alt="">
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-xs-6">
+              <div class="client-logo" data-aos="zoom-in" data-aos-delay="300">
+                <img src="assets/img/clients/client-6.png" class="img-fluid" alt="">
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-xs-6">
+              <div class="client-logo" data-aos="zoom-in" data-aos-delay="350">
+                <img src="assets/img/clients/client-7.png" class="img-fluid" alt="">
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-xs-6" data-aos="zoom-in" data-aos-delay="400">
+              <div class="client-logo">
+                <img src="assets/img/clients/client-8.png" class="img-fluid" alt="">
+              </div>
+            </div> -->
+          </div>
         </div>
       </section>
     <?php } else {} ?><!-- End Clients Section -->
