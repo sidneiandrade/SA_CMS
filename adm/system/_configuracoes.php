@@ -13,8 +13,7 @@ if (!empty($_POST)) {
         $new_name = 'logo.png'; //Definindo um novo nome para o arquivo
         move_uploaded_file($_FILES['confLogo']['tmp_name'], $dirImagens . $new_name); //Fazer upload do arquivo
         $image = WideImage::load($dirImagens . $new_name);
-        $image = $image->resize('500', '135', 'fill', 'any');
-        //$image = $image->crop('center', 'center', 800, 800);
+        $image = $image->resize(null, '150', 'fill', 'any');
         $image->saveToFile($dirImagens . $new_name);
         $pathlogo = $baseDiretorio . $new_name;
 

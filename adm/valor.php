@@ -88,9 +88,9 @@ if ($ID != 0) {
                                         <div class="form-group">
                                             <label class="form-label" for="valFrequencia">Frequência</label>
                                             <select id="valFrequencia" name="valFrequencia" class="form-control js-choice">
-                                                <option value="0" <?= ($Frequencia == '0') ? 'selected="selected"' : '' ?>>Mensal</option>
-                                                <option value="1" <?= ($Frequencia == '1') ? 'selected="selected"' : '' ?>>Trimestral</option>
-                                                <option value="2" <?= ($Frequencia == '2') ? 'selected="selected"' : '' ?>>Anual</option>
+                                                <option value="mensal" <?= ($Frequencia == 'mensal') ? 'selected="selected"' : '' ?>>mensal</option>
+                                                <option value="trimestral" <?= ($Frequencia == 'trimestral') ? 'selected="selected"' : '' ?>>trimestral</option>
+                                                <option value="anual" <?= ($Frequencia == 'anual') ? 'selected="selected"' : '' ?>>anual</option>
                                             </select>
                                         </div>
                                     </div>

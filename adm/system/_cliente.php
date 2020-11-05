@@ -18,7 +18,7 @@ switch ($Acao){
             $Imagem = 'Cliente-' . rand() . '.png'; //Definindo um novo nome para o arquivo
             move_uploaded_file($_FILES['arquivoImagem']['tmp_name'], $dirImagens . $Imagem); //Fazer upload do arquivo
             $image = WideImage::load($dirImagens . $Imagem);
-            $image = $image->resize('100', '60', 'fill', 'any');
+            $image = $image->resize('400', null, 'fill', 'any');
             $image->saveToFile($dirImagens . $Imagem);
             $pathImage = $baseDiretorio . $Imagem;
     
@@ -42,7 +42,7 @@ switch ($Acao){
             if (!empty($_FILES['arquivoImagem']['name'])) {
                 move_uploaded_file($_FILES['arquivoImagem']['tmp_name'], $dirImagens . $Imagem); //Fazer upload do arquivo
                 $image = WideImage::load($dirImagens . $Imagem);
-                $image = $image->resize('100', '60', 'fill', 'any');
+                $image = $image->resize('400', null, 'fill', 'any');
                 $image->saveToFile($dirImagens . $Imagem);
             }
 

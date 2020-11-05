@@ -37,7 +37,7 @@ include 'header.php';
                                     <?php foreach ($listarConfiguracoes as $key => $value) { ?>
                                         <div class="col-lg-6">
                                             <div class="form-group">
-                                                <label class="form-label">Logo</label> <small>Tamanho Padrão 500x135 pixels</small><br>
+                                                <label class="form-label">Logo</label> <small>Tamanho Padrão 500x150 pixels</small><br>
                                                 <img class="img-fluid" src="<?php echo $value['conf_logo'] ?>" alt="<?php echo $value['conf_nome'] ?>">
                                             </div>
                                             <div class="form-group">

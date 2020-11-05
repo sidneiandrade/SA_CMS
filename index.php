@@ -592,21 +592,7 @@
                 <h3><?php echo $valValue['val_titulo'] ?></h3>
                 <h4><sup>R$</sup><?php echo $valValue['val_valor'] ?>
                   <span> / 
-                  <?php 
-                    switch($valValue['val_frequencia']){
-                      case '0':
-                        echo "mensal";
-                      break;
-
-                      case '1':
-                        echo "trimestral";
-                      break;
-
-                      case '2':
-                        echo "anual";
-                      break;
-                    }
-                  ?>
+                  <?php echo $valValue['val_frequencia'] ?>
                   </span></h4>
                 <?php echo $valValue['val_texto'] ?>
                 <div class="btn-wrap">

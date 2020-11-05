@@ -38,7 +38,7 @@ $list = $pdo->query("SELECT * FROM VALORES")->fetchAll(PDO::FETCH_ASSOC);
                             <?php foreach ($list as $key => $value) { ?>
                                 <tr>
                                     <td><?php echo $value['val_titulo'] ?></td>
-                                    <td><?php echo $value['val_valor'] ?></td>
+                                    <td>R$ <?php echo $value['val_valor'] ?> / <?php echo $value['val_frequencia'] ?></td>
                                     <td>
                                         <?php if ($value['val_status'] == 1) {
                                             echo '<span class="badge badge-pill badge-success">Publicado</span>';
