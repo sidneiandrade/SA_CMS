@@ -76,7 +76,7 @@ if ($notID != 0) {
                                         <?php if ($UrlImagem != "") { ?>
                                             <img src="<?php echo $UrlImagem ?>" class="img-fluid rounded mx-auto d-block mb-2" alt="<?php echo $Titulo ?>">
                                         <?php } ?>
-                                        <label class="form-label" for="arquivoImagem">Enviar Imagem</label>
+                                        <label class="form-label" for="arquivoImagem">Enviar Imagem <i class="fas fa-question-circle" data-toggle="tooltip" data-placement="top" title="Tamanho Padrão 600x300 pixels"></i></label>
                                         <input type="file" class="form-control" name="arquivoImagem">
                                     </div>
                                 </div>

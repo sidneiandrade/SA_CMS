@@ -512,24 +512,34 @@
           </div>
 
           <div class="row">
+            <?php 
+              $membros = $pdo->prepare("SELECT * FROM MEMBROS WHERE MB_STATUS = ?");
+              $membros->execute([1]);
+              $listMembros =  $membros->fetchAll(PDO::FETCH_ASSOC);
+              foreach($listMembros as $key => $mbValues){
+            
+            ?>
+
             <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
               <div class="member">
-                <img src="assets/img/team/team-1.jpg" alt="">
-                <h4>Walter White</h4>
-                <span>Chief Executive Officer</span>
-                <p>
+                <img src="<?php echo $mbValues['mb_url_imagem'] ?>" alt="<?php echo $mbValues['mb_nome'] ?>">
+                <h4><?php echo $mbValues['mb_nome'] ?></h4>
+                <span><?php echo $mbValues['mb_cargo'] ?></span>
+                <!-- <p>
                   Magni qui quod omnis unde et eos fuga et exercitationem. Odio veritatis perspiciatis quaerat qui aut aut aut
-                </p>
+                </p> -->
                 <div class="social">
-                  <a href=""><i class="icofont-twitter"></i></a>
-                  <a href=""><i class="icofont-facebook"></i></a>
-                  <a href=""><i class="icofont-instagram"></i></a>
-                  <a href=""><i class="icofont-linkedin"></i></a>
+                  <a href="<?php echo $mbValues['mb_facebook'] ?>"><i class="icofont-facebook"></i></a>
+                  <a href="<?php echo $mbValues['mb_instagram'] ?>"><i class="icofont-instagram"></i></a>
+                  <a href="<?php echo $mbValues['mb_linkedin'] ?>"><i class="icofont-linkedin"></i></a>
+                  <a href="<?php echo $mbValues['mb_twitter'] ?>"><i class="icofont-twitter"></i></a>
                 </div>
               </div>
             </div>
 
-            <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+            <?php } ?>
+
+            <!-- <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
               <div class="member">
                 <img src="assets/img/team/team-2.jpg" alt="">
                 <h4>Sarah Jhinson</h4>
@@ -561,7 +571,7 @@
                   <a href=""><i class="icofont-linkedin"></i></a>
                 </div>
               </div>
-            </div>
+            </div> -->
 
           </div>
 

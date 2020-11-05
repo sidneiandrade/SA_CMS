@@ -5,21 +5,31 @@ include 'header.php';
 $ID = (isset($_GET['id']) ? $_GET['id'] : 0);
 
 if ($ID != 0) {
-    $sql = $pdo->prepare("SELECT * FROM CLIENTES WHERE CLI_ID = ?");
+    $sql = $pdo->prepare("SELECT * FROM MEMBROS WHERE MB_ID = ?");
     $sql->execute([$ID]);
     $dados = $sql->fetchAll(PDO::FETCH_ASSOC);
     foreach ($dados as $value) {
-        $Empresa = $value['cli_empresa'];
-        $NomeImagem = $value['cli_imagem'];
-        $UrlImagem = $value['cli_url_imagem'];
-        $Status = $value['cli_status'];
+        $Nome = $value['mb_nome'];
+        $NomeImagem = $value['mb_imagem'];
+        $UrlImagem = $value['mb_url_imagem'];
+        $Cargo = $value['mb_cargo'];
+        $Facebook = $value['mb_facebook'];
+        $Twitter = $value['mb_twitter'];
+        $Instagram = $value['mb_instagram'];
+        $Linkedin = $value['mb_linkedin'];
+        $Status = $value['mb_status'];
         $Acao = "Atualizar";
     }
 } else {
     $ID = 0;
-    $Empresa = "";
+    $Nome = "";
     $NomeImagem = "";
     $UrlImagem = "";
+    $Cargo = "";
+    $Facebook = "";
+    $Twitter = "";
+    $Instagram = "";
+    $Linkedin = "";
     $Status = 1;
     $Acao = "Salvar";
 }
@@ -34,43 +44,43 @@ if ($ID != 0) {
                 <nav aria-label="breadcrumb" role="navigation">
                     <ol class="breadcrumb adminx-page-breadcrumb">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Editar Cliente</li>
+                        <li class="breadcrumb-item active" aria-current="page">Editar Membro</li>
                     </ol>
                 </nav>
 
                 <div class="pb-3">
-                    <h1>Editar Cliente</h1>
+                    <h1>Editar Membro</h1>
                 </div>
             <?php } else { ?>
                 <!-- BreadCrumb -->
                 <nav aria-label="breadcrumb" role="navigation">
                     <ol class="breadcrumb adminx-page-breadcrumb">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Adicionar Cliente</li>
+                        <li class="breadcrumb-item active" aria-current="page">Adicionar Membro</li>
                     </ol>
                 </nav>
 
                 <div class="pb-3">
-                    <h1>Adicionar Cliente</h1>
+                    <h1>Adicionar Membro</h1>
                 </div>
             <?php } ?>
-            <form id="formCliente" method="post" enctype="multipart/form-data">
+            <form id="formMembro" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="card mb-grid">
                             <div class="card-header d-flex justify-content-between align-items-center">
-                                <div class="card-header-title">Logo do Cliente</div>
+                                <div class="card-header-title">Foto</div>
                             </div>
                             <div class="card-body collapse show">
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <input type="hidden" id="Id" name="Id" value="<?php echo $ID ?>" />
                                         <div class="form-group">
-                                            <input type="hidden" id="cliNomeImagem" name="cliNomeImagem" value="<?php echo $NomeImagem ?>">
+                                            <input type="hidden" id="mbNomeImagem" name="mbNomeImagem" value="<?php echo $NomeImagem ?>">
                                             <?php if ($UrlImagem != "") { ?>
-                                                <img src="<?php echo $UrlImagem ?>" class="img-fluid rounded mx-auto d-block mb-2" alt="<?php echo $Empresa ?>">
+                                                <img src="<?php echo $UrlImagem ?>" class="img-fluid rounded mx-auto d-block mb-2" alt="<?php echo $Nome ?>">
                                             <?php } ?>
-                                            <label class="form-label" for="arquivoImagem">Enviar Imagem <i class="fas fa-question-circle" data-toggle="tooltip" data-placement="top" title="Tamanho Padrão 400 pixels de largura"></i></label>
+                                            <label class="form-label" for="arquivoImagem">Enviar Imagem <i class="fas fa-question-circle" data-toggle="tooltip" data-placement="top" title="Tamanho Padrão 600x600 pixels"></i></label>
                                             <input type="file" class="form-control" name="arquivoImagem">
                                         </div>
                                     </div>
@@ -81,21 +91,51 @@ if ($ID != 0) {
                     <div class="col-lg-8">
                         <div class="card mb-grid">
                             <div class="card-header d-flex justify-content-between align-items-center">
-                                <div class="card-header-title">Informações do Cliente</div>
+                                <div class="card-header-title">Informações do Membro</div>
                             </div>
                             <div class="card-body collapse show">
                                 <div class="row">
-                                    <div class="col-lg-9">
+                                    <div class="col-lg-6">
                                         <div class="form-group">
-                                            <label class="form-label" for="cliEmpresa">Empresa</label>
-                                            <input type="text" class="form-control" id="cliEmpresa" name="cliEmpresa" placeholder="Nome da Empresa" value="<?php echo $Empresa ?>" required>
+                                            <label class="form-label" for="mbNome">Nome</label>
+                                            <input type="text" class="form-control" id="mbNome" name="mbNome" placeholder="Nome" value="<?php echo $Nome ?>" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-label" for="mbCargo">Cargo</label>
+                                            <input type="text" class="form-control" id="mbCargo" name="mbCargo" placeholder="Cargo/Função" value="<?php echo $Cargo ?>" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-label" for="mbFacebook">Facebook</label>
+                                            <input type="text" class="form-control" id="mbFacebook" name="mbFacebook" placeholder="https://facebook.com/" value="<?php echo $Facebook ?>" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-label" for="mbTwitter">Twitter</label>
+                                            <input type="text" class="form-control" id="mbTwitter" name="mbTwitter" placeholder="https://twitter.com/" value="<?php echo $Twitter ?>" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-label" for="mbInstagram">Instagram</label>
+                                            <input type="text" class="form-control" id="mbInstagram" name="mbInstagram" placeholder="https://instagram.com/" value="<?php echo $Instagram ?>" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-label" for="mbLinkedin">Linkedin</label>
+                                            <input type="text" class="form-control" id="mbLinkedin" name="mbLinkedin" placeholder="https://linkedin.com/" value="<?php echo $Linkedin ?>" required>
                                         </div>
                                     </div>
                                     <div class="col-lg-3">
                                         <div class="form-group">
-                                            <label class="form-label" for="cliStatus">Status</label>
-                                            <select id="cliStatus" name="cliStatus" class="form-control js-choice">
-                                                <option value="1" <?= ($Status == '1') ? 'selected="selected"' : '' ?>>Publicado</option>
+                                            <label class="form-label" for="mbStatus">Status</label>
+                                            <select id="mbStatus" name="mbStatus" class="form-control js-choice">
+                                                <option value="1" <?= ($Status == '1') ? 'selected="selected"' : '' ?>>Ativo</option>
                                                 <option value="0" <?= ($Status == '0') ? 'selected="selected"' : '' ?>>Inativo</option>
                                             </select>
                                         </div>
@@ -105,7 +145,7 @@ if ($ID != 0) {
                                 <input type="submit" class="btn btn-pill btn-primary" value="<?php echo $Acao ?>" />
                                 <?php if ($ID != 0) {
                                     echo '<a href="#" onclick="deletar()" class="btn btn-pill btn-danger">Deletar</a>';
-                                    echo '<a href="listarClientes" class="btn btn-pill btn-warning ml-1">Voltar</a>';
+                                    echo '<a href="listarMembros" class="btn btn-pill btn-warning ml-1">Voltar</a>';
                                 } ?>
                             </div>
                         </div>
@@ -128,12 +168,12 @@ if ($ID != 0) {
         backOverlayColor: "rgba(255,85,73,0.2)",
     });
 
-    $("#formCliente").submit(function() {
+    $("#formMembro").submit(function() {
         event.preventDefault();
         $.ajax({
             type: "POST",
-            url: "./system/_cliente.php",
-            data: new FormData($('#formCliente')[0]),
+            url: "./system/_membro.php",
+            data: new FormData($('#formMembro')[0]),
             processData: false,
             contentType: false,
             success: function(data) {
@@ -141,13 +181,13 @@ if ($ID != 0) {
                 debugger;
                 if (data.acao == 'salvo') {
                     Notiflix.Loading.Remove();
-                    Notiflix.Notify.Success('Cliente Salvo com Sucesso!');
+                    Notiflix.Notify.Success('Membro Salvo com Sucesso!');
                     setTimeout(function() {
-                        location.href = "./cliente?id=" + (data.id)
+                        location.href = "./membro?id=" + (data.id)
                     }, 2500);
                 } else if (data == 'atualizado') {
                     Notiflix.Loading.Remove();
-                    Notiflix.Notify.Success('Cliente Atualizado com Sucesso!');
+                    Notiflix.Notify.Success('Membro Atualizado com Sucesso!');
                     setTimeout(function() {
                         location.reload();
                     }, 2500);
@@ -165,15 +205,15 @@ if ($ID != 0) {
 
         Notiflix.Confirm.Show(
             'ATENÇÃO!',
-            'Tem certeza que deseja deletar este Cliente?',
+            'Tem certeza que deseja deletar este Membro?',
             'Sim', 'Não',
 
             function() {
                 $("#Acao").val('Deletar');
                 $.ajax({
                     type: "POST",
-                    url: "./system/_cliente.php",
-                    data: new FormData($('#formCliente')[0]),
+                    url: "./system/_membro.php",
+                    data: new FormData($('#formMembro')[0]),
                     processData: false,
                     contentType: false,
                     success: function(data) {
@@ -181,9 +221,9 @@ if ($ID != 0) {
                         debugger;
                         if (data == 'deletado') {
                             Notiflix.Loading.Remove();
-                            Notiflix.Notify.Success('Cliente Deletado com Sucesso!');
+                            Notiflix.Notify.Success('Membro Deletado com Sucesso!');
                             setTimeout(function() {
-                                location.href = "./listarClientes"
+                                location.href = "./listarMembros"
                             }, 2500);
                         } else {
                             Notiflix.Loading.Remove();

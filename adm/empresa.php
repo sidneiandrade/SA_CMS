@@ -37,11 +37,11 @@ include 'header.php';
                                     <?php foreach ($listarConfiguracoes as $key => $value) { ?>
                                         <div class="col-lg-6">
                                             <div class="form-group">
-                                                <label class="form-label">Logo</label> <small>Tamanho Padrão 500x150 pixels</small><br>
+                                                <label class="form-label">Logo <i class="fas fa-question-circle" data-toggle="tooltip" data-placement="top" title="Tamanho Padrão 500x150 pixels"></i></label><br>
                                                 <img class="img-fluid" src="<?php echo $value['conf_logo'] ?>" alt="<?php echo $value['conf_nome'] ?>">
                                             </div>
                                             <div class="form-group">
-                                                <label class="form-label">Favicon</label> <small>Tamanho Padrão 32x32 pixels</small><br>
+                                                <label class="form-label">Favicon <i class="fas fa-question-circle" data-toggle="tooltip" data-placement="top" title="Tamanho Padrão 32x32 pixels"></i></label><br>
                                                 <img src="<?php echo $value['conf_favicon'] ?>" alt="<?php echo $value['conf_nome'] ?>">
                                             </div>
                                         </div>

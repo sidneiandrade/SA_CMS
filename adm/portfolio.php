@@ -97,7 +97,7 @@ if ($portID != 0) {
                                             </div>
                                         </form>
                                     <?php } ?>
-                                    <label class="form-label" for="portImagem">Evniar Imagem</label>
+                                    <label class="form-label" for="portImagem">Evniar Imagem <i class="fas fa-question-circle" data-toggle="tooltip" data-placement="top" title="Tamanho Padrão 800x800 pixels"></i></label>
                                     <input type="file" class="form-control" name="portImagem[]" multiple>
                                 </div>
                             </div>
