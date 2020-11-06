@@ -41,7 +41,7 @@ include './system/conexao.php';
           <a href="https://sadigital.com.br" class="text-decoration-none" target="_blank" style="text-decoration: none; color: #212529">
             <small>Sistema desenvolvido por</small>
             <div class="col-lg-12 text-center">
-              <img src="../assets/img/logo.png" class="img-responsive" alt="SA Digital - Agência Digital" width="50%">
+              <img src="../assets/img/logo.png" class="img-responsive" alt="SA Digital - Agência Digital" width="25%">
             </div>
           </a>
         </div>

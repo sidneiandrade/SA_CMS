@@ -1,4 +1,9 @@
-  <?php include 'header.php'; ?>
+  <?php 
+  
+    include 'header.php'; 
+    include 'select.php';
+  
+  ?>
 
   <!-- ======= Hero Section ======= -->
   <section id="hero">
@@ -9,11 +14,7 @@
 
         <div class="carousel-inner" role="listbox">
           <?php 
-            $slide = $pdo->prepare("SELECT * FROM SLIDES WHERE SD_STATUS = ? ORDER BY SD_ID DESC");
-            $slide->execute([1]);
-            $listSlide = $slide->fetchAll(PDO::FETCH_ASSOC);
-            $i = 0; 
-            foreach($listSlide as $slideValues){
+            foreach($listSlide as $key => $slideValues){
           ?>
           <!-- Slides -->
           <div id="slide_<?php echo $i ?>" class="carousel-item" style="background-image: url('<?php echo $slideValues['sd_url_imagem'] ?>');">
@@ -57,8 +58,7 @@
 
         <div class="row">
           <?php 
-            $destaque = $pdo->query("SELECT * FROM DESTAQUE")->fetchAll(PDO::FETCH_ASSOC);
-            foreach($destaque as $desValue){
+            foreach($destaque as $key => $desValue){
           ?>
             <div class="col-lg-4 col-md-4 d-flex align-items-stretch mb-3">
               <div class="icon-box">
@@ -76,10 +76,7 @@
     <!-- ======= About Section ======= -->
     <section id="about" class="about">
       <div class="container">
-        <?php 
-          $sobre = $pdo->query("SELECT * FROM EMPRESA")->fetchAll(PDO::FETCH_ASSOC);
-          foreach($sobre as $sobValue){ }
-        ?>
+        <?php foreach($sobre as $key => $sobValue){ } ?>
         <div class="row">
           <div class="col-lg-6">
             <img src="<?php echo $sobValue['emp_imagem'] ?>" class="img-fluid" alt="<?php echo $values['conf_nome']?>">
@@ -154,15 +151,12 @@
     </section><!-- End Skills Section -->
 
     <!-- ======= Counts Section ======= -->
-    <?php if($listModulos[9]['mod_status'] == 1){?>
+    <?php if($listModulos[9]['mod_status'] == 1){ ?>
       <section id="counts" class="counts">
         <div class="container">
 
           <div class="row">
-            <?php 
-              $numeros = $pdo->query("SELECT * FROM NUMEROS")->fetchAll(PDO::FETCH_ASSOC);
-              foreach($numeros as $numValue){
-            ?>
+            <?php foreach($numeros as $key => $numValue){ ?>
               <div class="col-lg-3 col-6 mb-3">
                 <div class="count-box">
                   <i class="<?php echo $numValue['num_icone'] ?>"></i>
@@ -178,7 +172,7 @@
     <?php } else {} ?><!-- End Counts Section -->
 
     <!-- ======= Services Section ======= -->
-    <?php if($listModulos[2]['mod_status'] == 1){?>
+    <?php if($listModulos[2]['mod_status'] == 1){ ?>
       <section id="services" class="services section-bg">
         <div class="container">
           <div class="section-title">
@@ -187,10 +181,7 @@
           </div>
 
           <div class="row">
-            <?php 
-              $servicos = $pdo->query("SELECT * FROM SERVICOS")->fetchAll(PDO::FETCH_ASSOC);
-              foreach($servicos as $serValue){
-            ?>
+            <?php foreach($servicos as $key => $serValue){ ?>
             
             <div class="col-md-6 mb-3">
               <div class="icon-box">
@@ -207,7 +198,7 @@
     <?php } else {} ?><!-- End Services Section -->
 
     <!-- ======= Portfolio Section ======= -->
-    <?php if($listModulos[3]['mod_status'] == 1){?>
+    <?php if($listModulos[3]['mod_status'] == 1){ ?>
       <section id="portfolio" class="portfolio">
         <div class="container">
 
@@ -219,13 +210,8 @@
           <div class="row">
             <div class="col-lg-12">
               <ul id="portfolio-flters">
-                <li data-filter="*" class="filter-active">All</li>
-                <?php 
-                  $catPort = $pdo->prepare("SELECT * FROM CATEGORIAS WHERE CAT_ORIGEM = 'P' AND CAT_STATUS = 1");
-                  $catPort->execute();
-                  $listCat = $catPort->fetchAll(PDO::FETCH_ASSOC);
-                  foreach($listCat as $catPortValues){
-                ?>
+                <li data-filter="*" class="filter-active">Todos</li>
+                <?php foreach($listCat as $key => $catPortValues){ ?>
                     <li data-filter=".filter-<?php echo $catPortValues['cat_slug']?>"><?php echo $catPortValues['cat_nome']?></li>
                 <?php } ?>
               </ul>
@@ -234,146 +220,28 @@
 
           <div class="row portfolio-container">
             <?php 
-              $port = $pdo->prepare("SELECT PORT_NOME, PORT_SLUG, CAT_NOME, CAT_SLUG FROM PORTFOLIOS JOIN CATEGORIAS ON (PORT_CATEGORIA = CAT_ID) WHERE PORT_STATUS = ?");
-              $port->execute([1]);
-              $listPort = $port->fetchAll(PDO::FETCH_ASSOC);
-              foreach($listPort as $portValues){
+              foreach($dadosPort as $keys => $valuePort){
+                $idPort = $valuePort['port_id'];
+                $nomePort = $valuePort['port_nome'];
+                $categoria = $valuePort['port_categoria'];
+                $dadosCat = $pdo->query("SELECT CAT_NOME, CAT_SLUG FROM CATEGORIAS WHERE CAT_ID = $categoria AND CAT_ORIGEM = 'p'")->fetch(PDO::FETCH_ASSOC);
+                $imagem = $pdo->query("SELECT IMG_IMAGEM FROM PORTFOLIO_IMAGEM WHERE IMG_PORT_ID = $idPort LIMIT 1")->fetch(PDO::FETCH_ASSOC);
             ?>
-            <div class="col-lg-4 col-md-6 portfolio-item filter-<?php echo $portValues['CAT_SLUG'] ?> wow fadeInUp">
+            <div class="col-lg-4 col-md-6 portfolio-item filter-<?php echo $dadosCat['CAT_SLUG'] ?> wow fadeInUp">
               <div class="portfolio-wrap">
                 <figure>
-                  <img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
-                  <a href="assets/img/portfolio/portfolio-1.jpg" data-gall="portfolioGallery" class="link-preview venobox" title="Preview"><i class="bx bx-plus"></i></a>
+                  <img src="<?php echo $imagem['IMG_IMAGEM'] ?>" class="img-fluid" alt="<?php echo $nomePort ?>">
+                  <a href="<?php echo $imagem['IMG_IMAGEM'] ?>" data-gall="portfolioGallery" class="link-preview venobox" title="Preview"><i class="bx bx-plus"></i></a>
                   <a href="portfolio-details.html" class="link-details" title="More Details"><i class="bx bx-link"></i></a>
                 </figure>
 
                 <div class="portfolio-info">
-                  <h4><a href="portfolio-details.html"><?php echo $portValues['PORT_NOME'] ?></a></h4>
-                  <p><?php echo $portValues['CAT_NOME']?></p>
+                  <h4><a href="portfolio-details.html"><?php echo $nomePort ?></a></h4>
+                  <p><?php echo $dadosCat['CAT_NOME']?></p>
                 </div>
               </div>
             </div>
             <?php } ?>
-
-            <!-- <div class="col-lg-4 col-md-6 portfolio-item filter-web wow fadeInUp" data-wow-delay="0.1s">
-              <div class="portfolio-wrap">
-                <figure>
-                  <img src="assets/img/portfolio/portfolio-2.jpg" class="img-fluid" alt="">
-                  <a href="assets/img/portfolio/portfolio-2.jpg" class="link-preview venobox" data-gall="portfolioGallery" title="Preview"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details.html" class="link-details" title="More Details"><i class="bx bx-link"></i></a>
-                </figure>
-
-                <div class="portfolio-info">
-                  <h4><a href="portfolio-details.html">Web 3</a></h4>
-                  <p>Web</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp" data-wow-delay="0.2s">
-              <div class="portfolio-wrap">
-                <figure>
-                  <img src="assets/img/portfolio/portfolio-3.jpg" class="img-fluid" alt="">
-                  <a href="assets/img/portfolio/portfolio-3.jpg" class="link-preview venobox" data-gall="portfolioGallery" title="Preview"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details.html" class="link-details" title="More Details"><i class="bx bx-link"></i></a>
-                </figure>
-
-                <div class="portfolio-info">
-                  <h4><a href="portfolio-details.html">App 2</a></h4>
-                  <p>App</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 portfolio-item filter-card wow fadeInUp">
-              <div class="portfolio-wrap">
-                <figure>
-                  <img src="assets/img/portfolio/portfolio-4.jpg" class="img-fluid" alt="">
-                  <a href="assets/img/portfolio/portfolio-4.jpg" class="link-preview venobox" data-gall="portfolioGallery" title="Preview"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details.html" class="link-details" title="More Details"><i class="bx bx-link"></i></a>
-                </figure>
-
-                <div class="portfolio-info">
-                  <h4><a href="portfolio-details.html">Card 2</a></h4>
-                  <p>Card</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 portfolio-item filter-web wow fadeInUp" data-wow-delay="0.1s">
-              <div class="portfolio-wrap">
-                <figure>
-                  <img src="assets/img/portfolio/portfolio-5.jpg" class="img-fluid" alt="">
-                  <a href="assets/img/portfolio/portfolio-5.jpg" class="link-preview venobox" data-gall="portfolioGallery" title="Preview"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details.html" class="link-details" title="More Details"><i class="bx bx-link"></i></a>
-                </figure>
-
-                <div class="portfolio-info">
-                  <h4><a href="portfolio-details.html">Web 2</a></h4>
-                  <p>Web</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp" data-wow-delay="0.2s">
-              <div class="portfolio-wrap">
-                <figure>
-                  <img src="assets/img/portfolio/portfolio-6.jpg" class="img-fluid" alt="">
-                  <a href="assets/img/portfolio/portfolio-6.jpg" class="link-preview venobox" data-gall="portfolioGallery" title="Preview"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details.html" class="link-details" title="More Details"><i class="bx bx-link"></i></a>
-                </figure>
-
-                <div class="portfolio-info">
-                  <h4><a href="portfolio-details.html">App 3</a></h4>
-                  <p>App</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 portfolio-item filter-card wow fadeInUp">
-              <div class="portfolio-wrap">
-                <figure>
-                  <img src="assets/img/portfolio/portfolio-7.jpg" class="img-fluid" alt="">
-                  <a href="assets/img/portfolio/portfolio-7.jpg" class="link-preview venobox" data-gall="portfolioGallery" title="Preview"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details.html" class="link-details" title="More Details"><i class="bx bx-link"></i></a>
-                </figure>
-
-                <div class="portfolio-info">
-                  <h4><a href="portfolio-details.html">Card 1</a></h4>
-                  <p>Card</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 portfolio-item filter-card wow fadeInUp" data-wow-delay="0.1s">
-              <div class="portfolio-wrap">
-                <figure>
-                  <img src="assets/img/portfolio/portfolio-8.jpg" class="img-fluid" alt="">
-                  <a href="assets/img/portfolio/portfolio-8.jpg" class="link-preview venobox" data-gall="portfolioGallery" title="Preview"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details.html" class="link-details" title="More Details"><i class="bx bx-link"></i></a>
-                </figure>
-
-                <div class="portfolio-info">
-                  <h4><a href="portfolio-details.html">Card 3</a></h4>
-                  <p>Card</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 portfolio-item filter-web wow fadeInUp" data-wow-delay="0.2s">
-              <div class="portfolio-wrap">
-                <figure>
-                  <img src="assets/img/portfolio/portfolio-9.jpg" class="img-fluid" alt="">
-                  <a href="assets/img/portfolio/portfolio-9.jpg" class="link-preview venobox" data-gall="portfolioGallery" title="Preview"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details.html" class="link-details" title="More Details"><i class="bx bx-link"></i></a>
-                </figure>
-
-                <div class="portfolio-info">
-                  <h4><a href="portfolio-details.html">Web 1</a></h4>
-                  <p>Web</p>
-                </div>
-              </div>
-            </div> -->
 
           </div>
 
@@ -382,7 +250,7 @@
     <?php } else {} ?><!-- End Portfolio Section -->
 
     <!-- ======= News Section ======= -->
-    <?php if($listModulos[0]['mod_status'] == 1){?>
+    <?php if($listModulos[0]['mod_status'] == 1){ ?>
       <section id="news" class="news section-bg">
         <div class="container">
               <div class="section-title">
@@ -398,7 +266,7 @@
     <?php } else {} ?><!-- End News Section -->
 
     <!-- ======= Clients Section ======= -->
-    <?php if($listModulos[5]['mod_status'] == 1){?>
+    <?php if($listModulos[5]['mod_status'] == 1){ ?>
       <section id="clients" class="clients">
         <div class="container">
           <div class="section-title">
@@ -406,12 +274,7 @@
             <p><?php echo $listModulos[5]['mod_descricao'] ?></p>
           </div>
           <div class="row no-gutters clients-wrap clearfix wow fadeInUp">
-            <?php 
-              $clientes = $pdo->prepare("SELECT * FROM CLIENTES WHERE CLI_STATUS = ?");
-              $clientes->execute([1]);
-              $listClientes = $clientes->fetchAll(PDO::FETCH_ASSOC);
-              foreach($listClientes as $keys => $cliValues){
-            ?>
+            <?php foreach($listClientes as $key => $cliValues){ ?>
 
             <div class="col-lg-3 col-md-4 col-xs-6">
               <div class="client-logo" data-aos="zoom-in">
@@ -420,54 +283,14 @@
             </div>
 
             <?php } ?>
-            <!-- <div class="col-lg-3 col-md-4 col-xs-6">
-              <div class="client-logo" data-aos="zoom-in" data-aos-delay="100">
-                <img src="assets/img/clients/client-2.png" class="img-fluid" alt="">
-              </div>
-            </div>
-
-            <div class="col-lg-3 col-md-4 col-xs-6">
-              <div class="client-logo" data-aos="zoom-in" data-aos-delay="150">
-                <img src="assets/img/clients/client-3.png" class="img-fluid" alt="">
-              </div>
-            </div>
-
-            <div class="col-lg-3 col-md-4 col-xs-6">
-              <div class="client-logo" data-aos="zoom-in" data-aos-delay="200">
-                <img src="assets/img/clients/client-4.png" class="img-fluid" alt="">
-              </div>
-            </div>
-
-            <div class="col-lg-3 col-md-4 col-xs-6">
-              <div class="client-logo" data-aos="zoom-in" data-aos-delay="250">
-                <img src="assets/img/clients/client-5.png" class="img-fluid" alt="">
-              </div>
-            </div>
-
-            <div class="col-lg-3 col-md-4 col-xs-6">
-              <div class="client-logo" data-aos="zoom-in" data-aos-delay="300">
-                <img src="assets/img/clients/client-6.png" class="img-fluid" alt="">
-              </div>
-            </div>
-
-            <div class="col-lg-3 col-md-4 col-xs-6">
-              <div class="client-logo" data-aos="zoom-in" data-aos-delay="350">
-                <img src="assets/img/clients/client-7.png" class="img-fluid" alt="">
-              </div>
-            </div>
-
-            <div class="col-lg-3 col-md-4 col-xs-6" data-aos="zoom-in" data-aos-delay="400">
-              <div class="client-logo">
-                <img src="assets/img/clients/client-8.png" class="img-fluid" alt="">
-              </div>
-            </div> -->
+            
           </div>
         </div>
       </section>
     <?php } else {} ?><!-- End Clients Section -->
 
     <!-- ======= Testimonials Section ======= -->
-    <?php if($listModulos[8]['mod_status'] == 1){?>
+    <?php if($listModulos[8]['mod_status'] == 1){ ?>
       <section id="testimonials" class="testimonials section-bg">
         <div class="container">
 
@@ -477,10 +300,7 @@
           </div>
 
           <div class="owl-carousel testimonials-carousel">
-            <?php 
-              $depoimentos = $pdo->query("SELECT * FROM DEPOIMENTOS")->fetchAll(PDO::FETCH_ASSOC);
-              foreach($depoimentos as $depValue){
-            ?>
+            <?php foreach($depoimentos as $key => $depValue){ ?>
 
             <div class="testimonial-item">
               <p>
@@ -502,7 +322,7 @@
     <?php } else {} ?><!-- End Testimonials Section -->
 
     <!-- ======= Team Section ======= -->
-    <?php if($listModulos[4]['mod_status'] == 1){?>
+    <?php if($listModulos[4]['mod_status'] == 1){ ?>
       <section id="team" class="team">
         <div class="container">
 
@@ -512,13 +332,7 @@
           </div>
 
           <div class="row">
-            <?php 
-              $membros = $pdo->prepare("SELECT * FROM MEMBROS WHERE MB_STATUS = ?");
-              $membros->execute([1]);
-              $listMembros =  $membros->fetchAll(PDO::FETCH_ASSOC);
-              foreach($listMembros as $key => $mbValues){
-            
-            ?>
+            <?php foreach($listMembros as $key => $mbValues){ ?>
 
             <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
               <div class="member">
@@ -539,48 +353,13 @@
 
             <?php } ?>
 
-            <!-- <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-              <div class="member">
-                <img src="assets/img/team/team-2.jpg" alt="">
-                <h4>Sarah Jhinson</h4>
-                <span>Product Manager</span>
-                <p>
-                  Repellat fugiat adipisci nemo illum nesciunt voluptas repellendus. In architecto rerum rerum temporibus
-                </p>
-                <div class="social">
-                  <a href=""><i class="icofont-twitter"></i></a>
-                  <a href=""><i class="icofont-facebook"></i></a>
-                  <a href=""><i class="icofont-instagram"></i></a>
-                  <a href=""><i class="icofont-linkedin"></i></a>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-              <div class="member">
-                <img src="assets/img/team/team-3.jpg" alt="">
-                <h4>William Anderson</h4>
-                <span>CTO</span>
-                <p>
-                  Voluptas necessitatibus occaecati quia. Earum totam consequuntur qui porro et laborum toro des clara
-                </p>
-                <div class="social">
-                  <a href=""><i class="icofont-twitter"></i></a>
-                  <a href=""><i class="icofont-facebook"></i></a>
-                  <a href=""><i class="icofont-instagram"></i></a>
-                  <a href=""><i class="icofont-linkedin"></i></a>
-                </div>
-              </div>
-            </div> -->
-
           </div>
-
         </div>
       </section>
     <?php } else {} ?><!-- End Team Section -->
 
     <!-- ======= Pricing Section ======= -->
-    <?php if($listModulos[6]['mod_status'] == 1){?>
+    <?php if($listModulos[6]['mod_status'] == 1){ ?>
       <section id="pricing" class="pricing section-bg">
         <div class="container">
 
@@ -590,13 +369,9 @@
           </div>
 
           <div class="row">
-            <?php 
+            <?php foreach($valores as $key => $valValue){ ?>
             
-              $valores = $pdo->query("SELECT * FROM VALORES")->fetchAll(PDO::FETCH_ASSOC);
-              foreach($valores as $key => $valValue){
-            
-            ?>
-            <div class="col-lg-3 col-md-6">
+              <div class="col-lg-3 col-md-6">
               <div class="box ">
                 <?=($valValue['val_destaque'] > 0) ? '<span class="advanced">Mais Vendido</span>' : '' ?>
                 <h3><?php echo $valValue['val_titulo'] ?></h3>
@@ -611,60 +386,7 @@
               </div>
             </div>
 
-              <?php } ?>
-
-            <!-- <div class="col-lg-3 col-md-6 mt-4 mt-md-0">
-              <div class="box featured">
-                <h3>Business</h3>
-                <h4><sup>$</sup>19<span> / month</span></h4>
-                <ul>
-                  <li>Aida dere</li>
-                  <li>Nec feugiat nisl</li>
-                  <li>Nulla at volutpat dola</li>
-                  <li>Pharetra massa</li>
-                  <li class="na">Massa ultricies mi</li>
-                </ul>
-                <div class="btn-wrap">
-                  <a href="#" class="btn-buy">Buy Now</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6 mt-4 mt-lg-0">
-              <div class="box">
-                <h3>Developer</h3>
-                <h4><sup>$</sup>29<span> / month</span></h4>
-                <ul>
-                  <li>Aida dere</li>
-                  <li>Nec feugiat nisl</li>
-                  <li>Nulla at volutpat dola</li>
-                  <li>Pharetra massa</li>
-                  <li>Massa ultricies mi</li>
-                </ul>
-                <div class="btn-wrap">
-                  <a href="#" class="btn-buy">Buy Now</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6 mt-4 mt-lg-0">
-              <div class="box">
-                <span class="advanced">Advanced</span>
-                <h3>Ultimate</h3>
-                <h4><sup>$</sup>49<span> / month</span></h4>
-                <ul>
-                  <li>Aida dere</li>
-                  <li>Nec feugiat nisl</li>
-                  <li>Nulla at volutpat dola</li>
-                  <li>Pharetra massa</li>
-                  <li>Massa ultricies mi</li>
-                </ul>
-                <div class="btn-wrap">
-                  <a href="#" class="btn-buy">Buy Now</a>
-                </div>
-              </div>
-            </div> -->
-
+            <?php } ?>
           </div>
 
         </div>
@@ -672,7 +394,7 @@
     <?php } else {} ?><!-- End Pricing Section -->
 
     <!-- ======= Frequently Asked Questions Section ======= -->
-    <?php if($listModulos[7]['mod_status'] == 1){?>
+    <?php if($listModulos[7]['mod_status'] == 1){ ?>
       <section id="faq" class="faq">
         <div class="container" data-aos="fade-up">
 
@@ -682,12 +404,8 @@
           </div>
 
           <ul class="faq-list" data-aos="fade-up" data-aos-delay="100">
-            <?php 
-              $perguntas = $pdo->prepare("SELECT * FROM PERGUNTAS WHERE PG_STATUS = 1 ORDER BY PG_ID ASC");
-              $perguntas->execute();
-              $listPerguntas = $perguntas->fetchAll(PDO::FETCH_ASSOC);
-              foreach($listPerguntas as $pergValues){
-            ?>
+
+            <?php foreach($listPerguntas as $key => $pergValues){ ?>
             <li>
               <a data-toggle="collapse" class="collapsed" href="#faq_<?php echo $pergValues['pg_id'] ?>"><?php echo $pergValues['pg_pergunta'] ?> <i class="icofont-simple-up"></i></a>
               <div id="faq_<?php echo $pergValues['pg_id'] ?>" class="collapse" data-parent=".faq-list">
