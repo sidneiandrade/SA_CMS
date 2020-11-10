@@ -2,9 +2,20 @@
 
 include "header.php"; 
 
+$pagina = (isset($_GET['pagina'])) ? $_GET['pagina'] : 1; 
+
 $noticias = $pdo->prepare("SELECT * FROM noticias WHERE not_status = 1");
 $noticias->execute();
-$list = $noticias->fetchAll(PDO::FETCH_ASSOC);
+$totalNoticias = $noticias->fetchAll(PDO::FETCH_ASSOC);
+
+$total = count($totalNoticias); //total de postagens
+$registros = 3; //postagens na página
+$numPaginas = ceil($total/$registros); //números de páginas
+$inicio = ($registros*$pagina)-$registros; //
+
+$noticiasPG = $pdo->prepare("SELECT * FROM noticias WHERE not_status = 1 ORDER BY not_id DESC LIMIT $inicio, $registros ");
+$noticiasPG->execute();
+$list = $noticiasPG->fetchAll(PDO::FETCH_ASSOC);
 
 
 ?>
@@ -69,10 +80,29 @@ $list = $noticias->fetchAll(PDO::FETCH_ASSOC);
 
         </div><!-- End .row -->
 
+        <div class="blog-pagination" data-aos="fade-up">
+          <ul class="justify-content-center">
+            <?php
+              if($pagina > 1) {
+                  echo "<li><a href='noticias?pagina=".($pagina - 1)."'><i class='icofont-rounded-left'></i></a></li>";
+              }
+
+              for($i = 1; $i < $numPaginas + 1; $i++) { 
+                $ativo = ($i == $pagina) ? 'class="active"' : '';
+                echo "<li ".$ativo."><a href='noticias?pagina=$i'>".$i."</a></li>"; 
+              } 
+
+              if($pagina < $numPaginas) {
+                  echo "<li><a href='noticias?pagina=".($pagina + 1)."'><i class='icofont-rounded-right'></i></a></li>";
+              }
+            ?>
+          </ul>
+        </div>
+
       </div><!-- End .container -->
 
     </section><!-- End Blog Section -->
-
+    
   </main><!-- End #main -->
 
  <?php include "footer.php" ?>

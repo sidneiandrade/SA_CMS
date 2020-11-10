@@ -5,7 +5,7 @@ header("Content-type: text/css");
 
 include '../../adm/system/conexao.php';
 
-$conf = $pdo->query("SELECT * FROM CONFIGURACOES");
+$conf = $pdo->query("SELECT * FROM configuracoes");
 $list = $conf->fetchAll(PDO::FETCH_ASSOC);
 foreach($list as $confValues){}
 
@@ -1006,7 +1006,7 @@ section {
 }
 
 .blog .entry .entry-title {
-  font-size: 28px;
+  font-size: 22px;
   font-weight: bold;
   padding: 0;
   margin: 0 0 20px 0;
@@ -1348,7 +1348,7 @@ section {
 }
 
 .blog .blog-pagination {
-  color: #7b9bab;
+  color: var(--principal);
 }
 
 .blog .blog-pagination ul {
@@ -1358,7 +1358,7 @@ section {
 }
 
 .blog .blog-pagination li {
-  border: 1px solid white;
+  border: 1px solid #e9ecef;
   margin: 0 5px;
   transition: 0.3s;
 }
@@ -1374,8 +1374,8 @@ section {
 }
 
 .blog .blog-pagination li.active, .blog .blog-pagination li:hover {
-  background: #68A4C4;
-  border: 1px solid #68A4C4;
+  background: var(--principal);
+  border: 1px solid var(--principal);
 }
 
 .blog .blog-pagination li.active a, .blog .blog-pagination li:hover a {
