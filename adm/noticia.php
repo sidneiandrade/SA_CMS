@@ -5,7 +5,7 @@ include 'header.php';
 $notID = (isset($_GET['id']) ? $_GET['id'] : 0);
 
 if ($notID != 0) {
-    $sql = $pdo->prepare("SELECT * FROM NOTICIAS WHERE NOT_ID = ?");
+    $sql = $pdo->prepare("SELECT * FROM noticias WHERE not_id = ?");
     $sql->execute([$notID]);
     $dadosNoticia = $sql->fetchAll(PDO::FETCH_ASSOC);
     foreach ($dadosNoticia as $value) {
@@ -104,7 +104,7 @@ if ($notID != 0) {
                                                 <label class="form-label" for="notCategoria">Categoria</label>
                                                 <select name="notCategoria" class="form-control js-choice">
                                                     <?php
-                                                    $sqlCategoria = $pdo->prepare("SELECT cat_id, cat_nome FROM CATEGORIAS WHERE CAT_ORIGEM = 'N' AND CAT_STATUS = 1");
+                                                    $sqlCategoria = $pdo->prepare("SELECT cat_id, cat_nome FROM categorias WHERE cat_origem = 'N' AND cat_status = 1");
                                                     $sqlCategoria->execute();
                                                     $categorias = $sqlCategoria->fetchAll(PDO::FETCH_ASSOC);
 

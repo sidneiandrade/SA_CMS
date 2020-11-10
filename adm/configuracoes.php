@@ -149,7 +149,7 @@ include 'header.php';
                                     <div class="col-md-6">
                                         <?php 
                                         
-                                        $lista = $pdo->query("SELECT * FROM MODULOS")->fetchAll(PDO::FETCH_ASSOC);
+                                        $lista = $pdo->query("SELECT * FROM modulos")->fetchAll(PDO::FETCH_ASSOC);
                                         $i = 0;
                                         foreach($lista as $value){
 

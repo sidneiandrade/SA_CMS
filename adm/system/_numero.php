@@ -12,7 +12,7 @@ switch ($Acao) {
     case "Atualizar":
         try {
             $pdo->beginTransaction();
-            $sql = $pdo->prepare("UPDATE NUMEROS SET NUM_ICONE = ?, NUM_TITULO = ?, NUM_NUMERO = ?, NUM_STATUS = ? WHERE NUM_ID = ?");
+            $sql = $pdo->prepare("UPDATE numeros SET num_icone = ?, num_titulo = ?, num_numero = ?, num_status = ? WHERE num_id = ?");
             $sql->execute([$numIcone, $numTitulo, $numNumero, $numStatus, $numID]);
             $pdo->commit();
             echo 'atualizado';
@@ -25,7 +25,7 @@ switch ($Acao) {
     case "Salvar":
         try {
             $pdo->beginTransaction();
-            $sql = $pdo->prepare("INSERT INTO NUMEROS VALUES (null,?,?,?,1)");
+            $sql = $pdo->prepare("INSERT INTO numeros VALUES (null,?,?,?,1)");
             $sql->execute([$numIcone, $numTitulo, $numNumero]);
             $Id = $pdo->lastInsertId();
             $pdo->commit();
@@ -39,7 +39,7 @@ switch ($Acao) {
         break;
 
     case "Deletar":
-        $sql = $pdo->prepare("DELETE FROM NUMEROS WHERE NUM_ID = ?");
+        $sql = $pdo->prepare("DELETE FROM numeros WHERE num_id = ?");
         $sql->execute([$numID]);
         echo 'deletado';
         break;

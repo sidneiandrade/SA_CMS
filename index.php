@@ -1,8 +1,8 @@
-  <?php 
-  
-    include 'header.php'; 
-    include 'select.php';
-  
+  <?php
+
+  include 'header.php';
+  include 'select.php';
+
   ?>
 
   <!-- ======= Hero Section ======= -->
@@ -13,23 +13,24 @@
         <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
 
         <div class="carousel-inner" role="listbox">
-          <?php 
-            foreach($listSlide as $key => $slideValues){
+          <?php
+          foreach ($listSlide as $key => $slideValues) {
           ?>
-          <!-- Slides -->
-          <div id="slide_<?php echo $i ?>" class="carousel-item" style="background-image: url('<?php echo $slideValues['sd_url_imagem'] ?>');">
-            <div class="carousel-container">
-              <div class="carousel-content container">
-                <h2 class="animate__animated animate__fadeInDown"><?php echo $slideValues['sd_titulo'] ?></h2>
-                <p class="animate__animated animate__fadeInUp"><?php echo $slideValues['sd_texto'] ?></p>
-                <?php if($slideValues['sd_url_botao'] != '') 
-                  echo '<a href="'. $slideValues["sd_url_botao"].'" class="btn-get-started animate__animated animate__fadeInUp scrollto">Saiba mais</a>';
-                ?>
+            <!-- Slides -->
+            <div id="slide_<?php echo $i ?>" class="carousel-item" style="background-image: url('<?php echo $slideValues['sd_url_imagem'] ?>');">
+              <div class="carousel-container">
+                <div class="carousel-content container">
+                  <h2 class="animate__animated animate__fadeInDown"><?php echo $slideValues['sd_titulo'] ?></h2>
+                  <p class="animate__animated animate__fadeInUp"><?php echo $slideValues['sd_texto'] ?></p>
+                  <?php if ($slideValues['sd_url_botao'] != '')
+                    echo '<a href="' . $slideValues["sd_url_botao"] . '" class="btn-get-started animate__animated animate__fadeInUp scrollto">Saiba mais</a>';
+                  ?>
+                </div>
               </div>
             </div>
-          </div>
-          <!-- Slides -->
-          <?php $i++; }  ?>
+            <!-- Slides -->
+          <?php $i++;
+          }  ?>
         </div>
 
         <a class="carousel-control-prev" href="#heroCarousel" role="button" data-slide="prev">
@@ -48,17 +49,17 @@
   <main id="main">
 
     <!-- ======= What We Do Section ======= -->
-    <section id="what-we-do" class="what-we-do">
+    <section id="dest" class="what-we-do">
       <div class="container">
 
         <div class="section-title">
-          <h2>What We Do</h2>
-          <p>Magnam dolores commodi suscipit consequatur ex aliquid</p>
+          <h2>Nossos Destaques</h2>
+          <p>Veja o que nossa empresa pode oferecer para você.</p>
         </div>
 
         <div class="row">
-          <?php 
-            foreach($destaque as $key => $desValue){
+          <?php
+          foreach ($destaque as $key => $desValue) {
           ?>
             <div class="col-lg-4 col-md-4 d-flex align-items-stretch mb-3">
               <div class="icon-box">
@@ -76,21 +77,22 @@
     <!-- ======= About Section ======= -->
     <section id="about" class="about">
       <div class="container">
-        <?php foreach($sobre as $key => $sobValue){ } ?>
+        <?php foreach ($sobre as $key => $sobValue) {
+        } ?>
         <div class="row">
           <div class="col-lg-6">
-            <img src="<?php echo $sobValue['emp_imagem'] ?>" class="img-fluid" alt="<?php echo $values['conf_nome']?>">
+            <img src="<?php echo $sobValue['emp_imagem'] ?>" class="img-fluid" alt="<?php echo $values['conf_nome'] ?>">
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0">
             <h3>Sobre</h3>
-              <p><?php echo $sobValue['emp_descricao'] ?></p>
+            <p><?php echo $sobValue['emp_descricao'] ?></p>
           </div>
         </div>
       </div>
     </section><!-- End About Section -->
 
     <!-- ======= Skills Section ======= -->
-    <section id="skills" class="skills">
+    <!-- <section id="skills" class="skills">
       <div class="container">
 
         <div class="row skills-content">
@@ -148,15 +150,16 @@
         </div>
 
       </div>
-    </section><!-- End Skills Section -->
+    </section> -->
+    <!-- End Skills Section -->
 
     <!-- ======= Counts Section ======= -->
-    <?php if($listModulos[9]['mod_status'] == 1){ ?>
+    <?php if ($listModulos[9]['mod_status'] == 1) { ?>
       <section id="counts" class="counts">
         <div class="container">
 
           <div class="row">
-            <?php foreach($numeros as $key => $numValue){ ?>
+            <?php foreach ($numeros as $key => $numValue) { ?>
               <div class="col-lg-3 col-6 mb-3">
                 <div class="count-box">
                   <i class="<?php echo $numValue['num_icone'] ?>"></i>
@@ -169,10 +172,12 @@
 
         </div>
       </section>
-    <?php } else {} ?><!-- End Counts Section -->
+    <?php } else {
+    } ?>
+    <!-- End Counts Section -->
 
     <!-- ======= Services Section ======= -->
-    <?php if($listModulos[2]['mod_status'] == 1){ ?>
+    <?php if ($listModulos[2]['mod_status'] == 1) { ?>
       <section id="services" class="services section-bg">
         <div class="container">
           <div class="section-title">
@@ -181,29 +186,31 @@
           </div>
 
           <div class="row">
-            <?php foreach($servicos as $key => $serValue){ ?>
-            
-            <div class="col-md-6 mb-3">
-              <div class="icon-box">
-                <i class="<?php echo $serValue['serv_icone'] ?>"></i>
-                <h4><a href="#"><?php echo $serValue['serv_titulo'] ?></a></h4>
-                <p><?php echo $serValue['serv_texto'] ?></p>
+            <?php foreach ($servicos as $key => $serValue) { ?>
+
+              <div class="col-md-6 mb-3">
+                <div class="icon-box">
+                  <i class="<?php echo $serValue['serv_icone'] ?>"></i>
+                  <h4><a href="#"><?php echo $serValue['serv_titulo'] ?></a></h4>
+                  <p><?php echo $serValue['serv_texto'] ?></p>
+                </div>
               </div>
-            </div>
 
             <?php } ?>
 
-        </div>
+          </div>
       </section>
-    <?php } else {} ?><!-- End Services Section -->
+    <?php } else {
+    } ?>
+    <!-- End Services Section -->
 
     <!-- ======= Portfolio Section ======= -->
-    <?php if($listModulos[3]['mod_status'] == 1){ ?>
+    <?php if ($listModulos[3]['mod_status'] == 1) { ?>
       <section id="portfolio" class="portfolio">
         <div class="container">
 
           <div class="section-title">
-          <h2><?php echo $listModulos[3]['mod_titulo'] ?></h2>
+            <h2><?php echo $listModulos[3]['mod_titulo'] ?></h2>
             <p><?php echo $listModulos[3]['mod_descricao'] ?></p>
           </div>
 
@@ -211,62 +218,107 @@
             <div class="col-lg-12">
               <ul id="portfolio-flters">
                 <li data-filter="*" class="filter-active">Todos</li>
-                <?php foreach($listCat as $key => $catPortValues){ ?>
-                    <li data-filter=".filter-<?php echo $catPortValues['cat_slug']?>"><?php echo $catPortValues['cat_nome']?></li>
+                <?php foreach ($listCat as $key => $catPortValues) { ?>
+                  <li data-filter=".filter-<?php echo $catPortValues['cat_slug'] ?>"><?php echo $catPortValues['cat_nome'] ?></li>
                 <?php } ?>
               </ul>
             </div>
           </div>
 
           <div class="row portfolio-container">
-            <?php 
-              foreach($dadosPort as $keys => $valuePort){
-                $idPort = $valuePort['port_id'];
-                $nomePort = $valuePort['port_nome'];
-                $categoria = $valuePort['port_categoria'];
-                $dadosCat = $pdo->query("SELECT CAT_NOME, CAT_SLUG FROM CATEGORIAS WHERE CAT_ID = $categoria AND CAT_ORIGEM = 'p'")->fetch(PDO::FETCH_ASSOC);
-                $imagem = $pdo->query("SELECT IMG_IMAGEM FROM PORTFOLIO_IMAGEM WHERE IMG_PORT_ID = $idPort LIMIT 1")->fetch(PDO::FETCH_ASSOC);
+            <?php
+            foreach ($dadosPort as $keys => $valuePort) {
+              $idPort = $valuePort['port_id'];
+              $nomePort = $valuePort['port_nome'];
+              $categoria = $valuePort['port_categoria'];
+              $dadosCat = $pdo->query("SELECT CAT_NOME, CAT_SLUG FROM CATEGORIAS WHERE CAT_ID = $categoria AND CAT_ORIGEM = 'p'")->fetch(PDO::FETCH_ASSOC);
+              $imagem = $pdo->query("SELECT IMG_IMAGEM FROM PORTFOLIO_IMAGEM WHERE IMG_PORT_ID = $idPort LIMIT 1")->fetch(PDO::FETCH_ASSOC);
             ?>
-            <div class="col-lg-4 col-md-6 portfolio-item filter-<?php echo $dadosCat['CAT_SLUG'] ?> wow fadeInUp">
-              <div class="portfolio-wrap">
-                <figure>
-                  <img src="<?php echo $imagem['IMG_IMAGEM'] ?>" class="img-fluid" alt="<?php echo $nomePort ?>">
-                  <a href="<?php echo $imagem['IMG_IMAGEM'] ?>" data-gall="portfolioGallery" class="link-preview venobox" title="Preview"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details.html" class="link-details" title="More Details"><i class="bx bx-link"></i></a>
-                </figure>
+              <div class="col-lg-4 col-md-6 portfolio-item filter-<?php echo $dadosCat['CAT_SLUG'] ?> wow fadeInUp">
+                <div class="portfolio-wrap">
+                  <figure>
+                    <img src="<?php echo $imagem['IMG_IMAGEM'] ?>" class="img-fluid" alt="<?php echo $nomePort ?>">
+                    <a href="<?php echo $imagem['IMG_IMAGEM'] ?>" data-gall="portfolioGallery" class="link-preview venobox" title="Preview"><i class="bx bx-plus"></i></a>
+                    <a href="portfolio-details.html" class="link-details" title="More Details"><i class="bx bx-link"></i></a>
+                  </figure>
 
-                <div class="portfolio-info">
-                  <h4><a href="portfolio-details.html"><?php echo $nomePort ?></a></h4>
-                  <p><?php echo $dadosCat['CAT_NOME']?></p>
+                  <div class="portfolio-info">
+                    <h4><a href="portfolio-details.html"><?php echo $nomePort ?></a></h4>
+                    <p><?php echo $dadosCat['CAT_NOME'] ?></p>
+                  </div>
                 </div>
               </div>
-            </div>
             <?php } ?>
 
           </div>
 
         </div>
       </section>
-    <?php } else {} ?><!-- End Portfolio Section -->
+    <?php } else {
+    } ?>
+    <!-- End Portfolio Section -->
 
     <!-- ======= News Section ======= -->
-    <?php if($listModulos[0]['mod_status'] == 1){ ?>
+    <?php if ($listModulos[0]['mod_status'] == 1) { ?>
       <section id="news" class="news section-bg">
         <div class="container">
-              <div class="section-title">
-                <h2><?php echo $listModulos[0]['mod_titulo'] ?></h2>
-                <p><?php echo $listModulos[0]['mod_descricao'] ?></p>
-              </div>
+          <div class="section-title">
+            <h2><?php echo $listModulos[0]['mod_titulo'] ?></h2>
+            <p><?php echo $listModulos[0]['mod_descricao'] ?></p>
+          </div>
 
+          <section id="blog" class="blog">
+            <div class="container">
               <div class="row">
 
+              <?php foreach($noticias as $keys => $valueNot){ ?>
+
+                <div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up">
+                  <article class="entry">
+
+                    <div class="entry-img">
+                      <img src="<?php echo $valueNot['not_imagem'] ?>" alt="<?php echo $valueNot['not_titulo'] ?>" class="img-fluid">
+                    </div>
+
+                    <h2 class="entry-title">
+                      <a href="noticias-single?post=<?php echo $valueNot['not_slug'] ?>"><?php echo $valueNot['not_titulo'] ?></a>
+                    </h2>
+
+                    <div class="entry-meta">
+                      <ul>
+                        <li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><time datetime="<?php echo $dataPost = date("d/m/Y", strtotime($valueNot['not_data'])) ?>"><?php echo $dataPost = date("d/m/Y", strtotime($valueNot['not_data'])) ?></time></li>
+                      </ul>
+                    </div>
+
+                    <div class="entry-content">
+                      <p>
+                        <?php echo $textoResumido = substr(strip_tags($valueNot['not_texto']),0,90).'...'; ?>
+                      </p>
+                      <div class="read-more">
+                        <a href="noticias-single?post=<?php echo $valueNot['not_slug'] ?>">Saiba Mais</a>
+                      </div>
+                    </div>
+
+                  </article><!-- End blog entry -->
+                </div>
+
+              <?php } ?>
+
+
               </div>
-          </div>
+                <div class="read-more text-center">
+                  <a href="noticias" class="btn-get-started">Veja mais notícias</a>
+                </div>
+            </div>
+          </section>
+        </div>
       </section>
-    <?php } else {} ?><!-- End News Section -->
+    <?php } else {
+    } ?>
+    <!-- End News Section -->
 
     <!-- ======= Clients Section ======= -->
-    <?php if($listModulos[5]['mod_status'] == 1){ ?>
+    <?php if ($listModulos[5]['mod_status'] == 1) { ?>
       <section id="clients" class="clients">
         <div class="container">
           <div class="section-title">
@@ -274,44 +326,46 @@
             <p><?php echo $listModulos[5]['mod_descricao'] ?></p>
           </div>
           <div class="row no-gutters clients-wrap clearfix wow fadeInUp">
-            <?php foreach($listClientes as $key => $cliValues){ ?>
+            <?php foreach ($listClientes as $key => $cliValues) { ?>
 
-            <div class="col-lg-3 col-md-4 col-xs-6">
-              <div class="client-logo" data-aos="zoom-in">
-                <img src="<?php echo $cliValues['cli_url_imagem'] ?>" class="img-fluid" alt="<?php echo $cliValues['cli_empresa'] ?>">
+              <div class="col-lg-3 col-md-4 col-xs-6">
+                <div class="client-logo" data-aos="zoom-in">
+                  <img src="<?php echo $cliValues['cli_url_imagem'] ?>" class="img-fluid" alt="<?php echo $cliValues['cli_empresa'] ?>">
+                </div>
               </div>
-            </div>
 
             <?php } ?>
-            
+
           </div>
         </div>
       </section>
-    <?php } else {} ?><!-- End Clients Section -->
+    <?php } else {
+    } ?>
+    <!-- End Clients Section -->
 
     <!-- ======= Testimonials Section ======= -->
-    <?php if($listModulos[8]['mod_status'] == 1){ ?>
+    <?php if ($listModulos[8]['mod_status'] == 1) { ?>
       <section id="testimonials" class="testimonials section-bg">
         <div class="container">
 
           <div class="section-title">
-          <h2><?php echo $listModulos[8]['mod_titulo'] ?></h2>
+            <h2><?php echo $listModulos[8]['mod_titulo'] ?></h2>
             <p><?php echo $listModulos[8]['mod_descricao'] ?></p>
           </div>
 
           <div class="owl-carousel testimonials-carousel">
-            <?php foreach($depoimentos as $key => $depValue){ ?>
+            <?php foreach ($depoimentos as $key => $depValue) { ?>
 
-            <div class="testimonial-item">
-              <p>
-                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                <?php echo $depValue['dep_texto'] ?>
-                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-              </p>
-              <!-- <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt=""> -->
-              <h3><?php echo $depValue['dep_nome'] ?></h3>
-              <h4><?php echo $depValue['dep_empresa'] ?></h4>
-            </div>
+              <div class="testimonial-item">
+                <p>
+                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                  <?php echo $depValue['dep_texto'] ?>
+                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+                <!-- <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt=""> -->
+                <h3><?php echo $depValue['dep_nome'] ?></h3>
+                <h4><?php echo $depValue['dep_empresa'] ?></h4>
+              </div>
 
             <?php } ?>
 
@@ -319,10 +373,12 @@
 
         </div>
       </section>
-    <?php } else {} ?><!-- End Testimonials Section -->
+    <?php } else {
+    } ?>
+    <!-- End Testimonials Section -->
 
     <!-- ======= Team Section ======= -->
-    <?php if($listModulos[4]['mod_status'] == 1){ ?>
+    <?php if ($listModulos[4]['mod_status'] == 1) { ?>
       <section id="team" class="team">
         <div class="container">
 
@@ -332,34 +388,36 @@
           </div>
 
           <div class="row">
-            <?php foreach($listMembros as $key => $mbValues){ ?>
+            <?php foreach ($listMembros as $key => $mbValues) { ?>
 
-            <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-              <div class="member">
-                <img src="<?php echo $mbValues['mb_url_imagem'] ?>" alt="<?php echo $mbValues['mb_nome'] ?>">
-                <h4><?php echo $mbValues['mb_nome'] ?></h4>
-                <span><?php echo $mbValues['mb_cargo'] ?></span>
-                <!-- <p>
+              <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                <div class="member">
+                  <img src="<?php echo $mbValues['mb_url_imagem'] ?>" alt="<?php echo $mbValues['mb_nome'] ?>">
+                  <h4><?php echo $mbValues['mb_nome'] ?></h4>
+                  <span><?php echo $mbValues['mb_cargo'] ?></span>
+                  <!-- <p>
                   Magni qui quod omnis unde et eos fuga et exercitationem. Odio veritatis perspiciatis quaerat qui aut aut aut
                 </p> -->
-                <div class="social">
-                  <a href="<?php echo $mbValues['mb_facebook'] ?>"><i class="icofont-facebook"></i></a>
-                  <a href="<?php echo $mbValues['mb_instagram'] ?>"><i class="icofont-instagram"></i></a>
-                  <a href="<?php echo $mbValues['mb_linkedin'] ?>"><i class="icofont-linkedin"></i></a>
-                  <a href="<?php echo $mbValues['mb_twitter'] ?>"><i class="icofont-twitter"></i></a>
+                  <div class="social">
+                    <a href="<?php echo $mbValues['mb_facebook'] ?>"><i class="icofont-facebook"></i></a>
+                    <a href="<?php echo $mbValues['mb_instagram'] ?>"><i class="icofont-instagram"></i></a>
+                    <a href="<?php echo $mbValues['mb_linkedin'] ?>"><i class="icofont-linkedin"></i></a>
+                    <a href="<?php echo $mbValues['mb_twitter'] ?>"><i class="icofont-twitter"></i></a>
+                  </div>
                 </div>
               </div>
-            </div>
 
             <?php } ?>
 
           </div>
         </div>
       </section>
-    <?php } else {} ?><!-- End Team Section -->
+    <?php } else {
+    } ?>
+    <!-- End Team Section -->
 
     <!-- ======= Pricing Section ======= -->
-    <?php if($listModulos[6]['mod_status'] == 1){ ?>
+    <?php if ($listModulos[6]['mod_status'] == 1) { ?>
       <section id="pricing" class="pricing section-bg">
         <div class="container">
 
@@ -369,32 +427,34 @@
           </div>
 
           <div class="row">
-            <?php foreach($valores as $key => $valValue){ ?>
-            
+            <?php foreach ($valores as $key => $valValue) { ?>
+
               <div class="col-lg-3 col-md-6">
-              <div class="box ">
-                <?=($valValue['val_destaque'] > 0) ? '<span class="advanced">Mais Vendido</span>' : '' ?>
-                <h3><?php echo $valValue['val_titulo'] ?></h3>
-                <h4><sup>R$</sup><?php echo $valValue['val_valor'] ?>
-                  <span> / 
-                  <?php echo $valValue['val_frequencia'] ?>
-                  </span></h4>
-                <?php echo $valValue['val_texto'] ?>
-                <div class="btn-wrap">
-                  <a href="<?php echo $valValue['val_url'] ?>" class="btn-buy"><?php echo $valValue['val_btn_titulo'] ?></a>
+                <div class="box ">
+                  <?= ($valValue['val_destaque'] > 0) ? '<span class="advanced">Mais Vendido</span>' : '' ?>
+                  <h3><?php echo $valValue['val_titulo'] ?></h3>
+                  <h4><sup>R$</sup><?php echo $valValue['val_valor'] ?>
+                    <span> /
+                      <?php echo $valValue['val_frequencia'] ?>
+                    </span></h4>
+                  <?php echo $valValue['val_texto'] ?>
+                  <div class="btn-wrap">
+                    <a href="<?php echo $valValue['val_url'] ?>" class="btn-buy"><?php echo $valValue['val_btn_titulo'] ?></a>
+                  </div>
                 </div>
               </div>
-            </div>
 
             <?php } ?>
           </div>
 
         </div>
       </section>
-    <?php } else {} ?><!-- End Pricing Section -->
+    <?php } else {
+    } ?>
+    <!-- End Pricing Section -->
 
     <!-- ======= Frequently Asked Questions Section ======= -->
-    <?php if($listModulos[7]['mod_status'] == 1){ ?>
+    <?php if ($listModulos[7]['mod_status'] == 1) { ?>
       <section id="faq" class="faq">
         <div class="container" data-aos="fade-up">
 
@@ -405,22 +465,24 @@
 
           <ul class="faq-list" data-aos="fade-up" data-aos-delay="100">
 
-            <?php foreach($listPerguntas as $key => $pergValues){ ?>
-            <li>
-              <a data-toggle="collapse" class="collapsed" href="#faq_<?php echo $pergValues['pg_id'] ?>"><?php echo $pergValues['pg_pergunta'] ?> <i class="icofont-simple-up"></i></a>
-              <div id="faq_<?php echo $pergValues['pg_id'] ?>" class="collapse" data-parent=".faq-list">
-                <p>
-                  <?php echo $pergValues['pg_resposta'] ?>
-                </p>
-              </div>
-            </li>
+            <?php foreach ($listPerguntas as $key => $pergValues) { ?>
+              <li>
+                <a data-toggle="collapse" class="collapsed" href="#faq_<?php echo $pergValues['pg_id'] ?>"><?php echo $pergValues['pg_pergunta'] ?> <i class="icofont-simple-up"></i></a>
+                <div id="faq_<?php echo $pergValues['pg_id'] ?>" class="collapse" data-parent=".faq-list">
+                  <p>
+                    <?php echo $pergValues['pg_resposta'] ?>
+                  </p>
+                </div>
+              </li>
             <?php } ?>
 
           </ul>
 
         </div>
       </section>
-    <?php } else {} ?><!-- End Frequently Asked Questions Section -->
+    <?php } else {
+    } ?>
+    <!-- End Frequently Asked Questions Section -->
 
     <!-- ======= Contact Section ======= -->
     <section id="contact" class="contact section-bg">
@@ -461,7 +523,7 @@
 
         </div>
 
-        <div class="row mt-5 justify-content-center">
+        <!-- <div class="row mt-5 justify-content-center">
           <div class="col-lg-10">
             <form action="forms/contact.php" method="post" role="form" class="php-email-form">
               <div class="form-row">
@@ -491,7 +553,7 @@
             </form>
           </div>
 
-        </div>
+        </div> -->
 
       </div>
     </section><!-- End Contact Section -->
@@ -501,6 +563,6 @@
   <?php include 'footer.php'; ?>
 
   <script>
-      //adicionar a class active no primeiro slide
-      $('#slide_0').addClass("active");
+    //adicionar a class active no primeiro slide
+    $('#slide_0').addClass("active");
   </script>

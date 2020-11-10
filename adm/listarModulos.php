@@ -2,7 +2,7 @@
 include './system/conexao.php';
 include 'header.php';
 
-$list = $pdo->query("SELECT * FROM MODULOS ORDER BY MOD_ORDEM DESC")->fetchAll(PDO::FETCH_ASSOC);
+$list = $pdo->query("SELECT * FROM modulos ORDER BY mod_ordem DESC")->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 

@@ -14,7 +14,7 @@ if ((time() - $_SESSION['tempo_login']) > 900) {
 
 $id = $_SESSION['id'];
 
-$sql = $pdo->prepare("SELECT * FROM CONFIGURACOES WHERE CONF_ID = ?");
+$sql = $pdo->prepare("SELECT * FROM configuracoes WHERE conf_id = ?");
 $sql->execute([1]);
 $infoSite = $sql->fetchAll(PDO::FETCH_ASSOC);
 foreach ($infoSite as $value) {

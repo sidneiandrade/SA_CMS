@@ -10,29 +10,39 @@ if (!empty($_POST)) {
 
     if (!empty($_FILES['confLogo']['name'])) {
 
-        $new_name = 'logo.png'; //Definindo um novo nome para o arquivo
+        $nomeLogo = $_POST['nomeLogo'];
+
+        //$imgLogo = $pdo->query("SELECT conf_logo FROM configuracoes WHERE conf_id = 1")->fetchAll(PDO::FETCH_ASSOC);
+        unlink($dirImagens . $nomeLogo);
+
+        $new_name = 'logo-' . rand() . '.png'; //Definindo um novo nome para o arquivo
         move_uploaded_file($_FILES['confLogo']['tmp_name'], $dirImagens . $new_name); //Fazer upload do arquivo
         $image = WideImage::load($dirImagens . $new_name);
         $image = $image->resize(null, '150', 'fill', 'any');
         $image->saveToFile($dirImagens . $new_name);
         $pathlogo = $baseDiretorio . $new_name;
 
-        $sql = $pdo->prepare("UPDATE CONFIGURACOES SET CONF_LOGO = '$pathlogo' WHERE CONF_ID = 1");
-        $sql->execute();
+        $sql = $pdo->prepare("UPDATE configuracoes SET conf_logo = ?, conf_logo_url = ? WHERE conf_id = 1");
+        $sql->execute([$new_name,$pathlogo]);
     } else {
     }
 
     if (!empty($_FILES['confFavicon']['name'])) {
 
-        $new_name = 'favicon.png'; //Definindo um novo nome para o arquivo
+        $nomeFavicon = $_POST['nomeFavicon'];
+
+        //$imgFavicon = $pdo->query("SELECT conf_favicon FROM configuracoes WHERE conf_id = 1")->fetchAll(PDO::FETCH_ASSOC);
+        unlink($dirImagens . $nomeFavicon);
+
+        $new_name = 'favicon-' . rand() . '.png'; //Definindo um novo nome para o arquivo
         move_uploaded_file($_FILES['confFavicon']['tmp_name'], $dirImagens . $new_name); //Fazer upload do arquivo
         $image = WideImage::load($dirImagens . $new_name);
         $image = $image->resize('32', '32', 'fill', 'any');
         $image->saveToFile($dirImagens . $new_name);
         $pathfavicon = $baseDiretorio . $new_name;
 
-        $sql = $pdo->prepare("UPDATE CONFIGURACOES SET CONF_FAVICON = '$pathfavicon' WHERE CONF_ID = 1");
-        $sql->execute();
+        $sql = $pdo->prepare("UPDATE configuracoes SET conf_favicon = ?, conf_favicon_url = ? WHERE conf_id = 1");
+        $sql->execute([$new_name, $pathfavicon]);
     } else {
     }
 
@@ -50,20 +60,20 @@ if (!empty($_POST)) {
     $confYoutube = $_POST['confYoutube'];
     $confLinkedin = $_POST['confLinkedin'];
 
-    $sql = $pdo->prepare("UPDATE CONFIGURACOES SET 
-            CONF_NOME = ?,
-            CONF_DESCRICAO = ?,
-            CONF_EMAIL = ?,
-            CONF_LINK = ?,
-            CONF_TELEFONE = ?,
-            CONF_ENDERECO = ?,
-            CONF_COR_PRINCIPAL = ?,
-            CONF_COR_SECUNDARIA = ?,
-            CONF_INSTAGRAM = ?,
-            CONF_FACEBOOK = ?,
-            CONF_YOUTUBE = ?,
-            CONF_LINKEDIN = ?
-            WHERE CONF_ID = ?");
+    $sql = $pdo->prepare("UPDATE configuracoes SET 
+            conf_nome = ?,
+            conf_descricao = ?,
+            conf_email = ?,
+            conf_link = ?,
+            conf_telefone = ?,
+            conf_endereco = ?,
+            conf_cor_principal = ?,
+            conf_cor_secundaria = ?,
+            conf_instagram = ?,
+            conf_facebook = ?,
+            conf_youtube = ?,
+            conf_linkedin = ?
+            WHERE conf_id = ?");
     $sql->execute([
         $confNome,
         $confDescricao,

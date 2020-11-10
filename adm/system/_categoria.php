@@ -14,7 +14,7 @@ switch ($Acao) {
     case "Atualizar":
         try {
             $pdo->beginTransaction();
-            $sql = $pdo->prepare("UPDATE CATEGORIAS SET CAT_NOME = ?, CAT_SLUG = ?, CAT_ORIGEM = ?, CAT_STATUS = ? WHERE CAT_ID = ?");
+            $sql = $pdo->prepare("UPDATE categorias SET cat_nome = ?, cat_slug = ?, cat_origem = ?, cat_status = ? WHERE cat_id = ?");
             $sql->execute([$Nome, $Slug, $Origem, $Status, $ID]);
             $pdo->commit();
             echo 'atualizado';
@@ -27,7 +27,7 @@ switch ($Acao) {
     case "Salvar":
         try {
             $pdo->beginTransaction();
-            $sql = $pdo->prepare("INSERT INTO CATEGORIAS VALUES (null,?,?,?,?)");
+            $sql = $pdo->prepare("INSERT INTO categorias VALUES (null,?,?,?,?)");
             $sql->execute([$Nome, $Slug, $Origem, $Status]);
             $IdCategoria = $pdo->lastInsertId();
             $pdo->commit();
@@ -41,7 +41,7 @@ switch ($Acao) {
         break;
 
     case "Deletar":
-        $sql = $pdo->prepare("DELETE FROM CATEGORIAS WHERE CAT_ID = ?");
+        $sql = $pdo->prepare("DELETE FROM categorias WHERE cat_id = ?");
         $sql->execute([$ID]);
         echo 'deletado';
         break;

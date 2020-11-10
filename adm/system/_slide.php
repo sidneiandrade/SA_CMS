@@ -20,12 +20,12 @@ switch ($Acao){
             $nameImagem = 'Slide-' . rand() . '.jpg'; //Definindo um novo nome para o arquivo
             move_uploaded_file($_FILES['arquivoImagem']['tmp_name'], $dirImagens . $nameImagem); //Fazer upload do arquivo
             $image = WideImage::load($dirImagens . $nameImagem);
-            $image = $image->resize('1500', '600', 'fill', 'any');
+            $image = $image->resize('1500', null, 'fill', 'any');
             $image->saveToFile($dirImagens . $nameImagem);
             $pathImage = $baseDiretorio . $nameImagem;
     
             $pdo->beginTransaction();
-            $sql = $pdo->prepare("INSERT INTO SLIDES VALUES (null,?,?,?,?,?,?)");
+            $sql = $pdo->prepare("INSERT INTO slides VALUES (null,?,?,?,?,?,?)");
             $sql->execute([$sdTitulo, $nameImagem, $pathImage, $sdTexto, $sdBotao, $sdStatus]);
             $id = $pdo->lastInsertId();
             $pdo->commit();
@@ -44,12 +44,12 @@ switch ($Acao){
             if (!empty($_FILES['arquivoImagem']['name'])) {
                 move_uploaded_file($_FILES['arquivoImagem']['tmp_name'], $dirImagens . $sdNomeImagem); //Fazer upload do arquivo
                 $image = WideImage::load($dirImagens . $sdNomeImagem);
-                $image = $image->resize('1500', '600', 'fill', 'any');
+                $image = $image->resize('1500', null, 'fill', 'any');
                 $image->saveToFile($dirImagens . $sdNomeImagem);
             }
 
             $pdo->beginTransaction();
-            $sql = $pdo->prepare("UPDATE SLIDES SET SD_TITULO = ?, SD_TEXTO = ?, SD_URL_BOTAO = ?, SD_STATUS = ? WHERE SD_ID = ?");
+            $sql = $pdo->prepare("UPDATE slides SET sd_titulo = ?, sd_texto = ?, sd_url_botao = ?, sd_status = ? WHERE sd_id = ?");
             $sql->execute([$sdTitulo, $sdTexto, $sdBotao, $sdStatus, $Id]);
             $pdo->commit();
 
@@ -64,7 +64,7 @@ switch ($Acao){
         try{
             unlink($dirImagens . $sdNomeImagem);
 
-            $sql = $pdo->prepare("DELETE FROM SLIDE WHERE SD_ID = ?");
+            $sql = $pdo->prepare("DELETE FROM slides WHERE sd_id = ?");
             $sql->execute([$Id]);
             echo 'deletado';
         }

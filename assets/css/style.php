@@ -351,14 +351,14 @@ h1, h2, h3, h4, h5, h6 {
 --------------------------------------------------------------*/
 #hero {
   width: 100%;
-  height: calc(100vh - 114px);
+  height: calc(100vh - 70px);
   padding: 0;
   overflow: hidden;
 }
 
 #hero .carousel-item {
   width: 100%;
-  height: calc(100vh - 114px);
+  height: calc(100vh - 70px);
   background-size: cover;
   background-position: top right;
   background-repeat: no-repeat;
@@ -367,7 +367,10 @@ h1, h2, h3, h4, h5, h6 {
 
 #hero .carousel-item::before {
   content: '';
-  background-color: rgba(13, 30, 45, 0.6);
+  background: -webkit-linear-gradient(rgba(0,0,0,0), rgba(0,0,0,1));
+  background: -o-linear-gradient(rgba(0,0,0,0), rgba(0,0,0,1));
+  background: -moz-linear-gradient(rgba(0,0,0,0), rgba(0,0,0,1));
+  background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,1));
   position: absolute;
   height: 100%;
   width: 100%;
@@ -392,6 +395,7 @@ h1, h2, h3, h4, h5, h6 {
 
 #hero .carousel-content {
   text-align: left;
+  margin-top: 30%;
 }
 
 @media (max-width: 992px) {
@@ -405,7 +409,7 @@ h1, h2, h3, h4, h5, h6 {
 
 #hero h2 {
   color: #fff;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   font-size: 48px;
   font-weight: 900;
 }
@@ -1009,12 +1013,12 @@ section {
 }
 
 .blog .entry .entry-title a {
-  color: #32627b;
+  color: var(--principal);
   transition: 0.3s;
 }
 
 .blog .entry .entry-title a:hover {
-  color: #68A4C4;
+  color: var(--secundaria);
 }
 
 .blog .entry .entry-meta {
@@ -1055,16 +1059,43 @@ section {
 }
 
 .blog .entry .entry-content .read-more a {
-  display: inline-block;
-  background: #68A4C4;
-  color: #fff;
-  padding: 6px 20px;
-  transition: 0.3s;
+  font-family: "Raleway", sans-serif;
+  font-weight: 500;
   font-size: 14px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 12px 32px;
+  border-radius: 5px;
+  transition: 0.5s;
+  line-height: 1;
+  margin: 10px;
+  color: #fff;
+  -webkit-animation-delay: 0.8s;
+  animation-delay: 0.8s;
+  border: 0;
+  background: var(--principal);
+}
+
+.read-more a {
+  font-family: "Raleway", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 12px 32px;
+  border-radius: 5px;
+  transition: 0.5s;
+  line-height: 1;
+  margin: 10px;
+  color: #fff;
+  -webkit-animation-delay: 0.8s;
+  animation-delay: 0.8s;
+  border: 0;
+  background: var(--principal);
 }
 
 .blog .entry .entry-content .read-more a:hover {
-  background: #32627b;
+  background: var(--secundaria);
 }
 
 .blog .entry .entry-content h3 {
@@ -1130,12 +1161,12 @@ section {
 }
 
 .blog .entry .entry-footer a {
-  color: #90c0d8;
+  color: var(--principal);
   transition: 0.3s;
 }
 
 .blog .entry .entry-footer a:hover {
-  color: #68A4C4;
+  color: var(--secundaria);
 }
 
 .blog .entry .entry-footer .cats {

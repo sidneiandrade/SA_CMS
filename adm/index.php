@@ -2,6 +2,9 @@
 
 include './system/conexao.php'; 
 
+$sql = $pdo->query("SELECT * FROM configuracoes")->fetchAll(PDO::FETCH_ASSOC);
+foreach($sql as $values){}
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -21,7 +24,8 @@ include './system/conexao.php';
   <div class="adminx-container d-flex justify-content-center align-items-center">
     <div class="page-login">
       <div class="text-center">
-        <h1 class="display-5">Painel de Controle</h1>
+      <img src="<?php echo $values['conf_logo_url'] ?>" class="img-fluid p-4" alt="<?php echo $values['conf_nome'] ?>">
+        <h2 class="display-5">Painel de Controle</h2>
       </div>
       <div class="card mb-0">
         <div class="card-body">
@@ -41,7 +45,7 @@ include './system/conexao.php';
           <a href="https://sadigital.com.br" class="text-decoration-none" target="_blank" style="text-decoration: none; color: #212529">
             <small>Sistema desenvolvido por</small>
             <div class="col-lg-12 text-center">
-              <img src="../assets/img/logo.png" class="img-responsive" alt="SA Digital - Agência Digital" width="25%">
+              <img src="../assets/img/logo-SADigital.png" class="img-responsive" alt="SA Digital - Agência Digital" width="25%">
             </div>
           </a>
         </div>
@@ -60,7 +64,6 @@ include './system/conexao.php';
 </html>
 
 <script>
-
 
 $("#loginAdm").submit(function(e) {
   debugger;

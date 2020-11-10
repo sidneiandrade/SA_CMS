@@ -5,7 +5,7 @@ include 'header.php';
 $catID = (isset($_GET['id']) ? $_GET['id'] : 0);
 
 if ($catID != 0) {
-    $sql = $pdo->prepare("SELECT * FROM CATEGORIAS WHERE CAT_ID = ?");
+    $sql = $pdo->prepare("SELECT * FROM categorias WHERE cat_id = ?");
     $sql->execute([$catID]);
     $dadosCategoria = $sql->fetchAll(PDO::FETCH_ASSOC);
     foreach ($dadosCategoria as $value) {

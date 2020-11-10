@@ -2,7 +2,7 @@
 include './system/conexao.php';
 include 'header.php';
 
-$listDepoimentos = $pdo->query("SELECT * FROM DEPOIMENTOS")->fetchAll(PDO::FETCH_ASSOC);
+$listDepoimentos = $pdo->query("SELECT * FROM depoimentos")->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 

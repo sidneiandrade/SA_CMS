@@ -5,7 +5,7 @@ include 'header.php';
 $pagID = (isset($_GET['id']) ? $_GET['id'] : 0);
 
 if ($pagID != 0) {
-    $sql = $pdo->prepare("SELECT * FROM PAGINAS WHERE PAG_ID = ?");
+    $sql = $pdo->prepare("SELECT * FROM paginas WHERE pag_id = ?");
     $sql->execute([$pagID]);
     $dadosPagina = $sql->fetchAll();
     foreach ($dadosPagina as $value) {

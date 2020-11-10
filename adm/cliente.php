@@ -5,7 +5,7 @@ include 'header.php';
 $ID = (isset($_GET['id']) ? $_GET['id'] : 0);
 
 if ($ID != 0) {
-    $sql = $pdo->prepare("SELECT * FROM CLIENTES WHERE CLI_ID = ?");
+    $sql = $pdo->prepare("SELECT * FROM clientes WHERE cli_id = ?");
     $sql->execute([$ID]);
     $dados = $sql->fetchAll(PDO::FETCH_ASSOC);
     foreach ($dados as $value) {

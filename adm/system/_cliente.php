@@ -23,7 +23,7 @@ switch ($Acao){
             $pathImage = $baseDiretorio . $Imagem;
     
             $pdo->beginTransaction();
-            $sql = $pdo->prepare("INSERT INTO CLIENTES VALUES (null,?,?,?,?)");
+            $sql = $pdo->prepare("INSERT INTO clientes VALUES (null,?,?,?,?)");
             $sql->execute([$Empresa, $Imagem, $pathImage, $Status]);
             $id = $pdo->lastInsertId();
             $pdo->commit();
@@ -47,7 +47,7 @@ switch ($Acao){
             }
 
             $pdo->beginTransaction();
-            $sql = $pdo->prepare("UPDATE CLIENTES SET CLI_EMPRESA = ?, CLI_STATUS = ? WHERE CLI_ID = ?");
+            $sql = $pdo->prepare("UPDATE clientes SET cli_empresa = ?, cli_status = ? WHERE cli_id = ?");
             $sql->execute([$Empresa, $Status, $Id]);
             $pdo->commit();
 
@@ -62,7 +62,7 @@ switch ($Acao){
         try{
             unlink($dirImagens . $Imagem);
 
-            $sql = $pdo->prepare("DELETE FROM CLIENTES WHERE CLI_ID = ?");
+            $sql = $pdo->prepare("DELETE FROM clientes WHERE cli_id = ?");
             $sql->execute([$Id]);
             echo 'deletado';
         }

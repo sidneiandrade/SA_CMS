@@ -19,7 +19,7 @@ switch ($Acao) {
     case "Salvar":
         try {
 
-            $sql = $pdo->prepare("INSERT INTO PORTFOLIOS VALUES (null,?,?,?,?,?,now(),?)");
+            $sql = $pdo->prepare("INSERT INTO portfolios VALUES (null,?,?,?,?,?,now(),?)");
             $sql->execute([$portTitulo, $portSlug, $portEmpresa, $portCategoria, $portTexto, $portStatus]);
             $idPortfolio = $pdo->lastInsertId();
 
@@ -37,7 +37,7 @@ switch ($Acao) {
                     $image->saveToFile($dirImagens . $nameImagem);
                     $pathImage = $baseDiretorio . $nameImagem;
 
-                    $sqlImagem = $pdo->prepare("INSERT INTO PORTFOLIO_IMAGEM VALUES (null,?,?,?)");
+                    $sqlImagem = $pdo->prepare("INSERT INTO portfolio_imagem VALUES (null,?,?,?)");
                     $sqlImagem->execute([$idPortfolio, $nameImagem, $pathImage]);
                 };
             }
@@ -51,7 +51,7 @@ switch ($Acao) {
 
     case "Atualizar":
         try {
-            $sql = $pdo->prepare("UPDATE PORTFOLIOS SET PORT_NOME = ?, PORT_SLUG = ?, PORT_EMPRESA = ?, PORT_CATEGORIA = ?, PORT_TEXTO = ?, PORT_STATUS = ? WHERE PORT_ID = ?");
+            $sql = $pdo->prepare("UPDATE portfolios SET port_nome = ?, port_slug = ?, port_empresa = ?, port_categoria = ?, port_texto = ?, port_status = ? WHERE port_id = ?");
             $sql->execute([$portTitulo, $portSlug, $portEmpresa, $portCategoria, $portTexto, $portStatus, $portId]);
 
             if (isset($_FILES['portImagem'])) {
@@ -67,7 +67,7 @@ switch ($Acao) {
                     $image->saveToFile($dirImagens . $nameImagem);
                     $pathImage = $baseDiretorio . $nameImagem;
 
-                    $sqlImagem = $pdo->prepare("INSERT INTO PORTFOLIO_IMAGEM VALUES (null,?,?,?)");
+                    $sqlImagem = $pdo->prepare("INSERT INTO portfolio_imagem VALUES (null,?,?,?)");
                     $sqlImagem->execute(array($portId, $nameImagem, $pathImage));
                 };
             }
@@ -81,20 +81,20 @@ switch ($Acao) {
     case "Deletar":
         try {
 
-            $Imagens = $pdo->prepare("SELECT * FROM PORTFOLIO_IMAGEM WHERE IMG_PORT_ID = ?");
+            $Imagens = $pdo->prepare("SELECT * FROM portfolio_imagem WHERE img_port_id = ?");
             $Imagens->execute([$portId]);
             $dadosFotos = $Imagens->fetchAll(PDO::FETCH_ASSOC);
             foreach ($dadosFotos as $fotos) {
                 $idFoto = $fotos['img_id'];
                 $NomeFoto = $fotos['img_nome'];
 
-                $sqlDeletar = $pdo->prepare("DELETE FROM PORTFOLIO_IMAGEM WHERE IMG_ID = ?");
+                $sqlDeletar = $pdo->prepare("DELETE FROM portfolio_imagem WHERE img_id = ?");
                 $sqlDeletar->execute([$idFoto]);
 
                 unlink($dirImagens . $NomeFoto);
             }
 
-            $sql = $pdo->prepare("DELETE FROM PORTFOLIOS WHERE PORT_ID = ?");
+            $sql = $pdo->prepare("DELETE FROM portfolios WHERE port_id = ?");
             $sql->execute([$portId]);
 
             echo 'deletado';

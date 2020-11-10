@@ -2,7 +2,7 @@
 include './system/conexao.php';
 include 'header.php';
 
-$listPaginas = $pdo->query("SELECT * FROM PAGINAS")->fetchAll(PDO::FETCH_ASSOC);
+$listPaginas = $pdo->query("SELECT * FROM paginas")->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 

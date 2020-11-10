@@ -25,7 +25,7 @@ switch ($Acao) {
             $pathImage = $baseDiretorio . $nameImagem;
 
             $pdo->beginTransaction();
-            $sql = $pdo->prepare("INSERT INTO PAGINAS VALUES (null,?,?,?,?,?,now(),?)");
+            $sql = $pdo->prepare("INSERT INTO paginas VALUES (null,?,?,?,?,?,now(),?)");
             $sql->execute([$pagTitulo, $pagSlug, $pathImage, $nameImagem, $pagTexto, $pagStatus]);
             $IDPagina = $pdo->lastInsertId();
             $pdo->commit();
@@ -50,7 +50,7 @@ switch ($Acao) {
             }
 
             $pdo->beginTransaction();
-            $sql = $pdo->prepare("UPDATE PAGINAS SET PAG_TITULO = ?, PAG_SLUG = ?, PAG_TEXTO = ?, PAG_STATUS = ? WHERE PAG_ID = ?");
+            $sql = $pdo->prepare("UPDATE paginas SET pag_titulo = ?, pag_slug = ?, pag_texto = ?, pag_status = ? WHERE pag_id = ?");
             $sql->execute([$pagTitulo, $pagSlug, $pagTexto, $pagStatus, $pagId]);
             $pdo->commit();
 
@@ -65,7 +65,7 @@ switch ($Acao) {
         try {
             unlink($dirImagens . $pagNomeImagem);
 
-            $sql = $pdo->prepare("DELETE FROM PAGINAS WHERE pag_ID = ?");
+            $sql = $pdo->prepare("DELETE FROM paginas WHERE pag_id = ?");
             $sql->execute([$pagId]);
             echo 'deletado';
         } catch (Exception $e) {

@@ -5,7 +5,7 @@ include 'conexao.php';
 $usuarioemail = $_POST['usuarioemail'];
 $senhausuario = $_POST['senha'];
 
-$sql = $pdo->prepare("SELECT * FROM USUARIO WHERE USU_EMAIL = ?");
+$sql = $pdo->prepare("SELECT * FROM usuario WHERE usu_email = ?");
 $sql->execute([$usuarioemail]);
 $total = $sql->rowCount();
 
@@ -24,7 +24,7 @@ if ($total > 0) {
 
     if($usuErro > 5 || $usuStatus == 0){
 
-        $sql = $pdo->prepare("UPDATE USUARIO SET USU_STATUS = ? WHERE USU_ID = ?");
+        $sql = $pdo->prepare("UPDATE usuario SET usu_status = ? WHERE usu_id = ?");
         $sql->execute([0, $usuID]);
 
         $data = ['resultado' => 'bloqueado', 'msg' => 'Atenção!'];
@@ -44,7 +44,7 @@ if ($total > 0) {
             $_SESSION['nivel'] = $usuNivel;
             $_SESSION['tempo_login'] = time();
 
-            $sql = $pdo->prepare("UPDATE USUARIO SET USU_ERRO = ? WHERE USU_ID = ?");
+            $sql = $pdo->prepare("UPDATE usuario SET usu_erro = ? WHERE usu_id = ?");
             $sql->execute([0, $usuID]);
 
             $data = ['resultado' => 'sucesso', 'msg' => 'OK!'];
@@ -53,7 +53,7 @@ if ($total > 0) {
 
         } else {
 
-            $sql = $pdo->prepare("UPDATE USUARIO SET USU_ERRO = USU_ERRO+? WHERE USU_ID = ?");
+            $sql = $pdo->prepare("UPDATE usuario SET usu_erro = usu_erro+? WHERE usu_id = ?");
             $sql->execute([1, $usuID]);
 
             $data = ['resultado' => 'erro', 'msg' => 'Usuário ou Senha invalido!'];

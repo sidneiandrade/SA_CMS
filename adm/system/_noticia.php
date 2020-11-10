@@ -26,7 +26,7 @@ switch ($Acao){
             $pathImage = $baseDiretorio . $nameImagem;
     
             $pdo->beginTransaction();
-            $sql = $pdo->prepare("INSERT INTO NOTICIAS VALUES (null,?,?,?,?,?,?,now(),?)");
+            $sql = $pdo->prepare("INSERT INTO noticias VALUES (null,?,?,?,?,?,?,now(),?)");
             $sql->execute([$notTitulo, $notSlug, $pathImage, $nameImagem, $notTexto, $notCategoria, $notStatus]);
             $id = $pdo->lastInsertId();
             $pdo->commit();
@@ -50,7 +50,7 @@ switch ($Acao){
             }
 
             $pdo->beginTransaction();
-            $sql = $pdo->prepare("UPDATE NOTICIAS SET NOT_TITULO = ?, NOT_SLUG = ?, NOT_TEXTO = ?, NOT_CATEGORIA = ?, NOT_STATUS = ? WHERE NOT_ID = ?");
+            $sql = $pdo->prepare("UPDATE noticias SET not_titulo = ?, not_slug = ?, not_texto = ?, not_categoria = ?, not_status = ? WHERE not_id = ?");
             $sql->execute([$notTitulo, $notSlug, $notTexto, $notCategoria, $notStatus, $notId]);
             $pdo->commit();
 
@@ -65,7 +65,7 @@ switch ($Acao){
         try{
             unlink($dirImagens . $notNomeImagem);
 
-            $sql = $pdo->prepare("DELETE FROM NOTICIAS WHERE NOT_ID = ?");
+            $sql = $pdo->prepare("DELETE FROM noticias WHERE not_id = ?");
             $sql->execute([$notId]);
             echo 'deletado';
         }

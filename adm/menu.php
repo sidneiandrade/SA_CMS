@@ -32,7 +32,7 @@
 
 
     <?php 
-      $lista = $pdo->query("SELECT * FROM MODULOS WHERE MOD_STATUS = 1 ORDER BY MOD_ORDEM ASC")->fetchAll(PDO::FETCH_ASSOC);
+      $lista = $pdo->query("SELECT * FROM modulos WHERE mod_status = 1 ORDER BY mod_ordem ASC")->fetchAll(PDO::FETCH_ASSOC);
       foreach($lista as $listValue){ 
     ?>
 

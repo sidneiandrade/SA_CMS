@@ -5,7 +5,7 @@ include 'header.php';
 $ID = (isset($_GET['id']) ? $_GET['id'] : 0);
 
 if ($ID != 0) {
-    $sql = $pdo->prepare("SELECT * FROM DESTAQUE WHERE DES_ID = ? AND DES_EMP_ID = ?");
+    $sql = $pdo->prepare("SELECT * FROM destaque WHERE des_id = ? AND des_emp_id = ?");
     $sql->execute([$ID, 1]);
     $dados = $sql->fetchAll(PDO::FETCH_ASSOC);
     foreach ($dados as $value) {

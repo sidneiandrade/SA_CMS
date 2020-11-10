@@ -2,7 +2,7 @@
 include './system/conexao.php';
 include 'header.php';
 
-$listCategorias = $pdo->query("SELECT * FROM CATEGORIAS")->fetchAll(PDO::FETCH_ASSOC);
+$listCategorias = $pdo->query("SELECT * FROM categorias")->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 

@@ -3,50 +3,54 @@
 #Todos os selects da página principal
 
 #Slide
-$slide = $pdo->prepare("SELECT * FROM SLIDES WHERE SD_STATUS = ? ORDER BY SD_ID DESC");
+$slide = $pdo->prepare("SELECT * FROM slides WHERE sd_status = ? ORDER BY sd_id DESC");
 $slide->execute([1]);
 $listSlide = $slide->fetchAll(PDO::FETCH_ASSOC);
 $i = 0; 
 
 #Destaque Empresa
-$destaque = $pdo->query("SELECT * FROM DESTAQUE")->fetchAll(PDO::FETCH_ASSOC);
+$destaque = $pdo->query("SELECT * FROM destaque")->fetchAll(PDO::FETCH_ASSOC);
 
 #Sobre Empresa
-$sobre = $pdo->query("SELECT * FROM EMPRESA")->fetchAll(PDO::FETCH_ASSOC);
+$sobre = $pdo->query("SELECT * FROM empresa")->fetchAll(PDO::FETCH_ASSOC);
 
 #Numeros
-$numeros = $pdo->query("SELECT * FROM NUMEROS")->fetchAll(PDO::FETCH_ASSOC);
+$numeros = $pdo->query("SELECT * FROM numeros")->fetchAll(PDO::FETCH_ASSOC);
 
 #Serviços
-$servicos = $pdo->query("SELECT * FROM SERVICOS")->fetchAll(PDO::FETCH_ASSOC);
+$servicos = $pdo->query("SELECT * FROM servicos")->fetchAll(PDO::FETCH_ASSOC);
 
-#Portfolio
-$catPort = $pdo->prepare("SELECT * FROM CATEGORIAS WHERE CAT_ORIGEM = ? AND CAT_STATUS = ?");
+#Noticias
+$noticias = $pdo->query("SELECT * FROM noticias WHERE not_status = 1 LIMIT 3")->fetchAll(PDO::FETCH_ASSOC);
+
+#Portfolio Categoria
+$catPort = $pdo->prepare("SELECT * FROM categorias WHERE cat_origem = ? AND cat_status = ?");
 $catPort->execute(['P',1]);
 $listCat = $catPort->fetchAll(PDO::FETCH_ASSOC);
 
-$dados = $pdo->prepare("SELECT * FROM PORTFOLIOS WHERE PORT_STATUS = ?");
+#Portfolio Conteudo
+$dados = $pdo->prepare("SELECT * FROM portfolios WHERE port_status = ?");
 $dados->execute([1]);
 $dadosPort = $dados->fetchAll(PDO::FETCH_ASSOC);
 
 #Clientes
-$clientes = $pdo->prepare("SELECT * FROM CLIENTES WHERE CLI_STATUS = ?");
+$clientes = $pdo->prepare("SELECT * FROM clientes WHERE cli_status = ?");
 $clientes->execute([1]);
 $listClientes = $clientes->fetchAll(PDO::FETCH_ASSOC);
 
 #Depoimentos
-$depoimentos = $pdo->query("SELECT * FROM DEPOIMENTOS")->fetchAll(PDO::FETCH_ASSOC);
+$depoimentos = $pdo->query("SELECT * FROM depoimentos")->fetchAll(PDO::FETCH_ASSOC);
 
 #Membros
-$membros = $pdo->prepare("SELECT * FROM MEMBROS WHERE MB_STATUS = ?");
+$membros = $pdo->prepare("SELECT * FROM membros WHERE mb_status = ?");
 $membros->execute([1]);
 $listMembros =  $membros->fetchAll(PDO::FETCH_ASSOC);
 
 #Valores
-$valores = $pdo->query("SELECT * FROM VALORES")->fetchAll(PDO::FETCH_ASSOC);
+$valores = $pdo->query("SELECT * FROM valores")->fetchAll(PDO::FETCH_ASSOC);
 
 #Perguntas
-$perguntas = $pdo->prepare("SELECT * FROM PERGUNTAS WHERE PG_STATUS = ? ORDER BY PG_ID ASC");
+$perguntas = $pdo->prepare("SELECT * FROM perguntas WHERE pg_status = ? ORDER BY pg_id ASC");
 $perguntas->execute([1]);
 $listPerguntas = $perguntas->fetchAll(PDO::FETCH_ASSOC);
 

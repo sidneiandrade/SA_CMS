@@ -2,7 +2,7 @@
 include './system/conexao.php';
 include 'header.php';
 
-$list = $pdo->query("SELECT * FROM PERGUNTAS")->fetchAll();
+$list = $pdo->query("SELECT * FROM perguntas")->fetchAll();
 
 ?>
 

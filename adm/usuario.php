@@ -5,7 +5,7 @@ include 'header.php';
 $usuID = (isset($_GET['id']) ? $_GET['id'] : 0);
 
 if ($usuID != 0) {
-    $sql = $pdo->prepare("SELECT * FROM USUARIO WHERE USU_ID = ?");
+    $sql = $pdo->prepare("SELECT * FROM usuario WHERE usu_id = ?");
     $sql->execute([$usuID]);
     $dadosUsuario = $sql->fetchAll(PDO::FETCH_ASSOC);
     foreach ($dadosUsuario as $value) {

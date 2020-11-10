@@ -5,7 +5,7 @@ include 'header.php';
 $portID = (isset($_GET['id']) ? $_GET['id'] : 0);
 
 if ($portID != 0) {
-    $sql = $pdo->prepare("SELECT * FROM PORTFOLIOS WHERE PORT_ID = ?");
+    $sql = $pdo->prepare("SELECT * FROM portfolios WHERE port_id = ?");
     $sql->execute([$portID]);
     $dadosPortfolio = $sql->fetchAll(PDO::FETCH_ASSOC);
     foreach ($dadosPortfolio as $value) {
@@ -72,7 +72,7 @@ if ($portID != 0) {
                                         <form id="editarGaleria" action="./system/_deletarImagem.php" method="post" enctype="multipart/form-data">
                                             <div class="row">
                                                 <?php
-                                                $sqlImagem = $pdo->prepare("SELECT * FROM PORTFOLIO_IMAGEM WHERE IMG_PORT_ID = $portID");
+                                                $sqlImagem = $pdo->prepare("SELECT * FROM portfolio_imagem WHERE img_port_id = $portID");
                                                 $sqlImagem->execute();
                                                 $imagens = $sqlImagem->fetchAll(PDO::FETCH_ASSOC);
 
@@ -141,7 +141,7 @@ if ($portID != 0) {
                                             <label class="form-label" for="portCategoria">Categoria</label>
                                             <select name="portCategoria" class="form-control js-choice">
                                                 <?php
-                                                $sqlCategoria = $pdo->prepare("SELECT cat_id, cat_nome FROM CATEGORIAS WHERE CAT_ORIGEM = 'P' AND CAT_STATUS = 1");
+                                                $sqlCategoria = $pdo->prepare("SELECT cat_id, cat_nome FROM categorias WHERE cat_origem = 'P' AND cat_status = 1");
                                                 $sqlCategoria->execute();
                                                 $categorias = $sqlCategoria->fetchAll(PDO::FETCH_ASSOC);
 

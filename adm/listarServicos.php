@@ -2,7 +2,7 @@
 include './system/conexao.php';
 include 'header.php';
 
-$listServicos = $pdo->query("SELECT * FROM SERVICOS")->fetchAll();
+$listServicos = $pdo->query("SELECT * FROM servicos")->fetchAll();
 
 ?>
 

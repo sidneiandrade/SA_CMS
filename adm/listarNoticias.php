@@ -2,7 +2,7 @@
 include './system/conexao.php';
 include 'header.php';
 
-$listNoticias = $pdo->query("SELECT * FROM NOTICIAS")->fetchAll(PDO::FETCH_ASSOC);
+$listNoticias = $pdo->query("SELECT * FROM noticias")->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 

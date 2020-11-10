@@ -12,7 +12,7 @@ switch ($Acao) {
     case "Salvar":
         try {
             $pdo->beginTransaction();
-            $sql = $pdo->prepare("INSERT INTO DESTAQUE VALUES (null,?,?,?,?,?)");
+            $sql = $pdo->prepare("INSERT INTO destaque VALUES (null,?,?,?,?,?)");
             $sql->execute([$desIcone, $desTitulo, $desTexto, $desStatus, 1]);
             $ID = $pdo->lastInsertId();
             $pdo->commit();
@@ -28,7 +28,7 @@ switch ($Acao) {
     case "Atualizar":
         try {
             $pdo->beginTransaction();
-            $sql = $pdo->prepare("UPDATE DESTAQUE SET DES_ICONE = ?, DES_TITULO = ?, DES_TEXTO = ?, DES_STATUS = ? WHERE DES_ID = ?");
+            $sql = $pdo->prepare("UPDATE destaque SET des_icone = ?, des_titulo = ?, des_texto = ?, des_status = ? WHERE des_id = ?");
             $sql->execute([$desIcone, $desTitulo, $desTexto, $desStatus, $desID]);
             $pdo->commit();
             echo 'atualizado';
@@ -39,7 +39,7 @@ switch ($Acao) {
         break;
 
     case "Deletar":
-        $sql = $pdo->prepare("DELETE FROM DESTAQUE WHERE DES_ID = ?");
+        $sql = $pdo->prepare("DELETE FROM destaque WHERE des_id = ?");
         $sql->execute([$desID]);
         echo 'deletado';
         break;

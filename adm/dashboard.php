@@ -18,14 +18,14 @@ include 'header.php';
         </ol>
       </nav>
 
-      <div class="pb-3">
-        <h1>Bem-Vindo <?php echo $_SESSION['usuario'] ?></h1>
+      <div class="pt-4 pb-3">
+        <h2>Bem-Vindo <?php echo $_SESSION['usuario'] ?></h2>
       </div>
 
       <div class="row">
 
       <?php 
-        $dashboard = $pdo->query("SELECT * FROM MODULOS WHERE MOD_STATUS = 1 ORDER BY MOD_ORDEM ASC")->fetchAll(PDO::FETCH_ASSOC);
+        $dashboard = $pdo->query("SELECT * FROM modulos WHERE mod_status = 1 ORDER BY mod_ordem ASC")->fetchAll(PDO::FETCH_ASSOC);
         foreach($dashboard as $dashValue){ 
       ?>
         <div class="col-lg-2 col-sm-4 text-center mb-3">
@@ -33,7 +33,8 @@ include 'header.php';
             <a href="<?php echo $dashValue['mod_url'] ?>" style="cursor: pointer; text-decoration: none; color: #212529;">
               <div class="card-body collapse show" id="card1">
                 <i data-feather="<?php echo $dashValue['mod_icone'] ?>" style="width: 40px; height: 40px"></i>
-                <p class="card-title"><?php echo $dashValue['mod_titulo'] ?></p>
+                <br>
+                <small><?php echo $dashValue['mod_titulo'] ?></small>
               </div>
             </a>
           </div>
@@ -45,7 +46,8 @@ include 'header.php';
             <a href="listarUsuarios" style="cursor: pointer; text-decoration: none; color: #212529;">
               <div class="card-body collapse show" id="card1">
                 <i data-feather="user" style="width: 40px; height: 40px"></i>
-                <p class="card-title">Usuários</p>
+                <br>
+                <small>Usuários</small>
               </div>
             </a>
           </div>
@@ -57,7 +59,8 @@ include 'header.php';
             <a href="configuracoes" style="cursor: pointer; text-decoration: none; color: #212529;">
               <div class="card-body collapse show" id="card1">
                 <i data-feather="settings" style="width: 40px; height: 40px"></i>
-                <p class="card-title">Configurações</p>
+                <br>
+                <small>Configurações</small>
               </div>
             </a>
           </div>

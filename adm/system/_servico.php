@@ -11,7 +11,7 @@ switch ($Acao) {
     case "Salvar":
         try {
             $pdo->beginTransaction();
-            $sql = $pdo->prepare("INSERT INTO SERVICOS VALUES (null,?,?,?)");
+            $sql = $pdo->prepare("INSERT INTO servicos VALUES (null,?,?,?)");
             $sql->execute([$servIcone, $servTitulo, $servTexto]);
             $IDServico = $pdo->lastInsertId();
             $pdo->commit();
@@ -27,7 +27,7 @@ switch ($Acao) {
     case "Atualizar":
         try {
             $pdo->beginTransaction();
-            $sql = $pdo->prepare("UPDATE SERVICOS SET SERV_ICONE = ?, SERV_TITULO = ?, SERV_TEXTO = ? WHERE SERV_ID = ?");
+            $sql = $pdo->prepare("UPDATE servicos SET serv_icone = ?, serv_titulo = ?, serv_texto = ? WHERE serv_id = ?");
             $sql->execute([$servIcone, $servTitulo, $servTexto, $servID]);
             $pdo->commit();
             echo 'atualizado';
@@ -38,7 +38,7 @@ switch ($Acao) {
         break;
 
     case "Deletar":
-        $sql = $pdo->prepare("DELETE FROM SERVICOS WHERE SERV_ID = ?");
+        $sql = $pdo->prepare("DELETE FROM servicos WHERE serv_id = ?");
         $sql->execute([$servID]);
         echo 'deletado';
         break;

@@ -11,7 +11,7 @@ switch ($Acao) {
     case "Atualizar":
         try {
             $pdo->beginTransaction();
-            $sql = $pdo->prepare("UPDATE PERGUNTAS SET PG_PERGUNTA = ?, PG_RESPOSTA = ?, PG_STATUS = ? WHERE PG_ID = ?");
+            $sql = $pdo->prepare("UPDATE perguntas SET pg_pergunta = ?, pg_resposta = ?, pg_status = ? WHERE pg_id = ?");
             $sql->execute([$Pergunta, $Resposta, $Status, $ID]);
             $pdo->commit();
             echo 'atualizado';
@@ -24,7 +24,7 @@ switch ($Acao) {
     case "Salvar":
         try {
             $pdo->beginTransaction();
-            $sql = $pdo->prepare("INSERT INTO PERGUNTAS VALUES (null,?,?,1,1)");
+            $sql = $pdo->prepare("INSERT INTO perguntas VALUES (null,?,?,1,1)");
             $sql->execute([$Pergunta, $Resposta]);
             $Id = $pdo->lastInsertId();
             $pdo->commit();
@@ -38,7 +38,7 @@ switch ($Acao) {
         break;
 
     case "Deletar":
-        $sql = $pdo->prepare("DELETE FROM PERGUNTAS WHERE PG_ID = ?");
+        $sql = $pdo->prepare("DELETE FROM perguntas WHERE pg_id = ?");
         $sql->execute([$ID]);
         echo 'deletado';
         break;

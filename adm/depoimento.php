@@ -5,7 +5,7 @@ include 'header.php';
 $depID = (isset($_GET['id']) ? $_GET['id'] : 0);
 
 if ($depID != 0) {
-    $sql = $pdo->prepare("SELECT * FROM DEPOIMENTOS WHERE DEP_ID = ?");
+    $sql = $pdo->prepare("SELECT * FROM depoimentos WHERE dep_id = ?");
     $sql->execute([$depID]);
     $dadosDepoimento = $sql->fetchAll(PDO::FETCH_ASSOC);
     foreach ($dadosDepoimento as $value) {

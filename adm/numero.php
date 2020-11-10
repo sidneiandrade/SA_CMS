@@ -5,7 +5,7 @@ include 'header.php';
 $numID = (isset($_GET['id']) ? $_GET['id'] : 0);
 
 if ($numID != 0) {
-    $sql = $pdo->prepare("SELECT * FROM NUMEROS WHERE NUM_ID = ?");
+    $sql = $pdo->prepare("SELECT * FROM numeros WHERE num_id = ?");
     $sql->execute([$numID]);
     $dados = $sql->fetchAll(PDO::FETCH_ASSOC);
     foreach ($dados as $value) {

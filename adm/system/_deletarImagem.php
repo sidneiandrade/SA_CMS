@@ -10,7 +10,7 @@ try {
 
     unlink($dirImagens . $portImagemNome);
 
-    $sql = $pdo->prepare("DELETE FROM PORTFOLIO_IMAGEM WHERE IMG_ID = :id");
+    $sql = $pdo->prepare("DELETE FROM portfolio_imagem WHERE img_id = :id");
     $sql->bindParam(':id', $portImagemId);
     $sql->execute();
 

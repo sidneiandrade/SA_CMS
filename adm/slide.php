@@ -5,7 +5,7 @@ include 'header.php';
 $ID = (isset($_GET['id']) ? $_GET['id'] : 0);
 
 if ($ID != 0) {
-    $sql = $pdo->prepare("SELECT * FROM SLIDES WHERE SD_ID = ?");
+    $sql = $pdo->prepare("SELECT * FROM slides WHERE sd_id = ?");
     $sql->execute([$ID]);
     $dados = $sql->fetchAll(PDO::FETCH_ASSOC);
     foreach ($dados as $value) {

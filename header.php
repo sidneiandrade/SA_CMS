@@ -2,10 +2,10 @@
 
 include './adm/system/conexao.php';
 
-$sql = $pdo->query("SELECT * FROM CONFIGURACOES")->fetchAll(PDO::FETCH_ASSOC);
+$sql = $pdo->query("SELECT * FROM configuracoes")->fetchAll(PDO::FETCH_ASSOC);
 foreach($sql as $values){}
 
-$modulos = $pdo->prepare("SELECT * FROM MODULOS");
+$modulos = $pdo->prepare("SELECT * FROM modulos");
 $modulos->execute();
 $listModulos = $modulos->fetchAll(PDO::FETCH_ASSOC);
 ?>
@@ -50,13 +50,13 @@ $listModulos = $modulos->fetchAll(PDO::FETCH_ASSOC);
       <div class="logo mr-auto">
         <!-- <h1><a href="index">Lumia</a></h1> -->
         <!-- Uncomment below if you prefer to use an image logo -->
-        <a href="./"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>
+        <a href="./"><img src="<?php echo $values['conf_logo_url'] ?>" alt="<?php echo $values['conf_nome'] ?>" class="img-fluid"></a>
       </div>
 
       <nav class="nav-menu d-none d-lg-block">
         <ul>
           <li class="active"><a href="./">Home</a></li>
-          <li class="drop-down"><a href="">Sobre</a>
+          <!-- <li class="drop-down"><a href="">Sobre</a>
             <ul>
               <li><a href="#about">Sobre</a></li>
               <li><a href="#team">Equipe</a></li>
@@ -70,20 +70,28 @@ $listModulos = $modulos->fetchAll(PDO::FETCH_ASSOC);
                 </ul>
               </li>
             </ul>
-          </li>
-          <li><a href="#services">Serviços</a></li>
-          <li><a href="#portfolio">Portfólio</a></li>
-          <li><a href="#testimonials">Depoimentos</a></li>
-          <li><a href="#contact">Contato</a></li>
+          </li> -->
+          <!-- <li><a href="./#dest">Campanha</a></li> -->
+          <li><a href="./#about">Sobre</a></li>
+          <!-- <li><a href="#services">Serviços</a></li>
+          <li><a href="#portfolio">Portfólio</a></li> -->
+          <li><a href="./#news">Notícias</a></li>
+          <li><a href="./#testimonials">Depoimentos</a></li>
+          <li><a href="./#contact">Contato</a></li>
 
         </ul>
       </nav><!-- .nav-menu -->
 
       <div class="header-social-links">
-        <a href="#" class="twitter"><i class="icofont-twitter"></i></a>
+        <?= ($values['conf_facebook'] != '') ? '<a href="'.$values['conf_facebook'].'" class="facebook"><i class="icofont-facebook"></i></a>' : '' ?> 
+        <?= ($values['conf_instagram'] != '') ? '<a href="'.$values['conf_instagram'].'" class="instagram"><i class="icofont-instagram"></i></a>' : '' ?> 
+        <?= ($values['conf_youtube'] != '') ? '<a href="'.$values['conf_youtube'].'" class="youtube"><i class="icofont-youtube"></i></a>' : '' ?> 
+        <?= ($values['conf_linkedin'] != '') ? '<a href="'.$values['conf_linkedin'].'" class="linkedin"><i class="icofont-linkedin"></i></a>' : '' ?> 
+
+        <!-- <a href="#" class="twitter"><i class="icofont-twitter"></i></a>
         <a href="#" class="facebook"><i class="icofont-facebook"></i></a>
         <a href="#" class="instagram"><i class="icofont-instagram"></i></a>
-        <a href="#" class="linkedin"><i class="icofont-linkedin"></i></i></a>
+        <a href="#" class="linkedin"><i class="icofont-linkedin"></i></i></a> -->
       </div>
 
     </div>

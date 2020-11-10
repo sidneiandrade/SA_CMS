@@ -2,7 +2,7 @@
 include './system/conexao.php';
 include 'header.php';
 
-$listUsuario = $pdo->query("SELECT * FROM USUARIO")->fetchAll();
+$listUsuario = $pdo->query("SELECT * FROM usuario")->fetchAll();
 
 ?>
 

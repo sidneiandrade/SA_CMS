@@ -28,7 +28,7 @@ switch ($Acao){
             $pathImage = $baseDiretorio . $Imagem;
     
             $pdo->beginTransaction();
-            $sql = $pdo->prepare("INSERT INTO MEMBROS VALUES (null,?,?,?,?,?,?,?,?,?)");
+            $sql = $pdo->prepare("INSERT INTO membros VALUES (null,?,?,?,?,?,?,?,?,?)");
             $sql->execute([$Nome, $Imagem, $pathImage, $Cargo, $Facebook, $Twitter, $Instagram, $Linkedin, $Status]);
             $id = $pdo->lastInsertId();
             $pdo->commit();
@@ -52,7 +52,7 @@ switch ($Acao){
             }
 
             $pdo->beginTransaction();
-            $sql = $pdo->prepare("UPDATE MEMBROS SET MB_NOME = ?, MB_CARGO = ?, MB_FACEBOOK = ? , MB_TWITTER = ?,  MB_INSTAGRAM = ?, MB_LINKEDIN = ?, MB_STATUS = ?  WHERE MB_ID = ?");
+            $sql = $pdo->prepare("UPDATE membros SET mb_nome = ?, mb_cargo = ?, mb_facebook = ? , mb_twitter = ?,  mb_instagram = ?, mb_linkedin = ?, mb_status = ?  WHERE mb_id = ?");
             $sql->execute([$Nome, $Cargo, $Facebook, $Twitter, $Instagram, $Linkedin, $Status, $Id]);
             $pdo->commit();
 
@@ -67,7 +67,7 @@ switch ($Acao){
         try{
             unlink($dirImagens . $Imagem);
 
-            $sql = $pdo->prepare("DELETE FROM MEMBROS WHERE MB_ID = ?");
+            $sql = $pdo->prepare("DELETE FROM membros WHERE mb_id = ?");
             $sql->execute([$Id]);
             echo 'deletado';
         }

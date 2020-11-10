@@ -2,7 +2,7 @@
 
 include './system/conexao.php';
 
-$sql = $pdo->prepare("SELECT * FROM CONFIGURACOES WHERE CONF_ID = 1");
+$sql = $pdo->prepare("SELECT * FROM configuracoes WHERE conf_id = 1");
 $sql->execute();
 $listarConfiguracoes = $sql->fetchAll(PDO::FETCH_ASSOC);
 
@@ -38,11 +38,13 @@ include 'header.php';
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label class="form-label">Logo <i class="fas fa-question-circle" data-toggle="tooltip" data-placement="top" title="Tamanho Padrão 500x150 pixels"></i></label><br>
-                                                <img class="img-fluid" src="<?php echo $value['conf_logo'] ?>" alt="<?php echo $value['conf_nome'] ?>">
+                                                <img class="img-fluid" src="<?php echo $value['conf_logo_url'] ?>" alt="<?php echo $value['conf_nome'] ?>">
+                                                <input type="hidden" name="nomeLogo" value="<?php echo $value['conf_logo']?>">
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label">Favicon <i class="fas fa-question-circle" data-toggle="tooltip" data-placement="top" title="Tamanho Padrão 32x32 pixels"></i></label><br>
-                                                <img src="<?php echo $value['conf_favicon'] ?>" alt="<?php echo $value['conf_nome'] ?>">
+                                                <img src="<?php echo $value['conf_favicon_url'] ?>" alt="<?php echo $value['conf_nome'] ?>">
+                                                <input type="hidden" name="nomeFavicon" value="<?php echo $value['conf_favicon']?>">
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
@@ -273,6 +275,7 @@ include 'header.php';
             contentType: false,
             success: function(data) {
                 Notiflix.Loading.Pulse('Carregando...');
+                debugger;
                 if (data == 'sucesso') {
                     Notiflix.Loading.Remove();
                     Notiflix.Notify.Success('Configurações Atualizadas com Sucesso!');

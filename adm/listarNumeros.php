@@ -2,7 +2,7 @@
 include './system/conexao.php';
 include 'header.php';
 
-$listNumeros = $pdo->query("SELECT * FROM NUMEROS")->fetchAll(PDO::FETCH_ASSOC);
+$listNumeros = $pdo->query("SELECT * FROM numeros")->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
