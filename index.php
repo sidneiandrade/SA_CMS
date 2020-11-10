@@ -75,7 +75,7 @@
     </section><!-- End What We Do Section -->
 
     <!-- ======= About Section ======= -->
-    <section id="about" class="about">
+    <section id="about" class="about pb-5">
       <div class="container">
         <?php foreach ($sobre as $key => $sobValue) {
         } ?>
@@ -307,7 +307,7 @@
 
               </div>
                 <div class="read-more text-center">
-                  <a href="noticias" class="btn-get-started">Veja mais notícias</a>
+                  <a href="noticias" class="btn-get-started"><i class="far fa-check-circle"></i> Veja mais notícias</a>
                 </div>
             </div>
           </section>
@@ -523,7 +523,7 @@
 
         </div>
 
-        <!-- <div class="row mt-5 justify-content-center">
+        <div class="row mt-5 justify-content-center">
           <div class="col-lg-10">
             <form action="forms/contact.php" method="post" role="form" class="php-email-form">
               <div class="form-row">
@@ -553,7 +553,7 @@
             </form>
           </div>
 
-        </div> -->
+        </div>
 
       </div>
     </section><!-- End Contact Section -->

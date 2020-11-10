@@ -22,8 +22,8 @@ $noticia = $not->fetchAll(PDO::FETCH_ASSOC);
           <h2>Notícia</h2>
 
           <ol>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="blog.html">Notícia</a></li>
+            <li><a href="./">Home</a></li>
+            <li><a href="noticias">Notícia</a></li>
             <li><?php echo $valueNot['not_titulo'] ?></li>
           </ol>
         </div>

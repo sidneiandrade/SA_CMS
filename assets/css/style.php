@@ -1054,8 +1054,8 @@ section {
 }
 
 .blog .entry .entry-content .read-more {
-  -moz-text-align-last: right;
-  text-align-last: right;
+  -moz-text-align-last: center;
+  text-align-last: center;
 }
 
 .blog .entry .entry-content .read-more a {

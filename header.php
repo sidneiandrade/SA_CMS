@@ -22,7 +22,7 @@ $listModulos = $modulos->fetchAll(PDO::FETCH_ASSOC);
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="./assets/img/favicon.png" rel="icon">
+  <link href="<?php echo $values['conf_favicon_url'] ?>" rel="icon">
   <link href="./assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -73,8 +73,8 @@ $listModulos = $modulos->fetchAll(PDO::FETCH_ASSOC);
           </li> -->
           <!-- <li><a href="./#dest">Campanha</a></li> -->
           <li><a href="./#about">Sobre</a></li>
-          <!-- <li><a href="#services">Serviços</a></li>
-          <li><a href="#portfolio">Portfólio</a></li> -->
+          <li><a href="./#services">Serviços</a></li>
+          <li><a href="./#portfolio">Portfólio</a></li>
           <li><a href="./#news">Notícias</a></li>
           <li><a href="./#testimonials">Depoimentos</a></li>
           <li><a href="./#contact">Contato</a></li>

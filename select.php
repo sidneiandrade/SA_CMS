@@ -21,7 +21,7 @@ $numeros = $pdo->query("SELECT * FROM numeros")->fetchAll(PDO::FETCH_ASSOC);
 $servicos = $pdo->query("SELECT * FROM servicos")->fetchAll(PDO::FETCH_ASSOC);
 
 #Noticias
-$noticias = $pdo->query("SELECT * FROM noticias WHERE not_status = 1 LIMIT 3")->fetchAll(PDO::FETCH_ASSOC);
+$noticias = $pdo->query("SELECT * FROM noticias WHERE not_status = 1 ORDER BY not_id DESC LIMIT 3")->fetchAll(PDO::FETCH_ASSOC);
 
 #Portfolio Categoria
 $catPort = $pdo->prepare("SELECT * FROM categorias WHERE cat_origem = ? AND cat_status = ?");
@@ -50,7 +50,7 @@ $listMembros =  $membros->fetchAll(PDO::FETCH_ASSOC);
 $valores = $pdo->query("SELECT * FROM valores")->fetchAll(PDO::FETCH_ASSOC);
 
 #Perguntas
-$perguntas = $pdo->prepare("SELECT * FROM perguntas WHERE pg_status = ? ORDER BY pg_id ASC");
+$perguntas = $pdo->prepare("SELECT * FROM perguntas WHERE pg_status = ? ORDER BY pg_id DESC");
 $perguntas->execute([1]);
 $listPerguntas = $perguntas->fetchAll(PDO::FETCH_ASSOC);
 

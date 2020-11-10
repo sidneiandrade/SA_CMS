@@ -25,7 +25,7 @@ foreach ($infoSite as $value) {
     <html lang="pt-br">
 
     <head>
-        <link rel="icon" type="image/png" sizes="16x16" href="<?php echo $value['conf_favicon'] ?>">
+        <link rel="icon" type="image/png" sizes="16x16" href="<?php echo $value['conf_favicon_url'] ?>">
         <title>Administração</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -48,7 +48,7 @@ foreach ($infoSite as $value) {
         <div class="adminx-container">
             <nav class="navbar navbar-expand justify-content-between fixed-top">
                 <a class="navbar-brand mb-0 h1 d-none d-md-block" href="dashboard">
-                    Painel de Controle
+                   <img src="<?php echo $value['conf_logo_url'] ?>" class="img-fluid" style="max-height: 50px;"> Painel de Controle
                 </a>
 
                 <div class="d-flex flex-1 d-block d-md-none">

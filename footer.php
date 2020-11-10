@@ -54,14 +54,10 @@
 
       <div class="mr-md-auto text-center text-md-left">
         <div class="copyright">
-          &copy; <strong><span>Carluze Barper</span></strong> - Vereadora - Jornalista do Povo. Todos os direitos reservados.
+          &copy; <strong><span><?php echo $values['conf_nome'] ?></span></strong> - <?php echo $values['conf_descricao'] ?>. Todos os direitos reservados.
         </div>
         <div class="credits">
-          <!-- All the links in the footer should remain intact. -->
-          <!-- You can delete the links only if you purchased the pro version. -->
-          <!-- Licensing information: https://bootstrapmade.com/license/ -->
-          <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/lumia-bootstrap-business-template/ -->
-          Desenvolvido por <a href="https://sadigital.com.br/">SA Digital</a>
+          <a href="https://sadigital.com.br/"><img src="./assets/img/logo-SADigital.png" class="img-responsive" alt="SA Digital - Agência Digital" width="10%"></a>
         </div>
       </div>
       <div class="social-links text-center text-md-right pt-3 pt-md-0">
@@ -69,11 +65,6 @@
         <?= ($values['conf_instagram'] != '') ? '<a href="'.$values['conf_instagram'].'" class="instagram"><i class="bx bxl-instagram"></i></a>' : '' ?> 
         <?= ($values['conf_youtube'] != '') ? '<a href="'.$values['conf_youtube'].'" class="youtube"><i class="bx bxl-youtube"></i></a>' : '' ?> 
         <?= ($values['conf_linkedin'] != '') ? '<a href="'.$values['conf_linkedin'].'" class="linkedin"><i class="bx bxl-linkedin"></i></a>' : '' ?> 
-        <!-- <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a> -->
       </div>
     </div>
   </footer><!-- End Footer -->

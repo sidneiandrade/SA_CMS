@@ -185,7 +185,7 @@ if ($ID != 0) {
                             Notiflix.Loading.Remove();
                             Notiflix.Notify.Success('Destaque Deletado com Sucesso!');
                             setTimeout(function() {
-                                location.reload();
+                                location.href = "./empresa";
                             }, 2500);
                         } else {
                             Notiflix.Loading.Remove();
