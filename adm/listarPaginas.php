@@ -2,7 +2,7 @@
 include './system/conexao.php';
 include 'header.php';
 
-$listPaginas = $pdo->query("SELECT * FROM paginas")->fetchAll(PDO::FETCH_ASSOC);
+$listPaginas = $pdo->query("SELECT * FROM paginas ORDER BY pag_id DESC")->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 

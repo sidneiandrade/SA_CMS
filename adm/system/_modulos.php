@@ -24,7 +24,7 @@ switch ($Acao) {
 
     case "Salvar":
         $sql = $pdo->prepare("INSERT INTO modulos VALUES (NULL,?,?,?,?,?,?)");
-        $sql->execute([$Titulo,$Descricao,$Url,$Icone,1,$Ordem]);
+        $sql->execute([$Titulo, $Descricao, $Url, $Icone, 1, $Ordem]);
         $id = $pdo->lastInsertId();
         $data = ['acao' => 'salvo', 'id' => $id];
         header('Content-type: application/json');
@@ -32,8 +32,8 @@ switch ($Acao) {
     break;
 
     case "Atualizar":
-        $sql = $pdo->prepare("UPDATE modulos SET mod_titulo = ?, mod_desccricao = ?, mod_url = ?, mod_icone = ?, mod_status = ?, mod_origem = ? WHERE mod_id = ?");
-        $sql->execute([$Titulo,$Descricao,$Url, $Icone, $Status,$Ordem, $ID]);
+        $sql = $pdo->prepare("UPDATE modulos SET mod_titulo = ?, mod_descricao = ?, mod_url = ?, mod_icone = ?, mod_status = ?, mod_ordem = ? WHERE mod_id = ?");
+        $sql->execute([$Titulo, $Descricao, $Url, $Icone, $Status, $Ordem, $ID]);
         echo "atualizado";
     break;
 

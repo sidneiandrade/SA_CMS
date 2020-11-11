@@ -85,7 +85,7 @@ $listModulos = $modulos->fetchAll(PDO::FETCH_ASSOC);
       <div class="header-social-links">
         <?= ($values['conf_facebook'] != '') ? '<a href="'.$values['conf_facebook'].'" class="facebook"><i class="icofont-facebook"></i></a>' : '' ?> 
         <?= ($values['conf_instagram'] != '') ? '<a href="'.$values['conf_instagram'].'" class="instagram"><i class="icofont-instagram"></i></a>' : '' ?> 
-        <?= ($values['conf_youtube'] != '') ? '<a href="'.$values['conf_youtube'].'" class="youtube"><i class="icofont-youtube"></i></a>' : '' ?> 
+        <?= ($values['conf_youtube'] != '') ? '<a href="'.$values['conf_youtube'].'" class="youtube"><i class="icofont-youtube-play"></i></a>' : '' ?> 
         <?= ($values['conf_linkedin'] != '') ? '<a href="'.$values['conf_linkedin'].'" class="linkedin"><i class="icofont-linkedin"></i></a>' : '' ?> 
 
         <!-- <a href="#" class="twitter"><i class="icofont-twitter"></i></a>

@@ -78,6 +78,7 @@ if ($catID != 0) {
                                             <select id="catOrigem" name="catOrigem" class="form-control js-choice">
                                                 <option value="n" <?= ($Origem == 'n') ? 'selected="selected"' : '' ?>>Notícias</option>
                                                 <option value="p" <?= ($Origem == 'p') ? 'selected="selected"' : '' ?>>Portfólio</option>
+                                                <option value="c" <?= ($Origem == 'c') ? 'selected="selected"' : '' ?>>Cardápio</option>        
                                             </select>
                                         </div>
                                     </div>
@@ -109,9 +110,6 @@ if ($catID != 0) {
 <?php include 'footer.php'; ?>
 
 <script>
-    $('input[name=catNome]').blur(function() {
-        $('#catSlug').val(getSlug($('#catNome').val()));
-    });
 
     Notiflix.Confirm.Init({
         titleColor: "#c63232",
@@ -121,6 +119,9 @@ if ($catID != 0) {
 
     $("#formCategoria").submit(function() {
         event.preventDefault();
+
+        $('#catSlug').val(getSlug($('#catNome').val()));
+
         $.ajax({
             type: "POST",
             url: "./system/_categoria.php",

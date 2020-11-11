@@ -2,7 +2,7 @@
 include './system/conexao.php';
 include 'header.php';
 
-$list = $pdo->query("SELECT * FROM valores")->fetchAll(PDO::FETCH_ASSOC);
+$list = $pdo->query("SELECT * FROM valores ORDER BY val_id DESC")->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 

@@ -60,7 +60,7 @@ if ($notID != 0) {
                     <h1>Adicionar Notícia</h1>
                 </div>
             <?php } ?>
-            <form id="atualizarNoticia" action="./system/_noticia.php" method="post" enctype="multipart/form-data">
+            <form id="formNoticia" method="post" enctype="multipart/form-data">
                 <div class="row">
 
                     <div class="col-lg-4">
@@ -79,6 +79,22 @@ if ($notID != 0) {
                                         <label class="form-label" for="arquivoImagem">Enviar Imagem <i class="fas fa-question-circle" data-toggle="tooltip" data-placement="top" title="Tamanho Padrão 600x300 pixels"></i></label>
                                         <input type="file" class="form-control" name="arquivoImagem">
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card mb-grid">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <div class="card-header-title">Ações</div>
+                            </div>
+                            <div class="card-body collapse show">
+                                <div class="col-lg-12">
+                                    <input type="hidden" name="Acao" value="<?php echo $Acao ?>">
+                                    <input type="submit" class="btn btn-pill btn-primary" value="<?php echo $Acao ?>" />
+                                    <?php if ($notID != 0) {
+                                        echo '<a href="#" onclick="deletar()" class="btn btn-pill btn-danger">Deletar</a>';
+                                        echo '<a href="listarNoticias" class="btn btn-pill btn-warning ml-1">Voltar</a>';
+                                    } ?>
                                 </div>
                             </div>
                         </div>
@@ -141,12 +157,7 @@ if ($notID != 0) {
                                         </div>
                                     </div>
                                 </div>
-                                <input type="hidden" name="Acao" value="<?php echo $Acao ?>">
-                                <input type="submit" class="btn btn-pill btn-primary" value="<?php echo $Acao ?>" />
-                                <?php if ($notID != 0) {
-                                    echo '<a href="#" onclick="deletar()" class="btn btn-pill btn-danger">Deletar</a>';
-                                    echo '<a href="listarNoticias" class="btn btn-pill btn-warning ml-1">Voltar</a>';
-                                } ?>
+                                
                             </div>
                         </div>
                     </div>
@@ -162,35 +173,24 @@ if ($notID != 0) {
 
 <script>
 
-    var toolbarOptions = [
-        ['bold', 'italic', 'blockquote'],  [{ 'list': 'ordered'}, { 'list': 'bullet' }], ['link', 'image'], ['clean'] 
-    ];
-
-    var quill = new Quill('#editor', {
-        modules: {
-            toolbar: toolbarOptions
-        },
-        theme: 'snow'
-    });
-
     Notiflix.Confirm.Init({
         titleColor: "#c63232",
         okButtonBackground: "#c63232",
         backOverlayColor: "rgba(255,85,73,0.2)",
     });
 
-    $('input[name=notTitulo]').blur(function() {
-        $('#notSlug').val(getSlug($('#notTitulo').val()));
-    });
-
-    $("#atualizarNoticia").submit(function() {
+    $("#formNoticia").submit(function() {
         event.preventDefault();
-        var texto = quill.root.innerHTML.trim();
+
+        $('#notSlug').val(getSlug($('#notTitulo').val()));
+
+        var texto = $('#editor').summernote('code');
         $('#notTexto').val(texto);
+
         $.ajax({
             type: "POST",
             url: "./system/_noticia.php",
-            data: new FormData($('#atualizarNoticia')[0]),
+            data: new FormData($('#formNoticia')[0]),
             processData: false,
             contentType: false,
             success: function(data) {

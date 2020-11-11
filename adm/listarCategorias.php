@@ -2,7 +2,7 @@
 include './system/conexao.php';
 include 'header.php';
 
-$listCategorias = $pdo->query("SELECT * FROM categorias")->fetchAll(PDO::FETCH_ASSOC);
+$listCategorias = $pdo->query("SELECT * FROM categorias ORDER BY cat_id DESC")->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -40,11 +40,22 @@ $listCategorias = $pdo->query("SELECT * FROM categorias")->fetchAll(PDO::FETCH_A
                                 <tr>
                                     <td><?php echo $value['cat_id'] ?></td>
                                     <td><?php echo $value['cat_nome'] ?></td>
-                                    <td><?php if ($value['cat_origem'] == 'p'){
-                                            echo '<span class="badge badge-pill badge-warning">Portfólio</span>';
-                                        } else { 
-                                            echo '<span class="badge badge-pill badge-info">Notícias</span>';   
-                                        } ?>
+                                    <td>
+                                    <?php
+                                        switch($value['cat_origem']){
+                                            case 'p':
+                                                echo '<span class="badge badge-pill badge-warning">Portfólio</span>';
+                                            break;
+                                            
+                                            case 'n':
+                                                echo '<span class="badge badge-pill badge-info">Notícias</span>'; 
+                                            break;
+
+                                            case 'c':
+                                                echo '<span class="badge badge-pill badge-secondary">Cardápio</span>'; 
+                                            break;
+                                        }
+                                    ?>
                                     </td>
                                     <td><?php if ($value['cat_status'] == 1) {
                                             echo '<span class="badge badge-pill badge-success">Ativo</span>';

@@ -152,12 +152,11 @@ if ($pagID != 0) {
         backOverlayColor: "rgba(255,85,73,0.2)",
     });
 
-    $('input[name=pagTitulo]').blur(function() {
-        $('#pagSlug').val(getSlug($('#pagTitulo').val()));
-    });
-
     $("#atualizarPagina").submit(function() {
         event.preventDefault();
+        
+        $('#pagSlug').val(getSlug($('#pagTitulo').val()));
+        
         var texto = quill.root.innerHTML.trim();
         $('#pagTexto').val(texto);
         $.ajax({

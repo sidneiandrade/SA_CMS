@@ -2,7 +2,7 @@
 include './system/conexao.php';
 include 'header.php';
 
-$list = $pdo->query("SELECT * FROM slides")->fetchAll(PDO::FETCH_ASSOC);
+$list = $pdo->query("SELECT * FROM slides ORDER BY sd_id DESC")->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 

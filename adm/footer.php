@@ -1,6 +1,6 @@
-<nav class="navbar fixed-bottom navbar-light bg-light">
-    <div class="col-lg-12 text-center">
-        <a class="navbar-brand" href="https://sadigital.com.br" target="_blank"><small>Sistema desenvolvido por SA Digital</small></a>
+<nav class="navbar fixed-bottom navbar-dark bg-dark">
+    <div class="col-lg-12 text-right">
+        <a class="navbar-brand" href="https://sadigital.com.br" target="_blank" style="font-size: 8px"><img src="../assets/img/jumper-cms-white.png" class="img-fluid" alt="JUMPER CMS" width="10%"><br>Desenvolvido por SA Digital</a>
     </div>
   
 </nav>
@@ -14,10 +14,11 @@
 <script src="./dist/notiflix/notiflix-aio-2.4.0.min.js"></script>
 <script src="./dist/dataTable/jquery.dataTables.min.js"></script>
 <script src="./dist/dataTable/dataTables.bootstrap4.min.js"></script>
-<script src="dist/icons/js/bootstrap-iconpicker.bundle.min.js"></script>
+<script src="./dist/icons/js/bootstrap-iconpicker.bundle.min.js"></script>
 <script src="./dist/js/slug.js"></script>
 <script src="./dist/colorpicker/js/bootstrap-colorpicker.min.js"></script>
-<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+<script src="./dist/summernote/summernote-bs4.js"></script>
+<script src="./dist/summernote/lang/summernote-pt-BR.min.js"></script>
 
 </body>
 
@@ -27,4 +28,18 @@
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
     })
+
+    $('#editor').summernote({
+        placeholder: 'Texto...',
+        tabsize: 2,
+        height: 400,
+        lang: 'pt-BR',
+        toolbar: [
+            // [groupName, [list of button]]
+            ['style', ['bold', 'italic', 'underline', 'clear']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['insert', ['picture', 'link', 'video']],
+            ['view', ['fullscreen']]
+        ]
+    });
 </script>

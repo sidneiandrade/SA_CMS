@@ -2,7 +2,7 @@
 include './system/conexao.php';
 include 'header.php';
 
-$list = $pdo->query("SELECT * FROM perguntas")->fetchAll();
+$list = $pdo->query("SELECT * FROM perguntas ORDER BY pg_id DESC")->fetchAll();
 
 ?>
 

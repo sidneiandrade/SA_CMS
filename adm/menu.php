@@ -4,7 +4,7 @@
 <div class="adminx-sidebar expand-hover push">
   <ul class="sidebar-nav">
     <li class="sidebar-nav-item">
-      <a href="dashboard" class="sidebar-nav-link active">
+      <a href="dashboard" class="sidebar-nav-link">
         <span class="sidebar-nav-icon">
           <i data-feather="home"></i>
         </span>
@@ -128,7 +128,8 @@
           <li class="sidebar-nav-item">
             <a href="listarCategorias" class="sidebar-nav-link">
               <span class="sidebar-nav-abbr">
-                <i data-feather="tag"></i>
+                <!-- <i data-feather="tag"></i> -->
+                <i class='bx bx-purchase-tag-alt'></i>
               </span>
               <span class="sidebar-nav-name">
                 Gerenciar Categorias

@@ -248,23 +248,6 @@ include 'header.php';
 
 <script>
 
-    var toolbarOptions = [
-        ['bold', 'italic', 'blockquote'],  [{ 'list': 'ordered'}, { 'list': 'bullet' }], ['link', 'image'], ['clean'] 
-    ];
-
-    var quill = new Quill('#editor', {
-        modules: {
-            toolbar: toolbarOptions
-        },
-        theme: 'snow'
-    });
-
-    $(function () {
-        $('.color').colorpicker({
-            useAlpha: false
-        });
-    });
-
     $("#configuracoes").submit(function() {
         event.preventDefault();
         $.ajax({
@@ -295,7 +278,7 @@ include 'header.php';
 
     $("#empresa").submit(function() {
         event.preventDefault();
-        var texto = quill.root.innerHTML.trim();
+        var texto = $('#editor').summernote('code');
         $('#empDescricao').val(texto);
         $.ajax({
             type: "POST",

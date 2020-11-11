@@ -14,6 +14,7 @@ if ($portID != 0) {
         $Empresa = $value['port_empresa'];
         $Categoria = $value['port_categoria'];
         $Texto = $value['port_texto'];
+        $Url = $value['port_url'];
         $Status = $value['port_status'];
         $Acao = "Atualizar";
     }
@@ -22,7 +23,8 @@ if ($portID != 0) {
     $Slug = "";
     $Empresa = "";
     $Categoria = 1;
-    $Texto = "<br><br><br><br>";
+    $Texto = "";
+    $Url = "";
     $Status = 1;
     $Acao = "Salvar";
 }
@@ -58,7 +60,7 @@ if ($portID != 0) {
                     <h1>Adicionar Portfólio</h1>
                 </div>
             <?php } ?>
-            <form id="atualizarPortfolio" action="./system/_atualizarPortfolio.php" method="post" enctype="multipart/form-data">
+            <form id="formPortfolio" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <input type="hidden" id="portId" name="portId" value="<?php echo $portID ?>" />
                     <div class="col-lg-4">
@@ -134,6 +136,10 @@ if ($portID != 0) {
                                             <input type="hidden" id="portTexto" name="portTexto" value="">
                                             <!-- <textarea class="form-control" rows="9" name="portTexto" placeholder="Texto do Portfólio"><?php echo $Texto ?></textarea> -->
                                         </div>
+                                        <div class="form-group">
+                                            <label class="form-label" for="portUrl">Url Projeto</label>
+                                            <input type="url" class="form-control" id="portUrl" name="portUrl" placeholder="Url" value="<?php echo $Url ?>">
+                                        </div>
                                     </div>
 
                                     <div class="col-lg-4">
@@ -184,35 +190,23 @@ if ($portID != 0) {
 
 <script>
 
-    var toolbarOptions = [
-        ['bold', 'italic', 'blockquote'],  [{ 'list': 'ordered'}, { 'list': 'bullet' }], ['link', 'image'], ['clean'] 
-    ];
-
-    var quill = new Quill('#editor', {
-        modules: {
-            toolbar: toolbarOptions
-        },
-        theme: 'snow'
-    });
-
     Notiflix.Confirm.Init({
         titleColor: "#c63232",
         okButtonBackground: "#c63232",
         backOverlayColor: "rgba(255,85,73,0.2)",
     });
 
-    $('input[name=portTitulo]').blur(function() {
-        $('#portSlug').val(getSlug($('#portTitulo').val()));
-    });
-
-    $("#atualizarPortfolio").submit(function() {
+    $("#formPortfolio").submit(function() {
         event.preventDefault();
-        var texto = quill.root.innerHTML.trim();
+        
+        $('#portSlug').val(getSlug($('#portTitulo').val()));
+        
+        var texto = $('#editor').summernote('code');
         $('#portTexto').val(texto);
         $.ajax({
             type: "POST",
             url: "./system/_portfolio.php",
-            data: new FormData($('#atualizarPortfolio')[0]),
+            data: new FormData($('#formPortfolio')[0]),
             processData: false,
             contentType: false,
             success: function(data) {

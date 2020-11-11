@@ -81,7 +81,7 @@
         } ?>
         <div class="row">
           <div class="col-lg-6">
-            <img src="<?php echo $sobValue['emp_imagem'] ?>" class="img-fluid" alt="<?php echo $values['conf_nome'] ?>">
+            <img src="<?php echo $sobValue['emp_imagem'] ?>" class="img-fluid rounded" alt="<?php echo $values['conf_nome'] ?>">
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0">
             <h3>Sobre</h3>
@@ -230,21 +230,22 @@
             foreach ($dadosPort as $keys => $valuePort) {
               $idPort = $valuePort['port_id'];
               $nomePort = $valuePort['port_nome'];
+              $slugPort = $valuePort['port_slug'];
               $categoria = $valuePort['port_categoria'];
-              $dadosCat = $pdo->query("SELECT CAT_NOME, CAT_SLUG FROM CATEGORIAS WHERE CAT_ID = $categoria AND CAT_ORIGEM = 'p'")->fetch(PDO::FETCH_ASSOC);
-              $imagem = $pdo->query("SELECT IMG_IMAGEM FROM PORTFOLIO_IMAGEM WHERE IMG_PORT_ID = $idPort LIMIT 1")->fetch(PDO::FETCH_ASSOC);
+              $dadosCat = $pdo->query("SELECT cat_nome, cat_slug FROM categorias WHERE cat_id = $categoria AND cat_origem = 'p'")->fetch(PDO::FETCH_ASSOC);
+              $imagem = $pdo->query("SELECT img_imagem FROM portfolio_imagem WHERE img_port_id = $idPort LIMIT 1")->fetch(PDO::FETCH_ASSOC);
             ?>
-              <div class="col-lg-4 col-md-6 portfolio-item filter-<?php echo $dadosCat['CAT_SLUG'] ?> wow fadeInUp">
+              <div class="col-lg-4 col-md-6 portfolio-item filter-<?php echo $dadosCat['cat_slug'] ?> wow fadeInUp">
                 <div class="portfolio-wrap">
                   <figure>
-                    <img src="<?php echo $imagem['IMG_IMAGEM'] ?>" class="img-fluid" alt="<?php echo $nomePort ?>">
-                    <a href="<?php echo $imagem['IMG_IMAGEM'] ?>" data-gall="portfolioGallery" class="link-preview venobox" title="Preview"><i class="bx bx-plus"></i></a>
-                    <a href="portfolio-details.html" class="link-details" title="More Details"><i class="bx bx-link"></i></a>
+                    <img src="<?php echo $imagem['img_imagem'] ?>" class="img-fluid" alt="<?php echo $nomePort ?>">
+                    <a href="<?php echo $imagem['img_imagem'] ?>" data-gall="portfolioGallery" class="link-preview venobox" title="Visualizar"><i class="bx bx-plus"></i></a>
+                    <a href="portfolio-single?port=<?php echo $slugPort ?>" class="link-details" title="Detalhes"><i class="bx bx-link"></i></a>
                   </figure>
 
                   <div class="portfolio-info">
-                    <h4><a href="portfolio-details.html"><?php echo $nomePort ?></a></h4>
-                    <p><?php echo $dadosCat['CAT_NOME'] ?></p>
+                    <h4><a href="portfolio-single?port=<?php echo $slugPort ?>"><?php echo $nomePort ?></a></h4>
+                    <p><?php echo $dadosCat['cat_nome'] ?></p>
                   </div>
                 </div>
               </div>

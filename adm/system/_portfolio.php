@@ -9,6 +9,7 @@ $portSlug = $_POST['portSlug'];
 $portEmpresa = $_POST['portEmpresa'];
 $portCategoria = $_POST['portCategoria'];
 $portTexto = $_POST['portTexto'];
+$portUrl = $_POST['portUrl'];
 $portStatus = $_POST['portStatus'];
 $Acao = (isset($_POST['Acao']) ? $_POST['Acao'] : "");
 
@@ -19,8 +20,8 @@ switch ($Acao) {
     case "Salvar":
         try {
 
-            $sql = $pdo->prepare("INSERT INTO portfolios VALUES (null,?,?,?,?,?,now(),?)");
-            $sql->execute([$portTitulo, $portSlug, $portEmpresa, $portCategoria, $portTexto, $portStatus]);
+            $sql = $pdo->prepare("INSERT INTO portfolios VALUES (null,?,?,?,?,?,?,now(),?)");
+            $sql->execute([$portTitulo, $portSlug, $portEmpresa, $portCategoria, $portTexto, $portUrl, $portStatus]);
             $idPortfolio = $pdo->lastInsertId();
 
             if (isset($_FILES['portImagem'])) {
@@ -33,7 +34,8 @@ switch ($Acao) {
                     $nameImagem = 'Portfolio-' . rand() . '.jpg'; //Definindo um novo nome para o arquivo
                     move_uploaded_file($upload['tmp_name'][$i], $dirImagens . $nameImagem); //Fazer upload do arquivo
                     $image = WideImage::load($dirImagens . $nameImagem);
-                    $image = $image->crop('center', 'center', 800, 800);
+                    $image = $image->resize(null, '400', 'inside', 'any');
+                    $image = $image->crop('center', 'center', '100%', 400);
                     $image->saveToFile($dirImagens . $nameImagem);
                     $pathImage = $baseDiretorio . $nameImagem;
 
@@ -51,8 +53,8 @@ switch ($Acao) {
 
     case "Atualizar":
         try {
-            $sql = $pdo->prepare("UPDATE portfolios SET port_nome = ?, port_slug = ?, port_empresa = ?, port_categoria = ?, port_texto = ?, port_status = ? WHERE port_id = ?");
-            $sql->execute([$portTitulo, $portSlug, $portEmpresa, $portCategoria, $portTexto, $portStatus, $portId]);
+            $sql = $pdo->prepare("UPDATE portfolios SET port_nome = ?, port_slug = ?, port_empresa = ?, port_categoria = ?, port_texto = ?, port_url = ?, port_status = ? WHERE port_id = ?");
+            $sql->execute([$portTitulo, $portSlug, $portEmpresa, $portCategoria, $portTexto, $portUrl, $portStatus, $portId]);
 
             if (isset($_FILES['portImagem'])) {
 
@@ -63,7 +65,8 @@ switch ($Acao) {
                     $nameImagem = 'Portfolio-' . rand() . '.jpg'; //Definindo um novo nome para o arquivo
                     move_uploaded_file($upload['tmp_name'][$i], $dirImagens . $nameImagem); //Fazer upload do arquivo
                     $image = WideImage::load($dirImagens . $nameImagem);
-                    $image = $image->crop('center', 'center', 800, 800);
+                    $image = $image->resize(null, '400', 'inside', 'any');
+                    $image = $image->crop('center', 'center', '100%', 400);
                     $image->saveToFile($dirImagens . $nameImagem);
                     $pathImage = $baseDiretorio . $nameImagem;
 

@@ -30,14 +30,14 @@ foreach ($infoSite as $value) {
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <link rel="stylesheet" type="text/css" href="dist/notiflix/notiflix-2.4.0.min.css" />
-        <link rel="stylesheet" type="text/css" href="dist/dataTable/dataTables.bootstrap4.min.css" />
+        <link rel="stylesheet" type="text/css" href="./dist/notiflix/notiflix-2.4.0.min.css" />
+        <link rel="stylesheet" type="text/css" href="./dist/dataTable/dataTables.bootstrap4.min.css" />
         <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" />
-        <link rel="stylesheet" type="text/css" href="dist/icons/css/bootstrap-iconpicker.min.css" />
-        <link rel="stylesheet" type="text/css" href="dist/colorpicker/css/bootstrap-colorpicker.min.css" />
-        <link rel="stylesheet" type="text/css" href="dist/css/adminx.css" media="screen" />
-        <link rel="stylesheet" href="https://cdn.quilljs.com/1.3.6/quill.snow.css">
-        
+        <link rel="stylesheet" type="text/css" href="./dist/icons/css/bootstrap-iconpicker.min.css" />
+        <link rel="stylesheet" type="text/css" href="./dist/colorpicker/css/bootstrap-colorpicker.min.css" />
+        <link rel="stylesheet" type="text/css" href="./dist/summernote/summernote-bs4.css" />
+
+        <link rel="stylesheet" type="text/css" href="./dist/css/adminx.css" media="screen" />
         
 
     </head>

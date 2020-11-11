@@ -2,7 +2,7 @@
 include './system/conexao.php';
 include 'header.php';
 
-$listPortfolio = $pdo->query("SELECT * FROM portfolios")->fetchAll(PDO::FETCH_ASSOC);
+$listPortfolio = $pdo->query("SELECT * FROM portfolios ORDER BY port_id DESC")->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 

@@ -725,7 +725,7 @@ section {
   background: var(--principal);
   padding: 16px;
   color: #fff;
-  border-radius: 50%;
+  border-radius: 20%;
   width: 60px;
   height: 60px;
 }
@@ -1047,6 +1047,10 @@ section {
   color: #aaaaaa;
   font-size: 14px;
   display: inline-block;
+}
+
+.blog .entry .entry-content img{
+  padding: 10px;
 }
 
 .blog .entry .entry-content p {
@@ -2290,7 +2294,7 @@ section {
   line-height: 1;
   padding: 8px 0;
   margin-right: 4px;
-  border-radius: 50%;
+  border-radius: 20%;
   text-align: center;
   width: 36px;
   height: 36px;

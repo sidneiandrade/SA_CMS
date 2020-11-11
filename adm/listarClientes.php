@@ -2,7 +2,7 @@
 include './system/conexao.php';
 include 'header.php';
 
-$list = $pdo->query("SELECT * FROM clientes")->fetchAll(PDO::FETCH_ASSOC);
+$list = $pdo->query("SELECT * FROM clientes ORDER BY cli_id DESC")->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
