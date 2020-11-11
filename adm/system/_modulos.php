@@ -37,7 +37,7 @@ switch ($Acao) {
         echo "atualizado";
     break;
 
-    case "deletar":
+    case "Deletar":
         $sql = $pdo->prepare("DELETE FROM modulos WHERE mod_id = ?");
         $sql->execute([$ID]);
         echo "deletado";

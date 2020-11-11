@@ -13,6 +13,10 @@ $Acao = (isset($_POST['Acao']) ? $_POST['Acao'] : "");
 $dirImagens = '../../assets/img/paginas/'; //Diretório das imagens
 $baseDiretorio = $baseUrl . 'assets/img/paginas/'; //Endereço completo
 
+if (!is_dir($dirImagens)) {
+    mkdir('../../assets/img/paginas/', 0755, true); // Cria uma pasta imagens
+}
+
 switch ($Acao) {
     case "Salvar":
         try {

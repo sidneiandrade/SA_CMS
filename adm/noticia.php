@@ -62,43 +62,6 @@ if ($notID != 0) {
             <?php } ?>
             <form id="formNoticia" method="post" enctype="multipart/form-data">
                 <div class="row">
-
-                    <div class="col-lg-4">
-                        <div class="card mb-grid">
-                            <div class="card-header d-flex justify-content-between align-items-center">
-                                <div class="card-header-title">Imagem</div>
-                            </div>
-                            <div class="card-body collapse show">
-                                <div class="col-lg-12">
-                                    <input type="hidden" id="notId" name="notId" value="<?php echo $notID ?>" />
-                                    <div class="form-group">
-                                        <input type="hidden" id="notNomeImagem" name="notNomeImagem" value="<?php echo $NomeImagem ?>">
-                                        <?php if ($UrlImagem != "") { ?>
-                                            <img src="<?php echo $UrlImagem ?>" class="img-fluid rounded mx-auto d-block mb-2" alt="<?php echo $Titulo ?>">
-                                        <?php } ?>
-                                        <label class="form-label" for="arquivoImagem">Enviar Imagem <i class="fas fa-question-circle" data-toggle="tooltip" data-placement="top" title="Tamanho Padrão 600x300 pixels"></i></label>
-                                        <input type="file" class="form-control" name="arquivoImagem">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card mb-grid">
-                            <div class="card-header d-flex justify-content-between align-items-center">
-                                <div class="card-header-title">Ações</div>
-                            </div>
-                            <div class="card-body collapse show">
-                                <div class="col-lg-12">
-                                    <input type="hidden" name="Acao" value="<?php echo $Acao ?>">
-                                    <input type="submit" class="btn btn-pill btn-primary" value="<?php echo $Acao ?>" />
-                                    <?php if ($notID != 0) {
-                                        echo '<a href="#" onclick="deletar()" class="btn btn-pill btn-danger">Deletar</a>';
-                                        echo '<a href="listarNoticias" class="btn btn-pill btn-warning ml-1">Voltar</a>';
-                                    } ?>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="col-lg-8">
                         <div class="card mb-grid">
                             <div class="card-header d-flex justify-content-between align-items-center">
@@ -161,6 +124,44 @@ if ($notID != 0) {
                             </div>
                         </div>
                     </div>
+                    
+                    <div class="col-lg-4">
+                        <div class="card mb-grid">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <div class="card-header-title">Imagem</div>
+                            </div>
+                            <div class="card-body collapse show">
+                                <div class="col-lg-12">
+                                    <input type="hidden" id="notId" name="notId" value="<?php echo $notID ?>" />
+                                    <div class="form-group">
+                                        <input type="hidden" id="notNomeImagem" name="notNomeImagem" value="<?php echo $NomeImagem ?>">
+                                        <?php if ($UrlImagem != "") { ?>
+                                            <img src="<?php echo $UrlImagem ?>" class="img-fluid rounded mx-auto d-block mb-2" alt="<?php echo $Titulo ?>">
+                                        <?php } ?>
+                                        <label class="form-label" for="arquivoImagem">Enviar Imagem <i class="fas fa-question-circle" data-toggle="tooltip" data-placement="top" title="Tamanho Padrão 600x300 pixels"></i></label>
+                                        <input type="file" class="form-control" name="arquivoImagem">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card mb-grid">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <div class="card-header-title">Ações</div>
+                            </div>
+                            <div class="card-body collapse show">
+                                <div class="col-lg-12">
+                                    <input type="hidden" id="Acao" name="Acao" value="<?php echo $Acao ?>">
+                                    <input type="submit" class="btn btn-pill btn-primary" value="<?php echo $Acao ?>" />
+                                    <?php if ($notID != 0) {
+                                        echo '<a href="#" onclick="deletar()" class="btn btn-pill btn-danger">Deletar</a>';
+                                        echo '<a href="listarNoticias" class="btn btn-pill btn-warning ml-1">Voltar</a>';
+                                    } ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
                 </div>
             </form>
         </div>
@@ -172,6 +173,8 @@ if ($notID != 0) {
 <?php include 'footer.php'; ?>
 
 <script>
+
+    let Form = '#formNoticia';
 
     Notiflix.Confirm.Init({
         titleColor: "#c63232",
@@ -190,7 +193,7 @@ if ($notID != 0) {
         $.ajax({
             type: "POST",
             url: "./system/_noticia.php",
-            data: new FormData($('#formNoticia')[0]),
+            data: new FormData($(Form)[0]),
             processData: false,
             contentType: false,
             success: function(data) {
@@ -226,33 +229,19 @@ if ($notID != 0) {
             'Sim', 'Não',
 
             function() {
-
-                let Id = $("#notId").val();
-                let Titulo = $("#notTitulo").val();
-                let Imagem = $("#notNomeImagem").val();
-                let Slug = $("#notSlug").val();
-                let Texto = $("#notTexto").val();
-                let Status = $("#notStatus").val();
-                let Acao = "Deletar";
-
+                $("#Acao").val('Deletar');
                 $.ajax({
-                    url: "./system/_noticia.php",
-                    data: {
-                        'notId': Id,
-                        'notNomeImagem': Imagem,
-                        'notTitulo': Titulo,
-                        'notSlug': Slug,
-                        'notTexto': Texto,
-                        'notStatus': Status,
-                        'Acao': Acao
-                    },
                     type: "POST",
+                    url: "./system/_noticia.php",
+                    data: new FormData($(Form)[0]),
+                    processData: false,
+                    contentType: false,
                     success: function(data) {
                         Notiflix.Loading.Pulse('Carregando...');
                         debugger;
                         if (data == 'deletado') {
                             Notiflix.Loading.Remove();
-                            Notiflix.Notify.Success('Notícia Deletada com Sucesso!');
+                            Notiflix.Notify.Success('Notícia Deletado com Sucesso!');
                             setTimeout(function() {
                                 location.href = "./listarNoticias"
                             }, 2500);
@@ -264,6 +253,7 @@ if ($notID != 0) {
                 });
 
             }
+
         );
     };
 </script>

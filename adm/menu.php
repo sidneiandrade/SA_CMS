@@ -128,8 +128,7 @@
           <li class="sidebar-nav-item">
             <a href="listarCategorias" class="sidebar-nav-link">
               <span class="sidebar-nav-abbr">
-                <!-- <i data-feather="tag"></i> -->
-                <i class='bx bx-purchase-tag-alt'></i>
+                <i data-feather="tag"></i>
               </span>
               <span class="sidebar-nav-name">
                 Gerenciar Categorias

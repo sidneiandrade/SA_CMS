@@ -162,6 +162,8 @@ if ($ID != 0) {
 
 <script>
 
+    let Form = '#formMembro';
+
     Notiflix.Confirm.Init({
         titleColor: "#c63232",
         okButtonBackground: "#c63232",
@@ -173,7 +175,7 @@ if ($ID != 0) {
         $.ajax({
             type: "POST",
             url: "./system/_membro.php",
-            data: new FormData($('#formMembro')[0]),
+            data: new FormData($(Form)[0]),
             processData: false,
             contentType: false,
             success: function(data) {
@@ -213,7 +215,7 @@ if ($ID != 0) {
                 $.ajax({
                     type: "POST",
                     url: "./system/_membro.php",
-                    data: new FormData($('#formMembro')[0]),
+                    data: new FormData($(Form)[0]),
                     processData: false,
                     contentType: false,
                     success: function(data) {

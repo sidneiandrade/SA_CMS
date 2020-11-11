@@ -8,6 +8,10 @@ if (!empty($_POST)) {
     $dirImagens = '../../assets/img/'; //Diretório das imagens
     $baseDiretorio = $baseUrl . 'assets/img/'; //Endereço completo
 
+    if (!is_dir($dirImagens)) {
+        mkdir('../../assets/img/', 0755, true); // Cria uma pasta imagens
+    }
+
     if (!empty($_FILES['confLogo']['name'])) {
 
         $nomeLogo = $_POST['nomeLogo'];

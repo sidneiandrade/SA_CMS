@@ -80,7 +80,7 @@
         <?php foreach ($sobre as $key => $sobValue) {
         } ?>
         <div class="row">
-          <div class="col-lg-6">
+          <div class="col-lg-6 d-flex align-items-center">
             <img src="<?php echo $sobValue['emp_imagem'] ?>" class="img-fluid rounded" alt="<?php echo $values['conf_nome'] ?>">
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0">

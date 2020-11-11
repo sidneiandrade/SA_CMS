@@ -114,7 +114,7 @@ if ($ID != 0) {
                                     </div>
 
                                 </div>
-                                <input type="hidden" name="Acao" value="<?php echo $Acao ?>">
+                                <input type="hidden" id="Acao" name="Acao" value="<?php echo $Acao ?>">
                                 <input type="submit" class="btn btn-pill btn-primary" value="<?php echo $Acao ?>" />
                                 <?php if ($ID != 0) {
                                     echo '<a href="#" onclick="deletar()" class="btn btn-pill btn-danger">Deletar</a>';
@@ -133,6 +133,9 @@ if ($ID != 0) {
 <?php include "footer.php" ?>
 
 <script>
+
+    let Form = '#modulos';
+
     Notiflix.Confirm.Init({
         titleColor: "#c63232",
         okButtonBackground: "#c63232",
@@ -151,7 +154,7 @@ if ($ID != 0) {
             $.ajax({
                 type: "POST",
                 url: "./system/_modulos.php",
-                data: new FormData($('#modulos')[0]),
+                data: new FormData($(Form)[0]),
                 processData: false,
                 contentType: false,
                 success: function(data) {
@@ -190,29 +193,13 @@ if ($ID != 0) {
             'Sim', 'Não',
 
             function() {
-
-                let Id = $("#usuID").val();
-                let Titulo = "";
-                let Descricao = "";
-                let Url = "";
-                let Icone = "";
-                let Status = "";
-                let Ordem = "";
-                let Acao = "deletar";
-
+                $("#Acao").val('Deletar');
                 $.ajax({
-                    url: "./system/_modulos.php",
-                    data: {
-                        'ID': Id,
-                        'Titulo': Titulo,
-                        'Descricao': Descricao,
-                        'Url': Url,
-                        'Icone': Icone,
-                        'Status': Status,
-                        'Ordem': Ordem,
-                        'Acao': Acao
-                    },
                     type: "POST",
+                    url: "./system/_modulos.php",
+                    data: new FormData($(Form)[0]),
+                    processData: false,
+                    contentType: false,
                     success: function(data) {
                         Notiflix.Loading.Pulse('Carregando...');
                         debugger;
@@ -230,6 +217,48 @@ if ($ID != 0) {
                 });
 
             }
+
+            // function() {
+
+            //     let Id = $("#usuID").val();
+            //     let Titulo = "";
+            //     let Descricao = "";
+            //     let Url = "";
+            //     let Icone = "";
+            //     let Status = "";
+            //     let Ordem = "";
+            //     let Acao = "deletar";
+
+            //     $.ajax({
+            //         url: "./system/_modulos.php",
+            //         data: {
+            //             'ID': Id,
+            //             'Titulo': Titulo,
+            //             'Descricao': Descricao,
+            //             'Url': Url,
+            //             'Icone': Icone,
+            //             'Status': Status,
+            //             'Ordem': Ordem,
+            //             'Acao': Acao
+            //         },
+            //         type: "POST",
+            //         success: function(data) {
+            //             Notiflix.Loading.Pulse('Carregando...');
+            //             debugger;
+            //             if (data == 'deletado') {
+            //                 Notiflix.Loading.Remove();
+            //                 Notiflix.Notify.Success('Modulo Deletado com Sucesso!');
+            //                 setTimeout(function() {
+            //                     location.href = "./listarModulos"
+            //                 }, 2500);
+            //             } else {
+            //                 Notiflix.Loading.Remove();
+            //                 Notiflix.Notify.Failure('Erro ao deletar!');
+            //             }
+            //         }
+            //     });
+
+            // }
         );
     };
 </script>

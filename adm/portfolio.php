@@ -63,6 +63,82 @@ if ($portID != 0) {
             <form id="formPortfolio" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <input type="hidden" id="portId" name="portId" value="<?php echo $portID ?>" />
+
+                    <div class="col-lg-8">
+                        <div class="card mb-grid">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <div class="card-header-title">Informações do Portfólio</div>
+                            </div>
+                            <div class="card-body collapse show">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-label" for="portTitulo">Título Portfólio</label>
+                                            <input type="text" class="form-control" id="portTitulo" name="portTitulo" placeholder="Título da Portfólio" value="<?php echo $Titulo ?>" required>
+                                            <input type="hidden" name="portSlug" id="portSlug" value="">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-label" for="portEmpresa">Empresa</label>
+                                            <input type="text" class="form-control" id="portEmpresa" name="portEmpresa" placeholder="Empresa" value="<?php echo $Empresa ?>">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-label" for="portUrl">Url Projeto</label>
+                                            <input type="url" class="form-control" id="portUrl" name="portUrl" placeholder="Url" value="<?php echo $Url ?>">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3">
+                                        <div class="form-group">
+                                            <label class="form-label" for="portCategoria">Categoria</label>
+                                            <select name="portCategoria" class="form-control js-choice">
+                                                <?php
+                                                $sqlCategoria = $pdo->prepare("SELECT cat_id, cat_nome FROM categorias WHERE cat_origem = 'P' AND cat_status = 1");
+                                                $sqlCategoria->execute();
+                                                $categorias = $sqlCategoria->fetchAll(PDO::FETCH_ASSOC);
+
+                                                foreach ($categorias as $key => $vCat) {
+                                                    if ($vCat['cat_id'] == $value['port_categoria']) {
+                                                        echo '<option value=' . $vCat['cat_id'] . ' selected="selected">' . $vCat['cat_nome'] . '</option>';
+                                                    } else {
+                                                        echo '<option value=' . $vCat['cat_id'] . '>' . $vCat['cat_nome'] . '</option>';
+                                                    }
+                                                } ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="form-group">
+                                            <label class="form-label" for="portStatus">Status</label>
+                                            <select name="portStatus" class="form-control js-choice">
+                                                <option value="1" <?= ($Status == '1') ? 'selected="selected"' : '' ?>>Publicado</option>
+                                                <option value="0" <?= ($Status == '0') ? 'selected="selected"' : '' ?>>Inativo</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label class="form-label" for="portTexto">Texto Portfólio</label>
+                                            <div id="editor">
+                                                <?php echo $Texto ?>
+                                            </div>
+                                            <input type="hidden" id="portTexto" name="portTexto" value="">
+                                            <!-- <textarea class="form-control" rows="9" name="portTexto" placeholder="Texto do Portfólio"><?php echo $Texto ?></textarea> -->
+                                        </div>
+                                        
+                                    </div>
+
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="col-lg-4">
                         <div class="card mb-grid">
                             <div class="card-header d-flex justify-content-between align-items-center">
@@ -104,80 +180,25 @@ if ($portID != 0) {
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="col-lg-8">
                         <div class="card mb-grid">
                             <div class="card-header d-flex justify-content-between align-items-center">
-                                <div class="card-header-title">Informações do Portfólio</div>
+                                <div class="card-header-title">Ação</div>
                             </div>
                             <div class="card-body collapse show">
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label class="form-label" for="portTitulo">Título Portfólio</label>
-                                            <input type="text" class="form-control" id="portTitulo" name="portTitulo" placeholder="Título da Portfólio" value="<?php echo $Titulo ?>" required>
-                                            <input type="hidden" name="portSlug" id="portSlug" value="">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label class="form-label" for="portEmpresa">Empresa</label>
-                                            <input type="text" class="form-control" id="portEmpresa" name="portEmpresa" placeholder="Empresa" value="<?php echo $Empresa ?>">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-8">
-                                        <div class="form-group">
-                                            <label class="form-label" for="portTexto">Texto Portfólio</label>
-                                            <div id="editor">
-                                                <?php echo $Texto ?>
-                                            </div>
-                                            <input type="hidden" id="portTexto" name="portTexto" value="">
-                                            <!-- <textarea class="form-control" rows="9" name="portTexto" placeholder="Texto do Portfólio"><?php echo $Texto ?></textarea> -->
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="form-label" for="portUrl">Url Projeto</label>
-                                            <input type="url" class="form-control" id="portUrl" name="portUrl" placeholder="Url" value="<?php echo $Url ?>">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-4">
-                                        <div class="form-group">
-                                            <label class="form-label" for="portCategoria">Categoria</label>
-                                            <select name="portCategoria" class="form-control js-choice">
-                                                <?php
-                                                $sqlCategoria = $pdo->prepare("SELECT cat_id, cat_nome FROM categorias WHERE cat_origem = 'P' AND cat_status = 1");
-                                                $sqlCategoria->execute();
-                                                $categorias = $sqlCategoria->fetchAll(PDO::FETCH_ASSOC);
-
-                                                foreach ($categorias as $key => $vCat) {
-                                                    if ($vCat['cat_id'] == $value['port_categoria']) {
-                                                        echo '<option value=' . $vCat['cat_id'] . ' selected="selected">' . $vCat['cat_nome'] . '</option>';
-                                                    } else {
-                                                        echo '<option value=' . $vCat['cat_id'] . '>' . $vCat['cat_nome'] . '</option>';
-                                                    }
-                                                } ?>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="form-label" for="portStatus">Status</label>
-                                            <select name="portStatus" class="form-control js-choice">
-                                                <option value="1" <?= ($Status == '1') ? 'selected="selected"' : '' ?>>Publicado</option>
-                                                <option value="0" <?= ($Status == '0') ? 'selected="selected"' : '' ?>>Inativo</option>
-                                            </select>
-                                        </div>
-                                    </div>
+                                <div class="col-lg-12">
+                                    <input type="hidden" id="Acao" name="Acao" value="<?php echo $Acao ?>">
+                                    <input type="submit" class="btn btn-pill btn-primary" value="<?php echo $Acao ?>" />
+                                    <?php if ($portID != 0) {
+                                        echo '<a href="#" onclick="deletar()" class="btn btn-pill btn-danger">Deletar</a>';
+                                        echo '<a href="listarPortfolios" class="btn btn-pill btn-warning ml-1">Voltar</a>';
+                                    } ?>
                                 </div>
-                                <input type="hidden" name="Acao" value="<?php echo $Acao ?>">
-                                <input type="submit" class="btn btn-pill btn-primary" value="<?php echo $Acao ?>" />
-                                <?php if ($portID != 0) {
-                                    echo '<a href="#" onclick="deletar()" class="btn btn-pill btn-danger">Deletar</a>';
-                                    echo '<a href="listarPortfolios" class="btn btn-pill btn-warning ml-1">Voltar</a>';
-                                } ?>
                             </div>
                         </div>
                     </div>
+
+                    
                 </div>
             </form>
         </div>
@@ -189,6 +210,8 @@ if ($portID != 0) {
 <?php include 'footer.php'; ?>
 
 <script>
+
+    let Form = '#formPortfolio';
 
     Notiflix.Confirm.Init({
         titleColor: "#c63232",
@@ -206,7 +229,7 @@ if ($portID != 0) {
         $.ajax({
             type: "POST",
             url: "./system/_portfolio.php",
-            data: new FormData($('#formPortfolio')[0]),
+            data: new FormData($(Form)[0]),
             processData: false,
             contentType: false,
             success: function(data) {
@@ -258,33 +281,17 @@ if ($portID != 0) {
 
         Notiflix.Confirm.Show(
             'ATENÇÃO!',
-            'Tem certeza que deseja deletar esta notícia?',
+            'Tem certeza que deseja deletar esta Portfólio?',
             'Sim', 'Não',
 
             function() {
-
-                let Id = $("#portId").val();
-                let Titulo = "";
-                let Empresa = "";
-                let Slug = "";
-                let Categoria = "";
-                let Texto = "";
-                let Status = "";
-                let Acao = "Deletar";
-
+                $("#Acao").val('Deletar');
                 $.ajax({
-                    url: "./system/_portfolio.php",
-                    data: {
-                        'portId': Id,
-                        'portEmpresa': Empresa,
-                        'portTitulo': Titulo,
-                        'portSlug': Slug,
-                        'portCategoria': Categoria,
-                        'portTexto': Texto,
-                        'portStatus': Status,
-                        'Acao': Acao
-                    },
                     type: "POST",
+                    url: "./system/_portfolio.php",
+                    data: new FormData($(Form)[0]),
+                    processData: false,
+                    contentType: false,
                     success: function(data) {
                         Notiflix.Loading.Pulse('Carregando...');
                         debugger;
@@ -302,6 +309,7 @@ if ($portID != 0) {
                 });
 
             }
+
         );
     };
 </script>

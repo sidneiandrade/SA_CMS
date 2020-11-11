@@ -16,6 +16,10 @@ $Acao = (isset($_POST['Acao']) ? $_POST['Acao'] : "");
 $dirImagens = '../../assets/img/portfolio/'; //Diretório das imagens
 $baseDiretorio = $baseUrl . 'assets/img/portfolio/'; //Endereço completo
 
+if (!is_dir($dirImagens)) {
+    mkdir('../../assets/img/portfolio/', 0755, true); // Cria uma pasta imagens
+}
+
 switch ($Acao) {
     case "Salvar":
         try {
@@ -31,7 +35,7 @@ switch ($Acao) {
 
                 for ($i = 0; $i < $numeroImagens; $i++) {
 
-                    $nameImagem = 'Portfolio-' . rand() . '.jpg'; //Definindo um novo nome para o arquivo
+                    $nameImagem = $portSlug . rand() . '.jpg'; //Definindo um novo nome para o arquivo
                     move_uploaded_file($upload['tmp_name'][$i], $dirImagens . $nameImagem); //Fazer upload do arquivo
                     $image = WideImage::load($dirImagens . $nameImagem);
                     $image = $image->resize(null, '400', 'inside', 'any');
@@ -62,7 +66,7 @@ switch ($Acao) {
                 $numeroImagens = count(array_filter($upload['name']));
 
                 for ($i = 0; $i < $numeroImagens; $i++) {
-                    $nameImagem = 'Portfolio-' . rand() . '.jpg'; //Definindo um novo nome para o arquivo
+                    $nameImagem = $portSlug . rand() . '.jpg'; //Definindo um novo nome para o arquivo
                     move_uploaded_file($upload['tmp_name'][$i], $dirImagens . $nameImagem); //Fazer upload do arquivo
                     $image = WideImage::load($dirImagens . $nameImagem);
                     $image = $image->resize(null, '400', 'inside', 'any');

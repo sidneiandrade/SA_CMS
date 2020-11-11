@@ -1,6 +1,9 @@
 <nav class="navbar fixed-bottom navbar-dark bg-dark">
     <div class="col-lg-12 text-right">
-        <a class="navbar-brand" href="https://sadigital.com.br" target="_blank" style="font-size: 8px"><img src="../assets/img/jumper-cms-white.png" class="img-fluid" alt="JUMPER CMS" width="10%"><br>Desenvolvido por SA Digital</a>
+        <a class="navbar-brand" href="https://sadigital.com.br" target="_blank" style="font-size: 8px">
+            <img src="../assets/img/logo-jumper-cms.svg" class="img-fluid" alt="JUMPER CMS" width="20%"> V1.0
+            <br>Desenvolvido por SA Digital
+        </a>
     </div>
   
 </nav>

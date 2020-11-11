@@ -111,7 +111,6 @@ if ($pagID != 0) {
                                                 <?php echo $Texto ?>
                                             </div>
                                             <input type="hidden" id="pagTexto" name="pagTexto" value="">
-                                            <!-- <textarea class="form-control" rows="7" id="pagTexto" name="pagTexto" placeholder="Texto da Página"><?php echo $Texto ?></textarea> -->
                                         </div>
                                     </div>
                                 </div>
@@ -135,16 +134,6 @@ if ($pagID != 0) {
 <?php include 'footer.php'; ?>
 
 <script>
-    var toolbarOptions = [
-        ['bold', 'italic', 'blockquote'],  [{ 'list': 'ordered'}, { 'list': 'bullet' }], ['link', 'image'], ['clean'] 
-    ];
-
-    var quill = new Quill('#editor', {
-        modules: {
-            toolbar: toolbarOptions
-        },
-        theme: 'snow'
-    });
 
     Notiflix.Confirm.Init({
         titleColor: "#c63232",
@@ -157,7 +146,7 @@ if ($pagID != 0) {
         
         $('#pagSlug').val(getSlug($('#pagTitulo').val()));
         
-        var texto = quill.root.innerHTML.trim();
+        var texto = $('#editor').summernote('code');
         $('#pagTexto').val(texto);
         $.ajax({
             type: "POST",
