@@ -22,6 +22,7 @@
 <script src="./dist/colorpicker/js/bootstrap-colorpicker.min.js"></script>
 <script src="./dist/summernote/summernote-bs4.js"></script>
 <script src="./dist/summernote/lang/summernote-pt-BR.min.js"></script>
+<script src="./dist/dropzone/dropzone.min.js"></script>
 
 </body>
 

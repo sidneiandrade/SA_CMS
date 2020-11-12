@@ -36,6 +36,7 @@ foreach ($infoSite as $value) {
         <link rel="stylesheet" type="text/css" href="./dist/icons/css/bootstrap-iconpicker.min.css" />
         <link rel="stylesheet" type="text/css" href="./dist/colorpicker/css/bootstrap-colorpicker.min.css" />
         <link rel="stylesheet" type="text/css" href="./dist/summernote/summernote-bs4.css" />
+        <link rel="stylesheet" type="text/css" href="./dist/dropzone/dropzone.min.css" />
 
         <link rel="stylesheet" type="text/css" href="./dist/css/adminx.css" media="screen" />
         

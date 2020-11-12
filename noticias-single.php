@@ -88,9 +88,9 @@ $noticia = $not->fetchAll(PDO::FETCH_ASSOC);
                 </div>
 
                 <div class="float-right share">
-                  <a href="" title="Share on Twitter"><i class="icofont-twitter"></i></a>
-                  <a href="" title="Share on Facebook"><i class="icofont-facebook"></i></a>
-                  <a href="" title="Share on Instagram"><i class="icofont-instagram"></i></a>
+                  <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $baseUrl ?>noticias-single?post=<?php echo $slug ?>" title="Compartilhar no Facebook" target="_blank"><i class="icofont-facebook"></i></a>
+                  <a href="https://www.linkedin.com/shareArticle?mini=true&url=<?php echo $baseUrl ?>noticias-single?post=<?php echo $slug ?>" title="Compartilhar no Linkedin" target="_blank"><i class="icofont-linkedin"></i></a>
+                  <a href="https://twitter.com/home?status=<?php echo $baseUrl ?>noticias-single?post=<?php echo $slug ?>" title="Compartilhar no Twitter" target="_blank"><i class="icofont-twitter"></i></a>
                 </div>
 
               </div>

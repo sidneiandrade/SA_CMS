@@ -161,7 +161,7 @@ include 'header.php';
                                 <div class="row">
                                     <?php 
                                     
-                                    $empresa = $pdo->query("SELECT * FROM EMPRESA")->fetchAll(PDO::FETCH_ASSOC);
+                                    $empresa = $pdo->query("SELECT * FROM empresa")->fetchAll(PDO::FETCH_ASSOC);
                                     foreach($empresa as $empValue){}
                                     ?>
                                         <div class="col-lg-4">
@@ -214,7 +214,7 @@ include 'header.php';
                                     </thead>
                                     <tbody>
                                         <?php 
-                                        $listDestaque = $pdo->query("SELECT * FROM DESTAQUE")->fetchAll(PDO::FETCH_ASSOC);
+                                        $listDestaque = $pdo->query("SELECT * FROM destaque")->fetchAll(PDO::FETCH_ASSOC);
                                         foreach ($listDestaque as $value) { ?>
                                             <tr>
                                                 <td><i class="<?php echo $value['des_icone'] ?>"></i></td>

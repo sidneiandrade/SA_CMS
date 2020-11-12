@@ -43,7 +43,7 @@ $listNoticias = $pdo->query("SELECT * FROM noticias ORDER BY not_id DESC")->fetc
                                     <td>
                                     <?php
                                         $categoria = $value['not_categoria'];
-                                        $sqlCat = $pdo->prepare("SELECT * FROM CATEGORIAS WHERE CAT_ORIGEM = 'N' AND CAT_ID = $categoria");
+                                        $sqlCat = $pdo->prepare("SELECT * FROM categorias WHERE cat_origem = 'N' AND cat_id = $categoria");
                                         $sqlCat->execute();
                                         $result = $sqlCat->fetchAll(PDO::FETCH_ASSOC);
                                         foreach ($result as $key => $vCategoria) {
