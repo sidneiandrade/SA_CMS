@@ -20,6 +20,8 @@ if($count > 0){
         $Texto      = $value['cta_texto'];
         $TextoBtn   = $value['cta_titulo_btn'];
         $UrlBtn     = $value['cta_url_btn'];
+        $CorBtn     = $value['cta_cor_btn'];
+        $Icone      = $value['cta_icone'];
         $Acao       = "Atualizar";
     }
 } else {
@@ -28,6 +30,8 @@ if($count > 0){
     $Texto      = "";
     $TextoBtn   = "";
     $UrlBtn     = "";
+    $CorBtn     = "";
+    $Icone      = "";
     $Acao       = "Salvar";
 }
 
@@ -64,7 +68,7 @@ if($count > 0){
             <?php } ?>
             <form id="formCTA" method="post" enctype="multipart/form-data">
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-7">
                         <div class="card mb-grid">
                             <div class="card-header d-flex justify-content-between align-items-center">
                                 <div class="card-header-title">Informações do CTA</div>
@@ -86,16 +90,33 @@ if($count > 0){
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-2">
+                                        <div class="form-group">
+                                            <label class="form-label" for="ctaIcone">Ícone</label>
+                                            <button id="ctaIcone" name="ctaIcone" data-placement="right" data-icon="<?php echo $Icone ?>" class="btn btn-light btn-block" role="iconpicker"></button>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3">
                                         <div class="form-group">
                                             <label class="form-label" for="ctaTituloBtn">Titulo Botão</label>
                                             <input type="text" class="form-control" id="ctaTituloBtn" name="ctaTituloBtn" placeholder="Título Botão" value="<?php echo $TextoBtn ?>" required>
                                         </div>
                                     </div>
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-4">
                                         <div class="form-group">
                                             <label class="form-label" for="ctaUrlBtn">URL Botão</label>
                                             <input type="text" class="form-control" id="ctaUrlBtn" name="ctaUrlBtn" placeholder="URL Botão" value="<?php echo $UrlBtn ?>" required>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-lg-3 color">
+                                        <label class="form-label" for="ctaCorBtn">Cor Botão</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="ctaCorBtn" name="ctaCorBtn" value="<?php echo $CorBtn ?>"/>
+                                            <span class="input-group-append">
+                                                <span class="input-group-text colorpicker-input-addon"><i></i></span>
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
@@ -114,14 +135,14 @@ if($count > 0){
 
 <script>
 
-    let Form = '#formCTA';
-
-    Notiflix.Confirm.Init({
-        titleColor: "#c63232",
-        okButtonBackground: "#c63232",
-        backOverlayColor: "rgba(255,85,73,0.2)",
+    $(function () {
+        $('.color').colorpicker({
+            useAlpha: false
+        });
     });
 
+    let Form = '#formCTA';
+    
     $(Form).submit(function() {
         event.preventDefault();
         $.ajax({

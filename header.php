@@ -55,24 +55,7 @@ $listModulos = $modulos->fetchAll(PDO::FETCH_ASSOC);
 
       <nav class="nav-menu d-none d-lg-block">
         <ul>
-          <li class="active"><a href="./">Home</a></li>
-          <!-- <li class="drop-down"><a href="">Sobre</a>
-            <ul>
-              <li><a href="#about">Sobre</a></li>
-              <li><a href="#team">Equipe</a></li>
-              <li class="drop-down"><a href="#">Deep Drop Dow</a>
-                <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li>
-            </ul>
-          </li> -->
-          <!-- <li><a href="./#dest">Campanha</a></li> -->
-          
+          <li class="active"><a href="./">Home</a></li>     
           <li><a href="./#about">Sobre</a></li>
           <?php 
             $sql = $pdo->query("SELECT * FROM modulos WHERE mod_status = 1 and mod_menu = 1 ORDER BY mod_ordem ASC");
@@ -81,10 +64,6 @@ $listModulos = $modulos->fetchAll(PDO::FETCH_ASSOC);
           ?>
             <li><a href="./#<?php echo $Vmenu['mod_slug']?>"><?php echo $Vmenu['mod_titulo'] ?></a></li>
           <?php } ?>
-          <!-- <li><a href="./#services">Serviços</a></li>
-          <li><a href="./#portfolio">Portfólio</a></li>
-          <li><a href="./#news">Notícias</a></li>
-          <li><a href="./#testimonials">Depoimentos</a></li> -->
           <li><a href="./#contact">Contato</a></li>
 
         </ul>
@@ -95,11 +74,6 @@ $listModulos = $modulos->fetchAll(PDO::FETCH_ASSOC);
         <?= ($values['conf_instagram'] != '') ? '<a href="'.$values['conf_instagram'].'" class="instagram"><i class="icofont-instagram"></i></a>' : '' ?> 
         <?= ($values['conf_youtube'] != '') ? '<a href="'.$values['conf_youtube'].'" class="youtube"><i class="icofont-youtube-play"></i></a>' : '' ?> 
         <?= ($values['conf_linkedin'] != '') ? '<a href="'.$values['conf_linkedin'].'" class="linkedin"><i class="icofont-linkedin"></i></a>' : '' ?> 
-
-        <!-- <a href="#" class="twitter"><i class="icofont-twitter"></i></a>
-        <a href="#" class="facebook"><i class="icofont-facebook"></i></a>
-        <a href="#" class="instagram"><i class="icofont-instagram"></i></a>
-        <a href="#" class="linkedin"><i class="icofont-linkedin"></i></i></a> -->
       </div>
 
     </div>

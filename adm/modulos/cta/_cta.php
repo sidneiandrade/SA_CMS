@@ -11,14 +11,16 @@ $Titulo     = $_POST['ctaTitulo'];
 $Texto      = $_POST['ctaTexto'];
 $TituloBtn  = $_POST['ctaTituloBtn'];
 $UrlBtn     = $_POST['ctaUrlBtn'];
+$CorBtn     = $_POST['ctaCorBtn'];
+$Icone      = $_POST['ctaIcone'];
 $Acao       = $_POST['Acao'];
 
 switch ($Acao) {
     case "Salvar":
         try {
             $pdo->beginTransaction();
-            $sql = $pdo->prepare("INSERT INTO cta VALUES (null,?,?,?,?)");
-            $sql->execute([$Titulo, $Texto, $TituloBtn, $UrlBtn]);
+            $sql = $pdo->prepare("INSERT INTO cta VALUES (null,?,?,?,?,?,?)");
+            $sql->execute([$Titulo, $Texto, $TituloBtn, $UrlBtn, $CorBtn, $Icone]);
             $Id = $pdo->lastInsertId();
             $pdo->commit();
             $data = ['acao' => 'salvo', 'id' => $Id];
@@ -33,8 +35,8 @@ switch ($Acao) {
     case "Atualizar":
         try {
             $pdo->beginTransaction();
-            $sql = $pdo->prepare("UPDATE cta SET cta_titulo = ?, cta_texto = ?, cta_titulo_btn = ?, cta_url_btn = ? WHERE cta_id = ?");
-            $sql->execute([$Titulo, $Texto, $TituloBtn, $UrlBtn, $ID]);
+            $sql = $pdo->prepare("UPDATE cta SET cta_titulo = ?, cta_texto = ?, cta_titulo_btn = ?, cta_url_btn = ?, cta_cor_btn = ?, cta_icone = ? WHERE cta_id = ?");
+            $sql->execute([$Titulo, $Texto, $TituloBtn, $UrlBtn, $CorBtn, $Icone, $ID]);
             $pdo->commit();
             echo 'atualizado';
         } catch (Exception $e) {

@@ -345,17 +345,19 @@
     <?php if ($listModulos[12]['mod_status'] == 1) { ?>
       <section id="<?php echo $listModulos[12]['mod_slug'] ?>" class="cta">
         <div class="container">
-
+        <?php foreach($dadosCta as $keys => $ctaValue){ ?>
           <div class="row" data-aos="zoom-in">
             <div class="col-lg-9 text-center text-lg-left">
-              <h3>Call To Action</h3>
-              <p> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              <h3><?php echo $ctaValue['cta_titulo'] ?></h3>
+              <p><?php echo $ctaValue['cta_texto'] ?></p>
             </div>
             <div class="col-lg-3 cta-btn-container text-center">
-              <a class="cta-btn align-middle" href="#">Call To Action</a>
+              <a class="cta-btn align-middle" href="<?php echo $ctaValue['cta_url_btn'] ?>" style="padding: 20px;background: <?php echo $ctaValue['cta_cor_btn'] ?>">
+                <i class="<?php echo $ctaValue['cta_icone'] ?>"></i> <?php echo $ctaValue['cta_titulo_btn'] ?>
+              </a>
             </div>
           </div>
-
+        <?php } ?>
         </div>
       </section>
     <?php } else {} ?>

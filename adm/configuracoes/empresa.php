@@ -123,7 +123,7 @@ $listarConfiguracoes = $sql->fetchAll(PDO::FETCH_ASSOC);
                                             </div>
                                         </div>
                                         <div class="col-lg-2 color">
-                                        <label class="form-label" for="confCorPrincipal">Cor Principal</label>
+                                            <label class="form-label" for="confCorPrincipal">Cor Principal</label>
                                             <div class="input-group">
                                                 <input type="text" class="form-control" name="confCorPrincipal" value="<?php echo $value['conf_cor_principal'] ?>"/>
                                                 <span class="input-group-append">
@@ -132,7 +132,7 @@ $listarConfiguracoes = $sql->fetchAll(PDO::FETCH_ASSOC);
                                             </div>
                                         </div>
                                         <div class="col-lg-2 color">
-                                        <label class="form-label" for="confCorSecundaria">Cor Título</label>
+                                            <label class="form-label" for="confCorSecundaria">Cor Título</label>
                                             <div class="input-group">
                                                 <input type="text" class="form-control" name="confCorSecundaria" value="<?php echo $value['conf_cor_secundaria'] ?>"/>
                                                 <span class="input-group-append">

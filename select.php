@@ -46,6 +46,11 @@ $membros = $pdo->prepare("SELECT * FROM membros WHERE mb_status = ?");
 $membros->execute([1]);
 $listMembros =  $membros->fetchAll(PDO::FETCH_ASSOC);
 
+#CTA
+$cta = $pdo->prepare("SELECT * FROM cta WHERE cta_id = ?");
+$cta->execute([1]);
+$dadosCta = $cta->fetchAll(PDO::FETCH_ASSOC);
+
 #Valores
 $valores = $pdo->query("SELECT * FROM valores")->fetchAll(PDO::FETCH_ASSOC);
 
