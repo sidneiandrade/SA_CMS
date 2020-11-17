@@ -395,7 +395,7 @@ h1, h2, h3, h4, h5, h6 {
 
 #hero .carousel-content {
   text-align: left;
-  margin-top: 30%;
+  margin-top: 25%;
 }
 
 @media (max-width: 992px) {

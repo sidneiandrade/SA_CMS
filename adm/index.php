@@ -2,6 +2,11 @@
 
 include './system/conexao.php'; 
 
+if(!isset($_SESSION)){
+  session_start();
+}
+$_SESSION['caminho'] = getcwd() . "/";
+
 $sql = $pdo->query("SELECT * FROM configuracoes")->fetchAll(PDO::FETCH_ASSOC);
 foreach($sql as $values){}
 

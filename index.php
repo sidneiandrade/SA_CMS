@@ -274,7 +274,7 @@
 
               <?php foreach($noticias as $keys => $valueNot){ ?>
 
-                <div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up">
+                <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up">
                   <article class="entry">
 
                     <div class="entry-img">

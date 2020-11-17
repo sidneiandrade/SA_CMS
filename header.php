@@ -1,6 +1,6 @@
 <?php 
 
-include './adm/system/conexao.php';
+include 'adm/system/conexao.php';
 
 $sql = $pdo->query("SELECT * FROM configuracoes")->fetchAll(PDO::FETCH_ASSOC);
 foreach($sql as $values){}

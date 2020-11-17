@@ -15,7 +15,7 @@
           Atenção!
         </div>
         <br>
-        <h1>Sua sessão expirou!</h1>
+        <h2>Sua sessão expirou!</h2>
 
         <p class="text-muted mb-5">
           Faça o login novamente para continuar usando a administração.

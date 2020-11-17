@@ -43,6 +43,7 @@ if ($total > 0) {
             $_SESSION['email'] = $usuEmail;
             $_SESSION['nivel'] = $usuNivel;
             $_SESSION['tempo_login'] = time();
+            //$_SESSION['url'] = $baseUrl;
 
             $sql = $pdo->prepare("UPDATE usuario SET usu_erro = ? WHERE usu_id = ?");
             $sql->execute([0, $usuID]);

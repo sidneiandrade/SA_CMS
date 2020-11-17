@@ -1,7 +1,6 @@
 <?php
 
-include './system/conexao.php';
-
+include 'system/conexao.php';
 include 'header.php';
 
 ?>

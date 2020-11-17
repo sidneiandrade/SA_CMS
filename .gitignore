@@ -6,3 +6,5 @@ assets/img/noticias/*.jpg
 assets/img/paginas/*.jpg
 assets/img/portfolio/*.jpg
 assets/img/slide/*.jpg
+.vscode/
+*.zip
