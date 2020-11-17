@@ -72,11 +72,19 @@ $listModulos = $modulos->fetchAll(PDO::FETCH_ASSOC);
             </ul>
           </li> -->
           <!-- <li><a href="./#dest">Campanha</a></li> -->
+          
           <li><a href="./#about">Sobre</a></li>
-          <li><a href="./#services">Serviços</a></li>
+          <?php 
+            $sql = $pdo->query("SELECT * FROM modulos WHERE mod_status = 1 and mod_menu = 1 ORDER BY mod_ordem ASC");
+            $listMenu = $sql->fetchAll(PDO::FETCH_ASSOC);
+            foreach($listMenu as $Keys => $Vmenu){
+          ?>
+            <li><a href="./#<?php echo $Vmenu['mod_slug']?>"><?php echo $Vmenu['mod_titulo'] ?></a></li>
+          <?php } ?>
+          <!-- <li><a href="./#services">Serviços</a></li>
           <li><a href="./#portfolio">Portfólio</a></li>
           <li><a href="./#news">Notícias</a></li>
-          <li><a href="./#testimonials">Depoimentos</a></li>
+          <li><a href="./#testimonials">Depoimentos</a></li> -->
           <li><a href="./#contact">Contato</a></li>
 
         </ul>

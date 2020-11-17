@@ -13,20 +13,24 @@ if ($ID != 0) {
     $dados = $sql->fetchAll(PDO::FETCH_ASSOC);
     foreach ($dados as $value) {
         $Titulo = $value['mod_titulo'];
+        $Slug = $value['mod_slug'];
         $Descricao = $value['mod_descricao'];
         $Status = $value['mod_status'];
         $Icone = $value['mod_icone'];
         $Url = $value['mod_url'];
         $Ordem = $value['mod_ordem'];
+        $Menu = $value['mod_menu'];
         $Acao = "Atualizar";
     }
 } else {
     $ID = 0;
     $Titulo = "";
+    $Slug = "";
     $Descricao = "";
     $Status = 1;
     $Url = "";
     $Ordem = "";
+    $Menu = 1;
     $Icone = "";
     $Acao = "Salvar";
 }
@@ -75,6 +79,7 @@ if ($ID != 0) {
                                         <div class="form-group">
                                             <label class="form-label" for="Titulo">Nome</label>
                                             <input type="text" class="form-control" id="Titulo" name="Titulo" placeholder="Título" value="<?php echo $Titulo ?>" required>
+                                            <input type="hidden" id="Slug" name="Slug" value="<?php echo $Slug ?>">
                                             <div class="invalid-feedback">Adicione um título ao modulo.</div>
                                         </div>
                                     
@@ -83,19 +88,33 @@ if ($ID != 0) {
                                             <input type="text" class="form-control" id="Descricao" name="Descricao" placeholder="Descricao" value="<?php echo $Descricao ?>">
                                         </div>
 
+                                        
+
+                                    </div>
+
+                                    <div class="col-lg-6">
                                         <div class="form-group">
                                             <label class="form-label" for="Url">Url Lista</label>
                                             <input type="text" class="form-control" id="Url" name="Url" placeholder="Url" value="<?php echo $Url ?>" required>
                                             <div class="invalid-feedback">Adicione a url do modulo.</div>
                                         </div>
-
                                     </div>
 
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-6">
                                         <div class="form-group">
                                             <label class="form-label" for="Icone">Icone</label>
                                             <input type="text" class="form-control" id="Icone" name="Icone" placeholder="Icone" value="<?php echo $Icone ?>" required>
                                             <div class="invalid-feedback">Adicione o código do ícone.</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label class="form-label" for="Menu">Menu</label>
+                                            <select id="Menu" name="Menu" class="form-control js-choice">
+                                                <option value="1" <?= ($Menu == '1') ? 'selected="selected"' : '' ?>>Sim</option>
+                                                <option value="0" <?= ($Menu == '0') ? 'selected="selected"' : '' ?>>Não</option>
+                                            </select>
                                         </div>
                                     </div>
                                     
@@ -154,6 +173,7 @@ if ($ID != 0) {
             event.stopPropagation();
         } else {
             event.preventDefault();
+            $('#Slug').val(getSlug($('#Titulo').val()));
             $.ajax({
                 type: "POST",
                 url: "_modulos.php",

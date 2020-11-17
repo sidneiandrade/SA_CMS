@@ -6,45 +6,47 @@
   ?>
 
   <!-- ======= Hero Section ======= -->
-  <section id="hero">
-    <div class="hero-container">
-      <div id="heroCarousel" class="carousel slide carousel-fade" data-ride="carousel">
+  <?php if ($listModulos[10]['mod_status'] == 1) { ?>
+    <section id="hero">
+      <div class="hero-container">
+        <div id="heroCarousel" class="carousel slide carousel-fade" data-ride="carousel">
 
-        <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
+          <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
 
-        <div class="carousel-inner" role="listbox">
-          <?php
-          foreach ($listSlide as $key => $slideValues) {
-          ?>
-            <!-- Slides -->
-            <div id="slide_<?php echo $i ?>" class="carousel-item" style="background-image: url('<?php echo $slideValues['sd_url_imagem'] ?>');">
-              <div class="carousel-container">
-                <div class="carousel-content container">
-                  <h2 class="animate__animated animate__fadeInDown"><?php echo $slideValues['sd_titulo'] ?></h2>
-                  <p class="animate__animated animate__fadeInUp"><?php echo $slideValues['sd_texto'] ?></p>
-                  <?php if ($slideValues['sd_url_botao'] != '')
-                    echo '<a href="' . $slideValues["sd_url_botao"] . '" class="btn-get-started animate__animated animate__fadeInUp scrollto">Saiba mais</a>';
-                  ?>
+          <div class="carousel-inner" role="listbox">
+            <?php
+            foreach ($listSlide as $key => $slideValues) {
+            ?>
+              <!-- Slides -->
+              <div id="slide_<?php echo $i ?>" class="carousel-item" style="background-image: url('<?php echo $slideValues['sd_url_imagem'] ?>');">
+                <div class="carousel-container">
+                  <div class="carousel-content container">
+                    <h2 class="animate__animated animate__fadeInDown"><?php echo $slideValues['sd_titulo'] ?></h2>
+                    <p class="animate__animated animate__fadeInUp"><?php echo $slideValues['sd_texto'] ?></p>
+                    <?php if ($slideValues['sd_url_botao'] != '')
+                      echo '<a href="' . $slideValues["sd_url_botao"] . '" class="btn-get-started animate__animated animate__fadeInUp scrollto">Saiba mais</a>';
+                    ?>
+                  </div>
                 </div>
               </div>
-            </div>
-            <!-- Slides -->
-          <?php $i++;
-          }  ?>
+              <!-- Slides -->
+            <?php $i++;
+            }  ?>
+          </div>
+
+          <a class="carousel-control-prev" href="#heroCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon icofont-rounded-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#heroCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon icofont-rounded-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+
         </div>
-
-        <a class="carousel-control-prev" href="#heroCarousel" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon icofont-rounded-left" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#heroCarousel" role="button" data-slide="next">
-          <span class="carousel-control-next-icon icofont-rounded-right" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
-
       </div>
-    </div>
-  </section><!-- End Hero -->
+    </section><!-- End Hero -->
+  <?php } else {} ?>
 
   <main id="main">
 
@@ -155,7 +157,7 @@
 
     <!-- ======= Counts Section ======= -->
     <?php if ($listModulos[9]['mod_status'] == 1) { ?>
-      <section id="counts" class="counts">
+      <section id="<?php echo $listModulos[9]['mod_slug'] ?>" class="counts">
         <div class="container">
 
           <div class="row">
@@ -172,13 +174,12 @@
 
         </div>
       </section>
-    <?php } else {
-    } ?>
+    <?php } else {} ?>
     <!-- End Counts Section -->
 
     <!-- ======= Services Section ======= -->
     <?php if ($listModulos[2]['mod_status'] == 1) { ?>
-      <section id="services" class="services section-bg">
+      <section id="<?php echo $listModulos[2]['mod_slug'] ?>" class="services section-bg">
         <div class="container">
           <div class="section-title">
             <h2><?php echo $listModulos[2]['mod_titulo'] ?></h2>
@@ -200,13 +201,12 @@
 
           </div>
       </section>
-    <?php } else {
-    } ?>
+    <?php } else {} ?>
     <!-- End Services Section -->
 
     <!-- ======= Portfolio Section ======= -->
     <?php if ($listModulos[3]['mod_status'] == 1) { ?>
-      <section id="portfolio" class="portfolio">
+      <section id="<?php echo $listModulos[3]['mod_slug'] ?>" class="portfolio">
         <div class="container">
 
           <div class="section-title">
@@ -255,13 +255,12 @@
 
         </div>
       </section>
-    <?php } else {
-    } ?>
+    <?php } else {} ?>
     <!-- End Portfolio Section -->
 
     <!-- ======= News Section ======= -->
     <?php if ($listModulos[0]['mod_status'] == 1) { ?>
-      <section id="news" class="news section-bg">
+      <section id="<?php echo $listModulos[0]['mod_slug'] ?>" class="news section-bg">
         <div class="container">
           <div class="section-title">
             <h2><?php echo $listModulos[0]['mod_titulo'] ?></h2>
@@ -314,13 +313,12 @@
           </section>
         </div>
       </section>
-    <?php } else {
-    } ?>
+    <?php } else {} ?>
     <!-- End News Section -->
 
     <!-- ======= Clients Section ======= -->
     <?php if ($listModulos[5]['mod_status'] == 1) { ?>
-      <section id="clients" class="clients">
+      <section id="<?php echo $listModulos[5]['mod_slug'] ?>" class="clients">
         <div class="container">
           <div class="section-title">
             <h2><?php echo $listModulos[5]['mod_titulo'] ?></h2>
@@ -340,13 +338,32 @@
           </div>
         </div>
       </section>
-    <?php } else {
-    } ?>
+    <?php } else {} ?>
     <!-- End Clients Section -->
+
+    <!-- ======= Cta Section ======= -->
+    <?php if ($listModulos[12]['mod_status'] == 1) { ?>
+      <section id="<?php echo $listModulos[12]['mod_slug'] ?>" class="cta">
+        <div class="container">
+
+          <div class="row" data-aos="zoom-in">
+            <div class="col-lg-9 text-center text-lg-left">
+              <h3>Call To Action</h3>
+              <p> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </div>
+            <div class="col-lg-3 cta-btn-container text-center">
+              <a class="cta-btn align-middle" href="#">Call To Action</a>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    <?php } else {} ?>
+    <!-- End Cta Section -->
 
     <!-- ======= Testimonials Section ======= -->
     <?php if ($listModulos[8]['mod_status'] == 1) { ?>
-      <section id="testimonials" class="testimonials section-bg">
+      <section id="<?php echo $listModulos[8]['mod_slug'] ?>" class="testimonials section-bg">
         <div class="container">
 
           <div class="section-title">
@@ -374,13 +391,12 @@
 
         </div>
       </section>
-    <?php } else {
-    } ?>
+    <?php } else {} ?>
     <!-- End Testimonials Section -->
 
     <!-- ======= Team Section ======= -->
     <?php if ($listModulos[4]['mod_status'] == 1) { ?>
-      <section id="team" class="team">
+      <section id="<?php echo $listModulos[4]['mod_slug'] ?>" class="team">
         <div class="container">
 
           <div class="section-title">
@@ -413,13 +429,12 @@
           </div>
         </div>
       </section>
-    <?php } else {
-    } ?>
+    <?php } else {} ?>
     <!-- End Team Section -->
 
     <!-- ======= Pricing Section ======= -->
     <?php if ($listModulos[6]['mod_status'] == 1) { ?>
-      <section id="pricing" class="pricing section-bg">
+      <section id="<?php echo $listModulos[6]['mod_slug'] ?>" class="pricing section-bg">
         <div class="container">
 
           <div class="section-title">
@@ -450,13 +465,12 @@
 
         </div>
       </section>
-    <?php } else {
-    } ?>
+    <?php } else {} ?>
     <!-- End Pricing Section -->
 
     <!-- ======= Frequently Asked Questions Section ======= -->
     <?php if ($listModulos[7]['mod_status'] == 1) { ?>
-      <section id="faq" class="faq">
+      <section id="<?php echo $listModulos[7]['mod_slug'] ?>" class="faq">
         <div class="container" data-aos="fade-up">
 
           <div class="section-title">
@@ -481,8 +495,7 @@
 
         </div>
       </section>
-    <?php } else {
-    } ?>
+    <?php } else {} ?>
     <!-- End Frequently Asked Questions Section -->
 
     <!-- ======= Contact Section ======= -->

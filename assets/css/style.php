@@ -937,6 +937,58 @@ section {
 }
 
 /*--------------------------------------------------------------
+# Cta
+--------------------------------------------------------------*/
+.cta {
+  background: var(--principal);
+  background-size: cover;
+  padding: 80px 0;
+}
+
+.cta h3 {
+  color: #fff;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.cta p {
+  color: #fff;
+}
+
+.cta .cta-btn {
+  <!-- font-family: "Raleway", sans-serif; -->
+  font-weight: 500;
+  font-size: 15px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 10px 30px;
+  border-radius: 4px;
+  transition: 0.5s;
+  margin: 10px;
+  color: #fff;
+  background: var(--secundaria);
+}
+
+.cta .cta-btn:hover {
+  background: #008bd1;
+}
+
+@media (min-width: 1024px) {
+  .cta {
+    background-attachment: fixed;
+  }
+}
+
+@media (min-width: 769px) {
+  .cta .cta-btn-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+}
+
+
+/*--------------------------------------------------------------
 # Breadcrumbs
 --------------------------------------------------------------*/
 .breadcrumbs {
