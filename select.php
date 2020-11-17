@@ -11,6 +11,9 @@ $i = 0;
 #Destaque Empresa
 $destaque = $pdo->query("SELECT * FROM destaque")->fetchAll(PDO::FETCH_ASSOC);
 
+#Skills
+$Skill = $pdo->query("SELECT * FROM skills WHERE sk_status = 1")->fetchAll(PDO::FETCH_ASSOC);
+
 #Sobre Empresa
 $sobre = $pdo->query("SELECT * FROM empresa")->fetchAll(PDO::FETCH_ASSOC);
 

@@ -200,51 +200,89 @@ $listarConfiguracoes = $sql->fetchAll(PDO::FETCH_ASSOC);
             </div>
 
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-8">
                     <div class="card mb-grid">
                         <div class="card-header d-flex justify-content-between align-items-center">
-                            <div class="card-header-title">Destaque da Empresa</div>
+                            <div class="card-header-title">Destaques</div>
                         </div>
                         <div class="card-body collapse show">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <table id="tableUser" class="table table-sm">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Ícone</th>
-                                            <th scope="col">Título</th>
-                                            <th scope="col">Texto</th>
-                                            <th scope="col">Ação</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php 
-                                        $listDestaque = $pdo->query("SELECT * FROM destaque")->fetchAll(PDO::FETCH_ASSOC);
-                                        foreach ($listDestaque as $value) { ?>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table id="table" class="table table-sm">
+                                        <thead>
                                             <tr>
-                                                <td><i class="<?php echo $value['des_icone'] ?>"></i></td>
-                                                <td><?php echo $value['des_titulo'] ?></td>
-                                                <td><?php echo $value['des_texto'] ?></td>
-                                                <td>
-                                                    <a href="destaque?id=<?php echo $value['des_id'] ?>" class="btn btn-pill btn-sm btn-outline-primary">Editar</a>
-                                                </td>
+                                                <th scope="col">Ícone</th>
+                                                <th scope="col">Título</th>
+                                                <th scope="col">Texto</th>
+                                                <th scope="col">Ação</th>
                                             </tr>
-                                        <?php } ?>
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                            <?php 
+                                            $listDestaque = $pdo->query("SELECT * FROM destaque")->fetchAll(PDO::FETCH_ASSOC);
+                                            foreach ($listDestaque as $value) { ?>
+                                                <tr>
+                                                    <td><i class="<?php echo $value['des_icone'] ?>"></i></td>
+                                                    <td><?php echo $value['des_titulo'] ?></td>
+                                                    <td><?php echo $value['des_texto'] ?></td>
+                                                    <td>
+                                                        <a href="destaque?id=<?php echo $value['des_id'] ?>" class="btn btn-pill btn-sm btn-outline-primary">Editar</a>
+                                                    </td>
+                                                </tr>
+                                            <?php } ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <a href="destaque" class="btn btn-pill btn-primary">Adicionar Destaque</a>
+                                </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <a href="destaque" class="btn btn-pill btn-primary">Adicionar Destaque</a>
-                            </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card mb-grid">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <div class="card-header-title">Skills</div>
                         </div>
+                        <div class="card-body collapse show">
+                            <div class="row">
+                            <div class="col-md-12">
+                                    <table id="table" class="table table-sm text-center">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">Título</th>
+                                                <th class="text-center">Valor</th>
+                                                <th class="text-center">Ação</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php 
+                                            $listSkill = $pdo->query("SELECT * FROM skills")->fetchAll(PDO::FETCH_ASSOC);
+                                            foreach ($listSkill as $value) { ?>
+                                                <tr>
+                                                    <td><?php echo $value['sk_titulo'] ?></td>
+                                                    <td><?php echo $value['sk_valor'] ?> %</td>
+                                                    <td>
+                                                        <a href="skill?id=<?php echo $value['sk_id'] ?>" class="btn btn-pill btn-sm btn-outline-primary">Editar</a>
+                                                    </td>
+                                                </tr>
+                                            <?php } ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <a href="skill" class="btn btn-pill btn-primary">Adicionar Skill</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-
         </div>
     </div>
 </div>
