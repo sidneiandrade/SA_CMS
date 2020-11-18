@@ -1,5 +1,3 @@
-
-
 <!-- Sidebar -->
 <div class="adminx-sidebar expand-hover push">
   <ul class="sidebar-nav">
@@ -30,7 +28,6 @@
       </a>
     </li>
 
-
     <?php 
       $lista = $pdo->query("SELECT * FROM modulos WHERE mod_status = 1 ORDER BY mod_ordem ASC")->fetchAll(PDO::FETCH_ASSOC);
       foreach($lista as $listValue){ 
@@ -49,35 +46,7 @@
       </a>
     </li>
 
-    <!-- <li class="sidebar-nav-item">
-        <a class="sidebar-nav-link collapsed" data-toggle="collapse" href="#nav_<?php echo $listValue['mod_id'] ?>" aria-expanded="false" aria-controls="navTables">
-          <span class="sidebar-nav-icon">
-            <i data-feather="<?php echo $listValue['mod_icone'] ?>"></i>
-          </span>
-          <span class="sidebar-nav-name">
-            <?php echo $listValue['mod_titulo'] ?>
-          </span>
-          <span class="sidebar-nav-end">
-            <i data-feather="chevron-right" class="nav-collapse-icon"></i>
-          </span>
-        </a>
-        <ul class="sidebar-sub-nav collapse" id="nav_<?php echo $listValue['mod_id'] ?>">
-          <li class="sidebar-nav-item">
-            <a href="<?php echo $value['conf_link'] ?>adm/<?php echo $listValue['mod_url'] ?>" class="sidebar-nav-link">
-              <span class="sidebar-nav-abbr">
-                <i data-feather="list"></i>
-              </span>
-              <span class="sidebar-nav-name">
-                Listar <?php echo $listValue['mod_titulo'] ?>
-              </span>
-            </a>
-          </li>
-        </ul>
-      </li> -->
-
     <?php } ?>
-
-
 
     <li class="sidebar-nav-item">
       <a href="<?php echo $value['conf_link'] ?>adm/modulos/usuarios/listarUsuarios" class="sidebar-nav-link">
@@ -91,33 +60,6 @@
         </span>
       </a>
     </li>
-
-
-    <!-- <li class="sidebar-nav-item">
-      <a class="sidebar-nav-link collapsed" data-toggle="collapse" href="#navUsuario" aria-expanded="false" aria-controls="navTables">
-        <span class="sidebar-nav-icon">
-          <i data-feather="user"></i>
-        </span>
-        <span class="sidebar-nav-name">
-          Usuários
-        </span>
-        <span class="sidebar-nav-end">
-          <i data-feather="chevron-right" class="nav-collapse-icon"></i>
-        </span>
-      </a>
-      <ul class="sidebar-sub-nav collapse" id="navUsuario">
-        <li class="sidebar-nav-item">
-          <a href="<?php echo $value['conf_link'] ?>adm/modulos/usuarios/listarUsuarios" class="sidebar-nav-link">
-            <span class="sidebar-nav-abbr">
-              <i data-feather="list"></i>
-            </span>
-            <span class="sidebar-nav-name">
-              Listar Usuários
-            </span>
-          </a>
-        </li>
-      </ul>
-    </li> -->
 
     <?php if($_SESSION['nivel'] == 1){ ?>
     <li class="sidebar-nav-item">
@@ -139,7 +81,7 @@
                 <i data-feather="sliders"></i>
               </span>
               <span class="sidebar-nav-name">
-                Configurações do Site
+                Ativar/Desativar Módulos
               </span>
             </a>
           </li>

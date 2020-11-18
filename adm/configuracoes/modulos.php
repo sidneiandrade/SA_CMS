@@ -1,9 +1,12 @@
 <?php
 
-define('caminho', $_SERVER['DOCUMENT_ROOT'] . '/system/adm/');
+if(!isset($_SESSION)){
+    session_start();
+}
+$caminho = $_SESSION['caminho'];
 
-include caminho . 'system/conexao.php';
-include caminho . 'header.php';
+include $caminho . 'system/conexao.php';
+include $caminho . 'header.php';
 
 $ID = (isset($_GET['id']) ? $_GET['id'] : 0);
 
@@ -152,7 +155,7 @@ if ($ID != 0) {
     </div>
 </div>
 
-<?php include caminho . "footer.php" ?>
+<?php include $caminho . "footer.php" ?>
 
 <script>
 
