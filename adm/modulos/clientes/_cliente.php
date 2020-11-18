@@ -49,10 +49,19 @@ switch ($Acao){
     case "Atualizar":
         try{
             if (!empty($_FILES['arquivoImagem']['name'])) {
+
+                unlink($dirImagens . $Imagem); // deletar a imagem na pasta
+
+                $Imagem = 'Cliente-' . rand() . '.png'; //Definindo um novo nome para o arquivo
                 move_uploaded_file($_FILES['arquivoImagem']['tmp_name'], $dirImagens . $Imagem); //Fazer upload do arquivo
                 $image = WideImage::load($dirImagens . $Imagem);
                 $image = $image->resize('400', null, 'fill', 'any');
                 $image->saveToFile($dirImagens . $Imagem);
+                $pathImage = $baseDiretorio . $Imagem;
+                $pdo->beginTransaction();
+                $sql = $pdo->prepare("UPDATE clientes SET cli_imagem = ?, cli_url_imagem = ?  WHERE cli_id = ?");
+                $sql->execute([$Imagem, $pathImage, $Id]);
+                $pdo->commit();
             }
 
             $pdo->beginTransaction();

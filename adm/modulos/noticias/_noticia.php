@@ -30,7 +30,8 @@ switch ($Acao){
             $nameImagem = $notSlug . '-' . rand() . '.jpg'; //Definindo um novo nome para o arquivo
             move_uploaded_file($_FILES['arquivoImagem']['tmp_name'], $dirImagens . $nameImagem); //Fazer upload do arquivo
             $image = WideImage::load($dirImagens . $nameImagem);
-            $image = $image->resize('600', '300', 'fill', 'any');
+            $image = $image->resize('600', null, 'fill', 'any');
+            $image = $image->crop( 'center', 'center', '100%', 300);
             $image->saveToFile($dirImagens . $nameImagem);
             $pathImagem = $baseDiretorio . $nameImagem;
     
@@ -58,7 +59,8 @@ switch ($Acao){
                 $nameImagem = $notSlug . '-' . rand() . '.jpg'; //Definindo um novo nome para o arquivo
                 move_uploaded_file($_FILES['arquivoImagem']['tmp_name'], $dirImagens . $nameImagem); //Fazer upload do arquivo
                 $image = WideImage::load($dirImagens . $nameImagem);
-                $image = $image->resize('600', '300', 'fill', 'any');
+                $image = $image->resize('600', null, 'fill', 'any');
+                $image = $image->crop( 'center', 'center', '100%', 300);
                 $image->saveToFile($dirImagens . $nameImagem);
                 $pathImagem = $baseDiretorio . $nameImagem;
 

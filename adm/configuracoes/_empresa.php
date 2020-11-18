@@ -9,7 +9,8 @@ include $caminho . 'system/conexao.php';
 require $caminho . 'system/lib/WideImage.php';
 include $caminho . 'configuracoes/_email.php';
 
-$empDescricao = $_POST['empDescricao'];
+$empDescricao   = $_POST['empDescricao'];
+$Imagem         = $_POST['nomeImagem'];
 
 $dirImagens    = $caminho . '../assets/img/'; //Diretório das imagens
 $baseDiretorio = $baseUrl . 'assets/img/'; //Endereço completo
@@ -20,7 +21,10 @@ if (!is_dir($dirImagens)) {
 
 try{
     if (!empty($_FILES['empImagem']['name'])) {
-        $NomeImagem = 'ImagemEmpresa.jpg';
+
+        unlink($dirImagens . $Imagem);
+
+        $NomeImagem = 'Empresa-'. rand() .'.jpg';
         move_uploaded_file($_FILES['empImagem']['tmp_name'], $dirImagens . $NomeImagem); //Fazer upload do arquivo
         $image = WideImage::load($dirImagens . $NomeImagem);
         $image = $image->resize('540', null, 'fill', 'any');
@@ -28,8 +32,8 @@ try{
         $pathImage = $baseDiretorio . $NomeImagem;
 
         $pdo->beginTransaction();
-        $sql = $pdo->prepare("UPDATE empresa SET emp_descricao = ?, emp_imagem = ? WHERE emp_id = ?");
-        $sql->execute([$empDescricao, $pathImage, 1]);
+        $sql = $pdo->prepare("UPDATE empresa SET emp_descricao = ?, emp_imagem = ?, emp_url_imagem = ? WHERE emp_id = ?");
+        $sql->execute([$empDescricao, $NomeImagem, $pathImage, 1]);
         $pdo->commit();
     }
 

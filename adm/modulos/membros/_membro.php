@@ -54,10 +54,19 @@ switch ($Acao){
     case "Atualizar":
         try{
             if (!empty($_FILES['arquivoImagem']['name'])) {
+
+                unlink($dirImagens . $Imagem);
+
+                $Imagem = 'Membro-' . rand() . '.jpg'; //Definindo um novo nome para o arquivo
                 move_uploaded_file($_FILES['arquivoImagem']['tmp_name'], $dirImagens . $Imagem); //Fazer upload do arquivo
                 $image = WideImage::load($dirImagens . $Imagem);
                 $image = $image->resize('600', '600', 'fill', 'any');
                 $image->saveToFile($dirImagens . $Imagem);
+                $pathImage = $baseDiretorio . $Imagem;
+                $pdo->beginTransaction();
+                $sql = $pdo->prepare("UPDATE membros SET mb_imagem = ?, mb_url_imagem = ?  WHERE mb_id = ?");
+                $sql->execute([$Imagem, $pathImage, $Id]);
+                $pdo->commit();
             }
 
             $pdo->beginTransaction();

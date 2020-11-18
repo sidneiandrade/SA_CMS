@@ -1,41 +1,29 @@
 <?php
-  /**
-  * Requires the "PHP Email Form" library
-  * The "PHP Email Form" library is available only in the pro version of the template
-  * The library should be uploaded to: vendor/php-email-form/php-email-form.php
-  * For more info and help: https://bootstrapmade.com/php-email-form/
-  */
 
-  // Replace contact@example.com with your real receiving email address
-  $receiving_email_address = 'contact@example.com';
+  include '../adm/system/conexao.php';
 
-  if( file_exists($php_email_form = '../assets/vendor/php-email-form/php-email-form.php' )) {
-    include( $php_email_form );
+  $sql = $pdo->query("SELECT * FROM configuracoes");
+  $dados = $sql->fetchAll(PDO::FETCH_ASSOC);
+  $emailContato = $dados[0]['conf_email'];
+
+  // emails para quem será enviado o formulário
+  $emailSystem = $emailContato;
+  $nome = $_POST['name'];
+  $email = $_POST['email'];
+  $assunto = $_POST['subject'];
+  $messagem = $_POST['message'];
+
+  // É necessário indicar que o formato do e-mail é html
+  $headers  = 'MIME-Version: 1.0' . "\r\n";
+  $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+  $headers .= 'From: $nome <$email>';
+  //$headers .= "Bcc: $EmailPadrao\r\n";
+
+  $enviaremail = mail($emailSystem, $assunto, $messagem, $headers);
+  if($enviaremail){
+      echo "Sucesso";
   } else {
-    die( 'Unable to load the "PHP Email Form" Library!');
+      echo "Erro";
   }
 
-  $contact = new PHP_Email_Form;
-  $contact->ajax = true;
-  
-  $contact->to = $receiving_email_address;
-  $contact->from_name = $_POST['name'];
-  $contact->from_email = $_POST['email'];
-  $contact->subject = $_POST['subject'];
-
-  // Uncomment below code if you want to use SMTP to send emails. You need to enter your correct SMTP credentials
-  /*
-  $contact->smtp = array(
-    'host' => 'example.com',
-    'username' => 'example',
-    'password' => 'pass',
-    'port' => '587'
-  );
-  */
-
-  $contact->add_message( $_POST['name'], 'From');
-  $contact->add_message( $_POST['email'], 'Email');
-  $contact->add_message( $_POST['message'], 'Message', 10);
-
-  echo $contact->send();
 ?>

@@ -172,7 +172,8 @@ $listarConfiguracoes = $sql->fetchAll(PDO::FETCH_ASSOC);
                                         <div class="col-lg-4">
                                             <div class="form-group">
                                                 <label class="form-label">Imagem</label> <small>Tamanho Padrão 540x370 pixels</small><br>
-                                                <img class="img-fluid" src="<?php echo $empValue['emp_imagem'] ?>" alt="<?php echo $value['conf_nome'] ?>">
+                                                <img class="img-fluid" src="<?php echo $empValue['emp_url_imagem'] ?>" alt="<?php echo $value['conf_nome'] ?>">
+                                                <input type="hidden" name="nomeImagem" value="<?php echo $empValue['emp_imagem'] ?>">
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label" for="empImagem">Atualizar</label>

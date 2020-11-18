@@ -81,7 +81,7 @@
         } ?>
         <div class="row">
           <div class="col-lg-6 d-flex align-items-center">
-            <img src="<?php echo $sobValue['emp_imagem'] ?>" class="img-fluid rounded" alt="<?php echo $values['conf_nome'] ?>">
+            <img src="<?php echo $sobValue['emp_url_imagem'] ?>" class="img-fluid rounded" alt="<?php echo $values['conf_nome'] ?>">
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0">
             <h3>Sobre</h3>
@@ -105,42 +105,6 @@
             </div>
           </div>
           <?php } ?>
-
-
-
-            <!-- <div class="progress">
-              <span class="skill">CSS <i class="val">90%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-            <div class="progress">
-              <span class="skill">JavaScript <i class="val">75%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="progress">
-              <span class="skill">PHP <i class="val">80%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-            <div class="progress">
-              <span class="skill">WordPress/CMS <i class="val">90%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-            <div class="progress">
-              <span class="skill">Photoshop <i class="val">55%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div> 
-          </div>-->
         </div>
       </div>
     </section>
@@ -532,31 +496,33 @@
 
         <div class="row mt-5 justify-content-center">
           <div class="col-lg-10">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+            <form id="formContato" method="post" class="php-email-form" enctype="multipart/form-data">
               <div class="form-row">
                 <div class="col-md-6 form-group">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Nome" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Nome" data-rule="minlen:4" data-msg="Por favor adicione o nome" />
                   <div class="validate"></div>
                 </div>
                 <div class="col-md-6 form-group">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="E-mail" data-rule="email" data-msg="Please enter a valid email" />
+                  <input type="email" class="form-control" name="email" id="email" placeholder="E-mail" data-rule="email" data-msg="Por favor adicione um e-mail válido" />
                   <div class="validate"></div>
                 </div>
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Assunto" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                <input type="text" class="form-control" name="subject" id="subject" placeholder="Assunto" data-rule="minlen:4" data-msg="Por favor coloque um assunto" />
                 <div class="validate"></div>
               </div>
               <div class="form-group">
-                <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Mensagem"></textarea>
+                <textarea class="form-control" id="message" name="message" rows="5" data-rule="required" data-msg="Por favor coloque uma mensagem" placeholder="Mensagem"></textarea>
                 <div class="validate"></div>
               </div>
-              <div class="mb-3">
+              <!-- <div class="mb-3">
                 <div class="loading">Carregando...</div>
                 <div class="error-message"></div>
                 <div class="sent-message">Sua mensagem foi enviada com sucesso. Entraremos em contato!</div>
+              </div> -->
+              <div class="text-center">
+                <input type="submit" class="btn btn-pill btn-primary" value="Enviar Mensagem" />
               </div>
-              <div class="text-center"><button type="submit">Enviar Mensagem</button></div>
             </form>
           </div>
 
@@ -572,4 +538,28 @@
   <script>
     //adicionar a class active no primeiro slide
     $('#slide_0').addClass("active");
+
+    $('#formContato').submit(function(){
+      $nome = $("#name").val();
+      $email = $("#email").val();
+      $assunto = $("#subject").val();
+      $mensagem = $("#message").val();
+      if($nome != "" && $email != "" && $assunto != "" && $mensagem != ""){
+        debugger;
+        $.ajax({
+          type: "POST",
+          url: "forms/contact.php",
+          data: new FormData($('#formContato')[0]),
+          processData: false,
+          contentType: false,
+          success: function(data) {
+            debugger;
+          }
+        });
+      } else {
+        return false;
+      }
+      
+    })
+
   </script>

@@ -4,7 +4,7 @@ $db = 'sa_db_system';
 $login = 'root';
 $password = '';
 
-$baseUrl = 'http://localhost/system/';
+$baseUrl = 'http://local.system.com/';
 
 try {
     $pdo = new PDO('mysql:host=localhost;dbname='.$db, $login, $password, 

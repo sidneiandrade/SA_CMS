@@ -51,10 +51,20 @@ switch ($Acao){
     case "Atualizar":
         try{
             if (!empty($_FILES['arquivoImagem']['name'])) {
-                move_uploaded_file($_FILES['arquivoImagem']['tmp_name'], $dirImagens . $sdNomeImagem); //Fazer upload do arquivo
-                $image = WideImage::load($dirImagens . $sdNomeImagem);
+
+                unlink($dirImagens . $sdNomeImagem); // deletar a imagem na pasta
+
+                $nameImagem = 'Slide-' . rand() . '.jpg'; //Definindo um novo nome para o arquivo
+                move_uploaded_file($_FILES['arquivoImagem']['tmp_name'], $dirImagens . $nameImagem); //Fazer upload do arquivo
+                $image = WideImage::load($dirImagens . $nameImagem);
                 $image = $image->resize('1500', null, 'fill', 'any');
-                $image->saveToFile($dirImagens . $sdNomeImagem);
+                $image->saveToFile($dirImagens . $nameImagem);
+                $pathImagem = $baseDiretorio . $nameImagem;
+
+                $pdo->beginTransaction();
+                $sql = $pdo->prepare("UPDATE slides SET sd_imagem = ?, sd_url_imagem = ? WHERE sd_id = ?");
+                $sql->execute([$nameImagem, $pathImagem, $Id]);
+                $pdo->commit();
             }
 
             $pdo->beginTransaction();

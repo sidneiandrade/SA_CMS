@@ -13417,7 +13417,7 @@ div.table-responsive>div.dataTables_wrapper>div.row>div[class^=col-]:last-child 
 }
 
 .error-code {
-    font-size: 8rem;
+    font-size: 5rem;
     font-weight: lighter;
     color: #495057;
     line-height: 6.5rem
