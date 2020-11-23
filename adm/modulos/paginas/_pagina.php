@@ -7,6 +7,7 @@ $caminho = $_SESSION['caminho'];
 
 include $caminho . 'system/conexao.php';
 require $caminho . 'system/lib/WideImage.php';
+include $caminho . 'configuracoes/_email.php';
 
 $pagId              = $_POST['pagId'];
 $pagNomeImagem      = $_POST['pagNomeImagem'];
@@ -45,6 +46,7 @@ switch ($Acao) {
         } catch (Exception $e) {
             $pdo->rollBack();
             echo $e->getMessage();
+            EnviarEmail("Erro Modulo Páginas", [$e->getMessage(), $e->getLine()]);
         }
         break;
 
@@ -68,6 +70,7 @@ switch ($Acao) {
         } catch (Exception $e) {
             $pdo->rollBack();
             echo $e->getMessage();
+            EnviarEmail("Erro Modulo Páginas", [$e->getMessage(), $e->getLine()]);
         }
         break;
 
@@ -80,6 +83,7 @@ switch ($Acao) {
             echo 'deletado';
         } catch (Exception $e) {
             echo $e->getMessage();
+            EnviarEmail("Erro Modulo Páginas", [$e->getMessage(), $e->getLine()]);
         }
         break;
 }

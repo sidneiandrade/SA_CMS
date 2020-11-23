@@ -2,7 +2,6 @@
 
 if (session_status() !== PHP_SESSION_ACTIVE) { //Verificar se a sessão não já está aberta.
     session_start(); /*Inicia a Seção*/
-    //$_SESSION['caminho'] = getcwd() . "/";
     $local = $_SESSION['caminho'];
 }
 
@@ -53,7 +52,11 @@ foreach ($infoSite as $value) {
         <div class="adminx-container">
             <nav class="navbar navbar-expand justify-content-between fixed-top">
                 <div class="navbar-brand m-0 pl-0 h1 d-none d-md-block">
-                   <img src="<?php echo $baseUrl ?>assets/img/logo-jumper-cms-black.svg" class="img-fluid" style="max-height: 30px;"> Painel de Controle
+                    <a href="<?php echo $baseUrl ?>adm/dashboard" style="text-decoration: none;">
+                        <img src="<?php echo $baseUrl ?>assets/img/logo-jumper-cms-black.svg" class="img-fluid" style="max-height: 30px;">
+                        Painel de Controle
+                    </a>
+                    
                 </div>
 
                 <div class="d-flex flex-1 d-block d-md-none">
@@ -65,13 +68,14 @@ foreach ($infoSite as $value) {
                 <ul class="navbar-nav d-flex justify-content-end mr-2">
                     <li class="nav-item dropdown">
                         <a class="nav-link avatar-with-name" id="navbarDropdownMenuLink" data-toggle="dropdown" href="#">
-                            <i data-feather="more-vertical"></i>
-                            <!-- <img src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/128.jpg" class="d-inline-block align-top" alt="">-->
+                            <i class="far fa-user-circle" style="font-size: 25px; padding: 0 30px; color: #212529"></i>
+                            <!-- <i data-feather="more-vertical"></i> -->
+                            
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="usuario?id=<?php echo $id ?>"><small><i data-feather="edit"></i> Editar Perfil</small></a>
+                            <a class="dropdown-item" href="usuario?id=<?php echo $id ?>">Editar Perfil</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item text-danger" href="<?php echo $baseUrl ?>adm/system/logout?acao=sair"><small><i data-feather="log-out"></i> Sair</small></a>
+                            <a class="dropdown-item text-danger" href="<?php echo $baseUrl ?>adm/system/logout?acao=sair">Sair</a>
                         </div>
                     </li>
                 </ul>

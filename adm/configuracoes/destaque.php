@@ -59,7 +59,7 @@ if ($ID != 0) {
                     <h1>Adicionar Destaque</h1>
                 </div>
             <?php } ?>
-            <form id="form" method="post" enctype="multipart/form-data">
+            <form id="form" method="post" enctype="multipart/form-data" novalidate>
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="card mb-grid">
@@ -79,6 +79,7 @@ if ($ID != 0) {
                                         <div class="form-group">
                                             <label class="form-label" for="desTitulo">Titulo Destaque</label>
                                             <input type="text" class="form-control" id="desTitulo" name="desTitulo" placeholder="Título do Destaque" value="<?php echo $Titulo ?>" required>
+                                            <div class="invalid-feedback">Adicione um título.</div>
                                         </div>
                                     </div>
                                     <div class="col-lg-3">
@@ -96,7 +97,8 @@ if ($ID != 0) {
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                             <label class="form-label" for="desTexto">Texto Destaque</label>
-                                            <textarea class="form-control" rows="5" id="desTexto" name="desTexto" placeholder="Texto Destaque"><?php echo $Texto ?></textarea>
+                                            <textarea class="form-control" rows="5" id="desTexto" name="desTexto" placeholder="Texto Destaque" required><?php echo $Texto ?></textarea>
+                                            <div class="invalid-feedback">Adicione um texto.</div>
                                         </div>
                                     </div>
                                 </div>
@@ -126,37 +128,47 @@ if ($ID != 0) {
 
     let Form = "#form";
 
-    $(Form).submit(function() {
-        event.preventDefault();
-        $.ajax({
-            type: "POST",
-            url: "_destaque.php",
-            data: new FormData($(Form)[0]),
-            processData: false,
-            contentType: false,
-            success: function(data) {
-                Notiflix.Loading.Pulse('Carregando...');
-                debugger;
-                if (data.acao == 'salvo') {
-                    Notiflix.Loading.Remove();
-                    Notiflix.Notify.Success('Destaque Salva com Sucesso!');
-                    setTimeout(function() {
-                        location.href = "./destaque?id=" + (data.id)
-                    }, 2500);
-                } else if (data == 'atualizado') {
-                    Notiflix.Loading.Remove();
-                    Notiflix.Notify.Success('Destaque Atualizada com Sucesso!');
-                    setTimeout(function() {
-                        location.reload();
-                    }, 2500);
-                } else {
-                    Notiflix.Loading.Remove();
-                    Notiflix.Notify.Failure('Erro!');
-                }
+    window.addEventListener('load', function() {
+        var form = document.getElementById('form');
+        if(form !== null) {
+            form.addEventListener('submit', function(event) {
+            if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+            } else {
+                event.preventDefault();
+                $.ajax({
+                    type: "POST",
+                    url: "_destaque.php",
+                    data: new FormData($(Form)[0]),
+                    processData: false,
+                    contentType: false,
+                    success: function(data) {
+                        Notiflix.Loading.Pulse('Carregando...');
+                        debugger;
+                        if (data.acao == 'salvo') {
+                            Notiflix.Loading.Remove();
+                            Notiflix.Notify.Success('Destaque Salva com Sucesso!');
+                            setTimeout(function() {
+                                location.href = "./destaque?id=" + (data.id)
+                            }, 2500);
+                        } else if (data == 'atualizado') {
+                            Notiflix.Loading.Remove();
+                            Notiflix.Notify.Success('Destaque Atualizada com Sucesso!');
+                            setTimeout(function() {
+                                location.reload();
+                            }, 2500);
+                        } else {
+                            Notiflix.Loading.Remove();
+                            Notiflix.Notify.Failure('Erro!');
+                        }
+                    }
+                });
             }
-        });
-    });
-
+            form.classList.add('was-validated');
+            }, false);
+        }
+    }, false);
 
     function deletar() {
         event.preventDefault();
@@ -192,43 +204,6 @@ if ($ID != 0) {
 
             }
 
-            // function() {
-
-            //     let Id = $("#desID").val();
-            //     let Icone = "";
-            //     let Titulo = "";
-            //     let Texto = "";
-            //     let Status = "";
-            //     let Acao = "Deletar";
-
-            //     $.ajax({
-            //         url: "_destaque.php",
-            //         data: {
-            //             'desID': Id,
-            //             'desIcone': Icone,
-            //             'desTitulo': Titulo,
-            //             'desTexto': Texto,
-            //             'desStatus': Status,
-            //             'Acao': Acao
-            //         },
-            //         type: "POST",
-            //         success: function(data) {
-            //             Notiflix.Loading.Pulse('Carregando...');
-            //             debugger;
-            //             if (data == 'deletado') {
-            //                 Notiflix.Loading.Remove();
-            //                 Notiflix.Notify.Success('Destaque Deletado com Sucesso!');
-            //                 setTimeout(function() {
-            //                     location.href = "./empresa";
-            //                 }, 2500);
-            //             } else {
-            //                 Notiflix.Loading.Remove();
-            //                 Notiflix.Notify.Failure('Erro ao deletar!');
-            //             }
-            //         }
-            //     });
-
-            // }
         );
     };
 </script>

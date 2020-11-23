@@ -5,6 +5,7 @@ if(!isset($_SESSION)){
 $caminho = $_SESSION['caminho'];
 
 include $caminho . 'system/conexao.php';
+include $caminho . 'configuracoes/_email.php';
 
 $depID = $_POST['depID'];
 $depNome = $_POST['depNome'];
@@ -23,6 +24,7 @@ switch ($Acao) {
         } catch (Exception $e) {
             $pdo->rollBack();
             echo $e->getMessage();
+            EnviarEmail("Erro Modulo Depoimentos", [$e->getMessage(), $e->getLine()]);
         }
         break;
 
@@ -39,12 +41,22 @@ switch ($Acao) {
         } catch (Exception $e) {
             $pdo->rollBack();
             echo $e->getMessage();
+            EnviarEmail("Erro Modulo Depoimentos", [$e->getMessage(), $e->getLine()]);
         }
         break;
 
     case "Deletar":
-        $sql = $pdo->prepare("DELETE FROM depoimentos WHERE dep_id = ?");
-        $sql->execute([$depID]);
-        echo 'deletado';
+        try{
+            $pdo->beginTransaction();
+            $sql = $pdo->prepare("DELETE FROM depoimentos WHERE dep_id = ?");
+            $sql->execute([$depID]);
+            $pdo->commit();
+            echo 'deletado';
+        } catch(Exception $e){
+            $pdo->rollBack();
+            echo $e->getMessage();
+            EnviarEmail("Erro Modulo Depoimentos", [$e->getMessage(), $e->getLine()]);
+        }
+        
         break;
 }

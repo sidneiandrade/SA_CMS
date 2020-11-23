@@ -32,6 +32,7 @@ switch ($Acao) {
         } catch (Exception $e) {
             $pdo->rollBack();
             echo $e->getMessage();
+            EnviarEmail("Erro Modulo Valores", [$e->getMessage(), $e->getLine()]);
         }
         break;
 
@@ -54,13 +55,22 @@ switch ($Acao) {
         } catch (Exception $e) {
             $pdo->rollBack();
             echo $e->getMessage();
-            EnviarEmail("Erro Modulo Valores", $e->getMessage());
+            EnviarEmail("Erro Modulo Valores", [$e->getMessage(), $e->getLine()]);
         }
         break;
 
     case "Deletar":
-        $sql = $pdo->prepare("DELETE FROM VALORES WHERE VAL_ID = ?");
-        $sql->execute([$valID]);
-        echo 'deletado';
+        try{
+            $pdo->beginTransaction();
+            $sql = $pdo->prepare("DELETE FROM VALORES WHERE VAL_ID = ?");
+            $sql->execute([$valID]);
+            $pdo->commit();
+            echo 'deletado';
+        } catch (Exception $e) {
+            $pdo->rollBack();
+            echo $e->getMessage();
+            EnviarEmail("Erro Modulo Valores", [$e->getMessage(), $e->getLine()]);
+        }
+        
         break;
 }

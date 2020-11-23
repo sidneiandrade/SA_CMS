@@ -68,13 +68,14 @@ if ($catID != 0) {
                             <div class="card-header-title">Informações da Categoria</div>
                         </div>
                         <div class="card-body collapse show" id="cardCadastrar">
-                            <form id="formCategoria" method="post" enctype="multipart/form-data">
+                            <form id="formCategoria" method="post" enctype="multipart/form-data" novalidate>
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <input type="hidden" id="catID" name="catID" value="<?php echo $catID ?>" />
                                         <div class="form-group">
                                             <label class="form-label" for="catNome">Categoria</label>
                                             <input type="text" class="form-control" id="catNome" name="catNome" placeholder="Nome Categoria" value="<?php echo $Nome ?>" required>
+                                            <div class="invalid-feedback">Adicione um nome.</div>
                                             <input type="hidden" id="catSlug" name="catSlug" value="<?php echo $Slug ?>">
                                         </div>
                                     </div>
@@ -125,44 +126,56 @@ if ($catID != 0) {
         backOverlayColor: "rgba(255,85,73,0.2)",
     });
 
-    $(Form).submit(function() {
-        event.preventDefault();
-
-        $('#catSlug').val(getSlug($('#catNome').val()));
-
-        $.ajax({
-            type: "POST",
-            url: "_categoria.php",
-            data: new FormData($(Form)[0]),
-            processData: false,
-            contentType: false,
-            success: function(data) {
-                Notiflix.Loading.Pulse('Carregando...');
-                debugger;
-                if (data.acao == 'salvo') {
-                    Notiflix.Loading.Remove();
-                    Notiflix.Notify.Success('Categoria Salva com Sucesso!');
-                    setTimeout(function() {
-                        location.href = "./?id=" + (data.id)
-                    }, 2500);
-                } else if (data == 'atualizado') {
-                    Notiflix.Loading.Remove();
-                    Notiflix.Notify.Success('Categoria Atualizada com Sucesso!');
-                    setTimeout(function() {
-                        location.href = "./listarCategorias"
-                    }, 2500);
-                } else {
-                    Notiflix.Loading.Remove();
-                    Notiflix.Notify.Failure('Erro!');
-                }
+    window.addEventListener('load', function() {
+        var form = document.getElementById('formCategoria');
+        if(form !== null) {
+            form.addEventListener('submit', function(event) {
+            if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+            } else {
+                event.preventDefault();
+                $('#catSlug').val(getSlug($('#catNome').val()));
+                $.ajax({
+                    type: "POST",
+                    url: "_categoria.php",
+                    data: new FormData($(Form)[0]),
+                    processData: false,
+                    contentType: false,
+                    success: function(data) {
+                        Notiflix.Loading.Pulse('Carregando...');
+                        debugger;
+                        if (data.acao == 'salvo') {
+                            Notiflix.Loading.Remove();
+                            Notiflix.Notify.Success('Categoria Salva com Sucesso!');
+                            setTimeout(function() {
+                                location.href = "./?id=" + (data.id)
+                            }, 2500);
+                        } else if (data == 'atualizado') {
+                            Notiflix.Loading.Remove();
+                            Notiflix.Notify.Success('Categoria Atualizada com Sucesso!');
+                            setTimeout(function() {
+                                location.href = "./listarCategorias"
+                            }, 2500);
+                        } else {
+                            Notiflix.Loading.Remove();
+                            Notiflix.Notify.Failure('Erro!');
+                        }
+                    }
+                });
             }
-        });
-    });
+            form.classList.add('was-validated');
+            }, false);
+        }
+    }, false);
+
+    // $(Form).submit(function() {
+        
+    // });
 
 
     function deletar() {
         event.preventDefault();
-
         Notiflix.Confirm.Show(
             'ATENÇÃO!',
             'Tem certeza que deseja deletar esta Categoria?',

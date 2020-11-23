@@ -83,12 +83,13 @@ if ($ID != 0) {
                                             <label class="form-label" for="Titulo">Nome</label>
                                             <input type="text" class="form-control" id="Titulo" name="Titulo" placeholder="Título" value="<?php echo $Titulo ?>" required>
                                             <input type="hidden" id="Slug" name="Slug" value="<?php echo $Slug ?>">
-                                            <div class="invalid-feedback">Adicione um título ao modulo.</div>
+                                            <div class="invalid-feedback">Adicione um título.</div>
                                         </div>
                                     
                                         <div class="form-group">
                                             <label class="form-label" for="Descricao">Descricao</label>
-                                            <input type="text" class="form-control" id="Descricao" name="Descricao" placeholder="Descricao" value="<?php echo $Descricao ?>">
+                                            <input type="text" class="form-control" id="Descricao" name="Descricao" placeholder="Descricao" value="<?php echo $Descricao ?>" required>
+                                            <div class="invalid-feedback">Adicione uma descrição.</div>
                                         </div>
 
                                         
@@ -99,7 +100,7 @@ if ($ID != 0) {
                                         <div class="form-group">
                                             <label class="form-label" for="Url">Url Lista</label>
                                             <input type="text" class="form-control" id="Url" name="Url" placeholder="Url" value="<?php echo $Url ?>" required>
-                                            <div class="invalid-feedback">Adicione a url do modulo.</div>
+                                            <div class="invalid-feedback">Adicione a url.</div>
                                         </div>
                                     </div>
 
@@ -107,7 +108,7 @@ if ($ID != 0) {
                                         <div class="form-group">
                                             <label class="form-label" for="Icone">Icone</label>
                                             <input type="text" class="form-control" id="Icone" name="Icone" placeholder="Icone" value="<?php echo $Icone ?>" required>
-                                            <div class="invalid-feedback">Adicione o código do ícone.</div>
+                                            <div class="invalid-feedback">Adicione o código.</div>
                                         </div>
                                     </div>
 
@@ -135,6 +136,7 @@ if ($ID != 0) {
                                         <div class="form-group">
                                             <label class="form-label" for="Ordem">Ordem</label>
                                             <input type="number" class="form-control" id="Ordem" name="Ordem" placeholder="Ordem" value="<?php echo $Ordem ?>" required>
+                                            <div class="invalid-feedback">Adicione um número.</div>
                                         </div>
                                     </div>
 

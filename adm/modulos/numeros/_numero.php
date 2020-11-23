@@ -5,6 +5,7 @@ if(!isset($_SESSION)){
 $caminho = $_SESSION['caminho'];
 
 include $caminho . 'system/conexao.php';
+include $caminho . 'configuracoes/_email.php';
 
 $numID          = $_POST['numID'];
 $numIcone       = $_POST['numIcone'];
@@ -24,6 +25,7 @@ switch ($Acao) {
         } catch (Exception $e) {
             $pdo->rollBack();
             echo $e->getMessage();
+            EnviarEmail("Erro Modulo Números", [$e->getMessage(), $e->getLine()]);
         }
         break;
 
@@ -40,12 +42,22 @@ switch ($Acao) {
         } catch (Exception $e) {
             $pdo->rollBack();
             echo $e->getMessage();
+            EnviarEmail("Erro Modulo Números", [$e->getMessage(), $e->getLine()]);
         }
         break;
 
     case "Deletar":
-        $sql = $pdo->prepare("DELETE FROM numeros WHERE num_id = ?");
-        $sql->execute([$numID]);
-        echo 'deletado';
+        try{
+            $pdo->beginTransaction();
+            $sql = $pdo->prepare("DELETE FROM numeros WHERE num_id = ?");
+            $sql->execute([$numID]);
+            $pdo->commit();
+            echo 'deletado';
+        } catch(Exception $e){
+            $pdo->rollBack();
+            echo $e->getMessage();
+            EnviarEmail("Erro Modulo Números", [$e->getMessage(), $e->getLine()]);
+        }
+        
         break;
 }

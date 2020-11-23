@@ -5,6 +5,7 @@ if(!isset($_SESSION)){
 $caminho = $_SESSION['caminho'];
 
 include $caminho . 'system/conexao.php';
+include $caminho . 'configuracoes/_email.php';
 
 $ID         = $_POST['ctaID'];
 $Titulo     = $_POST['ctaTitulo'];
@@ -29,6 +30,7 @@ switch ($Acao) {
         } catch (Exception $e) {
             $pdo->rollBack();
             echo $e->getMessage();
+            EnviarEmail("Erro Modulo CTA", [$e->getMessage(), $e->getLine()]);
         }
         break;
 
@@ -42,6 +44,7 @@ switch ($Acao) {
         } catch (Exception $e) {
             $pdo->rollBack();
             echo $e->getMessage();
+            EnviarEmail("Erro Modulo CTA", [$e->getMessage(), $e->getLine()]);
         }
         break;
 }

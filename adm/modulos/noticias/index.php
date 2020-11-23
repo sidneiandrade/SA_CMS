@@ -119,9 +119,7 @@ if ($notID != 0) {
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                             <label class="form-label" for="notTexto">Texto Notícia</label>
-                                            <div id="editor">
-                                                <?php echo $Texto ?>
-                                            </div>
+                                            <div id="editor"><?php echo $Texto ?></div>
                                             <input type="hidden" id="notTexto" name="notTexto" value="">
                                         </div>
                                     </div>

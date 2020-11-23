@@ -7,6 +7,7 @@ $caminho = $_SESSION['caminho'];
 
 include $caminho . 'system/conexao.php';
 require $caminho . 'system/lib/WideImage.php';
+include $caminho . 'configuracoes/_email.php';
 
 $Id             = $_POST['Id'];
 $sdNomeImagem   = $_POST['sdNomeImagem'];
@@ -45,6 +46,7 @@ switch ($Acao){
         }
         catch (Exception $e) {
             echo $e->getMessage();
+            EnviarEmail("Erro Modulo Slides", [$e->getMessage(), $e->getLine()]);
         }
     break;
 
@@ -76,6 +78,7 @@ switch ($Acao){
         }
         catch (Exception $e) {
             echo $e->getMessage();
+            EnviarEmail("Erro Modulo Slides", [$e->getMessage(), $e->getLine()]);
         }
     break;
 
@@ -89,6 +92,7 @@ switch ($Acao){
         }
         catch (Exception $e) {
             echo $e->getMessage();
+            EnviarEmail("Erro Modulo Slides", [$e->getMessage(), $e->getLine()]);
         }
     break;
 }

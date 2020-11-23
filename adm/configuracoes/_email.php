@@ -16,10 +16,10 @@ function EnviarEmail($assunto, $erro){
   // É necessário indicar que o formato do e-mail é html
   $headers  = 'MIME-Version: 1.0' . "\r\n";
   $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-  $headers .= 'From: $nome <$email>';
+  $headers .= 'From: ' . $nome . ' <'. $email .'>';
   //$headers .= "Bcc: $EmailPadrao\r\n";
 
-  $mensagem = "Identificado o erro: " . $erro;
+  $mensagem = "Identificado o erro: <br>" . $erro[0] . "<br> Na Linha: " . $erro[1];
 
   $enviaremail = mail($email, $assunto, $mensagem, $headers);
   if($enviaremail){

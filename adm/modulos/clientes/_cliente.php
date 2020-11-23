@@ -6,6 +6,7 @@ $caminho = $_SESSION['caminho'];
 
 include $caminho . 'system/conexao.php';
 require $caminho . 'system/lib/WideImage.php';
+include $caminho . 'configuracoes/_email.php';
 
 $Id         = $_POST['Id'];
 $Empresa    = $_POST['cliEmpresa'];
@@ -43,6 +44,7 @@ switch ($Acao){
         }
         catch (Exception $e) {
             echo $e->getMessage();
+            EnviarEmail("Erro Modulo Clientes", [$e->getMessage(), $e->getLine()]);
         }
     break;
 
@@ -73,6 +75,7 @@ switch ($Acao){
         }
         catch (Exception $e) {
             echo $e->getMessage();
+            EnviarEmail("Erro Modulo Clientes", [$e->getMessage(), $e->getLine()]);
         }
     break;
 
@@ -86,6 +89,7 @@ switch ($Acao){
         }
         catch (Exception $e) {
             echo $e->getMessage();
+            EnviarEmail("Erro Modulo Clientes", [$e->getMessage(), $e->getLine()]);
         }
     break;
 }

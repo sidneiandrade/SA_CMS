@@ -58,7 +58,7 @@ if ($ID != 0) {
                     <h1>Adicionar Skill</h1>
                 </div>
             <?php } ?>
-            <form id="form" method="post" enctype="multipart/form-data">
+            <form id="form" method="post" enctype="multipart/form-data" novalidate>
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="card mb-grid">
@@ -72,12 +72,14 @@ if ($ID != 0) {
                                         <div class="form-group">
                                             <label class="form-label" for="skTitulo">Titulo</label>
                                             <input type="text" class="form-control" id="skTitulo" name="skTitulo" placeholder="Título" value="<?php echo $Titulo ?>" required>
+                                            <div class="invalid-feedback">Adicione um título.</div>
                                         </div>
                                     </div>
                                     <div class="col-lg-3">
                                         <div class="form-group">
                                             <label class="form-label" for="skValor">Valor</label>
                                             <input type="number" class="form-control" id="skValor" name="skValor" placeholder="Valor" value="<?php echo $Valor ?>" required>
+                                            <div class="invalid-feedback">Adicione um percentual.</div>
                                         </div>
                                     </div>
                                     <div class="col-lg-3">
@@ -115,39 +117,49 @@ if ($ID != 0) {
         backOverlayColor: "rgba(255,85,73,0.2)",
     });
 
-    let Form = "#form";
+    let FormSkill = "#form";
 
-    $(Form).submit(function() {
-        event.preventDefault();
-        $.ajax({
-            type: "POST",
-            url: "_skill.php",
-            data: new FormData($(Form)[0]),
-            processData: false,
-            contentType: false,
-            success: function(data) {
-                Notiflix.Loading.Pulse('Carregando...');
-                debugger;
-                if (data.acao == 'salvo') {
-                    Notiflix.Loading.Remove();
-                    Notiflix.Notify.Success('Destaque Salva com Sucesso!');
-                    setTimeout(function() {
-                        location.href = "./skill?id=" + (data.id)
-                    }, 2500);
-                } else if (data == 'atualizado') {
-                    Notiflix.Loading.Remove();
-                    Notiflix.Notify.Success('Destaque Atualizada com Sucesso!');
-                    setTimeout(function() {
-                        location.reload();
-                    }, 2500);
-                } else {
-                    Notiflix.Loading.Remove();
-                    Notiflix.Notify.Failure('Erro!');
-                }
+    window.addEventListener('load', function() {
+        var form = document.getElementById('form');
+        if(form !== null) {
+            form.addEventListener('submit', function(event) {
+            if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+            } else {
+                event.preventDefault();
+                $.ajax({
+                    type: "POST",
+                    url: "_skill.php",
+                    data: new FormData($(FormSkill)[0]),
+                    processData: false,
+                    contentType: false,
+                    success: function(data) {
+                        Notiflix.Loading.Pulse('Carregando...');
+                        debugger;
+                        if (data.acao == 'salvo') {
+                            Notiflix.Loading.Remove();
+                            Notiflix.Notify.Success('Destaque Salva com Sucesso!');
+                            setTimeout(function() {
+                                location.href = "./skill?id=" + (data.id)
+                            }, 2500);
+                        } else if (data == 'atualizado') {
+                            Notiflix.Loading.Remove();
+                            Notiflix.Notify.Success('Destaque Atualizada com Sucesso!');
+                            setTimeout(function() {
+                                location.reload();
+                            }, 2500);
+                        } else {
+                            Notiflix.Loading.Remove();
+                            Notiflix.Notify.Failure('Erro!');
+                        }
+                    }
+                });
             }
-        });
-    });
-
+            form.classList.add('was-validated');
+            }, false);
+        }
+    }, false);
 
     function deletar() {
         event.preventDefault();
@@ -162,7 +174,7 @@ if ($ID != 0) {
                 $.ajax({
                     type: "POST",
                     url: "_skill.php",
-                    data: new FormData($(Form)[0]),
+                    data: new FormData($(FormSkill)[0]),
                     processData: false,
                     contentType: false,
                     success: function(data) {

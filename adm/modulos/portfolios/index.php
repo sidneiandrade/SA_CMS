@@ -130,9 +130,7 @@ if ($portID != 0) {
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                             <label class="form-label" for="portTexto">Texto Portfólio</label>
-                                            <div id="editor">
-                                                <?php echo $Texto ?>
-                                            </div>
+                                            <div id="editor"><?php echo $Texto ?></div>
                                             <input type="hidden" id="portTexto" name="portTexto" value="">
                                             <!-- <textarea class="form-control" rows="9" name="portTexto" placeholder="Texto do Portfólio"><?php echo $Texto ?></textarea> -->
                                         </div>
@@ -154,7 +152,7 @@ if ($portID != 0) {
                                 <div class="col-lg-12">
                                     <?php if ($portID != 0) { ?>
                                         <form id="editarGaleria" action="./system/_deletarImagem.php" method="post" enctype="multipart/form-data">
-                                            <div class="row">
+                                            <div class="row align-items-center">
                                                 <?php
                                                 $sqlImagem = $pdo->prepare("SELECT * FROM portfolio_imagem WHERE img_port_id = $portID");
                                                 $sqlImagem->execute();
@@ -162,20 +160,14 @@ if ($portID != 0) {
 
                                                 foreach ($imagens as $vImagem) { ?>
                                                     <div class="col-lg-4">
-                                                        <input type="hidden" id="portImagemId" name="portImagemId" value="<?php echo $vImagem['img_id'] ?>">
-                                                        <input type="hidden" id="portImagemNome" name="portImagemNome" value="<?php echo $vImagem['img_nome'] ?>">
-                                                        <img 
-                                                            id="imgPortfolio" 
-                                                            src="<?php echo $vImagem['img_imagem'] ?>" 
-                                                            data-id="<?php echo $vImagem['img_id'] ?>" 
-                                                            data-nome="<?php echo $vImagem['img_nome'] ?>" 
-                                                            class="img-fluid rounded mb-2" 
-                                                            alt="<?php echo $value['port_nome'] ?>" 
-                                                            onclick="deletarImagem(this)" 
-                                                            style="cursor:pointer;"
-                                                            data-toggle="tooltip" 
-                                                            data-placement="top" 
-                                                            title="Clique na imagem para deletar.">
+                                                        <div class="deleteImg">
+                                                            <input type="hidden" id="portImagemId" name="portImagemId" value="<?php echo $vImagem['img_id'] ?>">
+                                                            <input type="hidden" id="portImagemNome" name="portImagemNome" value="<?php echo $vImagem['img_nome'] ?>">
+                                                            <img id="imgPortfolio" src="<?php echo $vImagem['img_imagem'] ?>" class="img-fluid rounded mb-2" alt="<?php echo $value['port_nome'] ?>">
+                                                                <a href="#" data-id="<?php echo $vImagem['img_id'] ?>" data-nome="<?php echo $vImagem['img_nome'] ?>" onclick="deletarImagem(this)">
+                                                                    <i class="far fa-trash-alt"></i>
+                                                                </a>
+                                                        </div>
                                                     </div>
                                                 <?php } ?>
                                             </div>
@@ -269,10 +261,11 @@ if ($portID != 0) {
 
         debugger;
         $.ajax({
-            url: '_deletarImagem.php',
+            url: '_portfolio.php',
             data: {
-                'portImagemId': IdImagem,
-                'portImagemNome': NomeImagem
+                'portId': IdImagem,
+                'portImagemNome': NomeImagem,
+                'Acao': 'deletarImagem'
             },
             type: 'POST',
             success: function(data) {

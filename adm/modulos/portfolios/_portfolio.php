@@ -7,19 +7,13 @@ $caminho = $_SESSION['caminho'];
 
 include $caminho . 'system/conexao.php';
 require $caminho . 'system/lib/WideImage.php';
+include $caminho . 'configuracoes/_email.php';
 
-$portId = $_POST['portId'];
-$portTitulo = $_POST['portTitulo'];
-$portSlug = $_POST['portSlug'];
-$portEmpresa = $_POST['portEmpresa'];
-$portCategoria = $_POST['portCategoria'];
-$portTexto = $_POST['portTexto'];
-$portUrl = $_POST['portUrl'];
-$portStatus = $_POST['portStatus'];
-$Acao = (isset($_POST['Acao']) ? $_POST['Acao'] : "");
+$portId         = $_POST['portId'];
+$Acao           = $_POST['Acao'];
 
-$dirImagens = $caminho . '../assets/img/portfolio/'; //Diretório das imagens
-$baseDiretorio = $baseUrl . 'assets/img/portfolio/'; //Endereço completo
+$dirImagens     = $caminho . '../assets/img/portfolio/'; //Diretório das imagens
+$baseDiretorio  = $baseUrl . 'assets/img/portfolio/'; //Endereço completo
 
 if (!is_dir($dirImagens)) {
     mkdir($caminho . '../assets/img/portfolio/', 0755, true); // Cria uma pasta imagens
@@ -28,6 +22,14 @@ if (!is_dir($dirImagens)) {
 switch ($Acao) {
     case "Salvar":
         try {
+
+            $portTitulo     = $_POST['portTitulo'];
+            $portSlug       = $_POST['portSlug'];
+            $portEmpresa    = $_POST['portEmpresa'];
+            $portCategoria  = $_POST['portCategoria'];
+            $portTexto      = $_POST['portTexto'];
+            $portUrl        = $_POST['portUrl'];
+            $portStatus     = $_POST['portStatus'];
 
             $sql = $pdo->prepare("INSERT INTO portfolios VALUES (null,?,?,?,?,?,?,now(),?)");
             $sql->execute([$portTitulo, $portSlug, $portEmpresa, $portCategoria, $portTexto, $portUrl, $portStatus]);
@@ -57,11 +59,21 @@ switch ($Acao) {
             echo json_encode($data);
         } catch (Exception $e) {
             echo $e->getMessage();
+            EnviarEmail("Erro Modulo Portfólio - " + $Acao, $e->getMessage());
         }
         break;
 
     case "Atualizar":
         try {
+
+            $portTitulo     = $_POST['portTitulo'];
+            $portSlug       = $_POST['portSlug'];
+            $portEmpresa    = $_POST['portEmpresa'];
+            $portCategoria  = $_POST['portCategoria'];
+            $portTexto      = $_POST['portTexto'];
+            $portUrl        = $_POST['portUrl'];
+            $portStatus     = $_POST['portStatus'];
+
             $sql = $pdo->prepare("UPDATE portfolios SET port_nome = ?, port_slug = ?, port_empresa = ?, port_categoria = ?, port_texto = ?, port_url = ?, port_status = ? WHERE port_id = ?");
             $sql->execute([$portTitulo, $portSlug, $portEmpresa, $portCategoria, $portTexto, $portUrl, $portStatus, $portId]);
 
@@ -87,6 +99,7 @@ switch ($Acao) {
             echo "atualizado";
         } catch (Exception $e) {
             echo $e->getMessage();
+            EnviarEmail("Erro Modulo Portfólio", [$e->getMessage(), $e->getLine()]);
         }
         break;
 
@@ -112,6 +125,26 @@ switch ($Acao) {
             echo 'deletado';
         } catch (Exception $e) {
             echo $e->getMessage();
+            EnviarEmail("Erro Modulo Portfólio", [$e->getMessage(), $e->getLine()]);
         }
         break;
+
+    case "deletarImagem":
+        try {
+            $ImagemNome = $_POST['portImagemNome'];
+        
+            $dirImagens = $caminho . '../assets/img/portfolio/'; //Diretório das imagens
+        
+            unlink($dirImagens . $ImagemNome);
+        
+            $sql = $pdo->prepare("DELETE FROM portfolio_imagem WHERE img_id = :id");
+            $sql->bindParam(':id', $portId);
+            $sql->execute();
+        
+            echo 'sucesso';
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            EnviarEmail("Erro Modulo Portfólio", [$e->getMessage(), $e->getLine()]);
+        }
+    break;
 }

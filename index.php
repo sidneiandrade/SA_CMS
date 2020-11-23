@@ -77,6 +77,9 @@
     <!-- ======= About Section ======= -->
     <section id="about" class="about pb-5">
       <div class="container">
+        <div class="section-title">
+          <h2>Sobre</h2>
+        </div>
         <?php foreach ($sobre as $key => $sobValue) {
         } ?>
         <div class="row">
@@ -84,7 +87,6 @@
             <img src="<?php echo $sobValue['emp_url_imagem'] ?>" class="img-fluid rounded" alt="<?php echo $values['conf_nome'] ?>">
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0">
-            <h3>Sobre</h3>
             <p><?php echo $sobValue['emp_descricao'] ?></p>
           </div>
         </div>

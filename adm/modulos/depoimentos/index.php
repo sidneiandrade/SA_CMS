@@ -66,7 +66,7 @@ if ($ID != 0) {
                             <div class="card-header-title">Informações do Depoimento</div>
                         </div>
                         <div class="card-body collapse show" id="cardCadastrar">
-                            <form id="atualizarDepoimento" action="./system/_depoimento.php" method="post" enctype="multipart/form-data">
+                            <form id="formDepoimento" action="./system/_depoimento.php" method="post" enctype="multipart/form-data" novalidate>
 
                                 <div class="row">
                                     <div class="col-lg-6">
@@ -74,12 +74,14 @@ if ($ID != 0) {
                                         <div class="form-group">
                                             <label class="form-label" for="depNome">Nome</label>
                                             <input type="text" class="form-control" id="depNome" name="depNome" placeholder="Nome" value="<?php echo $Nome ?>" required>
+                                            <div class="invalid-feedback">Adicione um nome.</div>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label class="form-label" for="depEmpresa">Empresa</label>
                                             <input type="text" class="form-control" id="depEmpresa" name="depEmpresa" placeholder="Empresa" value="<?php echo $Empresa ?>" required>
+                                            <div class="invalid-feedback">Adicione a empresa.</div>
                                         </div>
                                     </div>
                                 </div>
@@ -87,7 +89,8 @@ if ($ID != 0) {
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                             <label class="form-label" for="depTexto">Depoimento</label>
-                                            <textarea class="form-control" rows="5" id="depTexto" name="depTexto" placeholder="Texto Depoimento"><?php echo $Texto ?></textarea>
+                                            <textarea class="form-control" rows="5" id="depTexto" name="depTexto" placeholder="Texto Depoimento" required><?php echo $Texto ?></textarea>
+                                            <div class="invalid-feedback">Adicione a mensagem.</div>
                                         </div>
                                     </div>
                                 </div>
@@ -111,7 +114,7 @@ if ($ID != 0) {
 
 <script>
 
-    let Form = '#atualizarDepoimento';
+    let Form = '#formDepoimento';
 
     Notiflix.Confirm.Init({
         titleColor: "#c63232",
@@ -119,36 +122,47 @@ if ($ID != 0) {
         backOverlayColor: "rgba(255,85,73,0.2)",
     });
 
-    $(Form).submit(function() {
-        event.preventDefault();
-        $.ajax({
-            type: "POST",
-            url: "_depoimento.php",
-            data: new FormData($(Form)[0]),
-            processData: false,
-            contentType: false,
-            success: function(data) {
-                Notiflix.Loading.Pulse('Carregando...');
-                debugger;
-                if (data.acao == 'salvo') {
-                    Notiflix.Loading.Remove();
-                    Notiflix.Notify.Success('Depoimento Salva com Sucesso!');
-                    setTimeout(function() {
-                        location.href = "?id=" + (data.id)
-                    }, 2500);
-                } else if (data == 'atualizado') {
-                    Notiflix.Loading.Remove();
-                    Notiflix.Notify.Success('Depoimento Atualizada com Sucesso!');
-                    setTimeout(function() {
-                        location.reload();
-                    }, 2500);
-                } else {
-                    Notiflix.Loading.Remove();
-                    Notiflix.Notify.Failure('Erro!');
-                }
+    window.addEventListener('load', function() {
+        var form = document.getElementById('formDepoimento');
+        if(form !== null) {
+            form.addEventListener('submit', function(event) {
+            if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+            } else {
+                event.preventDefault();
+                $.ajax({
+                    type: "POST",
+                    url: "_depoimento.php",
+                    data: new FormData($(Form)[0]),
+                    processData: false,
+                    contentType: false,
+                    success: function(data) {
+                        Notiflix.Loading.Pulse('Carregando...');
+                        debugger;
+                        if (data.acao == 'salvo') {
+                            Notiflix.Loading.Remove();
+                            Notiflix.Notify.Success('Depoimento Salva com Sucesso!');
+                            setTimeout(function() {
+                                location.href = "?id=" + (data.id)
+                            }, 2500);
+                        } else if (data == 'atualizado') {
+                            Notiflix.Loading.Remove();
+                            Notiflix.Notify.Success('Depoimento Atualizada com Sucesso!');
+                            setTimeout(function() {
+                                location.reload();
+                            }, 2500);
+                        } else {
+                            Notiflix.Loading.Remove();
+                            Notiflix.Notify.Failure('Erro!');
+                        }
+                    }
+                });
             }
-        });
-    });
+            form.classList.add('was-validated');
+            }, false);
+        }
+    }, false);
 
 
     function deletar() {
