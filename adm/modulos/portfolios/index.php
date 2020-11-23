@@ -245,6 +245,9 @@ if ($portID != 0) {
                     setTimeout(function() {
                         location.reload();
                     }, 2500);
+                } else if (data.error == 'imagemGrande'){
+                    Notiflix.Loading.Remove();
+                    Notiflix.Notify.Failure(data.mensagem);
                 } else {
                     Notiflix.Loading.Remove();
                     Notiflix.Notify.Failure('Erro!');

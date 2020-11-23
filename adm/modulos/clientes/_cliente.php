@@ -21,75 +21,81 @@ if (!is_dir($dirImagens)) {
     mkdir($dirImagens, 0755, true); // Cria uma pasta imagens
 }
 
-
-switch ($Acao){
-    case "Salvar":
-        try {
-            $Imagem = 'Cliente-' . rand() . '.png'; //Definindo um novo nome para o arquivo
-            move_uploaded_file($_FILES['arquivoImagem']['tmp_name'], $dirImagens . $Imagem); //Fazer upload do arquivo
-            $image = WideImage::load($dirImagens . $Imagem);
-            $image = $image->resize('400', null, 'fill', 'any');
-            $image->saveToFile($dirImagens . $Imagem);
-            $pathImage = $baseDiretorio . $Imagem;
+if ($_FILES['arquivoImagem']['size'] > (1024000)){
+    $data = ['error' => 'imagemGrande', 'mensagem' => 'Não é permitido enviar arquivo maior que 1MB'];
+    header('Content-type: application/json');
+    echo json_encode($data);
+} else {
     
-            $pdo->beginTransaction();
-            $sql = $pdo->prepare("INSERT INTO clientes VALUES (null,?,?,?,?)");
-            $sql->execute([$Empresa, $Imagem, $pathImage, $Status]);
-            $id = $pdo->lastInsertId();
-            $pdo->commit();
-    
-            $data = ['acao' => 'salvo', 'id' => $id];
-            header('Content-type: application/json');
-            echo json_encode($data);
-        }
-        catch (Exception $e) {
-            echo $e->getMessage();
-            EnviarEmail("Erro Modulo Clientes", [$e->getMessage(), $e->getLine()]);
-        }
-    break;
-
-    case "Atualizar":
-        try{
-            if (!empty($_FILES['arquivoImagem']['name'])) {
-
-                unlink($dirImagens . $Imagem); // deletar a imagem na pasta
-
+    switch ($Acao){
+        case "Salvar":
+            try {
                 $Imagem = 'Cliente-' . rand() . '.png'; //Definindo um novo nome para o arquivo
                 move_uploaded_file($_FILES['arquivoImagem']['tmp_name'], $dirImagens . $Imagem); //Fazer upload do arquivo
                 $image = WideImage::load($dirImagens . $Imagem);
                 $image = $image->resize('400', null, 'fill', 'any');
                 $image->saveToFile($dirImagens . $Imagem);
                 $pathImage = $baseDiretorio . $Imagem;
+        
                 $pdo->beginTransaction();
-                $sql = $pdo->prepare("UPDATE clientes SET cli_imagem = ?, cli_url_imagem = ?  WHERE cli_id = ?");
-                $sql->execute([$Imagem, $pathImage, $Id]);
+                $sql = $pdo->prepare("INSERT INTO clientes VALUES (null,?,?,?,?)");
+                $sql->execute([$Empresa, $Imagem, $pathImage, $Status]);
+                $id = $pdo->lastInsertId();
                 $pdo->commit();
+        
+                $data = ['acao' => 'salvo', 'id' => $id];
+                header('Content-type: application/json');
+                echo json_encode($data);
             }
+            catch (Exception $e) {
+                echo $e->getMessage();
+                EnviarEmail("Erro Modulo Clientes", [$e->getMessage(), $e->getLine()]);
+            }
+        break;
 
-            $pdo->beginTransaction();
-            $sql = $pdo->prepare("UPDATE clientes SET cli_empresa = ?, cli_status = ? WHERE cli_id = ?");
-            $sql->execute([$Empresa, $Status, $Id]);
-            $pdo->commit();
+        case "Atualizar":
+            try{
+                if (!empty($_FILES['arquivoImagem']['name'])) {
 
-            echo 'atualizado';
-        }
-        catch (Exception $e) {
-            echo $e->getMessage();
-            EnviarEmail("Erro Modulo Clientes", [$e->getMessage(), $e->getLine()]);
-        }
-    break;
+                    unlink($dirImagens . $Imagem); // deletar a imagem na pasta
 
-    case "Deletar":
-        try{
-            unlink($dirImagens . $Imagem);
+                    $Imagem = 'Cliente-' . rand() . '.png'; //Definindo um novo nome para o arquivo
+                    move_uploaded_file($_FILES['arquivoImagem']['tmp_name'], $dirImagens . $Imagem); //Fazer upload do arquivo
+                    $image = WideImage::load($dirImagens . $Imagem);
+                    $image = $image->resize('400', null, 'fill', 'any');
+                    $image->saveToFile($dirImagens . $Imagem);
+                    $pathImage = $baseDiretorio . $Imagem;
+                    $pdo->beginTransaction();
+                    $sql = $pdo->prepare("UPDATE clientes SET cli_imagem = ?, cli_url_imagem = ?  WHERE cli_id = ?");
+                    $sql->execute([$Imagem, $pathImage, $Id]);
+                    $pdo->commit();
+                }
 
-            $sql = $pdo->prepare("DELETE FROM clientes WHERE cli_id = ?");
-            $sql->execute([$Id]);
-            echo 'deletado';
-        }
-        catch (Exception $e) {
-            echo $e->getMessage();
-            EnviarEmail("Erro Modulo Clientes", [$e->getMessage(), $e->getLine()]);
-        }
-    break;
+                $pdo->beginTransaction();
+                $sql = $pdo->prepare("UPDATE clientes SET cli_empresa = ?, cli_status = ? WHERE cli_id = ?");
+                $sql->execute([$Empresa, $Status, $Id]);
+                $pdo->commit();
+
+                echo 'atualizado';
+            }
+            catch (Exception $e) {
+                echo $e->getMessage();
+                EnviarEmail("Erro Modulo Clientes", [$e->getMessage(), $e->getLine()]);
+            }
+        break;
+
+        case "Deletar":
+            try{
+                unlink($dirImagens . $Imagem);
+
+                $sql = $pdo->prepare("DELETE FROM clientes WHERE cli_id = ?");
+                $sql->execute([$Id]);
+                echo 'deletado';
+            }
+            catch (Exception $e) {
+                echo $e->getMessage();
+                EnviarEmail("Erro Modulo Clientes", [$e->getMessage(), $e->getLine()]);
+            }
+        break;
+    }
 }

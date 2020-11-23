@@ -1,6 +1,10 @@
 <?php 
 
-include './system/conexao.php'; 
+//include './system/conexao.php'; 
+include './system/database.class.php';
+
+$database = new Database();
+$pdo = $database->getConnection();
 
 if(!isset($_SESSION)){
   session_start();
@@ -71,26 +75,21 @@ foreach($sql as $values){}
 <script>
 
 $("#loginAdm").submit(function(e) {
-  debugger;
   e.preventDefault();
   grecaptcha.ready(function() {
     grecaptcha.execute('6LcCpN4ZAAAAACHEAvN2IxxRIB-Y_71DHMm8LDRC', {action: 'submit'}).then(function(token) {
-      //console.log(token);
       $.ajax({
         type: "POST",
         url: "./system/recaptcha.php",
         data: "token=" + token,
         success: function(data){
-          debugger;
           Notiflix.Loading.Pulse('Carregando...');
           if(data.success == true){
-            debugger;
             $.ajax({
               type: "POST",
               url: "./system/login.php",
               data: $("#loginAdm").serialize(),
               success: function(data) {
-                //Notiflix.Loading.Pulse('Carregando...');
                 debugger;
                 if (data.resultado == 'erro') {
                   Notiflix.Notify.Failure(data.msg);

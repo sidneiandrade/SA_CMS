@@ -24,66 +24,73 @@ if (!is_dir($dirImagens)) {
     mkdir($caminho . '../assets/img/paginas/', 0755, true); // Cria uma pasta imagens
 }
 
-switch ($Acao) {
-    case "Salvar":
-        try {
-            $nameImagem = $pagSlug . '-' . rand() . '.jpg'; //Definindo um novo nome para o arquivo
-            move_uploaded_file($_FILES['pagImagem']['tmp_name'], $dirImagens . $nameImagem); //Fazer upload do arquivo
-            $image = WideImage::load($dirImagens . $nameImagem);
-            $image = $image->resize('600', '300', 'fill', 'any');
-            //$image = $image->crop('center', 'center', 800, 800);
-            $image->saveToFile($dirImagens . $nameImagem);
-            $pathImage = $baseDiretorio . $nameImagem;
+if ($_FILES['pagImagem']['size'] > (1024000)){
+    $data = ['error' => 'imagemGrande', 'mensagem' => 'Não é permitido enviar arquivo maior que 1MB'];
+    header('Content-type: application/json');
+    echo json_encode($data);
+} else {
 
-            $pdo->beginTransaction();
-            $sql = $pdo->prepare("INSERT INTO paginas VALUES (null,?,?,?,?,?,now(),?)");
-            $sql->execute([$pagTitulo, $pagSlug, $pathImage, $nameImagem, $pagTexto, $pagStatus]);
-            $IDPagina = $pdo->lastInsertId();
-            $pdo->commit();
-            $data = ['acao' => 'salvo', 'id' => $IDPagina];
-            header('Content-type: application/json');
-            echo json_encode($data);
-        } catch (Exception $e) {
-            $pdo->rollBack();
-            echo $e->getMessage();
-            EnviarEmail("Erro Modulo Páginas", [$e->getMessage(), $e->getLine()]);
-        }
-        break;
-
-    case "Atualizar":
-        try {
-
-            if (!empty($_FILES['pagImagem']['name'])) {
-                $pagNomeImagem = $_POST['pagNomeImagem'];
-                move_uploaded_file($_FILES['pagImagem']['tmp_name'], $dirImagens . $pagNomeImagem); //Fazer upload do arquivo
-                $image = WideImage::load($dirImagens . $pagNomeImagem);
+    switch ($Acao) {
+        case "Salvar":
+            try {
+                $nameImagem = $pagSlug . '-' . rand() . '.jpg'; //Definindo um novo nome para o arquivo
+                move_uploaded_file($_FILES['pagImagem']['tmp_name'], $dirImagens . $nameImagem); //Fazer upload do arquivo
+                $image = WideImage::load($dirImagens . $nameImagem);
                 $image = $image->resize('600', '300', 'fill', 'any');
-                $image->saveToFile($dirImagens . $pagNomeImagem);
+                //$image = $image->crop('center', 'center', 800, 800);
+                $image->saveToFile($dirImagens . $nameImagem);
+                $pathImage = $baseDiretorio . $nameImagem;
+
+                $pdo->beginTransaction();
+                $sql = $pdo->prepare("INSERT INTO paginas VALUES (null,?,?,?,?,?,now(),?)");
+                $sql->execute([$pagTitulo, $pagSlug, $pathImage, $nameImagem, $pagTexto, $pagStatus]);
+                $IDPagina = $pdo->lastInsertId();
+                $pdo->commit();
+                $data = ['acao' => 'salvo', 'id' => $IDPagina];
+                header('Content-type: application/json');
+                echo json_encode($data);
+            } catch (Exception $e) {
+                $pdo->rollBack();
+                echo $e->getMessage();
+                EnviarEmail("Erro Modulo Páginas", [$e->getMessage(), $e->getLine()]);
             }
+            break;
 
-            $pdo->beginTransaction();
-            $sql = $pdo->prepare("UPDATE paginas SET pag_titulo = ?, pag_slug = ?, pag_texto = ?, pag_status = ? WHERE pag_id = ?");
-            $sql->execute([$pagTitulo, $pagSlug, $pagTexto, $pagStatus, $pagId]);
-            $pdo->commit();
+        case "Atualizar":
+            try {
 
-            echo 'atualizado';
-        } catch (Exception $e) {
-            $pdo->rollBack();
-            echo $e->getMessage();
-            EnviarEmail("Erro Modulo Páginas", [$e->getMessage(), $e->getLine()]);
-        }
-        break;
+                if (!empty($_FILES['pagImagem']['name'])) {
+                    $pagNomeImagem = $_POST['pagNomeImagem'];
+                    move_uploaded_file($_FILES['pagImagem']['tmp_name'], $dirImagens . $pagNomeImagem); //Fazer upload do arquivo
+                    $image = WideImage::load($dirImagens . $pagNomeImagem);
+                    $image = $image->resize('600', '300', 'fill', 'any');
+                    $image->saveToFile($dirImagens . $pagNomeImagem);
+                }
 
-    case "Deletar":
-        try {
-            unlink($dirImagens . $pagNomeImagem);
+                $pdo->beginTransaction();
+                $sql = $pdo->prepare("UPDATE paginas SET pag_titulo = ?, pag_slug = ?, pag_texto = ?, pag_status = ? WHERE pag_id = ?");
+                $sql->execute([$pagTitulo, $pagSlug, $pagTexto, $pagStatus, $pagId]);
+                $pdo->commit();
 
-            $sql = $pdo->prepare("DELETE FROM paginas WHERE pag_id = ?");
-            $sql->execute([$pagId]);
-            echo 'deletado';
-        } catch (Exception $e) {
-            echo $e->getMessage();
-            EnviarEmail("Erro Modulo Páginas", [$e->getMessage(), $e->getLine()]);
-        }
-        break;
+                echo 'atualizado';
+            } catch (Exception $e) {
+                $pdo->rollBack();
+                echo $e->getMessage();
+                EnviarEmail("Erro Modulo Páginas", [$e->getMessage(), $e->getLine()]);
+            }
+            break;
+
+        case "Deletar":
+            try {
+                unlink($dirImagens . $pagNomeImagem);
+
+                $sql = $pdo->prepare("DELETE FROM paginas WHERE pag_id = ?");
+                $sql->execute([$pagId]);
+                echo 'deletado';
+            } catch (Exception $e) {
+                echo $e->getMessage();
+                EnviarEmail("Erro Modulo Páginas", [$e->getMessage(), $e->getLine()]);
+            }
+            break;
+    }
 }

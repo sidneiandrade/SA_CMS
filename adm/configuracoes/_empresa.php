@@ -7,7 +7,7 @@ $caminho = $_SESSION['caminho'];
 
 include $caminho . 'system/conexao.php';
 require $caminho . 'system/lib/WideImage.php';
-include $caminho . 'configuracoes/_email.php';
+include $caminho . '_email.php';
 
 $empDescricao   = $_POST['empDescricao'];
 $Imagem         = $_POST['nomeImagem'];

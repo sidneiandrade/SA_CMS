@@ -73,7 +73,7 @@ foreach ($infoSite as $value) {
                             
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="usuario?id=<?php echo $id ?>">Editar Perfil</a>
+                            <a class="dropdown-item" href="<?php echo $baseUrl ?>adm/modulos/usuarios/?id=<?php echo $id ?>">Editar Perfil</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item text-danger" href="<?php echo $baseUrl ?>adm/system/logout?acao=sair">Sair</a>
                         </div>

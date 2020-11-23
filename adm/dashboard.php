@@ -42,7 +42,7 @@ include 'header.php';
 
         <div class="col-lg-2 col-sm-4 text-center mb-3">
           <div class="card">
-            <a href="listarUsuarios" style="cursor: pointer; text-decoration: none; color: #212529;">
+            <a href="./modulos/usuarios/listarUsuarios" style="cursor: pointer; text-decoration: none; color: #212529;">
               <div class="card-body collapse show" id="card1">
                 <i data-feather="user" style="width: 40px; height: 40px"></i>
                 <br>

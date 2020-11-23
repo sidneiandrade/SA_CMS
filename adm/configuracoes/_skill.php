@@ -6,6 +6,7 @@ if(!isset($_SESSION)){
 $caminho = $_SESSION['caminho'];
 
 include $caminho . 'system/conexao.php';
+include $caminho . '_email.php';
 
 $ID      = $_POST['ID'];
 $Titulo  = $_POST['skTitulo'];
@@ -27,6 +28,7 @@ switch ($Acao) {
         } catch (Exception $e) {
             $pdo->rollBack();
             echo $e->getMessage();
+            EnviarEmail("Erro Modulo Skill", [$e->getMessage(), $e->getLine()]);
         }
         break;
 
@@ -40,12 +42,22 @@ switch ($Acao) {
         } catch (Exception $e) {
             $pdo->rollBack();
             echo $e->getMessage();
+            EnviarEmail("Erro Modulo Skill", [$e->getMessage(), $e->getLine()]);
         }
         break;
 
     case "Deletar":
-        $sql = $pdo->prepare("DELETE FROM skills WHERE sk_id = ?");
-        $sql->execute([$ID]);
-        echo 'deletado';
+        try{
+            $pdo->beginTransaction();
+            $sql = $pdo->prepare("DELETE FROM skills WHERE sk_id = ?");
+            $sql->execute([$ID]);
+            $pdo->commit();
+            echo 'deletado';
+        } catch(Exception $e){
+            $pdo->rollBack();
+            echo $e->getMessage();
+            EnviarEmail("Erro Modulo Skill", [$e->getMessage(), $e->getLine()]);
+        }
+        
         break;
 }
