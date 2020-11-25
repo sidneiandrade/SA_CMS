@@ -151,6 +151,14 @@ if ($pagID != 0) {
 
     $(Form).submit(function() {
         event.preventDefault();
+
+        if($("#pagImagem")[0].files.length > 0){
+            var imagem = $("#pagImagem")[0].files[0].size;
+            if(imagem > 1024000) {
+                Notiflix.Notify.Warning('Não é permitido enviar arquivo maior que 1MB');
+                return false
+            }
+        }
         
         $('#pagSlug').val(getSlug($('#pagTitulo').val()));
         

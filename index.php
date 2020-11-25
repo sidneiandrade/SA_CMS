@@ -500,30 +500,29 @@
           <div class="col-lg-10">
             <form id="formContato" method="post" class="php-email-form" enctype="multipart/form-data">
               <div class="form-row">
-                <div class="col-md-6 form-group">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Nome" data-rule="minlen:4" data-msg="Por favor adicione o nome" />
+                <div class="col-md-4 form-group">
+                  <input type="text" class="form-control" name="nome" id="nome" placeholder="Nome" data-rule="minlen:4" data-msg="Por favor adicione o nome" />
                   <div class="validate"></div>
                 </div>
-                <div class="col-md-6 form-group">
+                <div class="col-md-4 form-group">
                   <input type="email" class="form-control" name="email" id="email" placeholder="E-mail" data-rule="email" data-msg="Por favor adicione um e-mail válido" />
                   <div class="validate"></div>
                 </div>
+                <div class="col-md-4 form-group">
+                  <input type="text" class="form-control" name="telefone" id="telefone" placeholder="Telefone" data-rule="minlen:14" data-msg="Por favor coloque um telefone" />
+                  <div class="validate"></div>
+                </div>
+                <div class="col-md-12 form-group">
+                  <input type="text" class="form-control" name="assunto" id="assunto" placeholder="Assunto" data-rule="minlen:4" data-msg="Por favor coloque um assunto" />
+                  <div class="validate"></div>
+                </div>
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Assunto" data-rule="minlen:4" data-msg="Por favor coloque um assunto" />
+                <textarea class="form-control" id="mensagem" name="mensagem" rows="5" data-rule="required" data-msg="Por favor coloque uma mensagem" placeholder="Mensagem"></textarea>
                 <div class="validate"></div>
               </div>
-              <div class="form-group">
-                <textarea class="form-control" id="message" name="message" rows="5" data-rule="required" data-msg="Por favor coloque uma mensagem" placeholder="Mensagem"></textarea>
-                <div class="validate"></div>
-              </div>
-              <!-- <div class="mb-3">
-                <div class="loading">Carregando...</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Sua mensagem foi enviada com sucesso. Entraremos em contato!</div>
-              </div> -->
               <div class="text-center">
-                <input type="submit" class="btn btn-pill btn-primary" value="Enviar Mensagem" />
+                <button type="submit">Enviar Mensagem</button>
               </div>
             </form>
           </div>
@@ -541,24 +540,44 @@
     //adicionar a class active no primeiro slide
     $('#slide_0').addClass("active");
 
-    $('#formContato').submit(function(){
-      $nome = $("#name").val();
+    let Form = '#formContato';
+
+    $(Form).submit(function(){
+      Notiflix.Loading.Pulse('Carregando...');
+      $nome = $("#nome").val();
       $email = $("#email").val();
-      $assunto = $("#subject").val();
-      $mensagem = $("#message").val();
-      if($nome != "" && $email != "" && $assunto != "" && $mensagem != ""){
+      $telefone = $("#telefone").val();
+      $assunto = $("#assunto").val();
+      $mensagem = $("#mensagem").val();
+      if($nome != "" && $email != "" && $assunto != "" && $telefone != "" && $mensagem != ""){
         debugger;
         $.ajax({
           type: "POST",
           url: "forms/contact.php",
-          data: new FormData($('#formContato')[0]),
+          data: new FormData($(Form)[0]),
           processData: false,
           contentType: false,
           success: function(data) {
             debugger;
+                if (data.result == 'salvo') {
+                    Notiflix.Loading.Remove();
+                    Notiflix.Report.Success( 
+                      'Enviado!', 
+                      data.mensagem, 
+                      'OK' ); 
+                    //Notiflix.Notify.Success(data.mensagem);
+                    setTimeout(function(){
+                      location.reload()
+                    }, 3000);
+                } else {
+                    Notiflix.Loading.Remove();
+                    Notiflix.Notify.Failure(data.mensagem);
+                }
           }
         });
       } else {
+        Notiflix.Loading.Remove();
+        Notiflix.Notify.Failure('Favor preencher todos os dados!');
         return false;
       }
       

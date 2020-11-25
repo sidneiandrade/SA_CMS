@@ -35,6 +35,7 @@ $listModulos = $modulos->fetchAll(PDO::FETCH_ASSOC);
   <link href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" rel="stylesheet" type="text/css" />
   <link href="./assets/vendor/venobox/venobox.css" rel="stylesheet">
   <link href="./assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="./adm/dist/notiflix/notiflix-2.4.0.min.css" rel="stylesheet" type="text/css" />
 
   <!-- Template Main CSS File -->
   <link href="./assets/css/style.php" rel="stylesheet">

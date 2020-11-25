@@ -9,11 +9,15 @@ $not = $pdo->prepare("SELECT * FROM noticias WHERE not_slug = ?");
 $not->execute([$slug]);
 $noticia = $not->fetchAll(PDO::FETCH_ASSOC);
 
+if(count($noticia) == 0){
+  header('Location: '. $baseUrl .'error/');
+}
+
 
 ?>
 
   <main id="main">
-  <?php foreach($noticia as $keys => $valueNot){ ?>
+  <?php foreach($noticia as $valueNot){ ?>
     <!-- ======= Blog Section ======= -->
     <section class="breadcrumbs">
       <div class="container">
@@ -128,11 +132,11 @@ $noticia = $not->fetchAll(PDO::FETCH_ASSOC);
 
               <h3 class="sidebar-title">Notícias Recentes</h3>
               <div class="sidebar-item recent-posts">
-              <?php foreach($noticias as $keys => $valueNot){ ?>
+              <?php foreach($noticias as $valueRecentes){ ?>
                 <div class="post-item clearfix">
-                  <img src="<?php echo $valueNot['not_imagem'] ?>" alt="<?php echo $valueNot['not_titulo'] ?>">
-                  <h4><a href="noticias-single?post=<?php echo $valueNot['not_slug'] ?>"><?php echo $valueNot['not_titulo'] ?></a></h4>
-                  <time datetime="<?php echo $dataPost = date("d/m/Y", strtotime($valueNot['not_data'])) ?>"><?php echo $dataPost = date("d/m/Y", strtotime($valueNot['not_data'])) ?></time>
+                  <img src="<?php echo $valueRecentes['not_imagem'] ?>" alt="<?php echo $valueRecentes['not_titulo'] ?>">
+                  <h4><a href="noticias-single?post=<?php echo $valueRecentes['not_slug'] ?>"><?php echo $valueRecentes['not_titulo'] ?></a></h4>
+                  <time datetime="<?php echo $dataPost = date("d/m/Y", strtotime($valueRecentes['not_data'])) ?>"><?php echo $dataPost = date("d/m/Y", strtotime($valueRecentes['not_data'])) ?></time>
                 </div>
               <?php } ?>
               </div><!-- End sidebar recent posts-->

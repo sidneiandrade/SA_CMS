@@ -9,7 +9,7 @@ $listSlide = $slide->fetchAll(PDO::FETCH_ASSOC);
 $i = 0; 
 
 #Destaque Empresa
-$destaque = $pdo->query("SELECT * FROM destaque")->fetchAll(PDO::FETCH_ASSOC);
+$destaque = $pdo->query("SELECT * FROM destaque WHERE des_status = 1")->fetchAll(PDO::FETCH_ASSOC);
 
 #Skills
 $Skill = $pdo->query("SELECT * FROM skills WHERE sk_status = 1")->fetchAll(PDO::FETCH_ASSOC);
@@ -18,7 +18,7 @@ $Skill = $pdo->query("SELECT * FROM skills WHERE sk_status = 1")->fetchAll(PDO::
 $sobre = $pdo->query("SELECT * FROM empresa")->fetchAll(PDO::FETCH_ASSOC);
 
 #Numeros
-$numeros = $pdo->query("SELECT * FROM numeros")->fetchAll(PDO::FETCH_ASSOC);
+$numeros = $pdo->query("SELECT * FROM numeros WHERE num_status = 1")->fetchAll(PDO::FETCH_ASSOC);
 
 #Serviços
 $servicos = $pdo->query("SELECT * FROM servicos")->fetchAll(PDO::FETCH_ASSOC);
@@ -55,7 +55,7 @@ $cta->execute([1]);
 $dadosCta = $cta->fetchAll(PDO::FETCH_ASSOC);
 
 #Valores
-$valores = $pdo->query("SELECT * FROM valores")->fetchAll(PDO::FETCH_ASSOC);
+$valores = $pdo->query("SELECT * FROM valores WHERE val_status = 1")->fetchAll(PDO::FETCH_ASSOC);
 
 #Perguntas
 $perguntas = $pdo->prepare("SELECT * FROM perguntas WHERE pg_status = ? ORDER BY pg_id DESC");

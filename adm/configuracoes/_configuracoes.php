@@ -67,6 +67,7 @@ if (!empty($_POST)) {
     $confFacebook       = $_POST['confFacebook'];
     $confYoutube        = $_POST['confYoutube'];
     $confLinkedin       = $_POST['confLinkedin'];
+    $confCNPJ           = $_POST['confCNPJ'];
 
     $sql = $pdo->prepare("UPDATE configuracoes SET 
             conf_nome = ?,
@@ -80,7 +81,8 @@ if (!empty($_POST)) {
             conf_instagram = ?,
             conf_facebook = ?,
             conf_youtube = ?,
-            conf_linkedin = ?
+            conf_linkedin = ?,
+            conf_cnpj = ?
             WHERE conf_id = ?");
     $sql->execute([
         $confNome,
@@ -95,6 +97,7 @@ if (!empty($_POST)) {
         $confFacebook,
         $confYoutube,
         $confLinkedin,
+        $confCNPJ,
         $id
     ]);
 

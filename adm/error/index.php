@@ -9,7 +9,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) { //Verificar se a sessão não já
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
-    <title>Administração - Sessão Expirou</title>
+    <title>404 - Página não encontrada</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 

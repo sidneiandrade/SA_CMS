@@ -12275,7 +12275,7 @@ span.flatpickr-weekday {
     }
     .adminx-sidebar .sidebar-nav {
         overflow: auto;
-        max-height: 100vh;
+        max-height: 100%;
         padding-top: .5rem
     }
     .adminx-sidebar.in {

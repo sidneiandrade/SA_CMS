@@ -2,28 +2,31 @@
 
   include '../adm/system/conexao.php';
 
-  $sql = $pdo->query("SELECT * FROM configuracoes");
-  $dados = $sql->fetchAll(PDO::FETCH_ASSOC);
-  $emailContato = $dados[0]['conf_email'];
+  // $sql = $pdo->query("SELECT * FROM configuracoes");
+  // $dados = $sql->fetchAll(PDO::FETCH_ASSOC);
+  // $emailContato = $dados[0]['conf_email'];
 
-  // emails para quem será enviado o formulário
-  $emailSystem = $emailContato;
-  $nome = $_POST['name'];
+  $nome = $_POST['nome'];
   $email = $_POST['email'];
-  $assunto = $_POST['subject'];
-  $messagem = $_POST['message'];
+  $telefone = $_POST['telefone'];
+  $assunto = $_POST['assunto'];
+  $mensagem = $_POST['mensagem'];
 
-  // É necessário indicar que o formato do e-mail é html
-  $headers  = 'MIME-Version: 1.0' . "\r\n";
-  $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-  $headers .= 'From: $nome <$email>';
-  //$headers .= "Bcc: $EmailPadrao\r\n";
+  try{
+    
+    $pdo->beginTransaction();
+    $sql = $pdo->prepare("INSERT INTO contatos VALUES (null,?,?,?,?,?,0,null,now())");
+    $sql->execute([$nome, $email, $telefone, $assunto, $mensagem]);
+    $pdo->commit();
+    $data = ['result' => 'salvo', 'mensagem' => 'Mensagem Enviada com Sucesso!'];
+    header('Content-type: application/json');
+    echo json_encode($data);
 
-  $enviaremail = mail($emailSystem, $assunto, $messagem, $headers);
-  if($enviaremail){
-      echo "Sucesso";
-  } else {
-      echo "Erro";
-  }
+} catch(Exception $e){
+    $pdo->rollBack();
+    $data = ['result' => 'erro' ,'mensagem' => 'Erro'];
+    header('Content-type: application/json');
+    echo json_encode($data);
+}
 
 ?>

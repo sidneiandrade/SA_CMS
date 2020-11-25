@@ -8,6 +8,11 @@ $slug = $_GET['port'];
 $dados = $pdo->prepare("SELECT * FROM portfolios WHERE port_slug = ?");
 $dados->execute([$slug]);
 $listPort = $dados->fetchAll(PDO::FETCH_ASSOC);
+
+if(count($listPort) == 0){
+  header('Location: '. $baseUrl .'error/');
+}
+
 foreach($listPort as $keys => $vPort){
   $id = $vPort['port_id'];
   $nome = $vPort['port_nome'];
@@ -15,7 +20,6 @@ foreach($listPort as $keys => $vPort){
   $texto = $vPort['port_texto'];
   $url = $vPort['port_url'];
   $categoria = $vPort['port_categoria'];
-  
 }
 
 

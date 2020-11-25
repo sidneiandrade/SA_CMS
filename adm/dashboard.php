@@ -40,6 +40,22 @@ include 'header.php';
         </div>
       <?php } ?>
 
+      <?php 
+        $contato = $pdo->query("SELECT * FROM contatos WHERE cont_visualizado = 0")->fetchAll(PDO::FETCH_ASSOC);
+        $quantidade = count($contato);
+      ?>
+      <div class="col-lg-2 col-sm-4 text-center mb-3">
+          <div class="card">
+            <a href="./contato" style="cursor: pointer; text-decoration: none; color: #212529;">
+              <div class="card-body collapse show" id="card1">
+                <i data-feather="message-square" style="width: 40px; height: 40px"></i>
+                <br>
+                <small>Mensagens</small> <?= $quantidade == 0 ? '' : '<span class="badge badge-danger">'. $quantidade .'</span>' ?>
+              </div>
+            </a>
+          </div>
+        </div>
+
         <div class="col-lg-2 col-sm-4 text-center mb-3">
           <div class="card">
             <a href="./modulos/usuarios/listarUsuarios" style="cursor: pointer; text-decoration: none; color: #212529;">

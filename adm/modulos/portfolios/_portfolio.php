@@ -16,7 +16,7 @@ $dirImagens     = $caminho . '../assets/img/portfolio/'; //Diretório das imagen
 $baseDiretorio  = $baseUrl . 'assets/img/portfolio/'; //Endereço completo
 
 if (!is_dir($dirImagens)) {
-    mkdir($caminho . '../assets/img/portfolio/', 0755, true); // Cria uma pasta imagens
+    mkdir($dirImagens, 0755, true); // Cria uma pasta imagens
 }
 
 switch ($Acao) {
@@ -47,7 +47,7 @@ switch ($Acao) {
                     $image = WideImage::load($dirImagens . $nameImagem);
                     $image = $image->resize(null, '400', 'inside', 'any');
                     $image = $image->crop('center', 'center', '100%', 400);
-                    $image->saveToFile($dirImagens . $nameImagem);
+                    $image->saveToFile($dirImagens . $nameImagem, 60);
                     $pathImage = $baseDiretorio . $nameImagem;
 
                     $sqlImagem = $pdo->prepare("INSERT INTO portfolio_imagem VALUES (null,?,?,?)");
@@ -88,7 +88,7 @@ switch ($Acao) {
                     $image = WideImage::load($dirImagens . $nameImagem);
                     $image = $image->resize(null, '400', 'inside', 'any');
                     $image = $image->crop('center', 'center', '100%', 400);
-                    $image->saveToFile($dirImagens . $nameImagem);
+                    $image->saveToFile($dirImagens . $nameImagem, 60);
                     $pathImage = $baseDiretorio . $nameImagem;
 
                     $sqlImagem = $pdo->prepare("INSERT INTO portfolio_imagem VALUES (null,?,?,?)");
@@ -132,8 +132,6 @@ switch ($Acao) {
     case "deletarImagem":
         try {
             $ImagemNome = $_POST['portImagemNome'];
-        
-            $dirImagens = $caminho . '../assets/img/portfolio/'; //Diretório das imagens
         
             unlink($dirImagens . $ImagemNome);
         

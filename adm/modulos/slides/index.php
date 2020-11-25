@@ -81,7 +81,7 @@ if ($ID != 0) {
                                             <img src="<?php echo $UrlImagem ?>" class="img-fluid rounded mx-auto d-block mb-2" alt="<?php echo $Titulo ?>">
                                         <?php } ?>
                                         <label class="form-label" for="arquivoImagem">Enviar Imagem <i class="fas fa-question-circle" data-toggle="tooltip" data-placement="top" title="Tamanho Padrão 1500x600 pixels"></i></label>
-                                        <input type="file" class="form-control" name="arquivoImagem">
+                                        <input type="file" class="form-control" id="arquivoImagem" name="arquivoImagem">
                                     </div>
                                 </div>
                             </div>
@@ -155,6 +155,15 @@ if ($ID != 0) {
 
     $(Form).submit(function() {
         event.preventDefault();
+
+        if($("#arquivoImagem")[0].files.length > 0){
+            var imagem = $("#arquivoImagem")[0].files[0].size;
+            if(imagem > 1024000) {
+                Notiflix.Notify.Warning('Não é permitido enviar arquivo maior que 1MB');
+                return false
+            }
+        }
+        
         debugger;
         $.ajax({
             type: "POST",

@@ -46,7 +46,25 @@
       </a>
     </li>
 
-    <?php } ?>
+    <?php } 
+
+        $contato = $pdo->query("SELECT * FROM contatos WHERE cont_visualizado = 0")->fetchAll(PDO::FETCH_ASSOC);
+        $quantidade = count($contato);
+      
+    ?>
+    <li class="sidebar-nav-item">
+      <a href="<?php echo $value['conf_link'] ?>adm/contato/" class="sidebar-nav-link">
+        <span class="sidebar-nav-icon">
+          <i data-feather="message-square"></i>
+        </span>
+        <span class="sidebar-nav-name">
+          Mensagens 
+        </span>
+        <span class="sidebar-nav-end">
+          <?= $quantidade == 0 ? '' : '<span class="badge badge-danger">'. $quantidade .'</span>' ?>
+        </span>
+      </a>
+    </li>
 
     <li class="sidebar-nav-item">
       <a href="<?php echo $value['conf_link'] ?>adm/modulos/usuarios/listarUsuarios" class="sidebar-nav-link">

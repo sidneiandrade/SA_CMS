@@ -88,11 +88,17 @@ $listarConfiguracoes = $sql->fetchAll(PDO::FETCH_ASSOC);
                                         </div>
                                         <div class="col-lg-3">
                                             <div class="form-group">
+                                                <label class="form-label" for="confCNPJ">CNPJ</label>
+                                                <input type="text" class="form-control" id="confCNPJ" name="confCNPJ" data-mask="00.000.000/0000-00" value="<?php echo $value['conf_cnpj'] ?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div class="form-group">
                                                 <label class="form-label" for="confLink">Link</label>
                                                 <input type="text" class="form-control" name="confLink" value="<?php echo $value['conf_link'] ?>">
                                             </div>
                                         </div>
-                                        <div class="col-lg-9">
+                                        <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label class="form-label" for="confEndereco">Endereço</label>
                                                 <input type="text" class="form-control" name="confEndereco" value="<?php echo $value['conf_endereco'] ?>">

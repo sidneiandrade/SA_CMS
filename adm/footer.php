@@ -23,6 +23,7 @@
 <script src="<?php echo $baseUrl ?>adm/dist/summernote/summernote-bs4.js"></script>
 <script src="<?php echo $baseUrl ?>adm/dist/summernote/lang/summernote-pt-BR.min.js"></script>
 <script src="<?php echo $baseUrl ?>adm/dist/dropzone/dropzone.min.js"></script>
+<script src="<?php echo $baseUrl ?>assets/vendor/jqueryMask/jquery.mask.min.js"></script>
 
 </body>
 
@@ -30,9 +31,7 @@
 
 <script>
     
-    
     Notiflix.Loading.Pulse('Carregando...');
-    
 
     $(window).on("load", function() {   
         Notiflix.Loading.Remove();

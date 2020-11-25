@@ -69,7 +69,6 @@ foreach ($infoSite as $value) {
                     <li class="nav-item dropdown">
                         <a class="nav-link avatar-with-name" id="navbarDropdownMenuLink" data-toggle="dropdown" href="#">
                             <i class="far fa-user-circle" style="font-size: 25px; padding: 0 30px; color: #212529"></i>
-                            <!-- <i data-feather="more-vertical"></i> -->
                             
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
