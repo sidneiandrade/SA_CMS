@@ -1,4 +1,13 @@
 <?php
+
+//
+//TODO
+//
+// []colocar as informações do site como nome, email e imagem
+// []adicionar a mensagem enviada pelo cliente no corpo da resposta
+// []melhorar template de e-mail
+//
+
 if(!isset($_SESSION)){
     session_start();
 }
@@ -26,7 +35,15 @@ try{
     $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
     $headers .= 'From: ' . $nome . ' <'. $email .'>';
 
-    $enviaremail = mail($EmailCliente, $Assunto, $Resposta, $headers);
+    $Mensagem = "<div style='background: #e1e1e1'>
+                    <div style='background: #fff; margin: 0 auto; width: 700px; padding: 20px; height: 100%; text-align: center;'>
+                        <img src='https://sadigital.com.br/cms/assets/img/logo-987000012.png' alt='Jumper' width='200' /><br>
+                        <h1>Contato do Site</h1> 
+                        <br>$Resposta
+                    </div>
+                </div>";
+
+    $enviaremail = mail($EmailCliente, $Assunto, $Mensagem, $headers);
     
     if($enviaremail){
 
@@ -47,6 +64,7 @@ try{
     header('Content-type: application/json');
     echo json_encode($data);
 }
+
 
 
 

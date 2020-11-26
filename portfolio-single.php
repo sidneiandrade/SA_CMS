@@ -10,7 +10,7 @@ $dados->execute([$slug]);
 $listPort = $dados->fetchAll(PDO::FETCH_ASSOC);
 
 if(count($listPort) == 0){
-  header('Location: '. $baseUrl .'error/');
+  header('Location: '. $baseUrl .'erro/');
 }
 
 foreach($listPort as $keys => $vPort){

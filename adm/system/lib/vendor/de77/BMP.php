@@ -224,7 +224,7 @@ class WideImage_vendor_de77_BMP
 			case 32 :	$a = ord($str[0]);
 						$b = ord($str[1]);
 						$c = ord($str[2]);
-						$d = 256 - ord($str[3]); //TODO: gives imperfect results
+						$d = 256 - ord($str[3]); // gives imperfect results
 						$pixel = $d*256*256*256 + $c*256*256 + $b*256 + $a;
 						imagesetpixel($img, $x, $y, $pixel);
 						break;

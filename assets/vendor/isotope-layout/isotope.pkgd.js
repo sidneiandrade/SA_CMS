@@ -1075,7 +1075,7 @@ proto.transition = function( args ) {
     this.css( args.from );
     // force redraw. http://blog.alexmaccaw.com/css-transitions
     var h = this.element.offsetHeight;
-    // hack for JSHint to hush about unused var
+    //  for JSHint to hush about unused var
     h = null;
   }
   // enable transition
@@ -1098,14 +1098,14 @@ function toDashedAll( str ) {
 var transitionProps = 'opacity,' + toDashedAll( transformProperty );
 
 proto.enableTransition = function(/* style */) {
-  // HACK changing transitionProperty during a transition
+  //  changing transitionProperty during a transition
   // will cause transition to jump
   if ( this.isTransitioning ) {
     return;
   }
 
   // make `transition: foo, bar, baz` from style object
-  // HACK un-comment this when enableTransition can work
+  //  un-comment this when enableTransition can work
   // while a transition is happening
   // var transitionValues = [];
   // for ( var prop in style ) {
@@ -3074,7 +3074,7 @@ var trim = String.prototype.trim ?
   proto._initLayoutMode = function( name ) {
     var Mode = LayoutMode.modes[ name ];
     // set mode options
-    // HACK extend initial options, back-fill in default options
+    //  extend initial options, back-fill in default options
     var initialOpts = this.options[ name ] || {};
     this.options[ name ] = Mode.options ?
       utils.extend( Mode.options, initialOpts ) : initialOpts;
@@ -3135,7 +3135,7 @@ var trim = String.prototype.trim ?
     this.hide( filtered.needHide );
   };
 
-  // HACK
+  // 
   // Don't animate/transition first layout
   // Or don't animate/transition other layouts
   proto._getIsInstant = function() {
@@ -3393,10 +3393,10 @@ var trim = String.prototype.trim ?
     var layoutMode = this.options.layoutMode;
     var mode = this.modes[ layoutMode ];
     if ( !mode ) {
-      // TODO console.error
+      //  console.error
       throw new Error( 'No layout mode: ' + layoutMode );
     }
-    // HACK sync mode's options
+    //  sync mode's options
     // any options set after init for layout mode need to be synced
     mode.options = this.options[ layoutMode ];
     return mode;
@@ -3525,7 +3525,7 @@ var trim = String.prototype.trim ?
 
   /**
    * trigger fn without transition
-   * kind of hacky to have this in the first place
+   * kind of y to have this in the first place
    * @param {Function} fn
    * @param {Array} args
    * @returns ret

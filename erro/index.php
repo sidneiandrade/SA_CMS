@@ -1,11 +1,3 @@
-<?php 
-  include '../adm/system/conexao.php';
-
-if (session_status() !== PHP_SESSION_ACTIVE) { //Verificar se a sessão não já está aberta.
-  session_start(); /*Inicia a Seção*/
-} 
-?>
-
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
@@ -13,7 +5,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) { //Verificar se a sessão não já
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" type="text/css" href="<?php echo $baseUrl ?>adm/dist/css/adminx.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="../adm/dist/css/adminx.css" media="screen" />
   </head>
   <body>
     <div class="adminx-container d-flex justify-content-center align-items-center">
@@ -23,19 +15,10 @@ if (session_status() !== PHP_SESSION_ACTIVE) { //Verificar se a sessão não já
         </div>
         <br>
         <h2>Página não encontrada!</h2>
-
-        <?php if (!isset($_SESSION['usuario'])) { ?>
           <p class="text-muted mb-5">
             Retorne para o site.
           </p>
-          <a href="<?php echo $baseUrl ?>" class="btn btn-primary"> <i data-feather="check-circle"></i> Voltar para o site.</a>
-        <?php } else { ?>
-          <p class="text-muted mb-5">
-            Retorne para o painel de controle.
-          </p>
-          <a href="<?php echo $baseUrl ?>adm/dashboard" class="btn btn-primary"> <i data-feather="check-circle"></i> Voltar para o painel.</a>
-        <?php } ?>
-
+          <a href="../" class="btn btn-primary"> <i data-feather="check-circle"></i> Voltar para o site.</a>
       </div>
     </div>
 

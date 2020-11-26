@@ -10,7 +10,7 @@ $not->execute([$slug]);
 $noticia = $not->fetchAll(PDO::FETCH_ASSOC);
 
 if(count($noticia) == 0){
-  header('Location: '. $baseUrl .'error/');
+  header('Location: '. $baseUrl .'erro/');
 }
 
 

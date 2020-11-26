@@ -48,6 +48,7 @@ foreach ($infoSite as $value) {
 
     <body>
 
+    <input type="hidden" id="time" name="time" value="<?php echo date("F j, Y, H:i:s", strtotime('+15 minutes')) ?>" >
 
         <div class="adminx-container">
             <nav class="navbar navbar-expand justify-content-between fixed-top">

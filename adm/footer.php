@@ -1,10 +1,14 @@
 <nav class="navbar fixed-bottom navbar-dark bg-dark">
-    <div class="col-lg-12 text-right">
+    <div class="offset-lg-1 col-lg-2 white">
+        <div id="demo" style="color: #fff"></div>
+    </div>
+    <div class="col-lg-6 text-right">
         <a class="navbar-brand" href="https://sadigital.com.br" target="_blank" style="font-size: 8px">
             <img src="<?php echo $baseUrl ?>assets/img/logo-jumper-cms.svg" class="img-fluid" alt="JUMPER CMS" width="20%"> V1.0
             <br>Desenvolvido por SA Digital
         </a>
     </div>
+    
   
 </nav>
 
@@ -62,4 +66,36 @@
             ['view', ['fullscreen']]
         ]
     });
+
+
+    var time = $('#time').val();
+    // Set the date we're counting down to
+    var countDownDate = new Date(time).getTime();
+
+    // Update the count down every 1 second
+    var x = setInterval(function() {
+
+    // Get today's date and time
+    var now = new Date().getTime();
+
+    // Find the distance between now and the count down date
+    var distance = countDownDate - now;
+
+    // Time calculations for days, hours, minutes and seconds
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    var text = "Sua sessão expira em  "
+
+    // Display the result in the element with id="demo"
+    document.getElementById("demo").innerHTML =  text + minutes + "m " + seconds + "s ";
+
+    // If the count down is finished, write some text
+    if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("demo").innerHTML = "Expirado";
+        //window.location.reload();
+    }
+    }, 1000);
 </script>

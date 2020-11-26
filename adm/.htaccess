@@ -1,7 +1,7 @@
 RewriteEngine on
 RewriteCond %{SERVER_PORT} 80
 
-ErrorDocument 404 /erro/index.php
+ErrorDocument 404 /adm/error/index.php
 
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.php -f
