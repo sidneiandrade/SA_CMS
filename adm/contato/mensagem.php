@@ -49,10 +49,11 @@ $visualizado = $pdo->query("UPDATE contatos SET cont_visualizado = 1 WHERE cont_
                                 <div class="card-header-title">Informações do Contato</div>
                             </div>
                             <div class="card-body collapse show" id="cardCadastrar">
-                                <input type="hidden" id="id" name="id" value="<?php echo $ID ?>">
-                                <input type="hidden" id="nome" name="nome"  value="<?php echo $Nome ?>">
-                                <input type="hidden" id="email" name="email" value="<?php echo $Email ?>">
-                                <input type="hidden" id="assunto" name="assunto" value="<?php echo $Assunto ?>">
+                                <input type="hidden" id="id"        name="id"       value="<?php echo $ID ?>">
+                                <input type="hidden" id="nome"      name="nome"     value="<?php echo $Nome ?>">
+                                <input type="hidden" id="email"     name="email"    value="<?php echo $Email ?>">
+                                <input type="hidden" id="assunto"   name="assunto"  value="<?php echo $Assunto ?>">
+                                <input type="hidden" id="mensagem"  name="mensagem" value="<?php echo $Mensagem ?>">
                                 
                                 <div class="row">
                                     <div class="col-lg-4">

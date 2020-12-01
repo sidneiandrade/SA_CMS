@@ -1,12 +1,7 @@
 <?php
 
-//
-//TODO
-//
-// []colocar as informações do site como nome, email e imagem
-// []adicionar a mensagem enviada pelo cliente no corpo da resposta
-// []melhorar template de e-mail
-//
+//TODO Adicionar a mensagem enviada pelo cliente no corpo da resposta
+//TODO Melhorar template de e-mail
 
 if(!isset($_SESSION)){
     session_start();
@@ -15,11 +10,19 @@ $caminho = $_SESSION['caminho'];
 
 include $caminho . 'system/conexao.php';
 
-$Id             = $_POST['id'];
-$NomeCliente    = $_POST['nome'];
-$EmailCliente   = $_POST['email'];
-$Assunto        = $_POST['assunto'];
-$Resposta       = $_POST['resposta'];
+$sql = $pdo->query("SELECT * FROM configuracoes")->fetchAll(PDO::FETCH_ASSOC);
+foreach($sql as $conf){
+    $NomeSite   = $conf['conf_nome'];
+    $LogoSite   = $conf['conf_logo_url'];
+    $EmailSite  = $conf['conf_email'];
+}
+
+$Id                 = $_POST['id'];
+$NomeCliente        = $_POST['nome'];
+$EmailCliente       = $_POST['email'];
+$AssuntoCliente     = $_POST['assunto'];
+$MensagemCliente    = $_POST['mensagem'];
+$Resposta           = $_POST['resposta'];
 
 try{
     
@@ -28,8 +31,8 @@ try{
     $sql->execute([$Resposta, $Id]);
     $pdo->commit();   
 
-    $nome = "JUMPER - SA Digital";
-    $email = "contato@sadigital.com.br";
+    $nome = $NomeSite;
+    $email = $EmailSite;
     
     $headers  = 'MIME-Version: 1.0' . "\r\n";
     $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
@@ -37,13 +40,13 @@ try{
 
     $Mensagem = "<div style='background: #e1e1e1'>
                     <div style='background: #fff; margin: 0 auto; width: 700px; padding: 20px; height: 100%; text-align: center;'>
-                        <img src='https://sadigital.com.br/cms/assets/img/logo-987000012.png' alt='Jumper' width='200' /><br>
+                        <img src='.$LogoSite.' alt='.$NomeSite.' width='200' /><br>
                         <h1>Contato do Site</h1> 
                         <br>$Resposta
                     </div>
-                </div>";
+                </div>" ;
 
-    $enviaremail = mail($EmailCliente, $Assunto, $Mensagem, $headers);
+    $enviaremail = mail($EmailCliente, $AssuntoCliente, $Mensagem, $headers);
     
     if($enviaremail){
 

@@ -54,7 +54,6 @@ $list = $pdo->query("SELECT * FROM contatos ORDER BY cont_id DESC")->fetchAll(PD
                                     <td><?php echo $value['cont_assunto'] ?></td>
                                     <td>
                                         <a href="mensagem.php?id=<?php echo $value['cont_id'] ?>" class="btn btn-pill btn-sm btn-outline-primary">Acessar</a>
-                                        
                                     </td>
                                 </tr>
                             <?php } ?>
@@ -74,7 +73,8 @@ $list = $pdo->query("SELECT * FROM contatos ORDER BY cont_id DESC")->fetchAll(PD
             "language": {
                 "url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Portuguese-Brasil.json"
             },
-            "pagingType": "simple"
+            "pagingType": "simple",
+            "order": [ 1, 'desc' ]
         });
     });
 </script>

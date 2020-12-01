@@ -32,10 +32,10 @@ $listServicos = $pdo->query("SELECT * FROM servicos ORDER BY serv_id DESC")->fet
                     <table id="tableUser" class="table table-sm">
                         <thead>
                             <tr>
-                                <th scope="col">Ícone</th>
-                                <th scope="col">Título</th>
-                                <th scope="col">Texto</th>
-                                <th scope="col">Ação</th>
+                                <th style="width: 5%">Ícone</th>
+                                <th style="width: 20%">Titulo</th>
+                                <th style="width: 65%">Texto</th>
+                                <th style="width: 10%">Ação</th>
                             </tr>
                         </thead>
                         <tbody>

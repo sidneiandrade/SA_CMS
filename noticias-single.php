@@ -132,7 +132,12 @@ if(count($noticia) == 0){
 
               <h3 class="sidebar-title">Notícias Recentes</h3>
               <div class="sidebar-item recent-posts">
-              <?php foreach($noticias as $valueRecentes){ ?>
+              <?php 
+              
+              #Noticias Recentes
+              $IDnot = $valueNot['not_id'];
+              $notRecentes = $pdo->query("SELECT * FROM noticias WHERE not_status = 1 AND not_id NOT IN($IDnot) ORDER BY not_id DESC LIMIT 5")->fetchAll(PDO::FETCH_ASSOC);
+              foreach($notRecentes as $valueRecentes){ ?>
                 <div class="post-item clearfix">
                   <img src="<?php echo $valueRecentes['not_imagem'] ?>" alt="<?php echo $valueRecentes['not_titulo'] ?>">
                   <h4><a href="noticias-single?post=<?php echo $valueRecentes['not_slug'] ?>"><?php echo $valueRecentes['not_titulo'] ?></a></h4>

@@ -34,7 +34,8 @@ $listNumeros = $pdo->query("SELECT * FROM numeros ORDER BY num_id DESC")->fetchA
                     <table id="tableNumeros" class="table table-sm">
                         <thead>
                             <tr>
-                                <th style="width: 50%">Titulo</th>
+                                <th style="width: 5%">Ícone</th>
+                                <th style="width: 45%">Titulo</th>
                                 <th style="width: 30%">Números</th>
                                 <th style="width: 10%">Status</th>
                                 <th style="width: 10%">Ação</th>
@@ -43,6 +44,7 @@ $listNumeros = $pdo->query("SELECT * FROM numeros ORDER BY num_id DESC")->fetchA
                         <tbody>
                             <?php foreach ($listNumeros as $value) { ?>
                                 <tr>
+                                    <td><i class="<?php echo $value['num_icone'] ?>"></i></td>
                                     <td><?php echo $value['num_titulo'] ?></td>
                                     <td><?php echo $value['num_numero'] ?></td>
                                     <td>

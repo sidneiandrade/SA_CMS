@@ -1,5 +1,7 @@
 <?php
 
+//TODO Criar o arquivo de página para o site.
+
 if(!isset($_SESSION)){
     session_start();
 }

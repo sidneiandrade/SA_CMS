@@ -82,7 +82,8 @@ if ($catID != 0) {
                                     <div class="col-lg-3">
                                         <div class="form-group">
                                             <label class="form-label" for="catOrigem">Status</label>
-                                            <select id="catOrigem" name="catOrigem" class="form-control js-choice">
+                                            <!-- TODO Criar banco para salvar as origens das categorias -->
+                                            <select id="catOrigem" name="catOrigem" class="form-control js-choice"> 
                                                 <option value="n" <?= ($Origem == 'n') ? 'selected="selected"' : '' ?>>Notícias</option>
                                                 <option value="p" <?= ($Origem == 'p') ? 'selected="selected"' : '' ?>>Portfólio</option>
                                                 <option value="c" <?= ($Origem == 'c') ? 'selected="selected"' : '' ?>>Cardápio</option>        

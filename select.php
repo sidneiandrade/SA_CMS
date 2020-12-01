@@ -32,7 +32,7 @@ $catPort->execute(['P',1]);
 $listCat = $catPort->fetchAll(PDO::FETCH_ASSOC);
 
 #Portfolio Conteudo
-$dados = $pdo->prepare("SELECT * FROM portfolios WHERE port_status = ? ORDER BY port_id DESC");
+$dados = $pdo->prepare("SELECT * FROM portfolios WHERE port_status = ? ORDER BY port_id DESC LIMIT 9");
 $dados->execute([1]);
 $dadosPort = $dados->fetchAll(PDO::FETCH_ASSOC);
 

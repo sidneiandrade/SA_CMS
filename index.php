@@ -210,6 +210,10 @@
 
           </div>
 
+          <div class="read-more text-center">
+            <a href="portfolios" class="btn-get-started"><i class="far fa-check-circle"></i> Veja mais</a>
+          </div>
+
         </div>
       </section>
     <?php } else {} ?>
@@ -263,9 +267,9 @@
 
 
               </div>
-                <div class="read-more text-center">
-                  <a href="noticias" class="btn-get-started"><i class="far fa-check-circle"></i> Veja mais notícias</a>
-                </div>
+              <div class="read-more text-center">
+                <a href="noticias" class="btn-get-started"><i class="far fa-check-circle"></i> Veja mais notícias</a>
+              </div>
             </div>
           </section>
         </div>

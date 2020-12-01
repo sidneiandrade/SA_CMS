@@ -34,10 +34,10 @@ $listDepoimentos = $pdo->query("SELECT * FROM depoimentos ORDER BY dep_id DESC")
                     <table id="tableDepoimento" class="table table-sm">
                         <thead>
                             <tr>
-                                <th scope="col">Nome</th>
-                                <th scope="col">Empresa</th>
-                                <th scope="col">Texto</th>
-                                <th scope="col">Ação</th>
+                                <th style="width: 10%">Nome</th>
+                                <th style="width: 10%">Empresa</th>
+                                <th style="width: 70%">Mensagem</th>
+                                <th style="width: 10%">Ação</th>
                             </tr>
                         </thead>
                         <tbody>
