@@ -27,7 +27,7 @@ $Resposta           = $_POST['resposta'];
 try{
     
     $pdo->beginTransaction();
-    $sql = $pdo->prepare("UPDATE contatos SET cont_resposta = ? WHERE cont_id = ?");
+    $sql = $pdo->prepare("UPDATE contatos SET cont_resposta = ?, cont_visualizado = 2 WHERE cont_id = ?");
     $sql->execute([$Resposta, $Id]);
     $pdo->commit();   
 

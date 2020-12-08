@@ -1,5 +1,7 @@
 <?php
 
+//TODO: Verificar o slug da notícia antes de salvar.
+
 if(!isset($_SESSION)){
     session_start();
 }
@@ -28,23 +30,39 @@ if (!is_dir($dirImagens)) {
 switch ($Acao){
     case "Salvar":
         try {
-            $nameImagem = $notSlug . '-' . rand() . '.jpg'; //Definindo um novo nome para o arquivo
-            move_uploaded_file($_FILES['arquivoImagem']['tmp_name'], $dirImagens . $nameImagem); //Fazer upload do arquivo
-            $image = WideImage::load($dirImagens . $nameImagem);
-            $image = $image->resize('600', null, 'fill', 'any');
-            $image = $image->crop( 'center', 'center', '100%', 300);
-            $image->saveToFile($dirImagens . $nameImagem, 60);
-            $pathImagem = $baseDiretorio . $nameImagem;
-    
-            $pdo->beginTransaction();
-            $sql = $pdo->prepare("INSERT INTO noticias VALUES (null,?,?,?,?,?,?,now(),?)");
-            $sql->execute([$notTitulo, $notSlug, $pathImagem, $nameImagem, $notTexto, $notCategoria, $notStatus]);
-            $id = $pdo->lastInsertId();
-            $pdo->commit();
-    
-            $data = ['acao' => 'salvo', 'id' => $id];
-            header('Content-type: application/json');
-            echo json_encode($data);
+
+            //verifica se já existe uma notícia com o mesmo slug
+            $sql = $pdo->prepare("SELECT not_slug FROM noticias WHERE not_slug = ? and not_status = ?");
+            $sql->execute([$notSlug, 1]);
+            $result = $sql->fetchAll();
+            $quant = count($result);
+
+            if($quant > 0){
+
+                $data = ['error' => 'erro', 'mensagem' => 'Já existe um título com este nome'];
+                header('Content-type: application/json');
+                echo json_encode($data);
+
+            } else {
+
+                $nameImagem = $notSlug . '-' . rand() . '.jpg'; //Definindo um novo nome para o arquivo
+                move_uploaded_file($_FILES['arquivoImagem']['tmp_name'], $dirImagens . $nameImagem); //Fazer upload do arquivo
+                $image = WideImage::load($dirImagens . $nameImagem);
+                $image = $image->resize('600', null, 'fill', 'any');
+                $image = $image->crop( 'center', 'center', '100%', 300);
+                $image->saveToFile($dirImagens . $nameImagem, 60);
+                $pathImagem = $baseDiretorio . $nameImagem;
+        
+                $pdo->beginTransaction();
+                $sql = $pdo->prepare("INSERT INTO noticias VALUES (null,?,?,?,?,?,?,now(),?)");
+                $sql->execute([$notTitulo, $notSlug, $pathImagem, $nameImagem, $notTexto, $notCategoria, $notStatus]);
+                $id = $pdo->lastInsertId();
+                $pdo->commit();
+        
+                $data = ['acao' => 'salvo', 'id' => $id];
+                header('Content-type: application/json');
+                echo json_encode($data);
+            }
         }
         catch (Exception $e) {
             echo $e->getMessage();
@@ -72,12 +90,34 @@ switch ($Acao){
                 $pdo->commit();
             }
 
-            $pdo->beginTransaction();
-            $sql = $pdo->prepare("UPDATE noticias SET not_titulo = ?, not_slug = ?, not_texto = ?, not_categoria = ?, not_status = ? WHERE not_id = ?");
-            $sql->execute([$notTitulo, $notSlug, $notTexto, $notCategoria, $notStatus, $notId]);
-            $pdo->commit();
+            //verifica se já existe uma notícia com o mesmo slug
+            $sql = $pdo->prepare("SELECT * FROM noticias WHERE not_slug = ? and not_status = ?");
+            $sql->execute([$notSlug, 1]);
+            $result = $sql->fetchAll();
+            foreach($result as $verify){
+                $ID = $verify['not_id'];
+            }
+            $quant = count($result);
 
-            echo 'atualizado';
+            if($quant == 1 && $ID == $notId){
+                $pdo->beginTransaction();
+                $sql = $pdo->prepare("UPDATE noticias SET not_titulo = ?, not_slug = ?, not_texto = ?, not_categoria = ?, not_status = ? WHERE not_id = ?");
+                $sql->execute([$notTitulo, $notSlug, $notTexto, $notCategoria, $notStatus, $notId]);
+                $pdo->commit();
+
+                echo 'atualizado';
+            } else if ($quant == 0){
+                $pdo->beginTransaction();
+                $sql = $pdo->prepare("UPDATE noticias SET not_titulo = ?, not_slug = ?, not_texto = ?, not_categoria = ?, not_status = ? WHERE not_id = ?");
+                $sql->execute([$notTitulo, $notSlug, $notTexto, $notCategoria, $notStatus, $notId]);
+                $pdo->commit();
+
+                echo 'atualizado';
+            } else {
+                $data = ['error' => 'erro', 'mensagem' => 'Já existe um título com este nome'];
+                header('Content-type: application/json');
+                echo json_encode($data);
+            }
         }
         catch (Exception $e) {
             echo $e->getMessage();

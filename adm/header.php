@@ -32,6 +32,7 @@ foreach ($infoSite as $value) {
         <title>Administração</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        
 
         <link rel="stylesheet" type="text/css" href="<?php echo $baseUrl ?>adm/dist/notiflix/notiflix-2.4.0.min.css" />
         <link rel="stylesheet" type="text/css" href="<?php echo $baseUrl ?>adm/dist/dataTable/dataTables.bootstrap4.min.css" />

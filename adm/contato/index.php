@@ -46,7 +46,25 @@ $list = $pdo->query("SELECT * FROM contatos ORDER BY cont_id DESC")->fetchAll(PD
                         <tbody>
                             <?php foreach ($list as $value) { ?>
                                 <tr>
-                                    <td><?= $value['cont_visualizado'] == 0 ? '<span class="badge badge-success">Novo</span>' : '<span class="badge badge-secondary">Visualizado</span>' ?></td>
+                                    <!--<td><?= $value['cont_visualizado'] == 0 ? '<span class="badge badge-success">Novo</span>' : '<span class="badge badge-secondary">Visualizado</span>' ?></td> -->
+                                    <td>
+                                        <?php 
+                                            switch($value['cont_visualizado']){
+                                                case 0:
+                                                    echo '<span class="badge badge-success">Novo</span>';
+                                                break;
+
+                                                case 1:
+                                                    echo '<span class="badge badge-secondary">Visualizado</span>';
+                                                break;
+
+                                                case 2: 
+                                                    echo '<span class="badge badge-info">Respondido</span>';
+                                                break;
+                                            }
+                                        ?>
+                                    </td>
+                                    
                                     <td><?php echo $data = date("d/m/Y", strtotime($value['cont_data'])) ?></td>
                                     <td><?php echo $value['cont_nome'] ?></td>
                                     <td><?php echo $value['cont_email'] ?></td>

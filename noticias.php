@@ -27,7 +27,7 @@ $list = $noticiasPG->fetchAll(PDO::FETCH_ASSOC);
         <div class="d-flex justify-content-between align-items-center">
           <h2>Notícias</h2>
           <ol>
-            <li><a href="index.html">Home</a></li>
+            <li><a href="<?php echo $baseUrl ?>">Home</a></li>
             <li>Notícias</li>
           </ol>
         </div>
@@ -47,7 +47,7 @@ $list = $noticiasPG->fetchAll(PDO::FETCH_ASSOC);
                   </div>
 
                   <h2 class="entry-title">
-                    <a href="noticias-single?post=<?php echo $valueNot['not_slug'] ?>"><?php echo $valueNot['not_titulo'] ?></a>
+                    <a href="noticia/<?php echo $valueNot['not_slug'] ?>"><?php echo $valueNot['not_titulo'] ?></a>
                   </h2>
 
                   <div class="entry-meta">
@@ -61,7 +61,7 @@ $list = $noticiasPG->fetchAll(PDO::FETCH_ASSOC);
                       <?php echo $textoResumido = substr(strip_tags($valueNot['not_texto']),0,90).'...'; ?>
                     </p>
                     <div class="read-more">
-                      <a href="noticias-single?post=<?php echo $valueNot['not_slug'] ?>">Saiba Mais</a>
+                      <a href="noticia/<?php echo $valueNot['not_slug'] ?>">Saiba Mais</a>
                     </div>
                   </div>
 

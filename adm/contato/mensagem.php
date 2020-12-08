@@ -20,9 +20,12 @@ foreach ($dados as $value) {
     $Assunto = $value['cont_assunto'];
     $Mensagem = $value['cont_mensagem'];
     $Resposta = $value['cont_resposta'];
+    $Status = $value['cont_visualizado'];
+}
+if($Status == 0){
+    $visualizado = $pdo->query("UPDATE contatos SET cont_visualizado = 1 WHERE cont_id = $ID");
 }
 
-$visualizado = $pdo->query("UPDATE contatos SET cont_visualizado = 1 WHERE cont_id = $ID");
 
 ?>
 
@@ -103,6 +106,7 @@ $visualizado = $pdo->query("UPDATE contatos SET cont_visualizado = 1 WHERE cont_
                                             <textarea class="form-control" rows="6" id="resposta" name="resposta" required><?php echo $Resposta ?></textarea>
                                         </div>
                                         <button type="submit" class="btn btn-pill btn-primary">Enviar Resposta</button>
+                                        <a href="index" class="btn btn-warning btn-pill">Voltar</a>
                                     </div>
                                 </div>
                             </div>

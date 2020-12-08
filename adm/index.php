@@ -26,7 +26,6 @@ foreach($sql as $values){}
   <link rel="stylesheet" type="text/css" href="dist/notiflix/notiflix-2.4.0.min.css" media="screen" />
   <link rel="stylesheet" type="text/css" href="dist/css/adminx.css" media="screen" />
   <script src="https://www.google.com/recaptcha/api.js?render=6LcCpN4ZAAAAACHEAvN2IxxRIB-Y_71DHMm8LDRC"></script>
-
 </head>
 
 <body>

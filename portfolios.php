@@ -31,7 +31,7 @@ $list = $portfolioPG->fetchAll(PDO::FETCH_ASSOC);
         <div class="d-flex justify-content-between align-items-center">
           <h2>Portfólio</h2>
           <ol>
-            <li><a href="index.html">Home</a></li>
+            <li><a href="<?php echo $baseUrl ?>">Home</a></li>
             <li>Portfólio</li>
           </ol>
         </div>
@@ -68,11 +68,11 @@ $list = $portfolioPG->fetchAll(PDO::FETCH_ASSOC);
                   <figure>
                     <img src="<?php echo $imagem['img_imagem'] ?>" class="img-fluid" alt="<?php echo $nomePort ?>">
                     <a href="<?php echo $imagem['img_imagem'] ?>" data-gall="portfolioGallery" class="link-preview venobox" title="Visualizar"><i class="bx bx-plus"></i></a>
-                    <a href="portfolio-single?port=<?php echo $slugPort ?>" class="link-details" title="Detalhes"><i class="bx bx-link"></i></a>
+                    <a href="portfolio/<?php echo $slugPort ?>" class="link-details" title="Detalhes"><i class="bx bx-link"></i></a>
                   </figure>
 
                   <div class="portfolio-info">
-                    <h4><a href="portfolio-single?port=<?php echo $slugPort ?>"><?php echo $nomePort ?></a></h4>
+                    <h4><a href="portfolio/<?php echo $slugPort ?>"><?php echo $nomePort ?></a></h4>
                     <p><?php echo $dadosCat['cat_nome'] ?></p>
                   </div>
                 </div>
@@ -85,16 +85,16 @@ $list = $portfolioPG->fetchAll(PDO::FETCH_ASSOC);
                 <ul class="justify-content-center">
                     <?php
                     if($pagina > 1) {
-                        echo "<li><a href='noticias?pagina=".($pagina - 1)."'><i class='icofont-rounded-left'></i></a></li>";
+                        echo "<li><a href='portfolios?pagina=".($pagina - 1)."'><i class='icofont-rounded-left'></i></a></li>";
                     }
 
                     for($i = 1; $i < $numPaginas + 1; $i++) { 
                         $ativo = ($i == $pagina) ? 'class="active"' : '';
-                        echo "<li ".$ativo."><a href='noticias?pagina=$i'>".$i."</a></li>"; 
+                        echo "<li ".$ativo."><a href='portfolios?pagina=$i'>".$i."</a></li>"; 
                     } 
 
                     if($pagina < $numPaginas) {
-                        echo "<li><a href='noticias?pagina=".($pagina + 1)."'><i class='icofont-rounded-right'></i></a></li>";
+                        echo "<li><a href='portfolios?pagina=".($pagina + 1)."'><i class='icofont-rounded-right'></i></a></li>";
                     }
                     ?>
                 </ul>

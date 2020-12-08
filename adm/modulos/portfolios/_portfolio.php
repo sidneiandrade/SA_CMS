@@ -31,36 +31,53 @@ switch ($Acao) {
             $portUrl        = $_POST['portUrl'];
             $portStatus     = $_POST['portStatus'];
 
-            $sql = $pdo->prepare("INSERT INTO portfolios VALUES (null,?,?,?,?,?,?,now(),?)");
-            $sql->execute([$portTitulo, $portSlug, $portEmpresa, $portCategoria, $portTexto, $portUrl, $portStatus]);
-            $idPortfolio = $pdo->lastInsertId();
 
-            if (isset($_FILES['portImagem'])) {
+            //verifica se já existe uma notícia com o mesmo slug
+            $sql = $pdo->prepare("SELECT port_slug FROM portfolios WHERE port_slug = ? and port_status = ?");
+            $sql->execute([$portSlug, 1]);
+            $result = $sql->fetchAll();
+            $quant = count($result);
 
-                $upload = $_FILES['portImagem'];
-                $numeroImagens = count(array_filter($upload['name']));
+            if($quant > 0){
 
-                for ($i = 0; $i < $numeroImagens; $i++) {
+                $data = ['error' => 'erro', 'mensagem' => 'Já existe um título com este nome'];
+                header('Content-type: application/json');
+                echo json_encode($data);
 
-                    $nameImagem = $portSlug . rand() . '.jpg'; //Definindo um novo nome para o arquivo
-                    move_uploaded_file($upload['tmp_name'][$i], $dirImagens . $nameImagem); //Fazer upload do arquivo
-                    $image = WideImage::load($dirImagens . $nameImagem);
-                    $image = $image->resize(null, '400', 'inside', 'any');
-                    $image = $image->crop('center', 'center', '100%', 400);
-                    $image->saveToFile($dirImagens . $nameImagem, 60);
-                    $pathImage = $baseDiretorio . $nameImagem;
+            } else {
 
-                    $sqlImagem = $pdo->prepare("INSERT INTO portfolio_imagem VALUES (null,?,?,?)");
-                    $sqlImagem->execute([$idPortfolio, $nameImagem, $pathImage]);
-                };
+                $sql = $pdo->prepare("INSERT INTO portfolios VALUES (null,?,?,?,?,?,?,now(),?)");
+                $sql->execute([$portTitulo, $portSlug, $portEmpresa, $portCategoria, $portTexto, $portUrl, $portStatus]);
+                $idPortfolio = $pdo->lastInsertId();
+
+                if (isset($_FILES['portImagem'])) {
+
+                    $upload = $_FILES['portImagem'];
+                    $numeroImagens = count(array_filter($upload['name']));
+
+                    for ($i = 0; $i < $numeroImagens; $i++) {
+
+                        $nameImagem = $portSlug . rand() . '.jpg'; //Definindo um novo nome para o arquivo
+                        move_uploaded_file($upload['tmp_name'][$i], $dirImagens . $nameImagem); //Fazer upload do arquivo
+                        $image = WideImage::load($dirImagens . $nameImagem);
+                        $image = $image->resize(null, '400', 'inside', 'any');
+                        $image = $image->crop('center', 'center', '100%', 400);
+                        $image->saveToFile($dirImagens . $nameImagem, 60);
+                        $pathImage = $baseDiretorio . $nameImagem;
+
+                        $sqlImagem = $pdo->prepare("INSERT INTO portfolio_imagem VALUES (null,?,?,?)");
+                        $sqlImagem->execute([$idPortfolio, $nameImagem, $pathImage]);
+                    };
+                }
+                $data = ['acao' => 'salvo', 'id' => $idPortfolio];
+                header('Content-type: application/json');
+                echo json_encode($data);
             }
-            $data = ['acao' => 'salvo', 'id' => $idPortfolio];
-            header('Content-type: application/json');
-            echo json_encode($data);
         } catch (Exception $e) {
             echo $e->getMessage();
             EnviarEmail("Erro Modulo Portfólio - " + $Acao, $e->getMessage());
         }
+        
         break;
 
     case "Atualizar":
@@ -74,8 +91,28 @@ switch ($Acao) {
             $portUrl        = $_POST['portUrl'];
             $portStatus     = $_POST['portStatus'];
 
-            $sql = $pdo->prepare("UPDATE portfolios SET port_nome = ?, port_slug = ?, port_empresa = ?, port_categoria = ?, port_texto = ?, port_url = ?, port_status = ? WHERE port_id = ?");
-            $sql->execute([$portTitulo, $portSlug, $portEmpresa, $portCategoria, $portTexto, $portUrl, $portStatus, $portId]);
+            //verifica se já existe uma notícia com o mesmo slug
+            $sql = $pdo->prepare("SELECT * FROM portfolios WHERE port_slug = ? and port_status = ?");
+            $sql->execute([$portSlug, 1]);
+            $result = $sql->fetchAll();
+            foreach($result as $verify){
+                $ID = $verify['port_id'];
+            }
+            $quant = count($result);
+
+            if($quant == 1 && $ID == $portId){
+                $sql = $pdo->prepare("UPDATE portfolios SET port_nome = ?, port_slug = ?, port_empresa = ?, port_categoria = ?, port_texto = ?, port_url = ?, port_status = ? WHERE port_id = ?");
+                $sql->execute([$portTitulo, $portSlug, $portEmpresa, $portCategoria, $portTexto, $portUrl, $portStatus, $portId]);
+                echo "atualizado";
+            } else if($quant == 0) {
+                $sql = $pdo->prepare("UPDATE portfolios SET port_nome = ?, port_slug = ?, port_empresa = ?, port_categoria = ?, port_texto = ?, port_url = ?, port_status = ? WHERE port_id = ?");
+                $sql->execute([$portTitulo, $portSlug, $portEmpresa, $portCategoria, $portTexto, $portUrl, $portStatus, $portId]);
+                echo "atualizado";
+            } else {
+                $data = ['error' => 'erro', 'mensagem' => 'Já existe um título com este nome'];
+                header('Content-type: application/json');
+                echo json_encode($data);
+            }
 
             if (isset($_FILES['portImagem'])) {
 
@@ -96,7 +133,7 @@ switch ($Acao) {
                 };
             }
 
-            echo "atualizado";
+           
         } catch (Exception $e) {
             echo $e->getMessage();
             EnviarEmail("Erro Modulo Portfólio", [$e->getMessage(), $e->getLine()]);
@@ -144,6 +181,7 @@ switch ($Acao) {
             echo $e->getMessage();
             EnviarEmail("Erro Modulo Portfólio", [$e->getMessage(), $e->getLine()]);
         }
+
     break;
 }
 

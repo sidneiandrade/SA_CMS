@@ -26,8 +26,8 @@ if(count($noticia) == 0){
           <h2>Notícia</h2>
 
           <ol>
-            <li><a href="./">Home</a></li>
-            <li><a href="noticias">Notícia</a></li>
+            <li><a href="<?php echo $baseUrl ?>">Home</a></li>
+            <li><a href="<?php echo $baseUrl ?>noticias">Notícias</a></li>
             <li><?php echo $valueNot['not_titulo'] ?></li>
           </ol>
         </div>
@@ -49,7 +49,7 @@ if(count($noticia) == 0){
               </div>
 
               <h2 class="entry-title">
-                <a href="noticias-single?post=<?php echo $valueNot['not_slug'] ?>"><?php echo $valueNot['not_titulo'] ?></a>
+                <a href="<?php echo $valueNot['not_slug'] ?>"><?php echo $valueNot['not_titulo'] ?></a>
               </h2>
 
               <div class="entry-meta">
@@ -140,7 +140,7 @@ if(count($noticia) == 0){
               foreach($notRecentes as $valueRecentes){ ?>
                 <div class="post-item clearfix">
                   <img src="<?php echo $valueRecentes['not_imagem'] ?>" alt="<?php echo $valueRecentes['not_titulo'] ?>">
-                  <h4><a href="noticias-single?post=<?php echo $valueRecentes['not_slug'] ?>"><?php echo $valueRecentes['not_titulo'] ?></a></h4>
+                  <h4><a href="<?php echo $valueRecentes['not_slug'] ?>"><?php echo $valueRecentes['not_titulo'] ?></a></h4>
                   <time datetime="<?php echo $dataPost = date("d/m/Y", strtotime($valueRecentes['not_data'])) ?>"><?php echo $dataPost = date("d/m/Y", strtotime($valueRecentes['not_data'])) ?></time>
                 </div>
               <?php } ?>

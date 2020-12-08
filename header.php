@@ -23,22 +23,23 @@ $listModulos = $modulos->fetchAll(PDO::FETCH_ASSOC);
 
   <!-- Favicons -->
   <link href="<?php echo $values['conf_favicon_url'] ?>" rel="icon">
-  <link href="./assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="<?php echo $baseUrl ?>assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="./assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="./assets/vendor/icofont/icofont.min.css" rel="stylesheet">
-  <link href="./assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="<?php echo $baseUrl ?>assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="<?php echo $baseUrl ?>assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+  <link href="<?php echo $baseUrl ?>assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
   <link href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" rel="stylesheet" type="text/css" />
-  <link href="./assets/vendor/venobox/venobox.css" rel="stylesheet">
-  <link href="./assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
-  <link href="./adm/dist/notiflix/notiflix-2.4.0.min.css" rel="stylesheet" type="text/css" />
+  <link href="<?php echo $baseUrl ?>assets/vendor/venobox/venobox.css" rel="stylesheet">
+  <link href="<?php echo $baseUrl ?>assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="<?php echo $baseUrl ?>adm/dist/notiflix/notiflix-2.4.0.min.css" rel="stylesheet" type="text/css" />
+  <link href="<?php echo $baseUrl ?>assets/vendor/aos/aos.css" rel="stylesheet" type="text/css" />
 
   <!-- Template Main CSS File -->
-  <link href="./assets/css/style.php" rel="stylesheet">
+  <link href="<?php echo $baseUrl ?>assets/css/style.php" rel="stylesheet">
 
 </head>
 
@@ -51,21 +52,21 @@ $listModulos = $modulos->fetchAll(PDO::FETCH_ASSOC);
       <div class="logo mr-auto">
         <!-- <h1><a href="index">Lumia</a></h1> -->
         <!-- Uncomment below if you prefer to use an image logo -->
-        <a href="./"><img src="<?php echo $values['conf_logo_url'] ?>" alt="<?php echo $values['conf_nome'] ?>" class="img-fluid"></a>
+        <a href="<?php echo $baseUrl ?>"><img src="<?php echo $values['conf_logo_url'] ?>" alt="<?php echo $values['conf_nome'] ?>" class="img-fluid"></a>
       </div>
 
       <nav class="nav-menu d-none d-lg-block">
         <ul>
-          <li class="active"><a href="./">Home</a></li>     
-          <li><a href="./#about">Sobre</a></li>
+          <li class="active"><a href="<?php echo $baseUrl ?>">Home</a></li>     
+          <li><a href="<?php echo $baseUrl ?>#about">Sobre</a></li>
           <?php 
             $sql = $pdo->query("SELECT * FROM modulos WHERE mod_status = 1 and mod_menu = 1 ORDER BY mod_ordem ASC");
             $listMenu = $sql->fetchAll(PDO::FETCH_ASSOC);
             foreach($listMenu as $Keys => $Vmenu){
           ?>
-            <li><a href="./#<?php echo $Vmenu['mod_slug']?>"><?php echo $Vmenu['mod_titulo'] ?></a></li>
+            <li><a href="<?php echo $baseUrl ?>#<?php echo $Vmenu['mod_slug']?>"><?php echo $Vmenu['mod_titulo'] ?></a></li>
           <?php } ?>
-          <li><a href="./#contact">Contato</a></li>
+          <li><a href="<?php echo $baseUrl ?>#contact">Contato</a></li>
 
         </ul>
       </nav><!-- .nav-menu -->

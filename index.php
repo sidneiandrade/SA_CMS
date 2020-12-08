@@ -9,7 +9,7 @@
   <?php if ($listModulos[10]['mod_status'] == 1) { ?>
     <section id="hero">
       <div class="hero-container">
-        <div id="heroCarousel" class="carousel slide carousel-fade" data-ride="carousel">
+        <div id="heroCarousel" class="carousel slide carousel-fade" data-ride="carousel" data-aos="fade-right" data-aos-duration="1000">
 
           <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
 
@@ -19,12 +19,12 @@
             ?>
               <!-- Slides -->
               <div id="slide_<?php echo $i ?>" class="carousel-item" style="background-image: url('<?php echo $slideValues['sd_url_imagem'] ?>');">
-                <div class="carousel-container">
+                <div class="carousel-container" data-aos="fade-up" data-aos-duration="1000">
                   <div class="carousel-content container">
-                    <h2 class="animate__animated animate__fadeInDown"><?php echo $slideValues['sd_titulo'] ?></h2>
-                    <p class="animate__animated animate__fadeInUp"><?php echo $slideValues['sd_texto'] ?></p>
+                    <h2><?php echo $slideValues['sd_titulo'] ?></h2>
+                    <p><?php echo $slideValues['sd_texto'] ?></p>
                     <?php if ($slideValues['sd_url_botao'] != '')
-                      echo '<a href="' . $slideValues["sd_url_botao"] . '" class="btn-get-started animate__animated animate__fadeInUp scrollto">Saiba mais</a>';
+                      echo '<a href="' . $slideValues["sd_url_botao"] . '" class="btn-get-started scrollto">Saiba mais</a>';
                     ?>
                   </div>
                 </div>
@@ -54,12 +54,12 @@
     <section id="dest" class="what-we-do">
       <div class="container">
 
-        <div class="section-title">
+        <div class="section-title" data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine">
           <h2>Nossos Destaques</h2>
           <p>Veja o que nossa empresa pode oferecer para você.</p>
         </div>
 
-        <div class="row">
+        <div class="row" data-aos="fade-right" data-aos-offset="600" data-aos-easing="ease-in-sine">
           <?php foreach ($destaque as $key => $desValue) { ?>
             <div class="col-lg-4 col-md-4 d-flex align-items-stretch mb-3">
               <div class="icon-box">
@@ -76,13 +76,13 @@
 
     <!-- ======= About Section ======= -->
     <section id="about" class="about pb-5">
-      <div class="container">
+      <div class="container" data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine">
         <div class="section-title">
           <h2>Sobre</h2>
         </div>
         <?php foreach ($sobre as $key => $sobValue) {
         } ?>
-        <div class="row">
+        <div class="row" data-aos="fade-left" data-aos-offset="600" data-aos-easing="ease-in-sine">
           <div class="col-lg-6 d-flex align-items-center">
             <img src="<?php echo $sobValue['emp_url_imagem'] ?>" class="img-fluid rounded" alt="<?php echo $values['conf_nome'] ?>">
           </div>
@@ -95,7 +95,7 @@
 
     <!-- ======= Skills Section ======= -->
     <section id="skills" class="skills">
-      <div class="container">
+      <div class="container" data-aos="fade-up"  data-aos-offset="300" data-aos-anchor-placement="top-bottom">
         <div class="row skills-content">
           <?php foreach ($Skill as $key => $skValue) { ?> 
           <div class="col-lg-6">
@@ -115,7 +115,7 @@
     <!-- ======= Counts Section ======= -->
     <?php if ($listModulos[9]['mod_status'] == 1) { ?>
       <section id="<?php echo $listModulos[9]['mod_slug'] ?>" class="counts">
-        <div class="container">
+        <div class="container" data-aos="zoom-in"  data-aos-offset="300" data-aos-anchor-placement="top-bottom">
 
           <div class="row">
             <?php foreach ($numeros as $key => $numValue) { ?>
@@ -137,13 +137,13 @@
     <!-- ======= Services Section ======= -->
     <?php if ($listModulos[2]['mod_status'] == 1) { ?>
       <section id="<?php echo $listModulos[2]['mod_slug'] ?>" class="services section-bg">
-        <div class="container">
+        <div class="container" data-aos="fade-up" data-aos-easing="linear">
           <div class="section-title">
             <h2><?php echo $listModulos[2]['mod_titulo'] ?></h2>
             <p><?php echo $listModulos[2]['mod_descricao'] ?></p>
           </div>
 
-          <div class="row">
+          <div class="row" data-aos="fade-up" data-aos-duration="500" data-aos-easing="linear">
             <?php foreach ($servicos as $key => $serValue) { ?>
 
               <div class="col-md-6 mb-3">
@@ -166,12 +166,12 @@
       <section id="<?php echo $listModulos[3]['mod_slug'] ?>" class="portfolio">
         <div class="container">
 
-          <div class="section-title">
+          <div class="section-title" data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine">
             <h2><?php echo $listModulos[3]['mod_titulo'] ?></h2>
             <p><?php echo $listModulos[3]['mod_descricao'] ?></p>
           </div>
 
-          <div class="row">
+          <div class="row" data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine">
             <div class="col-lg-12">
               <ul id="portfolio-flters">
                 <li data-filter="*" class="filter-active">Todos</li>
@@ -182,7 +182,7 @@
             </div>
           </div>
 
-          <div class="row portfolio-container">
+          <div class="row portfolio-container" data-aos="fade-up" data-aos-offset="300" data-aos-easing="ease-in-sine">
             <?php
             foreach ($dadosPort as $keys => $valuePort) {
               $idPort = $valuePort['port_id'];
@@ -197,11 +197,11 @@
                   <figure>
                     <img src="<?php echo $imagem['img_imagem'] ?>" class="img-fluid" alt="<?php echo $nomePort ?>">
                     <a href="<?php echo $imagem['img_imagem'] ?>" data-gall="portfolioGallery" class="link-preview venobox" title="Visualizar"><i class="bx bx-plus"></i></a>
-                    <a href="portfolio-single?port=<?php echo $slugPort ?>" class="link-details" title="Detalhes"><i class="bx bx-link"></i></a>
+                    <a href="portfolio/<?php echo $slugPort ?>" class="link-details" title="Detalhes"><i class="bx bx-link"></i></a>
                   </figure>
 
                   <div class="portfolio-info">
-                    <h4><a href="portfolio-single?port=<?php echo $slugPort ?>"><?php echo $nomePort ?></a></h4>
+                    <h4><a href="portfolio/<?php echo $slugPort ?>"><?php echo $nomePort ?></a></h4>
                     <p><?php echo $dadosCat['cat_nome'] ?></p>
                   </div>
                 </div>
@@ -223,7 +223,7 @@
     <?php if ($listModulos[0]['mod_status'] == 1) { ?>
       <section id="<?php echo $listModulos[0]['mod_slug'] ?>" class="news section-bg">
         <div class="container">
-          <div class="section-title">
+          <div class="section-title" data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine">
             <h2><?php echo $listModulos[0]['mod_titulo'] ?></h2>
             <p><?php echo $listModulos[0]['mod_descricao'] ?></p>
           </div>
@@ -242,7 +242,7 @@
                     </div>
 
                     <h2 class="entry-title">
-                      <a href="noticias-single?post=<?php echo $valueNot['not_slug'] ?>"><?php echo $valueNot['not_titulo'] ?></a>
+                      <a href="noticia/<?php echo $valueNot['not_slug'] ?>"><?php echo $valueNot['not_titulo'] ?></a>
                     </h2>
 
                     <div class="entry-meta">
@@ -256,7 +256,7 @@
                         <?php echo $textoResumido = substr(strip_tags($valueNot['not_texto']),0,90).'...'; ?>
                       </p>
                       <div class="read-more">
-                        <a href="noticias-single?post=<?php echo $valueNot['not_slug'] ?>">Saiba Mais</a>
+                        <a href="noticia/<?php echo $valueNot['not_slug'] ?>">Saiba Mais</a>
                       </div>
                     </div>
 
@@ -281,7 +281,7 @@
     <?php if ($listModulos[5]['mod_status'] == 1) { ?>
       <section id="<?php echo $listModulos[5]['mod_slug'] ?>" class="clients">
         <div class="container">
-          <div class="section-title">
+          <div class="section-title" data-aos="fade-right" data-aos-delay="100" data-aos-easing="ease-in-sine">
             <h2><?php echo $listModulos[5]['mod_titulo'] ?></h2>
             <p><?php echo $listModulos[5]['mod_descricao'] ?></p>
           </div>
@@ -329,7 +329,7 @@
       <section id="<?php echo $listModulos[8]['mod_slug'] ?>" class="testimonials section-bg">
         <div class="container">
 
-          <div class="section-title">
+          <div class="section-title" data-aos="fade-left" data-aos-delay="100" data-aos-easing="ease-in-sine">
             <h2><?php echo $listModulos[8]['mod_titulo'] ?></h2>
             <p><?php echo $listModulos[8]['mod_descricao'] ?></p>
           </div>
@@ -360,14 +360,14 @@
     <!-- ======= Team Section ======= -->
     <?php if ($listModulos[4]['mod_status'] == 1) { ?>
       <section id="<?php echo $listModulos[4]['mod_slug'] ?>" class="team">
-        <div class="container">
+        <div class="container" data-aos="fade-up">
 
           <div class="section-title">
             <h2><?php echo $listModulos[4]['mod_titulo'] ?></h2>
             <p><?php echo $listModulos[4]['mod_descricao'] ?></p>
           </div>
 
-          <div class="row">
+          <div class="row" data-aos="fade-up" data-aos-delay="200" data-aos-duration="500">
             <?php foreach ($listMembros as $key => $mbValues) { ?>
 
               <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
@@ -398,14 +398,14 @@
     <!-- ======= Pricing Section ======= -->
     <?php if ($listModulos[6]['mod_status'] == 1) { ?>
       <section id="<?php echo $listModulos[6]['mod_slug'] ?>" class="pricing section-bg">
-        <div class="container">
+        <div class="container" data-aos="fade-left" data-aos-offset="500" data-aos-duration="500">
 
           <div class="section-title">
             <h2><?php echo $listModulos[6]['mod_titulo'] ?></h2>
             <p><?php echo $listModulos[6]['mod_descricao'] ?></p>
           </div>
 
-          <div class="row">
+          <div class="row" data-aos="fade-left" data-aos-offset="500" data-aos-duration="1000">
             <?php foreach ($valores as $key => $valValue) { ?>
 
               <div class="col-lg-3 col-md-6">
@@ -537,6 +537,9 @@
     </section><!-- End Contact Section -->
 
   </main><!-- End #main -->
+
+
+
 
   <?php include 'footer.php'; ?>
 

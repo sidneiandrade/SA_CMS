@@ -34,8 +34,8 @@ foreach($listPort as $keys => $vPort){
     <div class="d-flex justify-content-between align-items-center">
       <h2><?php echo $nome ?></h2>
       <ol>
-        <li><a href="./">Home</a></li>
-        <li><a href="./#portfolio">Portfolio</a></li>
+        <li><a href="<?php echo $baseUrl ?>">Home</a></li>
+        <li><a href="<?php echo $baseUrl ?>portfolios">Portfolio</a></li>
         <li><?php echo $nome ?></li>
       </ol>
     </div>

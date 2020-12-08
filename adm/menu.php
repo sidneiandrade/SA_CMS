@@ -28,25 +28,44 @@
       </a>
     </li>
 
-    <?php 
-      $lista = $pdo->query("SELECT * FROM modulos WHERE mod_status = 1 ORDER BY mod_ordem ASC")->fetchAll(PDO::FETCH_ASSOC);
-      foreach($lista as $listValue){ 
-    ?>
-
     <li class="sidebar-nav-item">
-      <a href="<?php echo $value['conf_link'] ?>adm/<?php echo $listValue['mod_url'] ?>" class="sidebar-nav-link">
+      <a class="sidebar-nav-link collapsed" data-toggle="collapse" href="#navModulos" aria-expanded="false" aria-controls="navTables">
         <span class="sidebar-nav-icon">
-          <i data-feather="<?php echo $listValue['mod_icone'] ?>"></i>
+          <i data-feather="codesandbox" class="nav-collapse-icon"></i>
         </span>
         <span class="sidebar-nav-name">
-          <?php echo $listValue['mod_titulo'] ?>
+          Módulos
         </span>
         <span class="sidebar-nav-end">
-        </span>
+            <i data-feather="chevron-right" class="nav-collapse-icon"></i>
+          </span>
       </a>
+      <ul class="sidebar-sub-nav collapse" id="navModulos">
+
+        <?php 
+          $lista = $pdo->query("SELECT * FROM modulos WHERE mod_status = 1 ORDER BY mod_ordem ASC")->fetchAll(PDO::FETCH_ASSOC);
+          foreach($lista as $listValue){ 
+        ?>
+
+        <li class="sidebar-nav-item">
+          <a href="<?php echo $value['conf_link'] ?>adm/<?php echo $listValue['mod_url'] ?>" class="sidebar-nav-link">
+            <span class="sidebar-nav-icon">
+              <i data-feather="<?php echo $listValue['mod_icone'] ?>"></i>
+            </span>
+            <span class="sidebar-nav-name">
+              <?php echo $listValue['mod_titulo'] ?>
+            </span>
+            <span class="sidebar-nav-end">
+            </span>
+          </a>
+        </li>
+
+    <?php }  ?>
+
+    </ul>
     </li>
 
-    <?php } 
+    <?php
 
         $contato = $pdo->query("SELECT * FROM contatos WHERE cont_visualizado = 0")->fetchAll(PDO::FETCH_ASSOC);
         $quantidade = count($contato);

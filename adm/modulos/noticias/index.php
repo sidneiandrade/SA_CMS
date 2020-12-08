@@ -223,7 +223,7 @@ if ($notID != 0) {
                     setTimeout(function() {
                         location.reload();
                     }, 2500);
-                } else if (data.error == 'imagemGrande'){
+                } else if (data.error == 'erro'){
                     Notiflix.Loading.Remove();
                     Notiflix.Notify.Failure(data.mensagem);
                 } else {
@@ -256,7 +256,7 @@ if ($notID != 0) {
                         debugger;
                         if (data == 'deletado') {
                             Notiflix.Loading.Remove();
-                            Notiflix.Notify.Success('Notícia Deletado com Sucesso!');
+                            Notiflix.Notify.Success('Notícia Deletada com Sucesso!');
                             setTimeout(function() {
                                 location.href = "./listarNoticias"
                             }, 2500);
