@@ -334,7 +334,7 @@
             <p><?php echo $listModulos[8]['mod_descricao'] ?></p>
           </div>
 
-          <div class="owl-carousel testimonials-carousel">
+          <div class="owl-carousel testimonials-carousel" data-aos="fade-up" data-aos-delay="100">
             <?php foreach ($depoimentos as $key => $depValue) { ?>
 
               <div class="testimonial-item">
@@ -465,12 +465,12 @@
     <section id="contact" class="contact section-bg">
       <div class="container">
 
-        <div class="section-title">
+        <div class="section-title" data-aos="fade-left" data-aos-offset="500" data-aos-duration="500">
           <h2>Contato</h2>
           <p>Para maiores informações entre em contato conosco.</p>
         </div>
 
-        <div class="row mt-5 justify-content-center">
+        <div class="row mt-5 justify-content-center" data-aos="fade-left" data-aos-offset="500" data-aos-duration="500">
 
           <div class="col-lg-10">
 
@@ -500,7 +500,7 @@
 
         </div>
 
-        <div class="row mt-5 justify-content-center">
+        <div class="row mt-5 justify-content-center" data-aos="fade-up" data-aos-offset="500" data-aos-delay="500">
           <div class="col-lg-10">
             <form id="formContato" method="post" class="php-email-form" enctype="multipart/form-data">
               <div class="form-row">
@@ -513,7 +513,7 @@
                   <div class="validate"></div>
                 </div>
                 <div class="col-md-4 form-group">
-                  <input type="text" class="form-control" name="telefone" id="telefone" placeholder="Telefone" data-rule="minlen:14" data-msg="Por favor coloque um telefone" />
+                  <input type="text" class="form-control" name="telefone" id="telefone" placeholder="Telefone" data-rule="minlen:12" data-msg="Por favor coloque um telefone" />  
                   <div class="validate"></div>
                 </div>
                 <div class="col-md-12 form-group">
@@ -537,9 +537,6 @@
     </section><!-- End Contact Section -->
 
   </main><!-- End #main -->
-
-
-
 
   <?php include 'footer.php'; ?>
 

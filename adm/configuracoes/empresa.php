@@ -12,7 +12,7 @@ $sql = $pdo->prepare("SELECT * FROM configuracoes WHERE conf_id = 1");
 $sql->execute();
 $listarConfiguracoes = $sql->fetchAll(PDO::FETCH_ASSOC);
 
-
+// TODO: Melhorar o cadastro das redes sociais criar uma tabela a parte. Utilizar o mesmo processo de "Destaques"
 ?>
 
 <div class="adminx-content">

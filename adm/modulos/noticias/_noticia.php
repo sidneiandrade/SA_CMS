@@ -1,7 +1,5 @@
 <?php
 
-//TODO: Verificar o slug da notícia antes de salvar.
-
 if(!isset($_SESSION)){
     session_start();
 }

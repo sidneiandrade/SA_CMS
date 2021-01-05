@@ -72,7 +72,7 @@ if ($numID != 0) {
                                         <input type="hidden" id="numID" name="numID" value="<?php echo $numID ?>" />
                                         <div class="form-group">
                                             <label class="form-label" for="numIcone">Ícone</label><br>
-                                            <button id="numIcone" name="numIcone" data-icon="<?php echo $Icone ?>" class="btn btn-light btn-block" role="iconpicker"></button>
+                                            <button id="numIcone" name="numIcone" data-icon="<?php echo $Icone ?>" data-placement="right" class="btn btn-light btn-block"></button>
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
@@ -116,6 +116,20 @@ if ($numID != 0) {
 <?php include $caminho . 'footer.php'; ?>
 
 <script>
+
+    $('#numIcone').iconpicker({
+        arrowPrevIconClass: 'fas fa-angle-left',
+        arrowNextIconClass: 'fas fa-angle-right',
+        cols: 6,
+        footer: false,
+        iconset: 'fontawesome5',
+        labelHeader: '{0} de {1} páginas',
+        rows: 5,
+        search: true,
+        searchText: 'Pesquisar...',
+        selectedClass: 'btn-success',
+        unselectedClass: ''
+    });
 
     let Form = '#nossoNumeros';
 

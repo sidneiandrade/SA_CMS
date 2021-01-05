@@ -24,7 +24,7 @@ $numeros = $pdo->query("SELECT * FROM numeros WHERE num_status = 1")->fetchAll(P
 $servicos = $pdo->query("SELECT * FROM servicos")->fetchAll(PDO::FETCH_ASSOC);
 
 #Noticias
-$noticias = $pdo->query("SELECT * FROM noticias WHERE not_status = 1 ORDER BY not_id DESC LIMIT 3")->fetchAll(PDO::FETCH_ASSOC);
+$noticias = $pdo->query("SELECT * FROM noticias WHERE not_status = 1 ORDER BY not_id DESC LIMIT 6")->fetchAll(PDO::FETCH_ASSOC);
 
 #Portfolio Categoria
 $catPort = $pdo->prepare("SELECT * FROM categorias WHERE cat_origem = ? AND cat_status = ?");

@@ -36,7 +36,8 @@ $list = $pdo->query("SELECT * FROM modulos ORDER BY mod_ordem DESC")->fetchAll(P
                             <tr>
                                 <th style="width: 10%">Ordem</th>
                                 <th style="width: 10%">Icone</th>
-                                <th style="width: 50%">Títulos</th>
+                                <th style="width: 40%">Títulos</th>
+                                <th style="width: 10%">Menu</th>
                                 <th style="width: 10%">Status</th>
                                 <th style="width: 20%">Ação</th>
                             </tr>
@@ -47,6 +48,13 @@ $list = $pdo->query("SELECT * FROM modulos ORDER BY mod_ordem DESC")->fetchAll(P
                                     <td><?php echo $value['mod_ordem'] ?></td>
                                     <td><i data-feather="<?php echo $value['mod_icone'] ?>"></i></td>
                                     <td><?php echo $value['mod_titulo'] ?></td>
+                                    <td>
+                                        <?php if ($value['mod_menu'] == 1) {
+                                            echo '<span class="badge badge-pill badge-success">Sim</span>';
+                                        } else {
+                                            echo '<span class="badge badge-pill badge-danger">Não</span>';
+                                        } ?>
+                                    </td>
                                     <td>
                                         <?php if ($value['mod_status'] == 1) {
                                             echo '<span class="badge badge-pill badge-success">Ativo</span>';

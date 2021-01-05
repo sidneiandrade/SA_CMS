@@ -1,15 +1,14 @@
 <?php 
 
-//include './system/conexao.php'; 
-include './system/database.class.php';
+include './system/conexao.php'; 
 
-$database = new Database();
-$pdo = $database->getConnection();
+if ( !defined('ABSPATH') )
+    define('ABSPATH', dirname(__FILE__) . '/');
 
 if(!isset($_SESSION)){
   session_start();
 }
-$_SESSION['caminho'] = getcwd() . "/";
+$_SESSION['caminho'] = ABSPATH;
 
 $sql = $pdo->query("SELECT * FROM configuracoes")->fetchAll(PDO::FETCH_ASSOC);
 foreach($sql as $values){}

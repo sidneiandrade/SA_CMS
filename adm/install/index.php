@@ -22,27 +22,27 @@
           <form id="install" method="post">
             <div class="form-group">
               <label for="" class="form-label">SITE</label>
-              <input type="text" class="form-control" id="SITE" name="SITE" required>
+              <input type="text" class="form-control" id="SITE" name="SITE" required placeholder="https://meusite.com.br/">
             </div>
             <hr>
             <h3>Informações do Banco</h3>
             <div class="form-group">
               <label for="" class="form-label">HOST</label>
-              <input type="text" class="form-control" id="HOST" name="HOST" required>
+              <input type="text" class="form-control" id="HOST" name="HOST" required placeholder="localhost">
             </div>
             <div class="form-group">
               <label for="" class="form-label">BANCO</label>
-              <input type="text" class="form-control" id="BANCO" name="BANCO" required>
+              <input type="text" class="form-control" id="BANCO" name="BANCO" required placeholder="Nome do Banco">
             </div>
             <div class="form-group">
               <label for="" class="form-label">USUARIO</label>
-              <input type="text" class="form-control" id="USUARIO" name="USUARIO" required>
+              <input type="text" class="form-control" id="USUARIO" name="USUARIO" required placeholder="Usuário">
             </div>
             <div class="form-group">
               <label for="" class="form-label">SENHA</label>
               <input type="password" class="form-control" id="SENHA" name="SENHA">
             </div>
-            <button type="submit" class="btn btn-sm btn-block btn-primary">INSTALAR</button>
+            <button type="submit" class="btn btn-sm btn-block btn-primary">INSTALAR JUMPER</button>
           </form>
         </div>
         <div class="card-footer text-center">

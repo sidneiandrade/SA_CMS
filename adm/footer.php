@@ -89,12 +89,12 @@
     var text = "Sua sessão expira em  "
 
     // Display the result in the element with id="demo"
-    document.getElementById("demo").innerHTML =  text + minutes + "m " + seconds + "s ";
+    document.getElementById("demo").innerHTML =  text + minutes + ":" + seconds;
 
     // If the count down is finished, write some text
     if (distance < 0) {
         clearInterval(x);
-        document.getElementById("demo").innerHTML = "Expirado";
+        document.getElementById("demo").innerHTML = "Sessão expirada!";
         //window.location.reload();
     }
     }, 1000);

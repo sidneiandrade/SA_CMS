@@ -8,3 +8,4 @@ assets/img/portfolio/*.jpg
 assets/img/slide/*.jpg
 .vscode/
 *.zip
+/vendor/

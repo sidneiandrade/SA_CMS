@@ -4,6 +4,8 @@ if(!isset($_SESSION)){
 }
 $caminho = $_SESSION['caminho'];
 
+//require dirname(__DIR__ , 2 ). '/vendor/autoload.php';
+
 include $caminho . 'system/conexao.php';
 require $caminho . 'system/lib/WideImage.php';
 include $caminho . 'configuracoes/_email.php';

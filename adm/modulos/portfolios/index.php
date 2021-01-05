@@ -1,7 +1,5 @@
 <?php
 
-//TODO Limitar quantidade de portfolio na página principal e criar uma página para o portfolio completo.
-
 if(!isset($_SESSION)){
     session_start();
 }

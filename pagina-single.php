@@ -1,7 +1,7 @@
 <?php 
 
 include 'header.php'; 
-include 'select.php';
+//include 'select.php';
 
 $slug = $_GET['pag'];
 
@@ -18,7 +18,7 @@ if(count($pagina) == 0){
 
   <main id="main">
   <?php foreach($pagina as $value){ ?>
-    <!-- ======= Blog Section ======= -->
+
     <section class="breadcrumbs">
       <div class="container">
 
@@ -27,9 +27,8 @@ if(count($pagina) == 0){
         </div>
 
       </div>
-    </section><!-- End Blog Section -->
+    </section>
 
-    <!-- ======= Blog Section ======= -->
     <section class="blog" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
       <div class="container">
 
