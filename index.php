@@ -82,7 +82,7 @@
         </div>
         <?php foreach ($sobre as $key => $sobValue) {
         } ?>
-        <div class="row" data-aos="fade-left" data-aos-offset="600" data-aos-easing="ease-in-sine">
+        <div class="row" data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine">
           <div class="col-lg-6 d-flex align-items-center">
             <img src="<?php echo $sobValue['emp_url_imagem'] ?>" class="img-fluid rounded" alt="<?php echo $values['conf_nome'] ?>">
           </div>
@@ -143,7 +143,7 @@
             <p><?php echo $listModulos[2]['mod_descricao'] ?></p>
           </div>
 
-          <div class="row" data-aos="fade-up" data-aos-duration="500" data-aos-easing="linear">
+          <div class="row" data-aos="fade-up" data-aos-duration="300" data-aos-easing="linear">
             <?php foreach ($servicos as $key => $serValue) { ?>
 
               <div class="col-md-6 mb-3">
@@ -367,7 +367,7 @@
             <p><?php echo $listModulos[4]['mod_descricao'] ?></p>
           </div>
 
-          <div class="row" data-aos="fade-up" data-aos-delay="200" data-aos-duration="500">
+          <div class="row" data-aos="fade-up" data-aos-delay="200" data-aos-duration="300">
             <?php foreach ($listMembros as $key => $mbValues) { ?>
 
               <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
@@ -398,14 +398,14 @@
     <!-- ======= Pricing Section ======= -->
     <?php if ($listModulos[6]['mod_status'] == 1) { ?>
       <section id="<?php echo $listModulos[6]['mod_slug'] ?>" class="pricing section-bg">
-        <div class="container" data-aos="fade-left" data-aos-offset="500" data-aos-duration="500">
+        <div class="container" data-aos="fade-left" data-aos-offset="300" data-aos-duration="300">
 
           <div class="section-title">
             <h2><?php echo $listModulos[6]['mod_titulo'] ?></h2>
             <p><?php echo $listModulos[6]['mod_descricao'] ?></p>
           </div>
 
-          <div class="row" data-aos="fade-left" data-aos-offset="500" data-aos-duration="1000">
+          <div class="row" data-aos="fade-left" data-aos-offset="300" data-aos-duration="1000">
             <?php foreach ($valores as $key => $valValue) { ?>
 
               <div class="col-lg-3 col-md-6">
@@ -465,12 +465,12 @@
     <section id="contact" class="contact section-bg">
       <div class="container">
 
-        <div class="section-title" data-aos="fade-left" data-aos-offset="500" data-aos-duration="500">
+        <div class="section-title" data-aos="fade-left" data-aos-offset="300" data-aos-duration="300">
           <h2>Contato</h2>
           <p>Para maiores informações entre em contato conosco.</p>
         </div>
 
-        <div class="row mt-5 justify-content-center" data-aos="fade-left" data-aos-offset="500" data-aos-duration="500">
+        <div class="row mt-5 justify-content-center" data-aos="fade-left" data-aos-offset="300" data-aos-duration="300">
 
           <div class="col-lg-10">
 
@@ -500,7 +500,7 @@
 
         </div>
 
-        <div class="row mt-5 justify-content-center" data-aos="fade-up" data-aos-offset="500" data-aos-delay="500">
+        <div class="row mt-5 justify-content-center" data-aos="fade-up" data-aos-offset="300" data-aos-delay="300">
           <div class="col-lg-10">
             <form id="formContato" method="post" class="php-email-form" enctype="multipart/form-data">
               <div class="form-row">

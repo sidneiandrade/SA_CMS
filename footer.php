@@ -8,10 +8,14 @@
           <strong>CNPJ:</strong> <?php echo $values['conf_cnpj'] ?>
         </div>
         <div class="social-links mt-3 mb-3">
-          <?= ($values['conf_facebook'] != '') ? '<a href="'.$values['conf_facebook'].'" class="facebook"><i class="bx bxl-facebook"></i></a>' : '' ?> 
-          <?= ($values['conf_instagram'] != '') ? '<a href="'.$values['conf_instagram'].'" class="instagram"><i class="bx bxl-instagram"></i></a>' : '' ?> 
-          <?= ($values['conf_youtube'] != '') ? '<a href="'.$values['conf_youtube'].'" class="youtube"><i class="bx bxl-youtube"></i></a>' : '' ?> 
-          <?= ($values['conf_linkedin'] != '') ? '<a href="'.$values['conf_linkedin'].'" class="linkedin"><i class="bx bxl-linkedin"></i></a>' : '' ?> 
+          <?php 
+              $sql = $pdo->prepare("SELECT * FROM redes_sociais");
+              $sql->execute();
+              $listaRedes = $sql->fetchAll(PDO::FETCH_ASSOC);
+              foreach($listaRedes as $listR) {
+          ?>
+            <a href="<?php echo $listR['social_url'] ?>" title="<?php echo $listR['social_titulo'] ?>" target="_blank"><i class="<?php echo $listR['social_icone'] ?>"></i></a>
+          <?php } ?> 
         </div>
         <div class="credits">
           <a href="https://sadigital.com.br/"><img src="<?php echo $baseUrl ?>assets/img/logo-SADigital.png" class="img-responsive" alt="SA Digital - Agência Digital" width="100px"></a>
@@ -21,7 +25,6 @@
   </footer><!-- End Footer -->
 
   <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
-
 
 
   <!-- Vendor JS Files -->

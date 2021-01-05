@@ -6,7 +6,7 @@ if(!isset($_SESSION)){
 $caminho = $_SESSION['caminho'];
 
 include $caminho . 'system/conexao.php';
-include $caminho . '_email.php';
+include $caminho . 'configuracoes/_email.php';
 
 $desID      = $_POST['desID'];
 $desIcone   = $_POST['desIcone'];

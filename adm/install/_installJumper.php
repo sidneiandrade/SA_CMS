@@ -377,6 +377,19 @@ if(isset($_POST['HOST'])){
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
             -- --------------------------------------------------------
+            
+            --
+            -- Estrutura da tabela `redes_sociais`
+            --
+
+            CREATE TABLE `redes_sociais` (
+            `social_id` INT(11) NOT NULL,
+            `social_icone` VARCHAR(45) NOT NULL,
+            `social_titulo` VARCHAR(50) NOT NULL,
+            `social_url` VARCHAR(255) NOT NULL
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+            -- --------------------------------------------------------
 
             --
             -- Estrutura da tabela `usuario`
@@ -530,6 +543,12 @@ if(isset($_POST['HOST'])){
             ADD PRIMARY KEY (`sd_id`);
 
             --
+            -- Índices para tabela `redes_sociais`
+            --
+            ALTER TABLE `redes_sociais`
+            ADD PRIMARY KEY (`social_id`);
+
+            --
             -- Índices para tabela `usuario`
             --
             ALTER TABLE `usuario`
@@ -654,10 +673,16 @@ if(isset($_POST['HOST'])){
             MODIFY `sd_id` int(11) NOT NULL AUTO_INCREMENT;
 
             --
+            -- AUTO_INCREMENT de tabela `redes_sociais`
+            --
+            ALTER TABLE `redes_sociais`
+            MODIFY `social_id` int(11) NOT NULL AUTO_INCREMENT;
+
+            --
             -- AUTO_INCREMENT de tabela `usuario`
             --
             ALTER TABLE `usuario`
-            MODIFY `usu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+            MODIFY `usu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT;
 
             --
             -- AUTO_INCREMENT de tabela `valores`

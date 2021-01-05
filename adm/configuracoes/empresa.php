@@ -104,7 +104,7 @@ $listarConfiguracoes = $sql->fetchAll(PDO::FETCH_ASSOC);
                                                 <input type="text" class="form-control" name="confEndereco" value="<?php echo $value['conf_endereco'] ?>">
                                             </div>
                                         </div>
-                                        <div class="col-lg-3">
+                                        <!-- <div class="col-lg-3">
                                             <div class="form-group">
                                                 <label class="form-label" for="confInstagram">Instagram</label>
                                                 <input type="text" class="form-control" name="confInstagram" value="<?php echo $value['conf_instagram'] ?>">
@@ -127,7 +127,7 @@ $listarConfiguracoes = $sql->fetchAll(PDO::FETCH_ASSOC);
                                                 <label class="form-label" for="confLinkedin">LinkedIn</label>
                                                 <input type="text" class="form-control" name="confLinkedin" value="<?php echo $value['conf_linkedin'] ?>">
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <div class="col-lg-2 color">
                                             <label class="form-label" for="confCorPrincipal">Cor Principal</label>
                                             <div class="input-group">
@@ -201,6 +201,88 @@ $listarConfiguracoes = $sql->fetchAll(PDO::FETCH_ASSOC);
 
                                 <input type="submit" class="btn btn-pill btn-primary" value="Atualizar Descrição" />
                             </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card mb-grid">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <div class="card-header-title">Redes Sociais</div>
+                        </div>
+                        <div class="card-body collapse show">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <input type="hidden" id="socialID" name="socialID" value="" />
+                                        <div class="col-lg-1">
+                                            <div class="form-group">
+                                                <label class="form-label" for="socialIcone">Ícone</label>
+                                                <button id="socialIcone" name="socialIcone" class="btn btn-light btn-block"></button>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="form-group">
+                                                <label class="form-label" for="socialTitulo">Titulo Rede Social</label>
+                                                <input type="text" class="form-control" id="socialTitulo" name="socialTitulo" placeholder="Título da Rede Social" value="" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-5">
+                                            <div class="form-group">
+                                                <label class="form-label" for="socialUrl">Url Rede Social</label>
+                                                <input type="url" class="form-control" id="socialUrl" name="socialUrl" placeholder="Url da Rede Social" value="" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <div class="form-group">
+                                                <label class="form-label" for="socialCadastro"></label>
+                                                <button id="socialCadastro" name="socialCadastro" class="btn btn-pill btn-primary btn-block" data-acao="salvar">Cadastrar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <?php 
+                                        $sql = $pdo->prepare("SELECT * FROM redes_sociais");
+                                        $sql->execute();
+                                        $listarRedes = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+                                        $Redes = count($listarRedes); 
+
+                                        if($Redes > 0) { ?>
+
+                                    <table id="table" class="table table-sm">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 10%">Ícone</th>
+                                                <th style="width: 30%">Título</th>
+                                                <th style="width: 50%">URL</th>
+                                                <th style="width: 10%">Ação</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php foreach($listarRedes as $listRedes){ ?>
+                                                    <tr>
+                                                        <td><i class="<?php echo $listRedes['social_icone'] ?>"></i></td>
+                                                        <td><?php echo $listRedes['social_titulo'] ?></td>
+                                                        <td><?php echo $listRedes['social_url'] ?></td>
+                                                        <td>
+                                                            <a href="#" class="btn btn-pill btn-sm btn-outline-primary editarRedes" data-id="<?php echo $listRedes['social_id'] ?>" data-acao="editar">Editar</a>
+                                                            <a href="#" class="btn btn-pill btn-sm btn-outline-danger editarRedes" data-id="<?php echo $listRedes['social_id'] ?>" data-acao="deletar">Deletar</a>
+                                                        </td>
+                                                    </tr>
+                                                <?php } ?>
+                                        </tbody>
+                                    </table>
+
+                                    <?php 
+                                        } else { 
+                                            echo "Cadastre agora os links das redes sociais do seu site"; 
+                                        } 
+                                    ?>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -297,6 +379,75 @@ $listarConfiguracoes = $sql->fetchAll(PDO::FETCH_ASSOC);
 <?php include $caminho . 'footer.php'; ?>
 
 <script>
+
+    $('#socialIcone').iconpicker({ 
+        arrowPrevIconClass: 'fas fa-angle-left',
+        arrowNextIconClass: 'fas fa-angle-right',
+        cols: 6,
+        footer: false,
+        header: false,
+        iconset: 'fontawesome5',
+        labelHeader: '{0} de {1} páginas',
+        rows: 5,
+        searchText: 'Pesquisar...',
+        selectedClass: 'btn-success',
+        unselectedClass: '',
+        
+    })
+
+    $('.editarRedes').click( function(){
+        event.preventDefault();
+        $.ajax({
+            url: '_redesSociais.php',
+            data: {
+                    'socialID': $(this).data('id'),
+                    'Acao': $(this).data('acao')
+                },
+            type: "POST",
+            success: function(data) {
+                debugger;
+                if(data.Acao == 'editar'){
+                    $("#socialTitulo").val(data.Titulo);
+                    $("#socialUrl").val(data.Url);
+                    $("#socialIcone").iconpicker('setIcon', data.Icone);
+                    $("#socialCadastro").attr('data-acao', 'atualizar');
+                    $("#socialID").val(data.ID);
+                    $("#socialCadastro").text("Atualizar");
+                } else {
+                    location.reload();
+                }
+
+            }
+        });
+    }); 
+
+    $('#socialCadastro').click(function(){
+        event.preventDefault();
+
+        var ID = $("#socialID").val();
+        var Icone = $("input[name=socialIcone]").val(); 
+        var Titulo = $("#socialTitulo").val();
+        var Url = $("#socialUrl").val();
+
+        debugger;
+
+        $.ajax({
+            url: '_redesSociais.php',
+            data: {
+                    'socialID': ID,
+                    'Icone':    Icone,
+                    'Titulo':   Titulo,
+                    'Url':      Url,
+                    'Acao':     $("#socialCadastro").data('acao')
+                },
+            type: 'POST',
+            success: function(data) {
+                debugger
+                location.reload();
+            }
+        });
+    });
+    
 
     $(function () {
         $('.color').colorpicker({
