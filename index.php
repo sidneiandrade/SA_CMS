@@ -1,7 +1,7 @@
   <?php
 
   include 'header.php';
-  include 'select.php';
+  //include 'select.php';
 
   ?>
 
@@ -59,7 +59,7 @@
           <p>Veja o que nossa empresa pode oferecer para você.</p>
         </div>
 
-        <div class="row" data-aos="fade-right" data-aos-offset="600" data-aos-easing="ease-in-sine">
+        <div class="row" data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine">
           <?php foreach ($destaque as $key => $desValue) { ?>
             <div class="col-lg-4 col-md-4 d-flex align-items-stretch mb-3">
               <div class="icon-box">
@@ -223,7 +223,7 @@
     <?php if ($listModulos[0]['mod_status'] == 1) { ?>
       <section id="<?php echo $listModulos[0]['mod_slug'] ?>" class="news section-bg">
         <div class="container">
-          <div class="section-title" data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine">
+          <div class="section-title" data-aos="fade-right" data-aos-offset="200" data-aos-easing="ease-in-sine">
             <h2><?php echo $listModulos[0]['mod_titulo'] ?></h2>
             <p><?php echo $listModulos[0]['mod_descricao'] ?></p>
           </div>
@@ -234,7 +234,7 @@
 
               <?php foreach($noticias as $keys => $valueNot){ ?>
 
-                <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up">
+                <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos-offset="300" data-aos="fade-up">
                   <article class="entry">
 
                     <div class="entry-img">
@@ -404,26 +404,28 @@
             <h2><?php echo $listModulos[6]['mod_titulo'] ?></h2>
             <p><?php echo $listModulos[6]['mod_descricao'] ?></p>
           </div>
-
+          
           <div class="row" data-aos="fade-left" data-aos-offset="300" data-aos-duration="1000">
-            <?php foreach ($valores as $key => $valValue) { ?>
+            <div class="d-flex justify-content-center">
+              <?php foreach ($valores as $key => $valValue) { ?>
 
-              <div class="col-lg-3 col-md-6">
-                <div class="box ">
-                  <?= ($valValue['val_destaque'] > 0) ? '<span class="advanced">Mais Vendido</span>' : '' ?>
-                  <h3><?php echo $valValue['val_titulo'] ?></h3>
-                  <h4><sup>R$</sup><?php echo $valValue['val_valor'] ?>
-                    <span> /
-                      <?php echo $valValue['val_frequencia'] ?>
-                    </span></h4>
-                  <?php echo $valValue['val_texto'] ?>
-                  <div class="btn-wrap">
-                    <a href="<?php echo $valValue['val_url'] ?>" class="btn-buy"><?php echo $valValue['val_btn_titulo'] ?></a>
+                <div class="col-lg-3 col-md-6">
+                  <div class="box ">
+                    <?= ($valValue['val_destaque'] > 0) ? '<span class="advanced">Mais Vendido</span>' : '' ?>
+                    <h3><?php echo $valValue['val_titulo'] ?></h3>
+                    <h4><sup>R$</sup><?php echo $valValue['val_valor'] ?>
+                      <span> /
+                        <?php echo $valValue['val_frequencia'] ?>
+                      </span></h4>
+                    <?php echo $valValue['val_texto'] ?>
+                    <div class="btn-wrap">
+                      <a href="<?php echo $valValue['val_url'] ?>" class="btn-buy"><?php echo $valValue['val_btn_titulo'] ?></a>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-            <?php } ?>
+              <?php } ?>
+            </div>
           </div>
 
         </div>
