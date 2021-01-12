@@ -5,7 +5,9 @@
         <div class="copyright mb-3 mt-3">
           <img src="<?php echo $values['conf_logo_url'] ?>" alt="<?php echo $values['conf_nome'] ?>" class="img-fluid" style="max-width: 250px"><br>
           <?php echo $values['conf_descricao'] ?>. Todos os direitos reservados.<br>
-          <strong>CNPJ:</strong> <?php echo $values['conf_cnpj'] ?>
+          <?php if($values['conf_cnpj'] != null){ ?>
+            <strong>CNPJ:</strong> <?php echo $values['conf_cnpj'] ?>
+          <?php } ?>
         </div>
         <div class="social-links mt-3 mb-3">
           <?php 

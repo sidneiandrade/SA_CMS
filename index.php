@@ -23,8 +23,10 @@
                   <div class="carousel-content container">
                     <h2><?php echo $slideValues['sd_titulo'] ?></h2>
                     <p><?php echo $slideValues['sd_texto'] ?></p>
-                    <?php if ($slideValues['sd_url_botao'] != '')
-                      echo '<a href="' . $slideValues["sd_url_botao"] . '" class="btn-get-started scrollto">Saiba mais</a>';
+                    <?php 
+                        if($slideValues['sd_url_botao'] != ''){
+                            echo '<a href="' . $slideValues["sd_url_botao"] . '" class="btn-get-started scrollto">Saiba mais</a>';
+                        }
                     ?>
                   </div>
                 </div>
@@ -406,7 +408,6 @@
           </div>
           
           <div class="row" data-aos="fade-left" data-aos-offset="300" data-aos-duration="1000">
-            <div class="d-flex justify-content-center">
               <?php foreach ($valores as $key => $valValue) { ?>
 
                 <div class="col-lg-3 col-md-6">
@@ -425,7 +426,7 @@
                 </div>
 
               <?php } ?>
-            </div>
+
           </div>
 
         </div>

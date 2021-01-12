@@ -29,13 +29,12 @@ $list = $pdo->query("SELECT * FROM slides ORDER BY sd_id DESC")->fetchAll(PDO::F
                 <div class="col-lg-6">
                     <div class="pb-3">
                         <h1>Listar Slides</h1> 
-                        <a href="./" class="btn btn-pill btn-primary btn-sm">Adicionar Slide</a>
+                        <!-- <a href="./" class="btn btn-pill btn-primary btn-sm">Adicionar Slide</a> -->
                     </div>
                 </div>
-                <!-- <div class="col-lg-6 text-right">
-                    <a href="./" class="btn btn-pill btn-primary btn-sm">Adicionar Slide</a>
-                    <a href="./" class="btn btn-sm btn-primary"><i data-feather="plus-circle"></i> Adicionar Slide</a>
-                </div> -->
+                <div class="col-lg-6 text-right">
+                    <a href="./" class="btn btn-pill btn-primary">Adicionar Slide</a>
+                </div>
             </div>
             
 

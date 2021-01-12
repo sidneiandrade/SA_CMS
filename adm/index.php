@@ -2,12 +2,20 @@
 
 include './system/conexao.php'; 
 
-if ( !defined('ABSPATH') )
-    define('ABSPATH', dirname(__FILE__) . '/');
+if(!defined('ABSPATH')){
+  define('ABSPATH', dirname(__FILE__) . '/');
+}
 
 if(!isset($_SESSION)){
   session_start();
 }
+
+$logado = isset($_SESSION['id']) ? 'S' : 'N';
+
+if($logado == 'S'){
+  header('Location: dashboard');
+}
+
 $_SESSION['caminho'] = ABSPATH;
 
 $sql = $pdo->query("SELECT * FROM configuracoes")->fetchAll(PDO::FETCH_ASSOC);

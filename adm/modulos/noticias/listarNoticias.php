@@ -26,7 +26,7 @@ $listNoticias = $pdo->query("SELECT * FROM noticias ORDER BY not_id DESC")->fetc
 
             <div class="pb-3">
                 <h1>Listar Notícias</h1>
-                <a href="./" class="btn btn-pill btn-primary btn-sm">Adicionar Notícia</a>
+                <!-- <a href="./" class="btn btn-pill btn-primary btn-sm">Adicionar Notícia</a> -->
             </div>
 
             <div class="row">

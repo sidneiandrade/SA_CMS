@@ -1,6 +1,7 @@
 <?php 
 
 include 'adm/system/conexao.php';
+include 'select.php';
 
 $sql = $pdo->query("SELECT * FROM configuracoes")->fetchAll(PDO::FETCH_ASSOC);
 foreach($sql as $values){}
@@ -18,8 +19,23 @@ $listModulos = $modulos->fetchAll(PDO::FETCH_ASSOC);
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
   <title><?php echo $values['conf_nome'] . ' - ' . $values['conf_descricao'] ?></title>
-  <meta content="<?php echo $values['conf_descricao'] ?>" name="descriptison">
-  <meta content="" name="keywords">
+  
+  <meta name="description" content="<?php echo $values['conf_descricao'] ?>">
+  <meta name="author" content="<?php echo $values['conf_nome'] ?>">
+  <meta name="keywords" content="">
+
+  <!-- Facebook-->
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:url" content="<?php echo $baseUrl ?>"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="<?php echo $values['conf_nome'] ?>"/>
+  <meta property="og:description" content="<?php echo $values['conf_descricao'] ?>"/> <!-- Descrição -->
+  <?php foreach ($sobre as $key => $sobValue) { ?>
+  <meta property="og:image" content="<?php echo $sobValue['emp_url_imagem'] ?>"/>
+  <?php } ?>
+  <meta property="og:image:type" content="image/jpeg"/>
+  <!-- <meta property="og:image:width" content="270"/>
+  <meta property="og:image:height" content="270"/> -->
 
   <!-- Favicons -->
   <link href="<?php echo $values['conf_favicon_url'] ?>" rel="icon">

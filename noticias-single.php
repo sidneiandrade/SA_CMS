@@ -1,11 +1,11 @@
 <?php 
 
-include 'header.php'; 
+include './adm/system/conexao.php';
 include 'select.php';
 
 $slug = $_GET['post'];
 
-$not = $pdo->prepare("SELECT * FROM noticias WHERE not_slug = ?");
+$not = $pdo->prepare("SELECT * FROM noticias WHERE not_slug = ? and not_status = 1");
 $not->execute([$slug]);
 $noticia = $not->fetchAll(PDO::FETCH_ASSOC);
 
@@ -13,6 +13,7 @@ if(count($noticia) == 0){
   header('Location: '. $baseUrl .'erro/');
 }
 
+include 'header.php'; 
 
 ?>
 

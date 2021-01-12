@@ -127,7 +127,9 @@
   $('.back-to-top').click(function() {
     $('html, body').animate({
       scrollTop: 0
-    }, 1500, 'easeInOutExpo');
+    }, 1500, 'easeInOutExpo', function(){
+      $(".nav-menu ul:first li:first").addClass('active');
+    });
     return false;
   });
 

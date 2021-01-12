@@ -1,11 +1,11 @@
 <?php 
 
-include 'header.php'; 
-//include 'select.php';
+
+include './adm/system/conexao.php';
 
 $slug = $_GET['pag'];
 
-$not = $pdo->prepare("SELECT * FROM paginas WHERE pag_slug = ?");
+$not = $pdo->prepare("SELECT * FROM paginas WHERE pag_slug = ? and pag_status = 1");
 $not->execute([$slug]);
 $pagina = $not->fetchAll(PDO::FETCH_ASSOC);
 
@@ -13,6 +13,7 @@ if(count($pagina) == 0){
   header('Location: '. $baseUrl .'erro/');
 }
 
+include 'header.php'; 
 
 ?>
 

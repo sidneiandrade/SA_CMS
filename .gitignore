@@ -9,5 +9,4 @@ assets/img/slide/*.jpg
 .vscode/
 .idea/
 *.zip
-/vendor/
 adm/uploads/

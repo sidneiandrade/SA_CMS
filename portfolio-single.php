@@ -1,11 +1,10 @@
 <?php 
 
 include './adm/system/conexao.php';
-include 'header.php';
 
 $slug = $_GET['port'];
 
-$dados = $pdo->prepare("SELECT * FROM portfolios WHERE port_slug = ?");
+$dados = $pdo->prepare("SELECT * FROM portfolios WHERE port_slug = ? and port_status = 1");
 $dados->execute([$slug]);
 $listPort = $dados->fetchAll(PDO::FETCH_ASSOC);
 
@@ -22,6 +21,7 @@ foreach($listPort as $keys => $vPort){
   $categoria = $vPort['port_categoria'];
 }
 
+include 'header.php';
 
 ?>
 

@@ -15,7 +15,7 @@
       </a>
     </li>
 
-    <li class="sidebar-nav-item">
+    <!-- <li class="sidebar-nav-item">
       <a href="<?php echo $value['conf_link'] ?>adm/configuracoes/empresa" class="sidebar-nav-link">
         <span class="sidebar-nav-icon">
           <i data-feather="check-circle"></i>
@@ -26,7 +26,7 @@
         <span class="sidebar-nav-end">
         </span>
       </a>
-    </li>
+    </li> -->
 
     <li class="sidebar-nav-item">
       <a class="sidebar-nav-link collapsed" data-toggle="collapse" href="#navModulos" aria-expanded="false" aria-controls="navTables">
@@ -98,9 +98,9 @@
       </a>
     </li>
 
-    <?php if($_SESSION['nivel'] == 1){ ?>
+    
     <li class="sidebar-nav-item">
-      <a class="sidebar-nav-link collapsed" data-toggle="collapse" href="#navNumeros" aria-expanded="false" aria-controls="navTables">
+      <a class="sidebar-nav-link collapsed" data-toggle="collapse" href="#navConfiguracoes" aria-expanded="false" aria-controls="navTables">
         <span class="sidebar-nav-icon">
           <i data-feather="settings" class="nav-collapse-icon"></i>
         </span>
@@ -111,7 +111,22 @@
             <i data-feather="chevron-right" class="nav-collapse-icon"></i>
           </span>
       </a>
-      <ul class="sidebar-sub-nav collapse" id="navNumeros">
+      <ul class="sidebar-sub-nav collapse" id="navConfiguracoes">
+
+        <li class="sidebar-nav-item">
+          <a href="<?php echo $value['conf_link'] ?>adm/configuracoes/empresa" class="sidebar-nav-link">
+            <span class="sidebar-nav-icon">
+              <i data-feather="check-circle"></i>
+            </span>
+            <span class="sidebar-nav-name">
+              Informações do Site
+            </span>
+            <span class="sidebar-nav-end">
+            </span>
+          </a>
+        </li>
+
+        <?php if($_SESSION['nivel'] == 1){ ?>
           <li class="sidebar-nav-item">
             <a href="<?php echo $value['conf_link'] ?>adm/configuracoes/" class="sidebar-nav-link">
               <span class="sidebar-nav-abbr">
@@ -122,6 +137,7 @@
               </span>
             </a>
           </li>
+          
           <li class="sidebar-nav-item">
             <a href="<?php echo $value['conf_link'] ?>adm/configuracoes/listarModulos" class="sidebar-nav-link">
               <span class="sidebar-nav-abbr">
@@ -132,6 +148,8 @@
               </span>
             </a>
           </li>
+          <?php } ?>
+
           <li class="sidebar-nav-item">
             <a href="<?php echo $value['conf_link'] ?>adm/modulos/categorias/listarCategorias" class="sidebar-nav-link">
               <span class="sidebar-nav-abbr">
@@ -144,7 +162,7 @@
           </li>
         </ul>
     </li>
-    <?php } ?>
+    
 
   </ul>
 </div><!-- Sidebar End -->

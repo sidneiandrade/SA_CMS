@@ -81,7 +81,7 @@ if ($catID != 0) {
                                     </div>
                                     <div class="col-lg-3">
                                         <div class="form-group">
-                                            <label class="form-label" for="catOrigem">Status</label>
+                                            <label class="form-label" for="catOrigem">Origem</label>
                                             <!-- TODO Criar banco para salvar as origens das categorias -->
                                             <select id="catOrigem" name="catOrigem" class="form-control js-choice"> 
                                                 <option value="n" <?= ($Origem == 'n') ? 'selected="selected"' : '' ?>>Notícias</option>

@@ -268,8 +268,8 @@ $listarConfiguracoes = $sql->fetchAll(PDO::FETCH_ASSOC);
                                                         <td><?php echo $listRedes['social_titulo'] ?></td>
                                                         <td><?php echo $listRedes['social_url'] ?></td>
                                                         <td>
-                                                            <a href="#" class="btn btn-pill btn-sm btn-outline-primary editarRedes" data-id="<?php echo $listRedes['social_id'] ?>" data-acao="editar">Editar</a>
-                                                            <a href="#" class="btn btn-pill btn-sm btn-outline-danger editarRedes" data-id="<?php echo $listRedes['social_id'] ?>" data-acao="deletar">Deletar</a>
+                                                            <a href="#" class="btn btn-pill btn-sm btn-light editarRedes" data-id="<?php echo $listRedes['social_id'] ?>" data-acao="editar"><i data-feather="edit"></i></a>
+                                                            <a href="#" class="btn btn-pill btn-sm btn-light editarRedes" data-id="<?php echo $listRedes['social_id'] ?>" data-acao="deletar"><i data-feather="trash-2"></i></a>
                                                         </td>
                                                     </tr>
                                                 <?php } ?>
@@ -315,7 +315,7 @@ $listarConfiguracoes = $sql->fetchAll(PDO::FETCH_ASSOC);
                                                     <td><?php echo $value['des_titulo'] ?></td>
                                                     <td><?php echo $value['des_texto'] ?></td>
                                                     <td>
-                                                        <a href="destaque?id=<?php echo $value['des_id'] ?>" class="btn btn-pill btn-sm btn-outline-primary">Editar</a>
+                                                        <a href="destaque?id=<?php echo $value['des_id'] ?>" class="btn btn-pill btn-sm btn-light"><i data-feather="edit"></i></a>
                                                     </td>
                                                 </tr>
                                             <?php } ?>
@@ -355,7 +355,7 @@ $listarConfiguracoes = $sql->fetchAll(PDO::FETCH_ASSOC);
                                                     <td><?php echo $value['sk_titulo'] ?></td>
                                                     <td><?php echo $value['sk_valor'] ?> %</td>
                                                     <td>
-                                                        <a href="skill?id=<?php echo $value['sk_id'] ?>" class="btn btn-pill btn-sm btn-outline-primary">Editar</a>
+                                                        <a href="skill?id=<?php echo $value['sk_id'] ?>" class="btn btn-pill btn-sm btn-light"><i data-feather="edit"></i></a>
                                                     </td>
                                                 </tr>
                                             <?php } ?>
