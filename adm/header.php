@@ -6,11 +6,11 @@ if (session_status() !== PHP_SESSION_ACTIVE) { //Verificar se a sessão não já
 }
 
 if (!isset($_SESSION['usuario'])) {
-    header('Location: ' . $baseUrl );
+    exit(header('Location: ' . $baseUrl ));
 }
 
 if ((time() - $_SESSION['tempo_login']) > 900) {
-    header('Location: '. $baseUrl .'adm/system/logout?acao=expirou');
+    exit(header('Location: '. $baseUrl .'adm/system/logout?acao=expirou'));
 } else {
     $_SESSION['tempo_login'] = time();
 }

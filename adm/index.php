@@ -13,7 +13,7 @@ if(!isset($_SESSION)){
 $logado = isset($_SESSION['id']) ? 'S' : 'N';
 
 if($logado == 'S'){
-  header('Location: dashboard');
+  exit(header('Location: dashboard'));
 }
 
 $_SESSION['caminho'] = ABSPATH;

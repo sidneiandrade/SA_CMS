@@ -1,5 +1,5 @@
 /**
-* Template Name: Lumia - v2.1.0
+* Template Name: Lumia - v2.2.0
 * Template URL: https://bootstrapmade.com/lumia-bootstrap-business-template/
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
@@ -127,9 +127,7 @@
   $('.back-to-top').click(function() {
     $('html, body').animate({
       scrollTop: 0
-    }, 1500, 'easeInOutExpo', function(){
-      $(".nav-menu ul:first li:first").addClass('active');
-    });
+    }, 1500, 'easeInOutExpo');
     return false;
   });
 

@@ -56,12 +56,12 @@
     <section id="dest" class="what-we-do">
       <div class="container">
 
-        <div class="section-title" data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine">
+        <div class="section-title aos-init aos-animate" data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine">
           <h2>Nossos Destaques</h2>
           <p>Veja o que nossa empresa pode oferecer para você.</p>
         </div>
 
-        <div class="row" data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine">
+        <div class="row aos-init aos-animate" data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine">
           <?php foreach ($destaque as $key => $desValue) { ?>
             <div class="col-lg-4 col-md-4 d-flex align-items-stretch mb-3">
               <div class="icon-box">
@@ -78,13 +78,13 @@
 
     <!-- ======= About Section ======= -->
     <section id="about" class="about pb-5">
-      <div class="container" data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine">
+      <div class="container aos-init aos-animate" data-aos="fade-up" data-aos-offset="300" data-aos-easing="ease-in-sine">
         <div class="section-title">
           <h2>Sobre</h2>
         </div>
         <?php foreach ($sobre as $key => $sobValue) {
         } ?>
-        <div class="row" data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine">
+        <div class="row aos-init aos-animate" data-aos="fade-up" data-aos-offset="300" data-aos-easing="ease-in-sine">
           <div class="col-lg-6 d-flex align-items-center">
             <img src="<?php echo $sobValue['emp_url_imagem'] ?>" class="img-fluid rounded" alt="<?php echo $values['conf_nome'] ?>">
           </div>
@@ -97,7 +97,7 @@
 
     <!-- ======= Skills Section ======= -->
     <section id="skills" class="skills">
-      <div class="container" data-aos="fade-up"  data-aos-offset="300" data-aos-anchor-placement="top-bottom">
+      <div class="container aos-init aos-animate" data-aos="fade-up"  data-aos-offset="300" data-aos-anchor-placement="top-bottom">
         <div class="row skills-content">
           <?php foreach ($Skill as $key => $skValue) { ?> 
           <div class="col-lg-6">
@@ -117,7 +117,7 @@
     <!-- ======= Counts Section ======= -->
     <?php if ($listModulos[9]['mod_status'] == 1) { ?>
       <section id="<?php echo $listModulos[9]['mod_slug'] ?>" class="counts">
-        <div class="container" data-aos="zoom-in"  data-aos-offset="300" data-aos-anchor-placement="top-bottom">
+        <div class="container aos-init aos-animate" data-aos="zoom-in"  data-aos-offset="300" data-aos-anchor-placement="top-bottom">
 
           <div class="row">
             <?php foreach ($numeros as $key => $numValue) { ?>
@@ -139,13 +139,13 @@
     <!-- ======= Services Section ======= -->
     <?php if ($listModulos[2]['mod_status'] == 1) { ?>
       <section id="<?php echo $listModulos[2]['mod_slug'] ?>" class="services section-bg">
-        <div class="container" data-aos="fade-up" data-aos-easing="linear">
+        <div class="container aos-init aos-animate" data-aos="fade-up" data-aos-easing="linear">
           <div class="section-title">
             <h2><?php echo $listModulos[2]['mod_titulo'] ?></h2>
             <p><?php echo $listModulos[2]['mod_descricao'] ?></p>
           </div>
 
-          <div class="row" data-aos="fade-up" data-aos-duration="300" data-aos-easing="linear">
+          <div class="row aos-init aos-animate" data-aos="fade-up" data-aos-duration="300" data-aos-easing="linear">
             <?php foreach ($servicos as $key => $serValue) { ?>
 
               <div class="col-md-6 mb-3">
@@ -168,12 +168,12 @@
       <section id="<?php echo $listModulos[3]['mod_slug'] ?>" class="portfolio">
         <div class="container">
 
-          <div class="section-title" data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine">
+          <div class="section-title aos-init aos-animate" data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine">
             <h2><?php echo $listModulos[3]['mod_titulo'] ?></h2>
             <p><?php echo $listModulos[3]['mod_descricao'] ?></p>
           </div>
 
-          <div class="row" data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine">
+          <div class="row aos-init aos-animate" data-aos="fade-up" data-aos-offset="300" data-aos-easing="ease-in-sine">
             <div class="col-lg-12">
               <ul id="portfolio-flters">
                 <li data-filter="*" class="filter-active">Todos</li>
@@ -184,7 +184,7 @@
             </div>
           </div>
 
-          <div class="row portfolio-container" data-aos="fade-up" data-aos-offset="300" data-aos-easing="ease-in-sine">
+          <div class="row portfolio-container aos-init aos-animate" data-aos="fade-up" data-aos-offset="300" data-aos-easing="ease-in-sine">
             <?php
             foreach ($dadosPort as $keys => $valuePort) {
               $idPort = $valuePort['port_id'];
@@ -225,7 +225,7 @@
     <?php if ($listModulos[0]['mod_status'] == 1) { ?>
       <section id="<?php echo $listModulos[0]['mod_slug'] ?>" class="news section-bg">
         <div class="container">
-          <div class="section-title" data-aos="fade-right" data-aos-offset="200" data-aos-easing="ease-in-sine">
+          <div class="section-title aos-init aos-animate" data-aos="fade-right" data-aos-offset="200" data-aos-easing="ease-in-sine">
             <h2><?php echo $listModulos[0]['mod_titulo'] ?></h2>
             <p><?php echo $listModulos[0]['mod_descricao'] ?></p>
           </div>
@@ -236,7 +236,7 @@
 
               <?php foreach($noticias as $keys => $valueNot){ ?>
 
-                <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos-offset="300" data-aos="fade-up">
+                <div class="col-lg-4 col-md-6 d-flex align-items-stretch aos-init aos-animate" data-aos-offset="300" data-aos="fade-up">
                   <article class="entry">
 
                     <div class="entry-img">
@@ -283,7 +283,7 @@
     <?php if ($listModulos[5]['mod_status'] == 1) { ?>
       <section id="<?php echo $listModulos[5]['mod_slug'] ?>" class="clients">
         <div class="container">
-          <div class="section-title" data-aos="fade-right" data-aos-delay="100" data-aos-easing="ease-in-sine">
+          <div class="section-title aos-init aos-animate" data-aos="fade-right" data-aos-delay="100" data-aos-easing="ease-in-sine">
             <h2><?php echo $listModulos[5]['mod_titulo'] ?></h2>
             <p><?php echo $listModulos[5]['mod_descricao'] ?></p>
           </div>
@@ -291,7 +291,7 @@
             <?php foreach ($listClientes as $key => $cliValues) { ?>
 
               <div class="col-lg-3 col-md-4 col-xs-6">
-                <div class="client-logo" data-aos="zoom-in">
+                <div class="client-logo aos-init aos-animate" data-aos="zoom-in">
                   <img src="<?php echo $cliValues['cli_url_imagem'] ?>" class="img-fluid" alt="<?php echo $cliValues['cli_empresa'] ?>">
                 </div>
               </div>
@@ -309,7 +309,7 @@
       <section id="<?php echo $listModulos[12]['mod_slug'] ?>" class="cta">
         <div class="container">
         <?php foreach($dadosCta as $keys => $ctaValue){ ?>
-          <div class="row" data-aos="zoom-in">
+          <div class="row aos-init aos-animate" data-aos="zoom-in">
             <div class="col-lg-9 text-center text-lg-left">
               <h3><?php echo $ctaValue['cta_titulo'] ?></h3>
               <p><?php echo $ctaValue['cta_texto'] ?></p>
@@ -331,12 +331,12 @@
       <section id="<?php echo $listModulos[8]['mod_slug'] ?>" class="testimonials section-bg">
         <div class="container">
 
-          <div class="section-title" data-aos="fade-left" data-aos-delay="100" data-aos-easing="ease-in-sine">
+          <div class="section-title aos-init aos-animate" data-aos="fade-up" data-aos-delay="100" data-aos-easing="ease-in-sine">
             <h2><?php echo $listModulos[8]['mod_titulo'] ?></h2>
             <p><?php echo $listModulos[8]['mod_descricao'] ?></p>
           </div>
 
-          <div class="owl-carousel testimonials-carousel" data-aos="fade-up" data-aos-delay="100">
+          <div class="owl-carousel testimonials-carousel aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
             <?php foreach ($depoimentos as $key => $depValue) { ?>
 
               <div class="testimonial-item">
@@ -362,14 +362,14 @@
     <!-- ======= Team Section ======= -->
     <?php if ($listModulos[4]['mod_status'] == 1) { ?>
       <section id="<?php echo $listModulos[4]['mod_slug'] ?>" class="team">
-        <div class="container" data-aos="fade-up">
+        <div class="container aos-init aos-animate" data-aos="fade-up">
 
           <div class="section-title">
             <h2><?php echo $listModulos[4]['mod_titulo'] ?></h2>
             <p><?php echo $listModulos[4]['mod_descricao'] ?></p>
           </div>
 
-          <div class="row" data-aos="fade-up" data-aos-delay="200" data-aos-duration="300">
+          <div class="row justify-content-lg-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="200" data-aos-duration="300">
             <?php foreach ($listMembros as $key => $mbValues) { ?>
 
               <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
@@ -400,14 +400,14 @@
     <!-- ======= Pricing Section ======= -->
     <?php if ($listModulos[6]['mod_status'] == 1) { ?>
       <section id="<?php echo $listModulos[6]['mod_slug'] ?>" class="pricing section-bg">
-        <div class="container" data-aos="fade-left" data-aos-offset="300" data-aos-duration="300">
+        <div class="container aos-init aos-animate" data-aos="fade-up" data-aos-offset="300" data-aos-duration="300">
 
           <div class="section-title">
             <h2><?php echo $listModulos[6]['mod_titulo'] ?></h2>
             <p><?php echo $listModulos[6]['mod_descricao'] ?></p>
           </div>
           
-          <div class="row" data-aos="fade-left" data-aos-offset="300" data-aos-duration="1000">
+          <div class="row justify-content-lg-center aos-init aos-animate" data-aos="fade-up" data-aos-offset="300" data-aos-duration="1000">
               <?php foreach ($valores as $key => $valValue) { ?>
 
                 <div class="col-lg-3 col-md-6">
@@ -437,14 +437,14 @@
     <!-- ======= Frequently Asked Questions Section ======= -->
     <?php if ($listModulos[7]['mod_status'] == 1) { ?>
       <section id="<?php echo $listModulos[7]['mod_slug'] ?>" class="faq">
-        <div class="container" data-aos="fade-up">
+        <div class="container aos-init aos-animate" data-aos="fade-up">
 
           <div class="section-title">
             <h2><?php echo $listModulos[7]['mod_titulo'] ?></h2>
             <p><?php echo $listModulos[7]['mod_descricao'] ?></p>
           </div>
 
-          <ul class="faq-list" data-aos="fade-up" data-aos-delay="100">
+          <ul class="faq-list aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
 
             <?php foreach ($listPerguntas as $key => $pergValues) { ?>
               <li>
@@ -468,12 +468,12 @@
     <section id="contact" class="contact section-bg">
       <div class="container">
 
-        <div class="section-title" data-aos="fade-left" data-aos-offset="300" data-aos-duration="300">
+        <div class="section-title aos-init aos-animate" data-aos="fade-up" data-aos-offset="300" data-aos-duration="300">
           <h2>Contato</h2>
           <p>Para maiores informações entre em contato conosco.</p>
         </div>
 
-        <div class="row mt-5 justify-content-center" data-aos="fade-left" data-aos-offset="300" data-aos-duration="300">
+        <div class="row mt-5 justify-content-center aos-init aos-animate" data-aos="fade-up" data-aos-offset="300" data-aos-duration="300">
 
           <div class="col-lg-10">
 
@@ -503,7 +503,7 @@
 
         </div>
 
-        <div class="row mt-5 justify-content-center" data-aos="fade-up" data-aos-offset="300" data-aos-delay="300">
+        <div class="row mt-5 justify-content-center aos-init aos-animate" data-aos="fade-up" data-aos-offset="300" data-aos-delay="300">
           <div class="col-lg-10">
             <form id="formContato" method="post" class="php-email-form" enctype="multipart/form-data">
               <div class="form-row">
