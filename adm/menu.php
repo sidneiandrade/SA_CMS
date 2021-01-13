@@ -15,19 +15,6 @@
       </a>
     </li>
 
-    <!-- <li class="sidebar-nav-item">
-      <a href="<?php echo $value['conf_link'] ?>adm/configuracoes/empresa" class="sidebar-nav-link">
-        <span class="sidebar-nav-icon">
-          <i data-feather="check-circle"></i>
-        </span>
-        <span class="sidebar-nav-name">
-          Informações Empresa
-        </span>
-        <span class="sidebar-nav-end">
-        </span>
-      </a>
-    </li> -->
-
     <li class="sidebar-nav-item">
       <a class="sidebar-nav-link collapsed" data-toggle="collapse" href="#navModulos" aria-expanded="false" aria-controls="navTables">
         <span class="sidebar-nav-icon">
@@ -126,7 +113,20 @@
           </a>
         </li>
 
+        <li class="sidebar-nav-item">
+          <a href="<?php echo $value['conf_link'] ?>adm/modulos/categorias/listarCategorias" class="sidebar-nav-link">
+            <span class="sidebar-nav-abbr">
+              <i data-feather="tag"></i>
+            </span>
+            <span class="sidebar-nav-name">
+              Gerenciar Categorias
+            </span>
+          </a>
+        </li>
+
         <?php if($_SESSION['nivel'] == 1){ ?>
+          <hr>
+          
           <li class="sidebar-nav-item">
             <a href="<?php echo $value['conf_link'] ?>adm/configuracoes/" class="sidebar-nav-link">
               <span class="sidebar-nav-abbr">
@@ -150,16 +150,7 @@
           </li>
           <?php } ?>
 
-          <li class="sidebar-nav-item">
-            <a href="<?php echo $value['conf_link'] ?>adm/modulos/categorias/listarCategorias" class="sidebar-nav-link">
-              <span class="sidebar-nav-abbr">
-                <i data-feather="tag"></i>
-              </span>
-              <span class="sidebar-nav-name">
-                Gerenciar Categorias
-              </span>
-            </a>
-          </li>
+          
         </ul>
     </li>
     

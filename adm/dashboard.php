@@ -71,7 +71,7 @@ include 'header.php';
         <?php if($_SESSION['nivel'] == 1){ ?>
         <div class="col-lg-2 col-sm-4 text-center mb-3">
           <div class="card">
-            <a href="configuracoes" style="cursor: pointer; text-decoration: none; color: #212529;">
+            <a href="configuracoes/empresa" style="cursor: pointer; text-decoration: none; color: #212529;">
               <div class="card-body collapse show" id="card1">
                 <i data-feather="settings" style="width: 40px; height: 40px"></i>
                 <br>

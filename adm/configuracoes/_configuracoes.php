@@ -63,10 +63,10 @@ if (!empty($_POST)) {
     $confEndereco       = $_POST['confEndereco'];
     $confCorPrincipal   = $_POST['confCorPrincipal'];
     $confCorSecundaria  = $_POST['confCorSecundaria'];
-    $confInstagram      = $_POST['confInstagram'];
-    $confFacebook       = $_POST['confFacebook'];
-    $confYoutube        = $_POST['confYoutube'];
-    $confLinkedin       = $_POST['confLinkedin'];
+    // $confInstagram      = $_POST['confInstagram'];
+    // $confFacebook       = $_POST['confFacebook'];
+    // $confYoutube        = $_POST['confYoutube'];
+    // $confLinkedin       = $_POST['confLinkedin'];
     $confCNPJ           = $_POST['confCNPJ'];
 
     $sql = $pdo->prepare("UPDATE configuracoes SET 
@@ -78,10 +78,10 @@ if (!empty($_POST)) {
             conf_endereco = ?,
             conf_cor_principal = ?,
             conf_cor_secundaria = ?,
-            conf_instagram = ?,
-            conf_facebook = ?,
-            conf_youtube = ?,
-            conf_linkedin = ?,
+            -- conf_instagram = ?,
+            -- conf_facebook = ?,
+            -- conf_youtube = ?,
+            -- conf_linkedin = ?,
             conf_cnpj = ?
             WHERE conf_id = ?");
     $sql->execute([
@@ -93,10 +93,10 @@ if (!empty($_POST)) {
         $confEndereco,
         $confCorPrincipal,
         $confCorSecundaria,
-        $confInstagram,
-        $confFacebook,
-        $confYoutube,
-        $confLinkedin,
+        // $confInstagram,
+        // $confFacebook,
+        // $confYoutube,
+        // $confLinkedin,
         $confCNPJ,
         $id
     ]);

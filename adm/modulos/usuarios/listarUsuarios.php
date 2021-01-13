@@ -37,6 +37,7 @@ $listUsuario = $pdo->query("SELECT * FROM usuario ORDER BY usu_id DESC")->fetchA
                             <tr>
                                 <th scope="col">Nome</th>
                                 <th scope="col">Email</th>
+                                <th scope="col">Nível</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">Ação</th>
                             </tr>
@@ -46,6 +47,7 @@ $listUsuario = $pdo->query("SELECT * FROM usuario ORDER BY usu_id DESC")->fetchA
                                 <tr>
                                     <td><?php echo $value['usu_nome'] ?></td>
                                     <td><?php echo $value['usu_email'] ?></td>
+                                    <td><?= $value['usu_nivel'] == 1 ? 'Administrador' : 'Usuário'; ?></td>
                                     <td>
                                         <?php if ($value['usu_status'] == 1) {
                                             echo '<span class="badge badge-pill badge-success">Ativo</span>';

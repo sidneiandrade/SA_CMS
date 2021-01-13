@@ -221,6 +221,39 @@
     <?php } else {} ?>
     <!-- End Portfolio Section -->
 
+    <!-- ======= Gallery Section ======= -->
+    <?php if ($listModulos[13]['mod_status'] == 1) { ?>
+      <section id="<?php echo $listModulos[13]['mod_slug'] ?>" class="gallery">
+        <div class="container-fluid">
+
+          <div class="section-title aos-init aos-animate" data-aos="fade-up" data-aos-offset="300" data-aos-easing="ease-in-sine">
+            <h2><?php echo $listModulos[13]['mod_titulo'] ?></h2>
+              <p><?php echo $listModulos[13]['mod_descricao'] ?></p>
+          </div>
+
+          <div class="row no-gutters aos-init aos-animate" data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine">
+          <?php 
+            $sql = $pdo->prepare('SELECT * FROM galerias');
+            $sql->execute();
+            $list = $sql->fetchAll(PDO::FETCH_ASSOC);
+            foreach($list as $galValues){
+          ?>
+            <div class="col-lg-3 col-md-4">
+              <div class="gallery-item">
+                <a href="<?php echo $galValues['gal_url'] ?>" class="venobox" data-gall="gallery-item">
+                  <img src="<?php echo $galValues['gal_url'] ?>" alt="<?php echo $galValues['gal_nome'] ?>" class="img-fluid">
+                </a>
+              </div>
+            </div>
+          <?php } ?>
+
+          </div>
+
+        </div>
+      </section>
+    <?php } ?>
+    <!-- End Gallery Section -->
+
     <!-- ======= News Section ======= -->
     <?php if ($listModulos[0]['mod_status'] == 1) { ?>
       <section id="<?php echo $listModulos[0]['mod_slug'] ?>" class="news section-bg">
@@ -410,7 +443,7 @@
           <div class="row justify-content-lg-center aos-init aos-animate" data-aos="fade-up" data-aos-offset="300" data-aos-duration="1000">
               <?php foreach ($valores as $key => $valValue) { ?>
 
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-3 col-md-6 mb-3">
                   <div class="box ">
                     <?= ($valValue['val_destaque'] > 0) ? '<span class="advanced">Mais Vendido</span>' : '' ?>
                     <h3><?php echo $valValue['val_titulo'] ?></h3>

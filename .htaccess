@@ -11,5 +11,5 @@ RewriteRule ^noticia/([a-z0-9-]+)$ noticias-single.php?post=$1 [NC,L]
 RewriteRule ^portfolio/([a-z0-9-]+)$ portfolio-single.php?port=$1 [NC,L]
 RewriteRule ^pagina/([a-z0-9-]+)$ pagina-single.php?pag=$1 [NC,L]
 
-
+Options -Indexes
 

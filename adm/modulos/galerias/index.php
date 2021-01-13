@@ -30,15 +30,20 @@ include $caminho . 'header.php';
                           <input name="fileToUpload" type="file" multiple />
                         </div>
                     </form>
+                    <br>
+                    <div class="col-lg-2 offset-lg-5">
+                        <button type="button" class="btn-primary btn btn-lg btn-block" onclick="atualizar()"><i class="fas fa-upload"></i> Upload</button>
+                    </div>
                 </div>
-            </div>
-            <br>
-            <button type="button" class="btn-primary btn btn-lg btn-block" onclick="atualizar()"><i class="fas fa-upload"></i> Upload</button>
-            <br>
-            <hr>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div id="preview"></div>
+                <div class="col-lg-12 mt-3">
+                    <div class="card mb-grid">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <div class="card-header-title">Galeria</div>
+                        </div>
+                        <div class="card-body collapse show">
+                            <div id="preview"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -53,7 +58,7 @@ Dropzone.autoDiscover = false;
 
 Dropzone.options.formDropzone = {
     paramName: "fileToUpload",
-    dictDefaultMessage: "Arraste seus arquivos!",
+    dictDefaultMessage: "<h3><i class='fas fa-cloud-upload-alt'></i> Arraste seus arquivos!</h3>",
     dictFileTooBig: "Arquivo maior que 1mb",
     maxFilesize: 1,
     acceptedFiles: "image/*"

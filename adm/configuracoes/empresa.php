@@ -12,7 +12,6 @@ $sql = $pdo->prepare("SELECT * FROM configuracoes WHERE conf_id = 1");
 $sql->execute();
 $listarConfiguracoes = $sql->fetchAll(PDO::FETCH_ASSOC);
 
-// TODO: Melhorar o cadastro das redes sociais criar uma tabela a parte. Utilizar o mesmo processo de "Destaques"
 ?>
 
 <div class="adminx-content">
@@ -22,25 +21,29 @@ $listarConfiguracoes = $sql->fetchAll(PDO::FETCH_ASSOC);
             <nav aria-label="breadcrumb" role="navigation">
                 <ol class="breadcrumb adminx-page-breadcrumb">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Empresa</li>
+                    <li class="breadcrumb-item active" aria-current="page">Informações do Site</li>
                 </ol>
             </nav>
 
             <div class="pb-3">
-                <h1>Empresa</h1>
+                <h1>Informações do Site</h1>
             </div>
 
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="card mb-grid">
-                        <div class="card-header d-flex justify-content-between align-items-center">
-                            <div class="card-header-title">Informações do Site</div>
-                        </div>
-                        <div class="card-body collapse show">
-                            <form id="configuracoes" action="./system/_configuracoes.php" method="post" enctype="multipart/form-data">
+            <!-- Informações do Site -->
+           
+            <form id="configuracoes" action="./system/_configuracoes.php" method="post" enctype="multipart/form-data">
+                <div class="row">
+                <?php foreach ($listarConfiguracoes as $key => $value) { ?>
+
+                    <div class="col-lg-9">
+                        <div class="card mb-grid">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <div class="card-header-title">Informações do Site</div>
+                            </div>
+                            <div class="card-body collapse show">
                                 <div class="row">
-                                    <?php foreach ($listarConfiguracoes as $key => $value) { ?>
-                                        <div class="col-lg-6">
+                                    
+                                        <!-- <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label class="form-label">Logo <i class="fas fa-question-circle" data-toggle="tooltip" data-placement="top" title="Tamanho Padrão 500x150 pixels"></i></label><br>
                                                 <img class="img-fluid" src="<?php echo $value['conf_logo_url'] ?>" alt="<?php echo $value['conf_nome'] ?>">
@@ -61,14 +64,14 @@ $listarConfiguracoes = $sql->fetchAll(PDO::FETCH_ASSOC);
                                                 <label class="form-label" for="confFavicon">Atualizar Favicon</label>
                                                 <input type="file" class="form-control" id="confFavicon" name="confFavicon" />
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <div class="col-lg-3">
                                             <div class="form-group">
                                                 <label class="form-label" for="confNome">Nome do Site</label>
                                                 <input type="text" class="form-control" name="confNome" value="<?php echo $value['conf_nome'] ?>">
                                             </div>
                                         </div>
-                                        <div class="col-lg-3">
+                                        <div class="col-lg-9">
                                             <div class="form-group">
                                                 <label class="form-label" for="confDescricao">Descrição do Site</label>
                                                 <input type="text" class="form-control" name="confDescricao" value="<?php echo $value['conf_descricao'] ?>">
@@ -98,36 +101,12 @@ $listarConfiguracoes = $sql->fetchAll(PDO::FETCH_ASSOC);
                                                 <input type="text" class="form-control" name="confLink" value="<?php echo $value['conf_link'] ?>">
                                             </div>
                                         </div>
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-12">
                                             <div class="form-group">
                                                 <label class="form-label" for="confEndereco">Endereço</label>
                                                 <input type="text" class="form-control" name="confEndereco" value="<?php echo $value['conf_endereco'] ?>">
                                             </div>
                                         </div>
-                                        <!-- <div class="col-lg-3">
-                                            <div class="form-group">
-                                                <label class="form-label" for="confInstagram">Instagram</label>
-                                                <input type="text" class="form-control" name="confInstagram" value="<?php echo $value['conf_instagram'] ?>">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div class="form-group">
-                                                <label class="form-label" for="confFacebook">Facebook</label>
-                                                <input type="text" class="form-control" name="confFacebook" value="<?php echo $value['conf_facebook'] ?>">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div class="form-group">
-                                                <label class="form-label" for="confYoutube">Youtube</label>
-                                                <input type="text" class="form-control" name="confYoutube" value="<?php echo $value['conf_youtube'] ?>">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div class="form-group">
-                                                <label class="form-label" for="confLinkedin">LinkedIn</label>
-                                                <input type="text" class="form-control" name="confLinkedin" value="<?php echo $value['conf_linkedin'] ?>">
-                                            </div>
-                                        </div> -->
                                         <div class="col-lg-2 color">
                                             <label class="form-label" for="confCorPrincipal">Cor Principal</label>
                                             <div class="input-group">
@@ -146,21 +125,58 @@ $listarConfiguracoes = $sql->fetchAll(PDO::FETCH_ASSOC);
                                                 </span>
                                             </div>
                                         </div>
-                                    <?php } ?>
+                                    
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-6 mt-4">
                                         <input type="submit" class="btn btn-pill btn-primary" value="Atualizar Configurações" />
                                     </div>
                                 </div>
-                                
-                            </form>
+                            </div>
                         </div>
-
                     </div>
-                </div>
-            </div>
 
+                    <div class="col-lg-3">
+                        <div class="card mb-grid">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <div class="card-header-title">Logo & Favicon</div>
+                            </div>
+                            <div class="card-body collapse show">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label class="form-label">Logo <i class="fas fa-question-circle" data-toggle="tooltip" data-placement="top" title="Tamanho Padrão 500x150 pixels"></i></label><br>
+                                            <img class="img-fluid" src="<?php echo $value['conf_logo_url'] ?>" alt="<?php echo $value['conf_nome'] ?>">
+                                            <input type="hidden" name="nomeLogo" value="<?php echo $value['conf_logo']?>">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label" for="confLogo">Atualizar Logo</label>
+                                            <input type="file" class="form-control" id="confLogo" name="confLogo" />
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-lg-12 mt-3">
+                                        <div class="form-group">
+                                            <label class="form-label">Favicon <i class="fas fa-question-circle" data-toggle="tooltip" data-placement="top" title="Tamanho Padrão 32x32 pixels"></i></label><br>
+                                            <img src="<?php echo $value['conf_favicon_url'] ?>" alt="<?php echo $value['conf_nome'] ?>">
+                                            <input type="hidden" name="nomeFavicon" value="<?php echo $value['conf_favicon']?>">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label" for="confFavicon">Atualizar Favicon</label>
+                                            <input type="file" class="form-control" id="confFavicon" name="confFavicon" />
+                                        </div>
+                                    </div>
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+
+                <?php } ?>
+                </div>
+            </form>
+            
+
+            <!-- Sobre a Empresa -->
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card mb-grid">
@@ -206,6 +222,7 @@ $listarConfiguracoes = $sql->fetchAll(PDO::FETCH_ASSOC);
                 </div>
             </div>
 
+            <!-- Redes Sociais -->
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card mb-grid">
@@ -288,6 +305,7 @@ $listarConfiguracoes = $sql->fetchAll(PDO::FETCH_ASSOC);
                 </div>
             </div>
 
+            <!-- Destaques e Skills -->
             <div class="row">
                 <div class="col-lg-8">
                     <div class="card mb-grid">

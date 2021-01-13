@@ -1061,7 +1061,7 @@ section {
   font-size: 22px;
   font-weight: bold;
   padding: 0;
-  margin: 0 0 20px 0;
+  margin: 0 0 10px 0;
 }
 
 .blog .entry .entry-title a {
@@ -1074,7 +1074,8 @@ section {
 }
 
 .blog .entry .entry-meta {
-  margin-bottom: 15px;
+  margin-bottom: 10px;
+  font-size: 12px;
   color: #dddddd;
 }
 
@@ -1107,6 +1108,7 @@ section {
 
 .blog .entry .entry-content p {
   line-height: 24px;
+  font-size: 14px;
 }
 
 .blog .entry .entry-content .read-more {
@@ -1212,7 +1214,7 @@ section {
 }
 
 .blog .entry .entry-footer i {
-  color: #4c99c1;
+  color: var(--principal);
   display: inline;
 }
 
@@ -1451,7 +1453,6 @@ section {
 
 .blog .sidebar {
   padding: 30px;
-  margin: 0 0 60px 20px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
@@ -1460,7 +1461,7 @@ section {
   font-weight: 700;
   padding: 0 0 0 0;
   margin: 0 0 15px 0;
-  color: #32627b;
+  color: var(--principal);
   position: relative;
 }
 
@@ -1544,15 +1545,15 @@ section {
 }
 
 .blog .sidebar .recent-posts h4 a:hover {
-  color: #68A4C4;
+  color: var(--secundaria);
 }
 
 .blog .sidebar .recent-posts time {
   display: block;
   margin-left: 95px;
   font-style: italic;
-  font-size: 14px;
-  color: #72afce;
+  font-size: 10px;
+  color: var(--principal);
 }
 
 .blog .sidebar .tags {
@@ -2201,6 +2202,27 @@ section {
     position: static;
     margin-top: 30px;
   }
+}
+
+/*--------------------------------------------------------------
+# Gallery
+--------------------------------------------------------------*/
+.gallery {
+  padding-bottom: 0;
+}
+
+.gallery .gallery-item {
+  overflow: hidden;
+  border-right: 3px solid #fff;
+  border-bottom: 3px solid #fff;
+}
+
+.gallery .gallery-item img {
+  transition: all ease-in-out 0.4s;
+}
+
+.gallery .gallery-item:hover img {
+  transform: scale(1.1);
 }
 
 /*--------------------------------------------------------------

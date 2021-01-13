@@ -13454,3 +13454,19 @@ div.table-responsive>div.dataTables_wrapper>div.row>div[class^=col-]:last-child 
     justify-content: center;
     align-items: center;
 }
+
+/* Dropzone */
+.dropzone {
+    width: 100%;
+    background-color: #f8fafd;
+    border: .125rem dashed #e7eaf3;
+    border-radius: .3125rem;
+    padding: 3rem 3rem;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+.dropzone.dz-clickable .dz-message, .dropzone.dz-clickable .dz-message * {
+    margin: auto;
+}
