@@ -70,7 +70,7 @@ $listCategorias = $pdo->query("SELECT * FROM categorias ORDER BY cat_id DESC")->
                                         } ?>
                                     </td>
                                     <td>
-                                        <a href="./?id=<?php echo $value['cat_id'] ?>" class="btn btn-pill btn-sm btn-outline-primary">Editar</a>
+                                        <a href="./?id=<?php echo $value['cat_id'] ?>" class="btn btn-sm btn-outline-primary">Editar</a>
                                     </td>
                                 </tr>
                             <?php } ?>
@@ -80,7 +80,7 @@ $listCategorias = $pdo->query("SELECT * FROM categorias ORDER BY cat_id DESC")->
             </div>
             <div class="row">
                 <div class="col-lg-4">
-                    <a href="./" class="btn btn-pill btn-primary">Adicionar Categoria</a>
+                    <a href="./" class="btn btn-primary">Adicionar Categoria</a>
                 </div>
             </div>
         </div>

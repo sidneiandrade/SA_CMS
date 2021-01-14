@@ -63,7 +63,7 @@ $list = $pdo->query("SELECT * FROM modulos ORDER BY mod_ordem DESC")->fetchAll(P
                                         } ?>
                                     </td>
                                     <td>
-                                        <a href="modulos?id=<?php echo $value['mod_id'] ?>" class="btn btn-pill btn-sm btn-outline-primary">Editar</a>
+                                        <a href="modulos?id=<?php echo $value['mod_id'] ?>" class="btn btn-sm btn-outline-primary">Editar</a>
                                     </td>
                                 </tr>
                             <?php } ?>
@@ -73,7 +73,7 @@ $list = $pdo->query("SELECT * FROM modulos ORDER BY mod_ordem DESC")->fetchAll(P
             </div>
             <div class="row">
                 <div class="col-lg-4">
-                    <a href="modulos" class="btn btn-pill btn-primary">Adicionar Modulo</a>
+                    <a href="modulos" class="btn btn-primary">Adicionar Modulo</a>
                 </div>
             </div>
         </div>

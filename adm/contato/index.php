@@ -71,7 +71,7 @@ $list = $pdo->query("SELECT * FROM contatos ORDER BY cont_id DESC")->fetchAll(PD
                                     <td><?php echo $value['cont_telefone'] ?></td>
                                     <td><?php echo $value['cont_assunto'] ?></td>
                                     <td>
-                                        <a href="mensagem.php?id=<?php echo $value['cont_id'] ?>" class="btn btn-pill btn-sm btn-outline-primary">Acessar</a>
+                                        <a href="mensagem.php?id=<?php echo $value['cont_id'] ?>" class="btn btn-sm btn-outline-primary">Acessar</a>
                                     </td>
                                 </tr>
                             <?php } ?>

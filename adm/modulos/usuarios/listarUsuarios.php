@@ -56,7 +56,7 @@ $listUsuario = $pdo->query("SELECT * FROM usuario ORDER BY usu_id DESC")->fetchA
                                         } ?>
                                     </td>
                                     <td>
-                                        <a href="./?id=<?php echo $value['usu_id'] ?>" class="btn btn-pill btn-sm btn-outline-primary">Editar</a>
+                                        <a href="./?id=<?php echo $value['usu_id'] ?>" class="btn btn-sm btn-outline-primary">Editar</a>
                                     </td>
                                 </tr>
                             <?php } ?>
@@ -66,7 +66,7 @@ $listUsuario = $pdo->query("SELECT * FROM usuario ORDER BY usu_id DESC")->fetchA
             </div>
             <div class="row">
                 <div class="col-lg-4">
-                    <a href="./" class="btn btn-pill btn-primary">Adicionar Usuário</a>
+                    <a href="./" class="btn btn-primary">Adicionar Usuário</a>
                 </div>
             </div>
         </div>

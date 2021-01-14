@@ -32,9 +32,9 @@ $list = $pdo->query("SELECT * FROM slides ORDER BY sd_id DESC")->fetchAll(PDO::F
                         <!-- <a href="./" class="btn btn-pill btn-primary btn-sm">Adicionar Slide</a> -->
                     </div>
                 </div>
-                <div class="col-lg-6 text-right">
+                <!-- <div class="col-lg-6 text-right">
                     <a href="./" class="btn btn-pill btn-primary">Adicionar Slide</a>
-                </div>
+                </div> -->
             </div>
             
 
@@ -62,7 +62,7 @@ $list = $pdo->query("SELECT * FROM slides ORDER BY sd_id DESC")->fetchAll(PDO::F
                                         } ?>
                                     </td>
                                     <td>
-                                        <a href="./?id=<?php echo $value['sd_id'] ?>" class="btn btn-pill btn-sm btn-outline-primary">Editar</a>
+                                        <a href="./?id=<?php echo $value['sd_id'] ?>" class="btn btn-sm btn-outline-primary">Editar</a>
                                     </td>
                                 </tr>
                             <?php } ?>
@@ -72,7 +72,7 @@ $list = $pdo->query("SELECT * FROM slides ORDER BY sd_id DESC")->fetchAll(PDO::F
             </div>
             <div class="row">
                 <div class="col-lg-4">
-                    <a href="./" class="btn btn-pill btn-primary">Adicionar Slide</a>
+                    <a href="./" class="btn btn-primary">Adicionar Slide</a>
                 </div>
             </div>
         </div>

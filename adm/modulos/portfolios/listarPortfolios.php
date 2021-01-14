@@ -62,7 +62,7 @@ $listPortfolio = $pdo->query("SELECT * FROM portfolios ORDER BY port_id DESC")->
                                         } ?>
                                     </td>
                                     <td>
-                                        <a href="./?id=<?php echo $value['port_id'] ?>" class="btn btn-pill btn-sm btn-outline-primary">Editar</a>
+                                        <a href="./?id=<?php echo $value['port_id'] ?>" class="btn btn-sm btn-outline-primary">Editar</a>
                                     </td>
                                 </tr>
                             <?php } ?>
@@ -72,7 +72,7 @@ $listPortfolio = $pdo->query("SELECT * FROM portfolios ORDER BY port_id DESC")->
             </div>
             <div class="row">
                 <div class="col-lg-4">
-                    <a href="./" class="btn btn-pill btn-primary">Adicionar Portfólio</a>
+                    <a href="./" class="btn btn-primary">Adicionar Portfólio</a>
                 </div>
             </div>
         </div>

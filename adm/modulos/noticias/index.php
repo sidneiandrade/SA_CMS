@@ -156,10 +156,16 @@ if ($notID != 0) {
                             <div class="card-body collapse show">
                                 <div class="col-lg-12">
                                     <input type="hidden" id="Acao" name="Acao" value="<?php echo $Acao ?>">
-                                    <input type="submit" class="btn btn-pill btn-primary" value="<?php echo $Acao ?>" />
+                                    <!-- <input type="submit" class="btn btn-pill btn-primary" value="<?php echo $Acao ?>" />
                                     <?php if ($notID != 0) {
                                         echo '<a href="#" onclick="deletar()" class="btn btn-pill btn-danger">Deletar</a>';
                                         echo '<a href="listarNoticias" class="btn btn-pill btn-warning ml-1">Voltar</a>';
+                                    } ?> -->
+
+                                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> <?php echo $Acao ?></button>
+                                    <?php if ($notID != 0) {
+                                        echo '<a href="#" onclick="deletar()" class="btn btn-danger"><i class="far fa-trash-alt"></i> Deletar</a>';
+                                        echo '<a href="listarNoticias" class="btn btn-warning ml-1"><i class="fas fa-undo"></i> Voltar</a>';
                                     } ?>
                                 </div>
                             </div>

@@ -21,6 +21,7 @@ foreach ($dados as $value) {
     $Mensagem = $value['cont_mensagem'];
     $Resposta = $value['cont_resposta'];
     $Status = $value['cont_visualizado'];
+    $Acao = "resposta";
 }
 if($Status == 0){
     $visualizado = $pdo->query("UPDATE contatos SET cont_visualizado = 1 WHERE cont_id = $ID");
@@ -105,8 +106,11 @@ if($Status == 0){
                                         <div class="form-group">
                                             <textarea class="form-control" rows="6" id="resposta" name="resposta" required><?php echo $Resposta ?></textarea>
                                         </div>
-                                        <button type="submit" class="btn btn-pill btn-primary">Enviar Resposta</button>
-                                        <a href="index" class="btn btn-warning btn-pill">Voltar</a>
+
+                                        <input type="hidden" id="Acao" name="Acao" value="<?php echo $Acao ?>">
+                                        <button type="submit" class="btn btn-primary"><i class="far fa-paper-plane"></i> Responder</button>
+                                        <a href="index" class="btn btn-warning"><i class="fas fa-undo"></i> Voltar</a>
+                                        <button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i> Deletar</button>
                                     </div>
                                 </div>
                             </div>
@@ -139,6 +143,32 @@ if($Status == 0){
                 if (data.result == 'ok') {
                     Notiflix.Loading.Remove();
                     Notiflix.Notify.Success(data.mensagem);
+                } else {
+                    Notiflix.Loading.Remove();
+                    Notiflix.Notify.Failure(data.mensagem);
+                }
+            }
+        });
+    });
+
+    $('.btn-danger').click(function(){
+        event.preventDefault();
+        $("#Acao").val('deletar');
+        $.ajax({
+            type: "POST",
+            url: "_resposta.php",
+            data: new FormData($(Form)[0]),
+            processData: false,
+            contentType: false,
+            success: function(data) {
+                Notiflix.Loading.Pulse('Carregando...');
+                debugger;
+                if (data.result == 'ok') {
+                    Notiflix.Loading.Remove();
+                    Notiflix.Notify.Success(data.mensagem);
+                    setTimeout(function() {
+                        location.href = "./index"
+                    }, 2500);
                 } else {
                     Notiflix.Loading.Remove();
                     Notiflix.Notify.Failure(data.mensagem);

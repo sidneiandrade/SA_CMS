@@ -66,8 +66,6 @@ $listModulos = $modulos->fetchAll(PDO::FETCH_ASSOC);
     <div class="container d-flex align-items-center">
 
       <div class="logo mr-auto">
-        <!-- <h1><a href="index">Lumia</a></h1> -->
-        <!-- Uncomment below if you prefer to use an image logo -->
         <a href="<?php echo $baseUrl ?>"><img src="<?php echo $values['conf_logo_url'] ?>" alt="<?php echo $values['conf_nome'] ?>" class="img-fluid"></a>
       </div>
 

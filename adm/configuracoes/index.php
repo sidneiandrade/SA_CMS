@@ -59,7 +59,7 @@ include $caminho . 'header.php';
                                     
                                 </div>
                                 <br>
-                                <input type="submit" class="btn btn-pill btn-primary" value="Atualizar Configurações" />
+                                <input type="submit" class="btn btn-primary" value="Atualizar Configurações" />
                             </form>
                         </div>
 

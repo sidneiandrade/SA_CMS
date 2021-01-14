@@ -32,7 +32,7 @@ include $caminho . 'header.php';
                     </form>
                     <br>
                     <div class="col-lg-2 offset-lg-5">
-                        <button type="button" class="btn-primary btn btn-lg btn-block" onclick="atualizar()"><i class="fas fa-upload"></i> Upload</button>
+                        <button type="button" class="btn-warning btn btn-lg btn-block" onclick="atualizar()"><i class="fas fa-sync"></i> Carregar</button>
                     </div>
                 </div>
                 <div class="col-lg-12 mt-3">

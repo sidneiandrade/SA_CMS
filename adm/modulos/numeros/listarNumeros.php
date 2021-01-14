@@ -55,7 +55,7 @@ $listNumeros = $pdo->query("SELECT * FROM numeros ORDER BY num_id DESC")->fetchA
                                         } ?>
                                     </td>
                                     <td>
-                                        <a href="./?id=<?php echo $value['num_id'] ?>" class="btn btn-pill btn-sm btn-outline-primary">Editar</a>
+                                        <a href="./?id=<?php echo $value['num_id'] ?>" class="btn btn-sm btn-outline-primary">Editar</a>
                                     </td>
                                 </tr>
                             <?php } ?>
@@ -65,7 +65,7 @@ $listNumeros = $pdo->query("SELECT * FROM numeros ORDER BY num_id DESC")->fetchA
             </div>
             <div class="row">
                 <div class="col-lg-4">
-                    <a href="./" class="btn btn-pill btn-primary">Adicionar Números</a>
+                    <a href="./" class="btn btn-primary">Adicionar Números</a>
                 </div>
             </div>
         </div>

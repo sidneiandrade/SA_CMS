@@ -53,7 +53,7 @@ $listPaginas = $pdo->query("SELECT * FROM paginas ORDER BY pag_id DESC")->fetchA
                                         } ?>
                                     </td>
                                     <td>
-                                        <a href="./?id=<?php echo $value['pag_id'] ?>" class="btn btn-pill btn-sm btn-outline-primary">Editar</a>
+                                        <a href="./?id=<?php echo $value['pag_id'] ?>" class="btn btn-sm btn-outline-primary">Editar</a>
                                     </td>
                                 </tr>
                             <?php } ?>
@@ -63,7 +63,7 @@ $listPaginas = $pdo->query("SELECT * FROM paginas ORDER BY pag_id DESC")->fetchA
             </div>
             <div class="row">
                 <div class="col-lg-4">
-                    <a href="./" class="btn btn-pill btn-primary">Adicionar Página</a>
+                    <a href="./" class="btn btn-primary">Adicionar Página</a>
                 </div>
             </div>
         </div>

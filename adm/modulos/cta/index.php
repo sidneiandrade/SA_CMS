@@ -121,7 +121,7 @@ if($count > 0){
                                     </div>
                                 </div>
                                 <input type="hidden" id="Acao" name="Acao" value="<?php echo $Acao ?>">
-                                <input type="submit" name="salvar" class="btn btn-pill btn-primary" value="<?php echo $Acao ?>" />
+                                <button type="submit" name="salvar" class="btn btn-primary"><i class="fas fa-save"></i> <?php echo $Acao ?></button>
                             </div>
                         </div>
                     </div>

@@ -52,7 +52,7 @@ $list = $pdo->query("SELECT * FROM perguntas ORDER BY pg_id DESC")->fetchAll();
                                         } ?>
                                     </td>
                                     <td>
-                                        <a href="./?id=<?php echo $value['pg_id'] ?>" class="btn btn-pill btn-sm btn-outline-primary">Editar</a>
+                                        <a href="./?id=<?php echo $value['pg_id'] ?>" class="btn btn-sm btn-outline-primary">Editar</a>
                                     </td>
                                 </tr>
                             <?php } ?>
@@ -62,7 +62,7 @@ $list = $pdo->query("SELECT * FROM perguntas ORDER BY pg_id DESC")->fetchAll();
             </div>
             <div class="row">
                 <div class="col-lg-4">
-                    <a href="./" class="btn btn-pill btn-primary">Adicionar Pergunta</a>
+                    <a href="./" class="btn btn-primary">Adicionar Pergunta</a>
                 </div>
             </div>
         </div>

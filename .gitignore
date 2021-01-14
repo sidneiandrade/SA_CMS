@@ -6,7 +6,7 @@ assets/img/noticias/*.jpg
 assets/img/paginas/*.jpg
 assets/img/portfolio/*.jpg
 assets/img/slide/*.jpg
+assets/img/galeria/*.jpg
 .vscode/
 .idea/
 *.zip
-adm/uploads/

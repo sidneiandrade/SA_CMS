@@ -64,7 +64,7 @@ $listNoticias = $pdo->query("SELECT * FROM noticias ORDER BY not_id DESC")->fetc
                                         } ?>
                                     </td>
                                     <td>
-                                        <a href="./?id=<?php echo $value['not_id'] ?>" class="btn btn-pill btn-sm btn-outline-primary">Editar</a>
+                                        <a href="./?id=<?php echo $value['not_id'] ?>" class="btn btn-sm btn-outline-primary">Editar</a>
                                     </td>
                                 </tr>
                             <?php } ?>
@@ -74,7 +74,7 @@ $listNoticias = $pdo->query("SELECT * FROM noticias ORDER BY not_id DESC")->fetc
             </div>
             <div class="row">
                 <div class="col-lg-4">
-                    <a href="./" class="btn btn-pill btn-primary">Adicionar Notícia</a>
+                    <a href="./" class="btn btn-primary">Adicionar Notícia</a>
                 </div>
             </div>
         </div>

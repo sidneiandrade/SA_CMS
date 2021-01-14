@@ -42,94 +42,70 @@ $listarConfiguracoes = $sql->fetchAll(PDO::FETCH_ASSOC);
                             </div>
                             <div class="card-body collapse show">
                                 <div class="row">
-                                    
-                                        <!-- <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <label class="form-label">Logo <i class="fas fa-question-circle" data-toggle="tooltip" data-placement="top" title="Tamanho Padrão 500x150 pixels"></i></label><br>
-                                                <img class="img-fluid" src="<?php echo $value['conf_logo_url'] ?>" alt="<?php echo $value['conf_nome'] ?>">
-                                                <input type="hidden" name="nomeLogo" value="<?php echo $value['conf_logo']?>">
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="form-label">Favicon <i class="fas fa-question-circle" data-toggle="tooltip" data-placement="top" title="Tamanho Padrão 32x32 pixels"></i></label><br>
-                                                <img src="<?php echo $value['conf_favicon_url'] ?>" alt="<?php echo $value['conf_nome'] ?>">
-                                                <input type="hidden" name="nomeFavicon" value="<?php echo $value['conf_favicon']?>">
-                                            </div>
+                                    <div class="col-lg-3">
+                                        <div class="form-group">
+                                            <label class="form-label" for="confNome">Nome do Site</label>
+                                            <input type="text" class="form-control" name="confNome" value="<?php echo $value['conf_nome'] ?>">
                                         </div>
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <label class="form-label" for="confLogo">Atualizar Logo</label>
-                                                <input type="file" class="form-control" id="confLogo" name="confLogo" />
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="form-label" for="confFavicon">Atualizar Favicon</label>
-                                                <input type="file" class="form-control" id="confFavicon" name="confFavicon" />
-                                            </div>
-                                        </div> -->
-                                        <div class="col-lg-3">
-                                            <div class="form-group">
-                                                <label class="form-label" for="confNome">Nome do Site</label>
-                                                <input type="text" class="form-control" name="confNome" value="<?php echo $value['conf_nome'] ?>">
-                                            </div>
+                                    </div>
+                                    <div class="col-lg-9">
+                                        <div class="form-group">
+                                            <label class="form-label" for="confDescricao">Descrição do Site</label>
+                                            <input type="text" class="form-control" name="confDescricao" value="<?php echo $value['conf_descricao'] ?>">
                                         </div>
-                                        <div class="col-lg-9">
-                                            <div class="form-group">
-                                                <label class="form-label" for="confDescricao">Descrição do Site</label>
-                                                <input type="text" class="form-control" name="confDescricao" value="<?php echo $value['conf_descricao'] ?>">
-                                            </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="form-group">
+                                            <label class="form-label" for="confTelefone">Contatos</label>
+                                            <input type="text" class="form-control" name="confTelefone" value="<?php echo $value['conf_telefone'] ?>">
                                         </div>
-                                        <div class="col-lg-3">
-                                            <div class="form-group">
-                                                <label class="form-label" for="confTelefone">Contatos</label>
-                                                <input type="text" class="form-control" name="confTelefone" value="<?php echo $value['conf_telefone'] ?>">
-                                            </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="form-group">
+                                            <label class="form-label" for="confEmail">E-mail</label>
+                                            <input type="text" class="form-control" name="confEmail" value="<?php echo $value['conf_email'] ?>">
                                         </div>
-                                        <div class="col-lg-3">
-                                            <div class="form-group">
-                                                <label class="form-label" for="confEmail">E-mail</label>
-                                                <input type="text" class="form-control" name="confEmail" value="<?php echo $value['conf_email'] ?>">
-                                            </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="form-group">
+                                            <label class="form-label" for="confCNPJ">CNPJ</label>
+                                            <input type="text" class="form-control" id="confCNPJ" name="confCNPJ" data-mask="00.000.000/0000-00" value="<?php echo $value['conf_cnpj'] ?>">
                                         </div>
-                                        <div class="col-lg-3">
-                                            <div class="form-group">
-                                                <label class="form-label" for="confCNPJ">CNPJ</label>
-                                                <input type="text" class="form-control" id="confCNPJ" name="confCNPJ" data-mask="00.000.000/0000-00" value="<?php echo $value['conf_cnpj'] ?>">
-                                            </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="form-group">
+                                            <label class="form-label" for="confLink">Link</label>
+                                            <input type="text" class="form-control" name="confLink" value="<?php echo $value['conf_link'] ?>">
                                         </div>
-                                        <div class="col-lg-3">
-                                            <div class="form-group">
-                                                <label class="form-label" for="confLink">Link</label>
-                                                <input type="text" class="form-control" name="confLink" value="<?php echo $value['conf_link'] ?>">
-                                            </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label class="form-label" for="confEndereco">Endereço</label>
+                                            <input type="text" class="form-control" name="confEndereco" value="<?php echo $value['conf_endereco'] ?>">
                                         </div>
-                                        <div class="col-lg-12">
-                                            <div class="form-group">
-                                                <label class="form-label" for="confEndereco">Endereço</label>
-                                                <input type="text" class="form-control" name="confEndereco" value="<?php echo $value['conf_endereco'] ?>">
-                                            </div>
+                                    </div>
+                                    <div class="col-lg-2 color">
+                                        <label class="form-label" for="confCorPrincipal">Cor Principal</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="confCorPrincipal" value="<?php echo $value['conf_cor_principal'] ?>"/>
+                                            <span class="input-group-append">
+                                                <span class="input-group-text colorpicker-input-addon"><i></i></span>
+                                            </span>
                                         </div>
-                                        <div class="col-lg-2 color">
-                                            <label class="form-label" for="confCorPrincipal">Cor Principal</label>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control" name="confCorPrincipal" value="<?php echo $value['conf_cor_principal'] ?>"/>
-                                                <span class="input-group-append">
-                                                    <span class="input-group-text colorpicker-input-addon"><i></i></span>
-                                                </span>
-                                            </div>
+                                    </div>
+                                    <div class="col-lg-2 color">
+                                        <label class="form-label" for="confCorSecundaria">Cor Título</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="confCorSecundaria" value="<?php echo $value['conf_cor_secundaria'] ?>"/>
+                                            <span class="input-group-append">
+                                                <span class="input-group-text colorpicker-input-addon"><i></i></span>
+                                            </span>
                                         </div>
-                                        <div class="col-lg-2 color">
-                                            <label class="form-label" for="confCorSecundaria">Cor Título</label>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control" name="confCorSecundaria" value="<?php echo $value['conf_cor_secundaria'] ?>"/>
-                                                <span class="input-group-append">
-                                                    <span class="input-group-text colorpicker-input-addon"><i></i></span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-6 mt-4">
-                                        <input type="submit" class="btn btn-pill btn-primary" value="Atualizar Configurações" />
+                                        <input type="submit" class="btn btn-primary" value="Atualizar Configurações" />
                                     </div>
                                 </div>
                             </div>
@@ -215,7 +191,7 @@ $listarConfiguracoes = $sql->fetchAll(PDO::FETCH_ASSOC);
                                     <?php  ?>
                                 </div>
 
-                                <input type="submit" class="btn btn-pill btn-primary" value="Atualizar Descrição" />
+                                <input type="submit" class="btn btn-primary" value="Atualizar Descrição" />
                             </form>
                         </div>
                     </div>
@@ -255,7 +231,7 @@ $listarConfiguracoes = $sql->fetchAll(PDO::FETCH_ASSOC);
                                         <div class="col-lg-2">
                                             <div class="form-group">
                                                 <label class="form-label" for="socialCadastro"></label>
-                                                <button id="socialCadastro" name="socialCadastro" class="btn btn-pill btn-primary btn-block" data-acao="salvar">Cadastrar</button>
+                                                <button id="socialCadastro" name="socialCadastro" class="btn btn-primary btn-block" data-acao="salvar">Cadastrar</button>
                                             </div>
                                         </div>
                                     </div>
@@ -285,8 +261,8 @@ $listarConfiguracoes = $sql->fetchAll(PDO::FETCH_ASSOC);
                                                         <td><?php echo $listRedes['social_titulo'] ?></td>
                                                         <td><?php echo $listRedes['social_url'] ?></td>
                                                         <td>
-                                                            <a href="#" class="btn btn-pill btn-sm btn-light editarRedes" data-id="<?php echo $listRedes['social_id'] ?>" data-acao="editar"><i data-feather="edit"></i></a>
-                                                            <a href="#" class="btn btn-pill btn-sm btn-light editarRedes" data-id="<?php echo $listRedes['social_id'] ?>" data-acao="deletar"><i data-feather="trash-2"></i></a>
+                                                            <a href="#" class="btn btn-sm btn-light editarRedes" data-id="<?php echo $listRedes['social_id'] ?>" data-acao="editar"><i data-feather="edit"></i></a>
+                                                            <a href="#" class="btn btn-sm btn-light editarRedes" data-id="<?php echo $listRedes['social_id'] ?>" data-acao="deletar"><i data-feather="trash-2"></i></a>
                                                         </td>
                                                     </tr>
                                                 <?php } ?>
@@ -333,7 +309,7 @@ $listarConfiguracoes = $sql->fetchAll(PDO::FETCH_ASSOC);
                                                     <td><?php echo $value['des_titulo'] ?></td>
                                                     <td><?php echo $value['des_texto'] ?></td>
                                                     <td>
-                                                        <a href="destaque?id=<?php echo $value['des_id'] ?>" class="btn btn-pill btn-sm btn-light"><i data-feather="edit"></i></a>
+                                                        <a href="destaque?id=<?php echo $value['des_id'] ?>" class="btn btn-sm btn-light"><i data-feather="edit"></i></a>
                                                     </td>
                                                 </tr>
                                             <?php } ?>
@@ -343,7 +319,7 @@ $listarConfiguracoes = $sql->fetchAll(PDO::FETCH_ASSOC);
                             </div>
                             <div class="row">
                                 <div class="col-lg-4">
-                                    <a href="destaque" class="btn btn-pill btn-primary">Adicionar Destaque</a>
+                                    <a href="destaque" class="btn btn-primary">Adicionar Destaque</a>
                                 </div>
                             </div>
                         </div>
@@ -373,7 +349,7 @@ $listarConfiguracoes = $sql->fetchAll(PDO::FETCH_ASSOC);
                                                     <td><?php echo $value['sk_titulo'] ?></td>
                                                     <td><?php echo $value['sk_valor'] ?> %</td>
                                                     <td>
-                                                        <a href="skill?id=<?php echo $value['sk_id'] ?>" class="btn btn-pill btn-sm btn-light"><i data-feather="edit"></i></a>
+                                                        <a href="skill?id=<?php echo $value['sk_id'] ?>" class="btn btn-sm btn-light"><i data-feather="edit"></i></a>
                                                     </td>
                                                 </tr>
                                             <?php } ?>
@@ -383,7 +359,7 @@ $listarConfiguracoes = $sql->fetchAll(PDO::FETCH_ASSOC);
                             </div>
                             <div class="row">
                                 <div class="col-lg-4">
-                                    <a href="skill" class="btn btn-pill btn-primary">Adicionar Skill</a>
+                                    <a href="skill" class="btn btn-primary">Adicionar Skill</a>
                                 </div>
                             </div>
                         </div>

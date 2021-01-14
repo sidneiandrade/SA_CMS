@@ -45,7 +45,7 @@ $listServicos = $pdo->query("SELECT * FROM servicos ORDER BY serv_id DESC")->fet
                                     <td><?php echo $value['serv_titulo'] ?></td>
                                     <td><?php echo $value['serv_texto'] ?></td>
                                     <td>
-                                        <a href="./?id=<?php echo $value['serv_id'] ?>" class="btn btn-pill btn-sm btn-outline-primary">Editar</a>
+                                        <a href="./?id=<?php echo $value['serv_id'] ?>" class="btn btn-sm btn-outline-primary">Editar</a>
                                     </td>
                                 </tr>
                             <?php } ?>
@@ -55,7 +55,7 @@ $listServicos = $pdo->query("SELECT * FROM servicos ORDER BY serv_id DESC")->fet
             </div>
             <div class="row">
                 <div class="col-lg-4">
-                    <a href="./" class="btn btn-pill btn-primary">Adicionar Serviço</a>
+                    <a href="./" class="btn btn-primary">Adicionar Serviço</a>
                 </div>
             </div>
         </div>

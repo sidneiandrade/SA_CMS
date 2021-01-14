@@ -55,7 +55,7 @@ $list = $pdo->query("SELECT * FROM membros ORDER BY mb_id DESC")->fetchAll(PDO::
                                         } ?>
                                     </td>
                                     <td>
-                                        <a href="./?id=<?php echo $value['mb_id'] ?>" class="btn btn-pill btn-sm btn-outline-primary">Editar</a>
+                                        <a href="./?id=<?php echo $value['mb_id'] ?>" class="btn btn-sm btn-outline-primary">Editar</a>
                                     </td>
                                 </tr>
                             <?php } ?>
@@ -65,7 +65,7 @@ $list = $pdo->query("SELECT * FROM membros ORDER BY mb_id DESC")->fetchAll(PDO::
             </div>
             <div class="row">
                 <div class="col-lg-4">
-                    <a href="./" class="btn btn-pill btn-primary">Adicionar Membro</a>
+                    <a href="./" class="btn btn-primary">Adicionar Membro</a>
                 </div>
             </div>
         </div>
