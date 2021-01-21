@@ -86,7 +86,7 @@
         } ?>
         <div class="row aos-init aos-animate" data-aos="fade-up" data-aos-offset="300" data-aos-easing="ease-in-sine">
           <div class="col-lg-6 d-flex align-items-center">
-            <img src="<?php echo $sobValue['emp_url_imagem'] ?>" class="img-fluid rounded" alt="<?php echo $values['conf_nome'] ?>">
+            <img src="<?php echo $sobValue['emp_url_imagem'] ?>" class="img-fluid rounded" alt="<?php echo $values['conf_nome'] ?>" loading="lazy">
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0">
             <p><?php echo $sobValue['emp_descricao'] ?></p>
@@ -197,7 +197,7 @@
               <div class="col-lg-4 col-md-6 portfolio-item filter-<?php echo $dadosCat['cat_slug'] ?> wow fadeInUp">
                 <div class="portfolio-wrap">
                   <figure>
-                    <img src="<?php echo $imagem['img_imagem'] ?>" class="img-fluid" alt="<?php echo $nomePort ?>">
+                    <img src="<?php echo $imagem['img_imagem'] ?>" class="img-fluid" alt="<?php echo $nomePort ?>" loading="lazy">
                     <a href="<?php echo $imagem['img_imagem'] ?>" data-gall="portfolioGallery" class="link-preview venobox" title="Visualizar"><i class="bx bx-plus"></i></a>
                     <a href="portfolio/<?php echo $slugPort ?>" class="link-details" title="Detalhes"><i class="bx bx-link"></i></a>
                   </figure>
@@ -241,7 +241,7 @@
             <div class="col-lg-3 col-md-4">
               <div class="gallery-item">
                 <a href="<?php echo $galValues['gal_url'] ?>" class="venobox" data-gall="gallery-item">
-                  <img src="<?php echo $galValues['gal_url'] ?>" alt="<?php echo $galValues['gal_nome'] ?>" class="img-fluid">
+                  <img src="<?php echo $galValues['gal_url'] ?>" alt="<?php echo $galValues['gal_nome'] ?>" class="img-fluid" loading="lazy">
                 </a>
               </div>
             </div>
@@ -273,7 +273,7 @@
                   <article class="entry">
 
                     <div class="entry-img">
-                      <img src="<?php echo $valueNot['not_imagem'] ?>" alt="<?php echo $valueNot['not_titulo'] ?>" class="img-fluid">
+                      <img src="<?php echo $valueNot['not_imagem'] ?>" alt="<?php echo $valueNot['not_titulo'] ?>" class="img-fluid" loading="lazy">
                     </div>
 
                     <h2 class="entry-title">
@@ -325,7 +325,7 @@
 
               <div class="col-lg-3 col-md-4 col-xs-6">
                 <div class="client-logo aos-init aos-animate" data-aos="zoom-in">
-                  <img src="<?php echo $cliValues['cli_url_imagem'] ?>" class="img-fluid" alt="<?php echo $cliValues['cli_empresa'] ?>">
+                  <img src="<?php echo $cliValues['cli_url_imagem'] ?>" class="img-fluid" alt="<?php echo $cliValues['cli_empresa'] ?>" loading="lazy">
                 </div>
               </div>
 
@@ -407,7 +407,7 @@
 
               <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
                 <div class="member">
-                  <img src="<?php echo $mbValues['mb_url_imagem'] ?>" alt="<?php echo $mbValues['mb_nome'] ?>">
+                  <img src="<?php echo $mbValues['mb_url_imagem'] ?>" alt="<?php echo $mbValues['mb_nome'] ?>" loading="lazy">
                   <h4><?php echo $mbValues['mb_nome'] ?></h4>
                   <span><?php echo $mbValues['mb_cargo'] ?></span>
                   <!-- <p>

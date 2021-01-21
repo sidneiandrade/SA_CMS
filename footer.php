@@ -4,7 +4,7 @@
       <div class="col-lg-12 text-center">
         <div class="copyright mb-3 mt-3">
           <img src="<?php echo $values['conf_logo_url'] ?>" alt="<?php echo $values['conf_nome'] ?>" class="img-fluid" style="max-width: 250px"><br>
-          <?php echo $values['conf_descricao'] ?>. Todos os direitos reservados.<br>
+          <?php echo $values['conf_descricao'] ?>. <br>Todos os direitos reservados.<br>
           <?php if($values['conf_cnpj'] != null){ ?>
             <strong>CNPJ:</strong> <?php echo $values['conf_cnpj'] ?>
           <?php } ?>
